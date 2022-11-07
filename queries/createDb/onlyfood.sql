@@ -13,8 +13,8 @@ CREATE TABLE users (
 	CONSTRAINT UN_email UNIQUE (email)
 );
 CREATE TABLE follows (
-	follower int NOT NULL,
-	followed int NOT NULL,
+	follower varchar(20) NOT NULL,
+	followed varchar(20) NOT NULL,
 	date datetime NOT NULL,
 	CONSTRAINT PK_follows PRIMARY KEY (follower,followed),
 	CONSTRAINT FK_follows_follower FOREIGN KEY (follower) REFERENCES users(username),

@@ -1,5 +1,5 @@
 users((username>varchar(20)), name>varchar(50), surname>varchar(50), email>varchar(50), password>varchar(255), profilePic>varchar(100)) Unique(email)
-follows((users: follower>int, users: followed>int), date>datetime)
+follows((users: follower>varchar(20), users: followed>varchar(20)), date>datetime)
 recipes((recipeId>int), description>varchar(50), howTo>varchar(500), preview>varchar(100))
 posts((postId>int), date>datetime, users: owner>varchar(20), recipes: recipe>int)
 comments((commentId>int), content>varchar(255), date>datetime, users: user>varchar(20), posts: postId>int)
