@@ -38,6 +38,22 @@ footer (nav bar)
             </header>
         </div>
     </div>
+
+    <!-- Footer -->
+    <div class="row">
+        <div class="col-12">
+            <footer class="bg-success">
+                <div class="row">
+                    <ul class="nav">
+                        <li class="col-3 nav-item text-center">PR</li>
+                        <li class="col-3 nav-item text-center">PO</li>
+                        <li class="col-3 nav-item text-center">HO</li>
+                        <li class="col-3 nav-item text-center">EX</li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div>
     
  </div>
 
