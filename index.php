@@ -1,5 +1,5 @@
 <?php
-require_once 'bootstrap.php';
+//require_once 'bootstrap.php';
 
 //Base Template
 // $templateParams["titolo"] = "Blog TW - Home";

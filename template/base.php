@@ -7,6 +7,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/baseStyle.css">
 </head>
 <body>
 
@@ -21,7 +22,7 @@ footer (nav bar)
     <!-- Header -->
     <div class="row">
         <div class="col-12">
-            <header class="bg-success">
+            <header>
                 <div class="row">
                     <div class="col-6">
                         <p class="mb-0 p-2 text-light fw-semibold fs-2">OnlyFood</p>
@@ -38,17 +39,49 @@ footer (nav bar)
             </header>
         </div>
     </div>
-
-    <!-- Footer -->
+    
     <div class="row">
-        <div class="col-12">
-            <footer class="bg-success">
+        <!--Main-->
+        <div class="col-12 col-md-9">
+            <section  class="bg-warning text-center mx-5 rounded-2 mt-2">
+                <img src="" alt="" />
+                <p>AAAAA</p>
+                <footer>
+                    <ul class="nav mx-4">
+                        <li class="nav-item col-6">
+                            <button class="btn btn-light">Picture</button>
+                        </li>
+                        <li class="nav-item col-6">
+                            <button class="btn btn-light">Recipe</button>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+            <section  class="bg-warning text-center mx-5 rounded-2 mt-2">
+                <img src="" alt="" />
+                <p>AAAAA</p>
+                <footer>
+                    <ul class="nav mx-4 bg-light">
+                        <li class="nav-item col-6">
+                            <p>Picture</p>
+                        </li>
+                        <li class="nav-item col-6">
+                            <p>Recipe</p>
+                        </li>
+                    </ul>
+                </footer>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <div class="col-12 col-md-3 mt-2">
+            <footer>
                 <div class="row">
                     <ul class="nav">
-                        <li class="col-3 nav-item text-center">PR</li>
-                        <li class="col-3 nav-item text-center">PO</li>
-                        <li class="col-3 nav-item text-center">HO</li>
-                        <li class="col-3 nav-item text-center">EX</li>
+                        <li class="col-3 col-md-12 nav-item text-center">PR</li>
+                        <li class="col-3 col-md-12 nav-item text-center">PO</li>
+                        <li class="col-3 col-md-12 nav-item text-center">HO</li>
+                        <li class="col-3 col-md-12 nav-item text-center">EX</li>
                     </ul>
                 </div>
             </footer>

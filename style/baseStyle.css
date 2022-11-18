@@ -1,0 +1,14 @@
+:root{
+    --primary: aqua;
+    --secondary: aquamarine;
+}
+
+div > footer, div > header {
+    background-color: var(--primary);
+}
+
+div > footer li {
+    background-color: var(--secondary);
+    border-radius: 10px;
+    height: 50px;
+}
