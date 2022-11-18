@@ -21,14 +21,14 @@ CREATE TABLE follows (
 	CONSTRAINT FK_follows_followed FOREIGN KEY (followed) REFERENCES users(username)
 );
 CREATE TABLE recipes (
-	recipeId int NOT NULL,
+	recipeId int NOT NULL AUTO_INCREMENT,
 	description varchar(50) NOT NULL,
 	howTo varchar(500) NOT NULL,
 	preview varchar(100) NOT NULL,
 	CONSTRAINT PK_recipes PRIMARY KEY (recipeId)
 );
 CREATE TABLE posts (
-	postId int NOT NULL,
+	postId int NOT NULL AUTO_INCREMENT,
 	date datetime NOT NULL,
 	owner varchar(20) NOT NULL,
 	recipe int NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE posts (
 	CONSTRAINT FK_posts_recipe FOREIGN KEY (recipe) REFERENCES recipes(recipeId)
 );
 CREATE TABLE comments (
-	commentId int NOT NULL,
+	commentId int NOT NULL AUTO_INCREMENT,
 	content varchar(255) NOT NULL,
 	date datetime NOT NULL,
 	user varchar(20) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE comments (
 	CONSTRAINT FK_comments_postId FOREIGN KEY (postId) REFERENCES posts(postId)
 );
 CREATE TABLE likes (
-	likeId int NOT NULL,
+	likeId int NOT NULL AUTO_INCREMENT,
 	user varchar(20) NOT NULL,
 	post int NOT NULL,
 	CONSTRAINT PK_likes PRIMARY KEY (likeId),
