@@ -1,14 +1,64 @@
 :root{
-    --primary: aqua;
-    --secondary: aquamarine;
+    --primary: #539E84;
+    --secondary: #80BCA7;
+    --background: #E5EFEB;
+    --accent: #1A6B4E;
+    --text: #000000;
 }
 
-div > footer, div > header {
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+div > footer {
     background-color: var(--primary);
+}
+
+div > header {
+    background-color: var(--secondary);
+}
+
+div > header p {
+    margin-left: 5px;
+    font-size: 2.5em;
+    font-weight: 600;
+    font-family: sans-serif;
 }
 
 div > footer li {
     background-color: var(--secondary);
     border-radius: 10px;
     height: 50px;
+}
+
+main section {
+    background-color: #FFFFFF;
+    border-radius: 7px;
+    margin: 20px 15px 0;
+}
+
+main section > footer > ul {
+    margin: 0 25%;
+    border-radius: 10px;
+    border: 2px solid var(--secondary);
+    padding: 0;
+}
+
+main section > footer > ul > li {
+    display: inline-block;
+}
+
+main section > footer > ul > li > button {
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+}
+
+footer > div > ul {
+    margin-bottom: 0;
+}
+
+footer > div > ul > li {
+    display: inline-block;
 }

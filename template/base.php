@@ -25,63 +25,58 @@ footer (nav bar)
             <header>
                 <div class="row">
                     <div class="col-6">
-                        <p class="mb-0 p-2 text-light fw-semibold fs-2">OnlyFood</p>
+                        <p>OnlyFood</p>
                     </div>
-                    <div class="col-6 d-flex justify-content-end align-items-center">
-                        <ul class="nav">
-                            <li class="nav-item"><input type="button" value="search"></li>
-                            <li class="nav-item"><input type="button" value="notifications"></li>
+                    <div class="col-6">
+                        <ul>
+                            <li><input type="button" value="search"></li>
+                            <li><input type="button" value="notifications"></li>
                         </ul>
                     </div>
                 </div>
-                
-                
             </header>
         </div>
     </div>
     
     <div class="row">
         <!--Main-->
-        <div class="col-12 col-md-9">
-            <section  class="bg-warning text-center mx-5 rounded-2 mt-2">
-                <img src="" alt="" />
-                <p>AAAAA</p>
-                <footer>
-                    <ul class="nav mx-4">
-                        <li class="nav-item col-6">
-                            <button class="btn btn-light">Picture</button>
-                        </li>
-                        <li class="nav-item col-6">
-                            <button class="btn btn-light">Recipe</button>
-                        </li>
-                    </ul>
-                </footer>
-            </section>
-            <section  class="bg-warning text-center mx-5 rounded-2 mt-2">
-                <img src="" alt="" />
-                <p>AAAAA</p>
-                <footer>
-                    <ul class="nav mx-4 bg-light">
-                        <li class="nav-item col-6">
-                            <p>Picture</p>
-                        </li>
-                        <li class="nav-item col-6">
-                            <p>Recipe</p>
-                        </li>
-                    </ul>
-                </footer>
-            </section>
-        </div>
+        <main>
+            <div class="col-12 col-md-9">
+                <section>
+                    <img src="" alt="" />
+                    <p>AAAAA</p>
+                    <footer>
+                        <ul>
+                            <li class="col-6">
+                                <button>Picture</button>
+                            </li><li class="col-6">
+                                <button>Recipe</button>
+                            </li>
+                        </ul>
+                    </footer>
+                </section>
+                <section>
+                    <img src="" alt="" />
+                    <p>AAAAA</p>
+                    <footer>
+                        <ul>
+                            <li class="col-6">
+                                <button>Picture</button>
+                            </li><li class="col-6">
+                                <button>Recipe</button>
+                            </li>
+                        </ul>
+                    </footer>
+                </section>
+            </div>
+        </main>
 
         <!-- Footer -->
-        <div class="col-12 col-md-3 mt-2">
+        <div class="col-12 col-md-3">
             <footer>
                 <div class="row">
-                    <ul class="nav">
-                        <li class="col-3 col-md-12 nav-item text-center">PR</li>
-                        <li class="col-3 col-md-12 nav-item text-center">PO</li>
-                        <li class="col-3 col-md-12 nav-item text-center">HO</li>
-                        <li class="col-3 col-md-12 nav-item text-center">EX</li>
+                    <ul>
+                        <li class="col-3 col-md-12">PR</li><li class="col-3 col-md-12">PO</li><li class="col-3 col-md-12">HR</li><li class="col-3 col-md-12">EX</li>
                     </ul>
                 </div>
             </footer>
