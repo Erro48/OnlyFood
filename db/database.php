@@ -10,7 +10,7 @@ class DatabaseHelper{
     }
 
     public function getPostsByUser($userId){
-        $stmt = $this->db->prepare("SELECT * FROM posts p, recipes r WHERE r.recipeId = p.recipe");      //da cambiare ovviamente
+        $stmt = $this->db->prepare("SELECT * FROM posts p, recipes r, users u WHERE r.recipeId = p.recipe AND p.owner = u.username");      //da cambiare ovviamente
         //$stmt->bind_param('i', $userId);
         $stmt->execute();
         $result = $stmt->get_result();
