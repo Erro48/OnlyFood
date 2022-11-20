@@ -19,11 +19,22 @@ div > header {
     background-color: var(--secondary);
 }
 
-div > header p {
+div > header > div > div:nth-child(1) > p {
     margin-left: 5px;
+    margin-bottom: 0;
     font-size: 2.5em;
     font-weight: 600;
     font-family: sans-serif;
+}
+
+div > header > div > div:nth-child(2) > ul {
+    margin-top: 10px;
+}
+
+div > header > div > div:nth-child(2) > ul > li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 10%;
 }
 
 div > footer li {
@@ -36,15 +47,8 @@ main section {
     background-color: #FFFFFF;
     border-radius: 7px;
     margin: 20px 15px 0;
-    /*box-shadow: 10px 10px;*/
     filter: drop-shadow(0px 3.92982px 3.92982px rgba(0, 0, 0, 0.25));
-}
-
-main section > footer > ul {
-    margin: 0 25%;
-    border-radius: 10px;
-    border: 2px solid var(--secondary);
-    padding: 0;
+    padding-bottom: 6px;
 }
 
 main section > div.row {
@@ -58,22 +62,38 @@ main section > div > div:nth-child(2) > p:first-child {
 }
 
 main section > div > div:first-child > img {
-    max-width: 100%;
+    width: 100%;
     border-radius: 50%;
+}
+
+main section > footer > ul {
+    margin: 0 25%;
+    border-radius: 4px;
+    border: 2px solid var(--secondary);
+    padding: 0;
 }
 
 main section > footer > ul > li {
     display: inline-block;
 }
 
-main section > footer > ul > li > button {
+main section > footer > ul > li > input {
     border: none;
     width: 100%;
-    border-radius: 10px;
+}
+
+main section > footer > ul > li > input {
+    border-radius: 4px;
+    background-color: #FFFFFF;
+}
+
+main section > footer > ul > li > input.preview-selected {
+    background-color: var(--accent);
+    color: #FFFFFF;
 }
 
 main section > img {
-    max-width: 100%;
+    width: 100%;
     border-radius: 7px 7px 0 0;
 }
 

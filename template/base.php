@@ -29,8 +29,11 @@ footer (nav bar)
                     </div>
                     <div class="col-6">
                         <ul>
-                            <li><input type="button" value="search"></li>
-                            <li><input type="button" value="notifications"></li>
+                            <li>
+                                <input type="button" value="search">
+                            </li><li>
+                                    <input type="button" value="notifications">
+                            </li>
                         </ul>
                     </div>
                 </div>

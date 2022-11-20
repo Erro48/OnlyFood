@@ -21,9 +21,9 @@
             <footer>
                 <ul>
                     <li class="col-6">
-                        <button>Picture</button>
+                        <input type="button" value="Picture" class="preview-selected"/>
                     </li><li class="col-6">
-                        <button>Recipe</button>
+                    <input type="button" value="Recipe"/>
                     </li>
                 </ul>
             </footer>
