@@ -55,6 +55,11 @@ main section > footer > ul > li > button {
     border-radius: 10px;
 }
 
+main section img {
+    max-width: 100%;
+    border-radius: 7px 7px 0 0;
+}
+
 footer > div > ul {
     margin-bottom: 0;
 }

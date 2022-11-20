@@ -41,34 +41,11 @@ footer (nav bar)
     <div class="row">
         <!--Main-->
         <main>
-            <div class="col-12 col-md-9">
-                <section>
-                    <img src="" alt="" />
-                    <p>AAAAA</p>
-                    <footer>
-                        <ul>
-                            <li class="col-6">
-                                <button>Picture</button>
-                            </li><li class="col-6">
-                                <button>Recipe</button>
-                            </li>
-                        </ul>
-                    </footer>
-                </section>
-                <section>
-                    <img src="" alt="" />
-                    <p>AAAAA</p>
-                    <footer>
-                        <ul>
-                            <li class="col-6">
-                                <button>Picture</button>
-                            </li><li class="col-6">
-                                <button>Recipe</button>
-                            </li>
-                        </ul>
-                    </footer>
-                </section>
-            </div>
+            <?php
+                if(isset($templateParams["nome"])){
+                    require($templateParams["nome"]);
+                }
+            ?>
         </main>
 
         <!-- Footer -->

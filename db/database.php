@@ -9,7 +9,14 @@ class DatabaseHelper{
         }        
     }
 
-    
+    public function getPostsByUser($userId){
+        $stmt = $this->db->prepare("SELECT * FROM posts p, recipes r WHERE r.recipeId = p.recipe");      //da cambiare ovviamente
+        //$stmt->bind_param('i', $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
 }
 ?>
