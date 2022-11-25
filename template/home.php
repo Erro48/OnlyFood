@@ -23,7 +23,7 @@
                     <li class="col-6">
                         <input type="button" value="Picture" class="preview-selected"/>
                     </li><li class="col-6">
-                    <input type="button" value="Recipe"/>
+                        <input type="button" value="Recipe"/>
                     </li>
                 </ul>
             </footer>
