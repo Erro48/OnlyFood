@@ -56,7 +56,15 @@ footer (nav bar)
             <footer>
                 <div class="row">
                     <ul>
-                        <li class="col-3 col-md-12">PR</li><li class="col-3 col-md-12">PO</li><li class="col-3 col-md-12">HR</li><li class="col-3 col-md-12">EX</li>
+                        <li class="col-3 col-md-12">
+                            <input type="button" value="PR" />
+                        </li><li class="col-3 col-md-12">
+                            <input type="button" value="PO" />
+                        </li><li class="col-3 col-md-12">
+                            <input type="button" value="HR" />
+                        </li><li class="col-3 col-md-12">
+                            <input type="button" value="EX" />
+                        </li>
                     </ul>
                 </div>
             </footer>
