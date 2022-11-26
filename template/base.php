@@ -43,13 +43,15 @@ footer (nav bar)
     
     <div class="row">
         <!--Main-->
-        <main>
-            <?php
-                if(isset($templateParams["nome"])){
-                    require($templateParams["nome"]);
-                }
-            ?>
-        </main>
+        <div class="col-12 col-md-9">
+            <main>
+                <?php
+                    if(isset($templateParams["nome"])){
+                        require($templateParams["nome"]);
+                    }
+                ?>
+            </main>
+        </div>
 
         <!-- Footer -->
         <div class="col-12 col-md-3">
