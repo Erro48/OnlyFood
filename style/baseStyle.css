@@ -35,12 +35,36 @@ div > header > div > div:nth-child(2) > ul > li {
     display: inline-block;
     list-style: none;
     margin: 0 10%;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+div > header > div > div:nth-child(2) > ul > li > input {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+div > header > div > div:nth-child(2) > ul > li:first-child > input {
+    background-image: url('../imgs/icons/search.png');
+}
+
+div > header > div > div:nth-child(2) > ul > li:last-child > input {
+    background-image: url('../imgs/icons/notification.png');
 }
 
 div > footer li {
     background-color: var(--secondary);
     border-radius: 10px;
     height: 50px;
+}
+
+main {
+    padding-bottom: 80px;
 }
 
 main section {
@@ -103,4 +127,42 @@ footer > div > ul {
 
 footer > div > ul > li {
     display: inline-block;
+}
+
+div.col-md-3 > footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer > div > ul > li > input {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+footer > div > ul > li:first-child > input {
+    background-image: url('../imgs/icons/profile.png');
+}
+
+footer > div > ul > li:nth-child(2) > input {
+    background-image: url('../imgs/icons/post.png');
+}
+
+footer > div > ul > li:nth-child(3) > input {
+    background-image: url('../imgs/icons/home.png');
+}
+
+footer > div > ul > li:last-child > input {
+    background-image: url('../imgs/icons/explore.png');
+}
+
+@media screen and (min-width: 768px){
+    div.col-md-3 > footer {
+        position: relative;
+    }
 }

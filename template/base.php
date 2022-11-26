@@ -30,9 +30,9 @@ footer (nav bar)
                     <div class="col-6">
                         <ul>
                             <li>
-                                <input type="button" value="search">
+                                <input type="button"/>
                             </li><li>
-                                    <input type="button" value="notifications">
+                                <input type="button"/>
                             </li>
                         </ul>
                     </div>
@@ -59,13 +59,13 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <input type="button" value="PR" />
+                            <input type="button" />
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="PO" />
+                            <input type="button" />
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="HR" />
+                            <input type="button" />
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="EX" />
+                            <input type="button" />
                         </li>
                     </ul>
                 </div>
