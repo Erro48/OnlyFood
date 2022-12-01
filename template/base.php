@@ -59,13 +59,13 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <input type="button" />
+                            <input type="button" value="Profile" class="<?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>"/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" />
+                            <input type="button" value="Post" class="<?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>"/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" />
+                            <input type="button" value="Home" <?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" />
+                            <input type="button" value="Explore" class="<?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>"/>
                         </li>
                     </ul>
                 </div>

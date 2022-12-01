@@ -11,6 +11,10 @@ body {
     color: var(--text);
 }
 
+/*div.container-fluid > div:nth-child(2) {
+    overflow-y: scroll;
+}*/
+
 div > footer {
     background-color: var(--primary);
 }
@@ -55,12 +59,6 @@ div > header > div > div:nth-child(2) > ul > li:first-child > input {
 
 div > header > div > div:nth-child(2) > ul > li:last-child > input {
     background-image: url('../imgs/icons/notification.png');
-}
-
-div > footer li {
-    background-color: var(--secondary);
-    border-radius: 10px;
-    height: 50px;
 }
 
 main {
@@ -127,6 +125,10 @@ footer > div > ul {
 
 footer > div > ul > li {
     display: inline-block;
+    text-align: center;
+    background-color: var(--secondary);
+    border-radius: 10px;
+    height: 50px;
 }
 
 div.col-md-3 > footer {
@@ -136,13 +138,18 @@ div.col-md-3 > footer {
 }
 
 footer > div > ul > li > input {
-    background-color: var(--secondary);
+    background-color: var(--primary);
     border: none;
     border-radius: 10px;
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    font-size: 0;
+}
+
+footer > div > ul > li > input.input-selected {
+    background-color: var(--secondary);
 }
 
 footer > div > ul > li:first-child > input {
@@ -164,5 +171,19 @@ footer > div > ul > li:last-child > input {
 @media screen and (min-width: 768px){
     div.col-md-3 > footer {
         position: relative;
+    }
+
+    div.col-md-3 > footer {
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+
+    footer > div > ul > li {
+        height: 90px;
+    }
+
+    footer > div > ul > li > input {
+        background-position: left;
+        font-size: 100%;
     }
 }
