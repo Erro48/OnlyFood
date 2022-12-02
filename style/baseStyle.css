@@ -183,10 +183,6 @@ footer > div > ul > li:last-child > input {
 
 @media screen and (min-width: 768px){
     div.col-md-3 > footer {
-        position: relative;
-    }
-
-    div.col-md-3 > footer {
         margin-top: 20px;
         margin-left: 12px;
         border-radius: 10px;
