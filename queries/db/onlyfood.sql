@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DROP DATABASE IF EXISTS onlyfood;
 CREATE DATABASE onlyfood;
 USE onlyfood;

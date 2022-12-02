@@ -11,16 +11,26 @@ body {
     color: var(--text);
 }
 
-/*div.container-fluid > div:nth-child(2) {
-    overflow-y: scroll;
-}*/
+div.container-fluid > div.row:first-child > div.col-12:first-child {
+    height: 7vh;
+}
+
+div.container-fluid > div.row:nth-child(2) > div.col-12:nth-child(2) {
+    height: 6vh;
+}
+
+div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
+    overflow-y: auto;
+    height: 87vh;
+}
 
 div > footer {
-    background-color: var(--primary);
+    background-color: var(--secondary);
 }
 
 div > header {
     background-color: var(--secondary);
+    height: 100%;
 }
 
 div > header > div > div:nth-child(1) > p {
@@ -62,7 +72,7 @@ div > header > div > div:nth-child(2) > ul > li:last-child > input {
 }
 
 main {
-    padding-bottom: 80px;
+    padding-bottom: 15px;
 }
 
 main section {
@@ -119,8 +129,13 @@ main section > img {
     border-radius: 7px 7px 0 0;
 }
 
+div.col-md-3 > footer > div.row {
+    height: 100%;
+}
+
 footer > div > ul {
     margin-bottom: 0;
+    background-color: var(--secondary);
 }
 
 footer > div > ul > li {
@@ -128,17 +143,15 @@ footer > div > ul > li {
     text-align: center;
     background-color: var(--secondary);
     border-radius: 10px;
-    height: 50px;
+    height: 100%;
 }
 
 div.col-md-3 > footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    height: 100%;
 }
 
 footer > div > ul > li > input {
-    background-color: var(--primary);
+    background-color: var(--secondary);
     border: none;
     border-radius: 10px;
     height: 100%;
@@ -149,7 +162,7 @@ footer > div > ul > li > input {
 }
 
 footer > div > ul > li > input.input-selected {
-    background-color: var(--secondary);
+    background-color: var(--primary);
 }
 
 footer > div > ul > li:first-child > input {
@@ -170,12 +183,17 @@ footer > div > ul > li:last-child > input {
 
 @media screen and (min-width: 768px){
     div.col-md-3 > footer {
-        position: relative;
+        margin-top: 20px;
+        margin-left: 12px;
+        border-radius: 10px;
     }
 
-    div.col-md-3 > footer {
-        margin-top: 20px;
-        border-radius: 10px;
+    div.col-md-3 > footer > div > ul {
+        padding-left: 0;
+    }
+
+    div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
+        height: 93vh;
     }
 
     footer > div > ul > li {
