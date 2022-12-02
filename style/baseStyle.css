@@ -83,6 +83,10 @@ main section {
     padding-bottom: 6px;
 }
 
+main section > p{
+    display: none;
+}
+
 main section > div.row {
     margin-top: 10px;
     padding-left: 3%;

@@ -1,5 +1,6 @@
 <?php foreach($templateParams["posts"] as $post): ?>
-    <section>
+    <section class="section-<?php echo $post["postId"];?>">
+        <p><?php echo $post["howTo"]; ?></p>
         <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["preview"]; ?>" />
         <div class="row">
             <div class="col-2">
@@ -22,9 +23,9 @@
         <footer>
             <ul>
                 <li class="col-6">
-                    <input type="button" value="Picture" class="preview-selected" onclick="showPicture()"/>
+                    <input type="button" value="Picture" class="preview-selected" onclick="showPicture(<?php echo $post['postId'];?>)"/>
                 </li><li class="col-6">
-                    <input type="button" value="Recipe" onclick="showRecipe()"/>
+                    <input type="button" value="Recipe" onclick="showRecipe(<?php echo $post['postId'];?>)"/>
                 </li>
             </ul>
         </footer>
