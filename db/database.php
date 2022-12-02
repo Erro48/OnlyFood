@@ -50,5 +50,29 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function isUserRegistered($user) {
+        if (!isset($user)) {
+            throw new Exception('Variable $user is not defined');
+        }
+        $stmt = $this->db->prepare("SELECT username FROM users WHERE username = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) > 0;
+    }
+
+    public function getUserPassword($user) {
+        if (!isset($user)) {
+            throw new Exception('Variable $user is not defined');
+        }
+        $stmt = $this->db->prepare("SELECT password FROM users WHERE username = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)['password'];
+    }
+
 }
 ?>
