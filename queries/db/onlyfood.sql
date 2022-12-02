@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS onlyfood;*/
+/*DROP DATABASE IF EXISTS onlyfood;*/
 CREATE DATABASE onlyfood;
 USE onlyfood;
 

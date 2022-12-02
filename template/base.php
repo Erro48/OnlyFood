@@ -59,13 +59,13 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <input type="button" value="Profile" class="<?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>"/>
+                            <input type="button" value="Profile" onclick="window.location.href='profile.php'" class="<?php if($templateParams["nome"] == "profile.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Post" class="<?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>"/>
+                            <input type="button" value="Post" onclick="window.location.href='post.php'" class="<?php if($templateParams["nome"] == "post.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Home" <?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>/>
+                            <input type="button" value="Home" onclick="window.location.href='home.php'" class="<?php if($templateParams["nome"] == "home.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Explore" class="<?php if($templateParams["nome"] == "home.php"){echo "class=\"input-selected\"";} ?>"/>
+                            <input type="button" value="Explore" onclick="window.location.href='explore.php'" class="<?php if($templateParams["nome"] == "explore.php"){echo "input-selected";} ?>"/>
                         </li>
                     </ul>
                 </div>
