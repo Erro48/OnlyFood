@@ -25,7 +25,7 @@ div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
 }
 
 div > footer {
-    background-color: var(--primary);
+    background-color: var(--secondary);
 }
 
 div > header {
@@ -135,6 +135,7 @@ div.col-md-3 > footer > div.row {
 
 footer > div > ul {
     margin-bottom: 0;
+    background-color: var(--secondary);
 }
 
 footer > div > ul > li {
@@ -150,7 +151,7 @@ div.col-md-3 > footer {
 }
 
 footer > div > ul > li > input {
-    background-color: var(--primary);
+    background-color: var(--secondary);
     border: none;
     border-radius: 10px;
     height: 100%;
@@ -161,7 +162,7 @@ footer > div > ul > li > input {
 }
 
 footer > div > ul > li > input.input-selected {
-    background-color: var(--secondary);
+    background-color: var(--primary);
 }
 
 footer > div > ul > li:first-child > input {
@@ -187,7 +188,12 @@ footer > div > ul > li:last-child > input {
 
     div.col-md-3 > footer {
         margin-top: 20px;
+        margin-left: 12px;
         border-radius: 10px;
+    }
+
+    div.col-md-3 > footer > div > ul {
+        padding-left: 0;
     }
 
     div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
