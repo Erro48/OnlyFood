@@ -1,6 +1,6 @@
 <?php foreach($templateParams["posts"] as $post): ?>
     <section class="section-<?php echo $post["postId"];?>">
-        <p><?php echo $post["howTo"]; ?></p>
+        <div><?php echo $post["howTo"]; ?></div>
         <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["preview"]; ?>" />
         <div class="row">
             <div class="col-2">
