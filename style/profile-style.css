@@ -1,0 +1,37 @@
+
+main section.profile-section {
+    background-color: var(--primary);
+    margin: 0px;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+main section.profile-section > div.row {
+    margin-top: 0px;
+    padding-left: 0%;
+}
+
+main section.profile-section .profile-pic {
+    width: 100%;
+    border-radius: 50%;
+}
+
+main section.favourite-ingredients-section {
+    background-color: var(--accent);
+    padding-bottom: 1.5em;
+}
+
+main section.favourite-ingredients-section .ingredient {
+    background-color: var(--background);
+    padding-bottom: 3em;
+    border-radius: 0.8em;
+}
+
+main section.favourite-ingredients-section .ingredient-marker {
+    background-color: var(--background);
+    padding-bottom: 3em;
+    border-radius: 0.8em;
+    margin-left: 1.5em;
+}
