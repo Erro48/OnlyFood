@@ -86,6 +86,38 @@ main section {
 
 main section > div:first-child {
     display: none;
+    padding: 5px;
+    width: 100%;
+}
+
+main section > div:first-child > p:first-of-type {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+main section > div:first-child > div.row > div.col-4 {
+    height: 40px;
+    border-radius: 30px;
+    /*margin: 0 10px;*/
+}
+
+main section > div:first-child > div.row > div.col-4 > p {
+    display: inline-block;
+}
+
+main section > div:first-child > div.row > div.col-4 > p:first-child {
+    margin-left: 5px;
+}
+
+main section > div:first-child > div.row > div.col-4 > p:last-child {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 100%;
+    min-width: 35px;
+    height: 100%;
+    text-align: center;
+    padding: 5px;
+    margin-left: 10px;
+    box-shadow: inset -1px -1px 1px rgba(252, 252, 252, 0.25), inset 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 main section > div.row {
@@ -93,7 +125,7 @@ main section > div.row {
     padding-left: 3%;
 }
 
-main section > div > div:nth-child(2) > p:first-child {
+main section > div.row > div:nth-child(2) > p:first-child {
     font-size: 90%;
     font-weight: 300;
 }

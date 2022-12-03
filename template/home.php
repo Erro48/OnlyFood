@@ -1,6 +1,26 @@
 <?php foreach($templateParams["posts"] as $post): ?>
     <section class="section-<?php echo $post["postId"];?>">
-        <div><?php echo $post["howTo"]; ?></div>
+        <div>
+            <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
+                <?php if($i == 0): ?>
+                    <div class="row">
+                <?php endif; ?>
+                <?php if($i % 3 == 0 && $i != 0): ?>
+                    </div>
+                    <div class="row">
+                <?php endif; ?>
+                <div class="col-4" style="background-color: #<?php echo $ingredient["color"]; ?>">
+                    <p>
+                        <?php echo $ingredient["name"]; ?>
+                    </p><p>
+                        <?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?>
+                    </p>
+                </div>
+            <?php $i++; endforeach; ?>
+            </div>
+            <p>How To</p>
+            <p><?php echo $post["howTo"]; ?></p>
+        </div>
         <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["preview"]; ?>" />
         <div class="row">
             <div class="col-2">
