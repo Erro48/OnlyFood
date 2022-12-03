@@ -71,7 +71,48 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC)['password'];
+        return $result->fetch_all(MYSQLI_ASSOC)[0]['password'];
+    }
+
+    public function userAlreadyRegistered($username, $email) {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $username, $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) > 0;
+    }
+
+    public function registerUser($name, $surname, $username, $email, $password, $profile_pic = "/imgs/propics/default.png", $intolerances = array()) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $this->db->prepare("INSERT INTO `users` (`username`, `name`, `surname`, `email`, `password`, `profilePic`) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $username, $name, $surname, $email, $hashed_password, $profile_pic);
+        
+        if ($stmt->execute() === true) {
+            if (count($intolerances) == 0) {
+                return true;
+            }
+
+            $last_user = $this->db->insert_id;
+
+            $query = "INSERT INTO `intolerances` (`user`, `ingredient`) VALUES ";
+            $params_types = "";
+            $params = array();
+
+            foreach ($intolerances as $ingredient) {
+                $query .= '(?, ?)';
+                $params_types .= 'ss';
+                array_push($params, $last_user);
+                array_push($params, $ingredient);
+            }
+            echo $query;
+            $stmt_insert = $this->db->prepare($query);
+            $stmt_insert->bind_param($params_types, ...$params);
+
+            return $stmt->execute();
+        }
+
+        return false;
     }
 
 }

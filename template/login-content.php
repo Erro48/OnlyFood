@@ -1,13 +1,14 @@
 <?php
-    $user = $_POST['user'];
-    $user_password = $_POST['password'];
     $error = "";
-
-    if (isset($user) && isset($user_password)) {
+    
+    if (isset($_POST['user']) && isset($_POST['password'])) {
+        $user = $_POST['user'];
+        $password = $_POST['password'];
         if ($dbh->isUserRegistered($user)) {
 
             if (verifyUserPassword($user, $password)) {
                 // set session
+                $_SESSION['username'] = $user;
                 
                 header('Location: ./index.php');
             } else {
@@ -16,11 +17,10 @@
         } else {
             $error = "Not registered";
         }
-    } else {
-        $error = "Errore";
     }
 
     function verifyUserPassword($user, $password) {
+        global $dbh;
         $password_hash = $dbh->getUserPassword($user);
         return password_verify($password, $password_hash);
     }
@@ -51,7 +51,7 @@
     <div class="row">
         <div>
             Not registered yet? 
-            <a href="."> Do it now!</a>
+            <a href="./registration.php"> Do it now!</a>
         </div>
     </div>
 </section>

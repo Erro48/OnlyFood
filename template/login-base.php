@@ -23,8 +23,8 @@ footer (nav bar)
         <div class="col-12 col-md-6">
             <main>
                 <?php
-                    if(isset($templateParams["nome"])){
-                        require($templateParams["nome"]);
+                    if(isset($templateParams["name"])){
+                        require($templateParams["name"]);
                     }
                 ?>
             </main>
