@@ -6,6 +6,19 @@
 	--text-dark: #000000;
 	--text-light: #ffffff;
 	--light-color: #ffffff;
+
+	--main-font: 'Inter';
+	--special-font: 'Josefin Sans';
+}
+
+@font-face {
+	font-family: Josefin Sans;
+	src: url('../fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+	font-family: Inter;
+	src: url('../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
 }
 
 body {
@@ -67,6 +80,10 @@ main {
 	padding-bottom: 80px;
 }
 
+/*
+    NON VA BENE!
+    section è generico, non è usato solo nei post
+*/
 main section {
 	background-color: var(--light-color);
 	border-radius: 7px;
