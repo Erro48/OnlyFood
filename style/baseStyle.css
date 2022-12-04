@@ -1,3 +1,20 @@
+/*	Table Of Contents:
+	------------------------
+	- Root
+	- Fonts
+	- Body
+	- Header
+	- Footer
+	- DA SISTEMARE
+	- Components
+		* Buttons
+		* Labels
+		* Inputs
+	- Media Queries
+
+*/
+
+/* #region Root */
 :root {
 	--primary: #539e84;
 	--secondary: #80bca7;
@@ -10,7 +27,9 @@
 	--main-font: 'Inter';
 	--special-font: 'Josefin Sans';
 }
+/* #endregion */
 
+/* #region Fonts */
 @font-face {
 	font-family: Josefin Sans;
 	src: url('../fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf');
@@ -20,16 +39,27 @@
 	font-family: Inter;
 	src: url('../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf');
 }
+/* #endregion */
 
+/* #region Body */
 body {
 	background-color: var(--background);
 	color: var(--text-dark);
 }
+/* #endregion */
 
+/* #region Header */
 div.container-fluid > div.row:first-child > div.col-12:first-child {
 	height: 7vh;
 }
 
+/* #endregion */
+
+/* #region Footer */
+
+/* #endregion */
+
+/* #region DA SISTEMARE */
 div.container-fluid > div.row:nth-child(2) > div.col-12:nth-child(2) {
 	height: 6vh;
 }
@@ -203,7 +233,9 @@ footer > div > ul > li:nth-child(3) > input {
 footer > div > ul > li:last-child > input {
 	background-image: url('../imgs/icons/explore.png');
 }
+/* #endregion */
 
+/* #region Media Queries */
 @media screen and (min-width: 768px) {
 	div.col-md-3 > footer {
 		margin-top: 20px;
@@ -228,3 +260,4 @@ footer > div > ul > li:last-child > input {
 		font-size: 100%;
 	}
 }
+/* #endregion */
