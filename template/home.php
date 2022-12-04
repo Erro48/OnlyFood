@@ -1,5 +1,5 @@
 <?php foreach($templateParams["posts"] as $post): ?>
-    <section class="section-<?php echo $post["postId"];?>">
+    <article class="post-article article-<?php echo $post["postId"];?>">
         <div>
             <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                 <?php if($i == 0): ?>
@@ -21,7 +21,7 @@
             <p>How To</p>
             <p><?php echo $post["howTo"]; ?></p>
         </div>
-        <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["preview"]; ?>" />
+        <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
         <div class="row">
             <div class="col-2">
                 <img src="<?php echo $post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
@@ -43,11 +43,11 @@
         <footer>
             <ul>
                 <li class="col-6">
-                    <input type="button" value="Picture" class="preview-selected" onclick="showPicture(<?php echo $post['postId'];?>)"/>
+                    <input type="button" value="Picture" class="preview-selected-left" onclick="showPicture(<?php echo $post['postId'];?>)"/>
                 </li><li class="col-6">
                     <input type="button" value="Recipe" onclick="showRecipe(<?php echo $post['postId'];?>)"/>
                 </li>
             </ul>
         </footer>
-    </section>
+    </article>
 <?php endforeach ?>

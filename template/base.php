@@ -25,7 +25,7 @@ footer (nav bar)
     <!-- Header -->
     <div class="row">
         <div class="col-12">
-            <header>
+            <header class="page-header">
                 <div class="row">
                     <div class="col-6">
                         <p>OnlyFood</p>
@@ -58,7 +58,7 @@ footer (nav bar)
 
         <!-- Footer -->
         <div class="col-12 col-md-3">
-            <footer>
+            <footer class="page-footer">
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
