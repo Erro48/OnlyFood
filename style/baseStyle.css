@@ -63,7 +63,7 @@ header.page-header > div > div {
 }
 
 header.page-header > div > div:nth-child(1) > p {
-    margin-left: 5px;
+    margin-left: 20px;
     margin-bottom: 0;
     font-size: 2.5em;
     font-weight: 600;
