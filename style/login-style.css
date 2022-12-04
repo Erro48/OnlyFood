@@ -22,3 +22,18 @@ main section.login-section div > p {
 section.login-section form {
 	row-gap: 4em;
 }
+
+section.login-section form label {
+	position: relative;
+}
+
+section.login-section form label p {
+	position: absolute;
+	top: 60%;
+	transition: 0.25s top;
+}
+
+section.login-section form label input:focus ~ p,
+section.login-section form label input:valid ~ p {
+	top: -110%;
+}
