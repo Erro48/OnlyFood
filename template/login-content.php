@@ -63,6 +63,6 @@
 <footer class="row text-center fixed-bottom mb-3">
     <div class="col-12 col-md-6">
         Not registered yet? 
-        <a class="link" href="./registration.php"> <strong>Do it now!</strong></a>
+        <a class="link" href="./registration.php">Do it now!</a>
     </div>
 </footer>

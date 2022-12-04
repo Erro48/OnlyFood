@@ -44,3 +44,22 @@ img.wallpaper {
 	height: 100vh;
 	border-left: 5px solid var(--primary);
 }
+
+section.login-section form label p.profile-pic {
+	box-sizing: border-box;
+	width: 6em;
+	height: 6em;
+	background-color: var(--light-color);
+	border: 3px solid var(--primary);
+	border-radius: 50%;
+}
+
+section.login-section form label p.profile-pic::after {
+	position: relative;
+	top: 4.5em;
+	left: 4.5em;
+	content: '\f304';
+	font: var(--fa-font-regular);
+	font-weight: 900;
+	color: var(--accent);
+}

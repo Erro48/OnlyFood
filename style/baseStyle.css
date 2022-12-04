@@ -74,10 +74,10 @@ div > footer {
 	background-color: var(--secondary);
 }
 
-div > header {
+/* div > header {
 	background-color: var(--secondary);
 	height: 100%;
-}
+} */
 
 div > header > div > div:nth-child(1) > p {
 	margin-left: 5px;

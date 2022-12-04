@@ -54,7 +54,58 @@
 ?>
 
 
-<section>
+
+<section class="row login-section">
+    <div class="d-none d-md-block col-md-2"></div>
+
+    <div class="col-12 col-md-8">
+        <header class="row text-center mb-5">
+            <h1>Create an account</h1>
+            <em>Fields with <strong>*</strong> are required</em>
+        </header>
+
+        <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
+            <div class="col-12 w-100 alert alert-danger">
+                <?= $error ?>
+            </div>
+        </div>
+
+        <form action="./registration.php" method="post" class="row m-0 mt-4">
+            <label for="user-pic" class="mt-2 p-0 d-flex justify-content-center">
+                <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic">
+                <p class="profile-pic ps-3 m-0"></p>
+            </label>
+
+            <label for="user-name" class="mt-2 p-0">
+                <input class="ps-3" type="text" name="name" id="user-name" required>
+                <p class="ps-3 m-0">First Name</p>
+            </label>
+        
+            <label for="user-surname" class="mt-2 p-0">
+                <input class="ps-3" type="text" name="surname" id="user-surname" required>
+                <p class="ps-3 m-0">Last Name</p>
+            </label>
+
+            <div class="row justify-content-end p-0 m-0">
+                <input type="button" value="Next" class="button-primary w-50">
+            </div>
+        </form>
+        
+    </div>
+
+    <div class="d-none d-md-block col-md-2"></div>
+    
+
+</section>
+<footer class="row text-center fixed-bottom mb-3">
+    <div class="col-12 col-md-6">
+        Already registered? 
+        <a class="link" href="./login.php">Log in here!</a>
+    </div>
+</footer>
+
+
+<!-- <section>
     <header class="row">
         <h1>Registration</h1>
     </header>
@@ -115,4 +166,4 @@
             <a href="./login.php"> Log in here!</a>
         </div>
     </div>
-</section>
+</section> -->
