@@ -12,13 +12,6 @@
 </head>
 <body>
 
-<!-- 
-
-header [nome btn btn -> ]
-main
-footer (nav bar)
- -->
-
  <div class="container overflow-hidden p-0">
     <div class="row">
         <div class="col-1"></div>

@@ -28,7 +28,7 @@
 
 
 <section class="login-section ">
-    <header class="row text-center">
+    <header class="row text-center mb-5">
         <h1>Welcome back Chef</h1>
     </header>
 
@@ -42,22 +42,28 @@
         <p class="col-12 m-0">Sign in to continue</p>
     </div>
 
-    <form action="./login.php" method="post" class="row">
-        <label for="user-input" class="mt-2">Username</label>
-        <input type="text" name="user" id="user-input" placeholder="Username" required>
+    <form action="./login.php" method="post" class="row m-0">
+        <label for="user-input" class="mt-2 p-0">
+            Username<br />
+            <input type="text" name="user" id="user-input" placeholder="Username" required>
+        </label>
     
-        <label for="user-password" class="mt-2">Password</label>
-        <input type="password" name="password" id="user-password" placeholder="Password" required>
+        <label for="user-password" class="mt-2 p-0">
+            Password<br />
+            <input type="password" name="password" id="user-password" placeholder="Password" required>
+        </label>
 
         <input type="submit" value="Sign In" class="button-primary my-3">
     </form>
 
-    <div class="row text-end"><a href="" class="link p-0">Forgot Password?</a></div>
-
-    <div class="row text-center">
-        <div>
-            Not registered yet? 
-            <a class="link" href="./registration.php"> <strong>Do it now!</strong></a>
-        </div>
+    <div class="row justify-content-end m-0 mt-3">
+        <a href="" class="link p-0 w-auto">Forgot Password?</a>
     </div>
+
 </section>
+<div class="row text-center fixed-bottom mb-3">
+    <div>
+        Not registered yet? 
+        <a class="link" href="./registration.php"> <strong>Do it now!</strong></a>
+    </div>
+</div>

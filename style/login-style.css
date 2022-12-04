@@ -1,3 +1,8 @@
+section.login-section div > p {
+	font-size: 1.25em;
+	font-weight: bold;
+}
+
 main section.login-section {
 	background: transparent;
 	font-family: var(--special-font);
@@ -5,11 +10,15 @@ main section.login-section {
 
 main section.login-section > header h1 {
 	/* font-weight: bold; */
-	font-size: 42px;
+	font-size: 2.8em;
 }
 
 main section.login-section div > p {
 	font-size: 20px;
 	font-family: Inter;
 	/* font-weight: bold; */
+}
+
+section.login-section form {
+	row-gap: 4em;
 }
