@@ -3,18 +3,11 @@
     if (isset($_POST['user']) && isset($_POST['password'])) {
         $user = $_POST['user'];
         $password = $_POST['password'];
-        if ($dbh->isUserRegistered($user)) {
-
-            if (verifyUserPassword($user, $password)) {
-                // set session
-                $_SESSION['username'] = $user;
-                
-                header('Location: ./index.php');
-            } else {
-                $error = "The password is incorrect for this user.";
-            }
+        if ($dbh->isUserRegistered($user) && verifyUserPassword($user, $password)) {
+            $_SESSION['username'] = $user;
+            header('Location: ./index.php');
         } else {
-            $error = "User is not registered."; // <a href='./registration.php' class='link'>Do it now!</a>
+            $error = "Username or password incorrect.";
         }
     }
 
