@@ -44,13 +44,13 @@
 
     <form action="./login.php" method="post" class="row m-0">
         <label for="user-input" class="mt-2 p-0">
-            Username<br />
-            <input type="text" name="user" id="user-input" placeholder="Username" required>
+            <p class="ps-3 m-0">Username</p>
+            <input class="ps-3" type="text" name="user" id="user-input" placeholder="Username" required>
         </label>
     
         <label for="user-password" class="mt-2 p-0">
-            Password<br />
-            <input type="password" name="password" id="user-password" placeholder="Password" required>
+            <p class="ps-3 m-0">Password</p>
+            <input class="ps-3" type="password" name="password" id="user-password" placeholder="Password" required>
         </label>
 
         <input type="submit" value="Sign In" class="button-primary my-3">
