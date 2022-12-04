@@ -12,11 +12,11 @@
 </head>
 <body>
 
- <div class="container overflow-hidden p-0">
+ <div class="container-fluid overflow-hidden p-0">
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 col-md-10">
-            <main class="vh-100 d-flex justify-content-center align-content-center flex-column  p-0">
+        <div class="col-1 d-md-none"></div>
+        <div class="col-10 col-md-6">
+            <main class="vh-100 d-flex justify-content-center align-content-center flex-column p-0 p-md-5">
                 <?php
                     if(isset($templateParams["name"])){
                         require($templateParams["name"]);
@@ -24,7 +24,10 @@
                     ?>
             </main>
         </div>
-        <div class="col-1"></div>
+        <div class="d-none d-md-inline-block col-md-6">
+            <img class="wallpaper" src="https://source.unsplash.com/random/1200x1920/?food" alt="">
+        </div>
+        <div class="col-1 d-md-none"></div>
     </div>
     
  </div>
