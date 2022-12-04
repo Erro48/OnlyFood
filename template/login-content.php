@@ -1,5 +1,4 @@
 <?php
-    $error = "";
     
     if (isset($_POST['user']) && isset($_POST['password'])) {
         $user = $_POST['user'];
@@ -12,10 +11,10 @@
                 
                 header('Location: ./index.php');
             } else {
-                $error = "Wrong password";
+                $error = "The password is incorrect for this user.";
             }
         } else {
-            $error = "Not registered";
+            $error = "User is not registered."; // <a href='./registration.php' class='link'>Do it now!</a>
         }
     }
 
@@ -32,8 +31,8 @@
         <h1>Welcome back Chef</h1>
     </header>
 
-    <div class="row">
-        <div class="col-12 <?= !isset($error) ? 'd-none' : '' ?>">
+    <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
+        <div class="col-12 w-100 alert alert-danger">
             <?= $error ?>
         </div>
     </div>
