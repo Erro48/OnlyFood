@@ -62,7 +62,7 @@ header.page-header > div > div {
     position: relative;
 }
 
-header.page-header > div > div:nth-child(1) > p {
+header.page-header > div > div:nth-child(1) > h1 {
     margin-left: 20px;
     margin-bottom: 0;
     font-size: 2.5em;
@@ -200,31 +200,43 @@ main article.post-article > div:first-child > p:first-of-type {
     font-weight: 500;
 }
 
-main article.post-article > div:first-child > div.row > div.col-4 {
-    height: 40px;
+main article.post-article div.ingredient-div {
+    /*height: 40px;*/
     border-radius: 30px;
     /*margin: 0 10px;*/
+    display: flex;
 }
 
-main article.post-article > div:first-child > div.row > div.col-4 > p {
+main article.post-article div.ingredient-div > div {
     display: inline-block;
+}
+
+main article.post-article div.ingredient-div > div:first-child {
+    width: 65%;
+    text-align: center;
+}
+
+main article.post-article div.ingredient-div > div:first-child > p {
+    vertical-align: middle;
+}
+
+main article.post-article div.ingredient-div > div:last-child {
+    width: 35%;
+    margin: 2% 2% 2% 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 100%;
+    height: 100%;
+    text-align: center;
+    box-shadow: inset -1px -1px 1px rgba(252, 252, 252, 0.25), inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+main article.post-article div.ingredient-div > div > p {
     font-size: 70%;
 }
 
-/*main article.post-article > div:first-child > div.row > div.col-4 > p:first-child {
+/*main article.post-article div.ingredient-div > div:first-child > p {
     margin-left: 5px;
 }*/
-
-main article.post-article > div:first-child > div.row > div.col-4 > p:last-child {
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 100%;
-    min-width: 35px;
-    height: 100%;
-    text-align: center;
-    padding: 5px;
-    margin-left: 10px;
-    box-shadow: inset -1px -1px 1px rgba(252, 252, 252, 0.25), inset 1px 1px 1px rgba(0, 0, 0, 0.25);
-}
 
 main article.post-article > div.row {
     margin-top: 10px;

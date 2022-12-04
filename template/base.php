@@ -28,7 +28,7 @@ footer (nav bar)
             <header class="page-header">
                 <div class="row">
                     <div class="col-6">
-                        <p>OnlyFood</p>
+                        <h1>OnlyFood</h1>
                     </div>
                     <div class="col-6">
                         <ul>

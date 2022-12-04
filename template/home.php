@@ -9,12 +9,14 @@
                     </div>
                     <div class="row">
                 <?php endif; ?>
-                <div class="col-4" style="background-color: #<?php echo $ingredient["color"]; ?>">
-                    <p>
-                        <?php echo $ingredient["name"]; ?>
-                    </p><p>
-                        <?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?>
-                    </p>
+                <div class="col-4">
+                    <div class="ingredient-div" style="background-color: #<?php echo $ingredient["color"]; ?>">
+                        <div>
+                            <p><?php echo $ingredient["name"]; ?></p>
+                        </div><div>
+                            <p><?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?></p>
+                        </div>
+                    </div>
                 </div>
             <?php $i++; endforeach; ?>
             </div>
