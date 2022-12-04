@@ -272,13 +272,13 @@ main article.post-article > img {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px){
-    div.col-md-3 > footer {
+    footer.page-footer {
         margin-top: 20px;
         margin-left: 12px;
         border-radius: 10px;
     }
 
-    div.col-md-3 > footer > div > ul {
+    footer.page-footer > div > ul {
         padding-left: 0;
     }
 
@@ -286,11 +286,11 @@ main article.post-article > img {
         height: 93vh;
     }
 
-    footer > div > ul > li {
+    footer.page-footer > div > ul > li {
         height: 90px;
     }
 
-    footer > div > ul > li > input {
+    footer.page-footer > div > ul > li > input {
         background-position: left;
         font-size: 100%;
     }
