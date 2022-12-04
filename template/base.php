@@ -46,7 +46,8 @@ footer (nav bar)
     
     <div class="row">
         <!--Main-->
-        <div class="col-12 col-md-9">
+        <div class="col-2"></div>
+        <div class="col-8 col-md-5">
             <main>
                 <?php
                     if(isset($templateParams["nome"])){
@@ -55,6 +56,7 @@ footer (nav bar)
                 ?>
             </main>
         </div>
+        <div class="col-2"></div>
 
         <!-- Footer -->
         <div class="col-12 col-md-3">
