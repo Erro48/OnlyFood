@@ -67,5 +67,38 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getProfileInfo($username){
+        $stmt = $this->db->prepare("
+        SELECT u.username, u.name, u.surname, u.profilePic, 
+            (SELECT Count(*) FROM follows WHERE follower='carlo61') as numFollowing,
+	        (SELECT Count(*) FROM follows WHERE followed='carlo61') as numFollower
+        FROM users u
+        WHERE u.username=?");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
+    public function getMostUsedIngredients($username){
+        $stmt = $this->db->prepare("
+        SELECT c.ingredient as name, i.color, count(*) as timesUsed  
+        FROM posts p
+        JOIN recipes r on r.recipeId=p.recipe
+        JOIN compositions c on c.recipe=r.recipeId
+        JOIN ingredients i on c.ingredient=i.name
+        WHERE p.owner=?
+        GROUP BY c.ingredient, i.name
+        ORDER BY timesUsed DESC
+        LIMIT 3");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
