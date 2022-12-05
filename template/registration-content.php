@@ -59,7 +59,7 @@
     <div class="d-none d-md-block col-md-2"></div>
 
     <div class="col-12 col-md-8">
-        <header class="row text-center mb-5">
+        <header class="row text-left mb-5">
             <h1>Create an account</h1>
             <em>Fields with <strong class="required-char">*</strong> are required</em>
         </header>
@@ -71,7 +71,37 @@
         </div>
 
         <form action="./registration.php" method="post" class="row justify-content-center m-0 mt-4">
-            <label for="user-pic" class="mt-2 p-0">
+            <label for="search-ingredient" class="mt-2 p-0">
+                <input class="ps-3 pe-2" type="search" name="search-ingredient" id="search-ingredient" required>
+                <p class="ps-3 m-0">Search ingredient</p>
+            </label>
+            
+            <div class="ingredients-list">
+                <?php foreach ($templateParams["intolerances"] as $intolerance):?>
+                    
+                    <label for="ingr-<?= $intolerance['name'] ?>">
+                        <input type="checkbox" name="ingredient-chk" id="ingr-<?= $intolerance['name'] ?>">
+                        <span class="ingredient-pill"><?= $intolerance['name'] ?></span>
+                    </label>
+
+
+
+                <?php endforeach ?>
+            </div>
+
+
+        
+            
+
+            <div class="row justify-content-center p-0 m-0">
+                <input type="button" value="Back" class="col-5 button-secondary">
+                <div class="col-2"></div>
+                <input type="button" value="Next" class="col-5 button-primary">
+            </div>
+        </form>
+
+        <!-- FIRST PAGE -->
+        <!--    <label for="user-pic" class="mt-2 p-0">
                 <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview()">
                 <p class="profile-pic m-0">
                     <img src="./imgs/propics/default.png" alt="Profile pic preview">
@@ -88,10 +118,37 @@
                 <p class="ps-3 m-0"><strong class="required-char">*</strong> Last Name</p>
             </label>
 
-            <div class="row justify-content-end p-0 m-0">
-                <input type="button" value="Next" class="button-primary w-50">
-            </div>
-        </form>
+            <div class="row justify-content-center p-0 m-0">
+                <div class="col-7"></div>
+                <input type="button" value="Next" class="col-5 button-primary">
+            </div> -->
+
+            <!-- SECOND PAGE -->
+            <!-- <label for="user-username" class="mt-2 p-0">
+                <input class="ps-3" type="text" name="username" id="user-username" required>
+                <p class="ps-3 m-0"><strong class="required-char">*</strong> Username</p>
+            </label>
+        
+            <label for="user-email" class="mt-2 p-0">
+                <input class="ps-3" type="text" name="email" id="user-email" required>
+                <p class="ps-3 m-0"><strong class="required-char">*</strong> Email</p>
+            </label>
+
+            <label for="user-password" class="mt-2 p-0">
+                <input class="ps-3" type="password" name="password" id="user-password" required>
+                <p class="ps-3 m-0"><strong class="required-char">*</strong> Password</p>
+            </label>
+            
+            <label for="user-cpassword" class="mt-2 p-0">
+                <input class="ps-3" type="password" name="cpassword" id="user-cpassword" required>
+                <p class="ps-3 m-0"><strong class="required-char">*</strong> Confirm Password</p>
+            </label>
+
+            <div class="row justify-content-center p-0 m-0">
+                <input type="button" value="Back" class="col-5 button-secondary">
+                <div class="col-2"></div>
+                <input type="button" value="Next" class="col-5 button-primary">
+            </div> -->
         
     </div>
 
@@ -105,67 +162,3 @@
         <a class="link" href="./login.php">Log in here!</a>
     </div>
 </footer>
-
-
-<!-- <section>
-    <header class="row">
-        <h1>Registration</h1>
-    </header>
-
-    <div class="row">
-        <div class="col-12 <?= count($errors) == 0 ? 'd-none' : '' ?>">
-            <?php
-                foreach ($errors as $error) {
-                    echo $error;
-                }
-            ?>
-        </div>
-    </div>
-
-    <form action="./registration.php" method="post" class="row">
-        <fieldset>
-            <legend>Personal informations:</legend>
-
-            <label for="name">First Name</label>
-            <input type="text" name="name" id="name" \>
-
-            <label for="surname">Last Name</label>
-            <input type="text" name="surname" id="surname" \>
-
-            <label for="profile-pic">Profile pic</label>
-            <input type="file" name="profile-pic" id="profile-pic" \>
-        </fieldset>
-
-        <fieldset>
-            <legend>Account informations:</legend>
-
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" \>
-
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" \>
-
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" \>
-
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" name="confirm-password" id="confirm-password" \>
-        </fieldset>
-
-        <fieldset>
-            <legend>Intolerances:</legend>
-
-            <label for="intolerance">Intolerance</label>
-            <input type="text" name="intolerance" id="intolerance" \>
-        </fieldset>
-
-        <input type="submit" value="Sign Up">
-    </form>
-
-    <div class="row">
-        <div>
-            Already registered? 
-            <a href="./login.php"> Log in here!</a>
-        </div>
-    </div>
-</section> -->

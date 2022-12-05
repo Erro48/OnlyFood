@@ -115,5 +115,20 @@ class DatabaseHelper{
         return false;
     }
 
+    public function getMostFrequentIntolerances($n) {
+        $query = "SELECT COUNT(ingr.name) as number, ingr.name, ingr.color
+                FROM intolerances intol
+                JOIN ingredients ingr ON ingr.name = intol.ingredient
+                GROUP BY ingr.name
+                ORDER BY COUNT(ingr.name) DESC
+                LIMIT ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $n);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 ?>

@@ -10,7 +10,7 @@ section.login-section div > p {
 
 section.login-section header h1 {
 	/* font-weight: bold; */
-	font-size: 2.8em;
+	font-size: 2.4em;
 }
 
 section.login-section header em {
@@ -46,6 +46,11 @@ section.login-section form label p {
 section.login-section form label input:not([type='file']):focus ~ p,
 section.login-section form label input:not([type='file']):valid ~ p {
 	top: -110%;
+}
+
+section.login-section form label input[type='search']:focus ~ p,
+section.login-section form label input[type='search']:valid ~ p {
+	display: none;
 }
 
 img.wallpaper {
@@ -92,4 +97,12 @@ section.login-section form label p.profile-pic > img {
 	height: 100%;
 	max-height: 100%;
 	object-fit: cover;
+}
+
+section.login-section form div.ingredients-list {
+	box-sizing: border-box;
+	background-color: var(--light-color);
+	border: 2px solid var(--primary);
+	border-radius: 10px;
+	height: 100px;
 }

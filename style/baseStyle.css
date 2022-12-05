@@ -279,6 +279,15 @@ input[type='password'] {
 	box-sizing: border-box;
 	width: 100%;
 }
+
+input[type='search'] {
+	background: var(--light-color);
+	border: none;
+	border-radius: 5px;
+	height: 3rem;
+	box-sizing: border-box;
+	width: 100%;
+}
 /* #endregion */
 
 /* #region Labels */
