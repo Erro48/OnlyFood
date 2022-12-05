@@ -61,19 +61,17 @@ header.page-header > div:nth-child(1) > h1 {
 header.page-header > div:nth-child(2) {
     display: flex;
     justify-content: right;
-    /*align-items: center;*/
 }
 
-header.page-header > div:nth-child(2) > ul {
+header.page-header > div:nth-child(2) > div.row > div.col-6 {
     margin-right: 1rem;
 }
 
-header.page-header > div:nth-child(2) > ul > li {
-    list-style: none;
+header.page-header > div:nth-child(2) > div.row > div.col-6 {
     width: 58px;
 }
 
-header.page-header > div:nth-child(2) > ul > li > input {
+header.page-header > div:nth-child(2) > div.row > div.col-6 > input {
     background-repeat: no-repeat;
     background-position: center;
     background-color: var(--primary);
@@ -83,11 +81,11 @@ header.page-header > div:nth-child(2) > ul > li > input {
     height: 100%;
 }
 
-header.page-header > div:nth-child(2) > ul > li:first-child > input {
+header.page-header > div:nth-child(2) > div.row > div.col-6:first-child > input {
     background-image: url('../imgs/icons/search.png');
 }
 
-header.page-header > div:nth-child(2) > ul > li:last-child > input {
+header.page-header > div:nth-child(2) > div.row > div.col-6:last-child > input {
     background-image: url('../imgs/icons/notification.png');
 }
 /* #endregion */

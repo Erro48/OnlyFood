@@ -28,15 +28,15 @@ footer (nav bar)
             <h1>OnlyFood</h1>
         </div>
         <div class="col-6">
-            <!--div class="row"-->
-                <ul class="row">
-                    <li class="col-6">
+            <div class="row align-content-center">
+                    <div class="col-6">
                         <input type="button">
-                    </li><li class="col-6">
+                    </div>
+                    <div class="col-6">
                         <input type="button">
-                    </li>
+                    </div>
                 </ul>
-            <!--/div-->
+            </div>
         </div>
     </header>
     
