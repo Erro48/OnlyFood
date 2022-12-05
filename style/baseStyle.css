@@ -45,54 +45,35 @@ body {
 /* #endregion */
 
 /* #region Header */
-div.container-fluid > div.row:first-child > div.col-12:first-child {
-	height: 7vh;
-}
-
-header.page-header > div.row {
-    height: 100%;
-}
-
 header.page-header {
     background-color: var(--secondary);
-    height: 100%;
+    height: 7vh;
 }
 
-header.page-header > div > div {
-    position: relative;
-}
-
-header.page-header > div > div:nth-child(1) > h1 {
+header.page-header > div:nth-child(1) > h1 {
     margin-left: 20px;
     margin-bottom: 0;
     font-size: 2.5em;
     font-weight: 600;
     font-family: sans-serif;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
 
-header.page-header > div > div:nth-child(2) > ul {
-    height: 30%;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+header.page-header > div:nth-child(2) {
+    display: flex;
+    justify-content: right;
+    /*align-items: center;*/
 }
 
-header.page-header > div > div:nth-child(2) > ul > li {
-    display: inline-block;
+header.page-header > div:nth-child(2) > ul {
+    margin-right: 1rem;
+}
+
+header.page-header > div:nth-child(2) > ul > li {
     list-style: none;
-    margin: 0 10%;
-    min-width: 30px;
-    box-sizing: border-box;
-    height: 100%;
+    width: 58px;
 }
 
-header.page-header > div > div:nth-child(2) > ul > li > input {
+header.page-header > div:nth-child(2) > ul > li > input {
     background-repeat: no-repeat;
     background-position: center;
     background-color: var(--primary);
@@ -102,11 +83,11 @@ header.page-header > div > div:nth-child(2) > ul > li > input {
     height: 100%;
 }
 
-header.page-header > div > div:nth-child(2) > ul > li:first-child > input {
+header.page-header > div:nth-child(2) > ul > li:first-child > input {
     background-image: url('../imgs/icons/search.png');
 }
 
-header.page-header > div > div:nth-child(2) > ul > li:last-child > input {
+header.page-header > div:nth-child(2) > ul > li:last-child > input {
     background-image: url('../imgs/icons/notification.png');
 }
 /* #endregion */
@@ -214,10 +195,6 @@ main article.post-article div.ingredient-div > div {
 main article.post-article div.ingredient-div > div:first-child {
     width: 65%;
     text-align: center;
-}
-
-main article.post-article div.ingredient-div > div:first-child > p {
-    vertical-align: middle;
 }
 
 main article.post-article div.ingredient-div > div:last-child {
