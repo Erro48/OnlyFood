@@ -10,10 +10,11 @@
                     <div class="row">
                 <?php endif; ?>
                 <div class="col-4">
-                    <div class="ingredient-div" style="background-color: #<?php echo $ingredient["color"]; ?>">
-                        <div>
+                    <div class="ingredient-div row" style="background-color: #<?php echo $ingredient["color"]; ?>">
+                        <div class="col-8">
                             <p><?php echo $ingredient["name"]; ?></p>
-                        </div><div>
+                        </div>
+                        <div class="col-4">
                             <p><?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?></p>
                         </div>
                     </div>

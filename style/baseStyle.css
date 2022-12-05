@@ -156,62 +156,61 @@ div.container-fluid > div.row:nth-child(2) > div.col-8 {
 }
 
 main {
-    padding-bottom: 15px;
+    padding-bottom: 1rem;
 }
 
 main article.post-article {
-    background-color: #FFFFFF;
+    background-color: var(--light-color);
     border-radius: 7px;
     margin: 20px 15px 0;
     filter: drop-shadow(0px 3.92982px 3.92982px rgba(0, 0, 0, 0.25));
-    padding-bottom: 6px;
+    padding-bottom: 0.5rem;
     /*max-width: 400px;*/
 }
 
 main article.post-article > div:first-child {
     display: none;
-    padding: 5px;
+    padding: 0.5rem;
     width: 100%;
 }
 
 main article.post-article > div:first-child > p:first-of-type {
-    font-size: 1.3em;
+    font-size: 1.3rem;
     font-weight: 500;
+    margin-top: 1rem;
 }
 
+/*La riga (div.row sopra div.ingredient-div) sfora! Da risolvere*/
 main article.post-article div.ingredient-div {
-    /*height: 40px;*/
     border-radius: 30px;
-    /*margin: 0 10px;*/
-    display: flex;
+    height: 100%;
+    min-height: 2.5rem;
+    margin: 0;
 }
 
 main article.post-article div.ingredient-div > div {
-    display: inline-block;
+    padding: 0;
 }
 
 main article.post-article div.ingredient-div > div:first-child {
-    width: 65%;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 main article.post-article div.ingredient-div > div:last-child {
-    width: 35%;
-    margin: 2% 2% 2% 0;
+    display: flex;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 100%;
-    height: 100%;
-    text-align: center;
     box-shadow: inset -1px -1px 1px rgba(252, 252, 252, 0.25), inset 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
 main article.post-article div.ingredient-div > div > p {
+    width: 100%;
+    text-align: center;
     font-size: 70%;
+    margin: 0;
 }
-
-/*main article.post-article div.ingredient-div > div:first-child > p {
-    margin-left: 5px;
-}*/
 
 main article.post-article > div.row {
     margin-top: 10px;
