@@ -61,7 +61,7 @@
     <div class="col-12 col-md-8">
         <header class="row text-center mb-5">
             <h1>Create an account</h1>
-            <em>Fields with <strong>*</strong> are required</em>
+            <em>Fields with <strong class="required-char">*</strong> are required</em>
         </header>
 
         <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
@@ -70,20 +70,22 @@
             </div>
         </div>
 
-        <form action="./registration.php" method="post" class="row m-0 mt-4">
-            <label for="user-pic" class="mt-2 p-0 d-flex justify-content-center">
-                <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic">
-                <p class="profile-pic ps-3 m-0"></p>
+        <form action="./registration.php" method="post" class="row justify-content-center m-0 mt-4">
+            <label for="user-pic" class="mt-2 p-0">
+                <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview()">
+                <p class="profile-pic m-0">
+                    <img src="./imgs/propics/default.png" alt="Profile pic preview">
+                </p>
             </label>
 
             <label for="user-name" class="mt-2 p-0">
                 <input class="ps-3" type="text" name="name" id="user-name" required>
-                <p class="ps-3 m-0">First Name</p>
+                <p class="ps-3 m-0"><strong class="required-char">*</strong> First Name</p>
             </label>
         
             <label for="user-surname" class="mt-2 p-0">
                 <input class="ps-3" type="text" name="surname" id="user-surname" required>
-                <p class="ps-3 m-0">Last Name</p>
+                <p class="ps-3 m-0"><strong class="required-char">*</strong> Last Name</p>
             </label>
 
             <div class="row justify-content-end p-0 m-0">

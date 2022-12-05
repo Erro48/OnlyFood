@@ -1,19 +1,29 @@
+section.login-section {
+	background: transparent;
+	font-family: var(--special-font);
+}
+
 section.login-section div > p {
 	font-size: 1.25em;
 	font-weight: bold;
 }
 
-main section.login-section {
-	background: transparent;
-	font-family: var(--special-font);
-}
-
-main section.login-section > header h1 {
+section.login-section header h1 {
 	/* font-weight: bold; */
 	font-size: 2.8em;
 }
 
-main section.login-section div > p {
+section.login-section header em {
+	color: var(--accent);
+}
+
+strong.required-char {
+	position: relative;
+	top: 0.25em;
+	margin-right: 5px;
+}
+
+section.login-section div > p {
 	font-size: 20px;
 	font-family: Inter;
 	/* font-weight: bold; */
@@ -33,8 +43,8 @@ section.login-section form label p {
 	transition: 0.25s top;
 }
 
-section.login-section form label input:focus ~ p,
-section.login-section form label input:valid ~ p {
+section.login-section form label input:not([type='file']):focus ~ p,
+section.login-section form label input:not([type='file']):valid ~ p {
 	top: -110%;
 }
 
@@ -45,21 +55,41 @@ img.wallpaper {
 	border-left: 5px solid var(--primary);
 }
 
+section.login-section form label:has(p.profile-pic) {
+	width: 20vh;
+	height: 20vh;
+}
+
 section.login-section form label p.profile-pic {
 	box-sizing: border-box;
-	width: 6em;
-	height: 6em;
+	width: 100%;
+	height: 100%;
 	background-color: var(--light-color);
 	border: 3px solid var(--primary);
 	border-radius: 50%;
+	overflow: hidden;
+	top: 0;
 }
 
 section.login-section form label p.profile-pic::after {
+	display: block;
 	position: relative;
-	top: 4.5em;
-	left: 4.5em;
+	left: 100%;
+	transform: translate(-100%, -110%);
 	content: '\f304';
 	font: var(--fa-font-regular);
 	font-weight: 900;
 	color: var(--accent);
+	text-shadow: 0px 0px 2px var(--light-color), 0px 0px 3px var(--light-color),
+		0px 0px 4px var(--light-color), 0px 0px 6px var(--light-color),
+		0px 0px 8px var(--light-color);
+	text-align: center;
+}
+
+section.login-section form label p.profile-pic > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-height: 100%;
+	object-fit: cover;
 }
