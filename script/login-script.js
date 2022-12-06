@@ -38,10 +38,53 @@ function clearDropdown(dropdown = document.querySelector('.search-result')) {
 	}
 }
 
+function addIngredientToList(element) {
+	const listContainer = document.querySelector('div.ingredients-list')
+	const elementId = element.innerText.replaceAll(' ', '_').toLowerCase()
+	let listItems = Array.from(listContainer.children).map((item) => {
+		return {
+			name: item.children[1].innerText,
+			checked: item.children[0].checked,
+		}
+	})
+
+	// if it's first element, remove the already present (in not checked)
+	if (listContainer.dataset.server == 'true') {
+		listItems = listItems.filter((ingredient) => ingredient.checked)
+		listContainer.dataset.server = false
+	}
+
+	// add new element (if not already present)
+	if (listItems.filter((item) => item.name == element.innerText).length == 0) {
+		listItems.push({
+			name: element.innerText,
+			checked: true,
+		})
+	}
+
+	// create HTML tags
+	listItems = listItems.map((ingredient) => {
+		const ingredientName = ingredient.name
+		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
+
+		return `<label for="ingr-${ingredientId}" class="col-6 col-md-4">
+			<input type="checkbox" name="ingredient-chk" id="ingr-${ingredientId}" 
+			${ingredient.checked ? 'checked' : ''}>
+			<span class="ingredient-pill">${ingredientName}</span>
+		</label>`
+	})
+
+	// add to container
+	listContainer.innerHTML = listItems.join('')
+	clearDropdown()
+	document.querySelector('#search-ingredient').value = ''
+}
+
 function createSearchResultOption(ingredient) {
 	const container = document.createElement('li')
 	container.innerText = ingredient.name
 	container.classList.add('px-3')
 	container.classList.add('py-2')
+	container.setAttribute('onclick', 'addIngredientToList(this)')
 	return container
 }

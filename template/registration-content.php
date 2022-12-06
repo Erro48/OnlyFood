@@ -86,12 +86,12 @@
                 </div>
             </section>
             
-            <div class="ingredients-list row">
+            <div class="ingredients-list row" data-server="true">
                 <?php foreach ($templateParams["intolerances"] as $intolerance):?>
                     
                     <label for="ingr-<?= $intolerance['name'] ?>" class="col-6 col-md-4">
                         <input type="checkbox" name="ingredient-chk" id="ingr-<?= $intolerance['name'] ?>">
-                        <span class="ingredient-pill"><?= $intolerance['name'] ?></span>
+                        <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
                     </label>
 
                 <?php endforeach ?>
