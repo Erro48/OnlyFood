@@ -118,5 +118,15 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getIngredients($ingredient) {
+        $ingredient = "%" . $ingredient . "%";
+        $stmt = $this->db->prepare("SELECT name, color FROM ingredients WHERE name LIKE ?");
+        $stmt->bind_param("s", $ingredient);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 ?>

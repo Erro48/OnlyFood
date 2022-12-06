@@ -106,3 +106,34 @@ section.login-section form div.ingredients-list {
 	border-radius: 10px;
 	height: 100px;
 }
+
+div.search-result-container {
+	position: relative;
+}
+
+label:has(input#search-ingredient) {
+	width: 100%;
+}
+
+div.search-result-container > ul.search-result {
+	list-style: none;
+	position: absolute;
+	top: 1em;
+	background-color: var(--light-color);
+	border-radius: 5px;
+	z-index: 20;
+	width: 100%;
+	box-shadow: 3px 3px 5px #666;
+}
+
+div.search-result-container > ul.search-result li {
+	border-bottom: 2px solid var(--secondary);
+	box-sizing: border-box;
+	text-transform: capitalize;
+	font-family: 'Inter';
+	font-size: 0.9em;
+}
+
+div.search-result-container > ul.search-result li:last-child {
+	border-bottom: none;
+}
