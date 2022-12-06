@@ -180,7 +180,11 @@ main article.post-article > div:first-child > p:first-of-type {
     margin-top: 1rem;
 }
 
-/*La riga (div.row sopra div.ingredient-div) sfora! Da risolvere*/
+/*Questo div senza margine sfora! Da risolvere*/
+main article.post-article > div:first-child > div.row {
+    margin: 0.4rem 0;
+}
+
 main article.post-article div.ingredient-div {
     border-radius: 30px;
     height: 100%;
@@ -213,7 +217,7 @@ main article.post-article div.ingredient-div > div > p {
 }
 
 main article.post-article > div.row {
-    margin-top: 10px;
+    margin-top: 1rem;
     padding-left: 3%;
 }
 
