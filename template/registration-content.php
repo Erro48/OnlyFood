@@ -76,15 +76,13 @@
                 <p class="ps-3 m-0">Search ingredient</p>
             </label>
             
-            <div class="ingredients-list">
+            <div class="ingredients-list row">
                 <?php foreach ($templateParams["intolerances"] as $intolerance):?>
                     
-                    <label for="ingr-<?= $intolerance['name'] ?>">
+                    <label for="ingr-<?= $intolerance['name'] ?>" class="col-6 col-md-4">
                         <input type="checkbox" name="ingredient-chk" id="ingr-<?= $intolerance['name'] ?>">
                         <span class="ingredient-pill"><?= $intolerance['name'] ?></span>
                     </label>
-
-
 
                 <?php endforeach ?>
             </div>
