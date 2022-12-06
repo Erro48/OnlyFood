@@ -226,6 +226,11 @@ main article.post-article > div.row > div:nth-child(2) > p:first-child {
     font-weight: 300;
 }
 
+main article.post-article div.howto-div {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 main article.post-article > div > div:first-child > img {
     width: 100%;
     border-radius: 50%;

@@ -22,7 +22,9 @@
             <?php $i++; endforeach; ?>
             </div>
             <p>How To</p>
-            <p><?php echo $post["howTo"]; ?></p>
+            <div class="howto-div">
+                <p><?php echo $post["howTo"]; ?></p>
+            </div>
         </div>
         <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
         <div class="row">
