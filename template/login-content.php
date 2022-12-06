@@ -3,7 +3,7 @@
     if (isset($_POST['user']) && isset($_POST['password'])) {
         $user = $_POST['user'];
         $password = $_POST['password'];
-        if ($dbh->isUserRegistered($user) && verifyUserPassword($user, $password)) {
+        if ($dbh->userAlreadyRegistered($user) && verifyUserPassword($user, $password)) {
             $_SESSION['username'] = $user;
             header('Location: ./index.php');
         } else {
