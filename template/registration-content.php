@@ -71,20 +71,33 @@
         </div>
 
         <form action="./registration.php" method="post" class="row justify-content-center m-0 mt-4">
-            <label for="search-ingredient" class="mt-2 p-0">
-                <input class="ps-3 pe-2" type="search" name="search-ingredient" id="search-ingredient" required>
-                <p class="ps-3 m-0">Search ingredient</p>
-            </label>
             
-            <div class="ingredients-list">
+            <section class="search-section p-0 row">
+                <label for="search-ingredient" class="p-0 col-10">
+                    <input class="ps-3 pe-2" type="search" name="search-ingredient" id="search-ingredient"
+                        onkeyup="searchIngredient()"
+                        onsearch="clearDropdown()">
+                    <p class="ps-3 m-0">Search ingredient</p>
+                </label>
+
+                <button class="button-secondary col-2" onclick="addIngredientToList(event)">
+                    +
+                </button>
+
+                <div class="search-result-container d-none p-0 col-12">
+                    <ul class="search-result p-0" id="search-result">
+        
+                    </ul>
+                </div>
+            </section>
+            
+            <div class="ingredients-list row" data-server="true">
                 <?php foreach ($templateParams["intolerances"] as $intolerance):?>
                     
-                    <label for="ingr-<?= $intolerance['name'] ?>">
+                    <label for="ingr-<?= $intolerance['name'] ?>" class="col-6 col-md-4">
                         <input type="checkbox" name="ingredient-chk" id="ingr-<?= $intolerance['name'] ?>">
-                        <span class="ingredient-pill"><?= $intolerance['name'] ?></span>
+                        <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
                     </label>
-
-
 
                 <?php endforeach ?>
             </div>
