@@ -38,9 +38,24 @@ function clearDropdown(dropdown = document.querySelector('.search-result')) {
 	}
 }
 
-function addIngredientToList(element) {
+function addIngredientToList(event) {
+	event.preventDefault()
 	const listContainer = document.querySelector('div.ingredients-list')
-	const elementId = element.innerText.replaceAll(' ', '_').toLowerCase()
+	let ingredientName
+
+	if (event.target.type == 'submit') {
+		const element = document.querySelector('input#search-ingredient')
+		ingredientName = element.value
+	} else {
+		const element = event.path[0]
+		ingredientName = element.innerText
+	}
+
+	ingredientName = ingredientName
+		.split(' ')
+		.map((word) => word[0].toUpperCase() + word.substr(1))
+		.join(' ')
+
 	let listItems = Array.from(listContainer.children).map((item) => {
 		return {
 			name: item.children[1].innerText,
@@ -55,9 +70,9 @@ function addIngredientToList(element) {
 	}
 
 	// add new element (if not already present)
-	if (listItems.filter((item) => item.name == element.innerText).length == 0) {
+	if (listItems.filter((item) => item.name == ingredientName).length == 0) {
 		listItems.push({
-			name: element.innerText,
+			name: ingredientName,
 			checked: true,
 		})
 	}
@@ -85,6 +100,6 @@ function createSearchResultOption(ingredient) {
 	container.innerText = ingredient.name
 	container.classList.add('px-3')
 	container.classList.add('py-2')
-	container.setAttribute('onclick', 'addIngredientToList(this)')
+	container.setAttribute('onclick', 'addIngredientToList(event)')
 	return container
 }

@@ -111,14 +111,10 @@ div.search-result-container {
 	position: relative;
 }
 
-label:has(input#search-ingredient) {
-	width: 100%;
-}
-
 div.search-result-container > ul.search-result {
 	list-style: none;
 	position: absolute;
-	top: 1em;
+	/* top: 1em; */
 	background-color: var(--light-color);
 	border-radius: 5px;
 	z-index: 20;
