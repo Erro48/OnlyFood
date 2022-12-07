@@ -12,7 +12,6 @@
 		* Labels
 		* Links
 	- Media Queries
->>>>>>> home
 */
 
 /* #region Root */
@@ -60,7 +59,7 @@ header.page-header > div:nth-child(1) > h1 {
     margin-bottom: 0;
     font-size: 2.5em;
     font-weight: 600;
-    font-family: sans-serif;
+    font-family: var(--special-font);
 }
 
 header.page-header > div:nth-child(2) {
@@ -264,14 +263,14 @@ main article.post-article > footer > ul > li > input {
 
 main article.post-article > footer > ul > li > input.preview-selected-left {
     background-color: var(--accent);
-    color: #FFFFFF;
+    color: var(--text-light);
     box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.25);
     z-index: 100;
 }
 
 main article.post-article > footer > ul > li > input.preview-selected-right {
     background-color: var(--accent);
-    color: #FFFFFF;
+    color: var(--text-light);
     box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.25);
 }
 
