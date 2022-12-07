@@ -238,7 +238,7 @@ label {
         padding-left: 0;
     }
 
-    div.container-fluid > div.row:nth-child(2) > div.col-8 {
+    div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
         height: 93vh;
     }
 
