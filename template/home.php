@@ -5,11 +5,11 @@
                 <?php if($i == 0): ?>
                     <div class="row">
                 <?php endif; ?>
-                <?php if($i % 3 == 0 && $i != 0): ?>
+                <?php if($i % 2 == 0 && $i != 0): ?>
                     </div>
                     <div class="row">
                 <?php endif; ?>
-                <div class="col-4">
+                <div class="col-6">
                     <div class="ingredient-div row" style="background-color: #<?php echo $ingredient["color"]; ?>">
                         <div class="col-8">
                             <p><?php echo $ingredient["name"]; ?></p>
@@ -21,7 +21,7 @@
                 </div>
             <?php $i++; endforeach; ?>
             </div>
-            <p>How To</p>
+            <h2>How To</h2>
             <div class="howto-div">
                 <p><?php echo $post["howTo"]; ?></p>
             </div>

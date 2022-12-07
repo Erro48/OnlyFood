@@ -45,6 +45,7 @@
 body {
 	background-color: var(--background);
 	color: var(--text-dark);
+	font-family: var(--main-font);
 }
 /* #endregion */
 
@@ -178,9 +179,9 @@ main article.post-article > div:first-child {
     width: 100%;
 }
 
-main article.post-article > div:first-child > p:first-of-type {
+main article.post-article > div:first-child > h2 {
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: bold;
     margin-top: 1rem;
 }
 
@@ -210,6 +211,8 @@ main article.post-article div.ingredient-div > div:last-child {
     align-items: center;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 100%;
+	padding: 0.1rem;
+	aspect-ratio: 1/1;
     box-shadow: inset -1px -1px 1px rgba(252, 252, 252, 0.25), inset 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
@@ -258,7 +261,7 @@ main article.post-article > footer > ul > li > input {
 
 main article.post-article > footer > ul > li > input {
     border-radius: 4px;
-    background-color: #FFFFFF;
+    background-color: var(--light-color);
 }
 
 main article.post-article > footer > ul > li > input.preview-selected-left {
