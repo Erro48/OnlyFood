@@ -23,30 +23,27 @@ footer (nav bar)
 
  <div class="container-fluid overflow-hidden p-0">
     <!-- Header -->
-    <div class="row">
-        <div class="col-12">
-            <header>
-                <div class="row">
-                    <div class="col-6">
-                        <p>OnlyFood</p>
-                    </div>
-                    <div class="col-6">
-                        <ul>
-                            <li>
-                                <input type="button"/>
-                            </li><li>
-                                <input type="button"/>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </header>
+    <header class="page-header row align-content-center">
+        <div class="col-6">
+            <h1>OnlyFood</h1>
         </div>
-    </div>
+        <div class="col-6">
+            <div class="row align-content-center">
+                    <div class="col-6">
+                        <input type="button">
+                    </div>
+                    <div class="col-6">
+                        <input type="button">
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </header>
     
     <div class="row">
         <!--Main-->
-        <div class="col-12 col-md-9">
+        <div class="col-2"></div>
+        <div class="col-8 col-md-5">
             <main>
                 <?php
                     if(isset($templateParams["nome"])){
@@ -55,10 +52,11 @@ footer (nav bar)
                 ?>
             </main>
         </div>
+        <div class="col-2"></div>
 
         <!-- Footer -->
         <div class="col-12 col-md-3">
-            <footer>
+            <footer class="page-footer">
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
@@ -66,7 +64,7 @@ footer (nav bar)
                         </li><li class="col-3 col-md-12">
                             <input type="button" value="Post" onclick="window.location.href='post.php'" class="<?php if($templateParams["nome"] == "post.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Home" onclick="window.location.href='home.php'" class="<?php if($templateParams["nome"] == "home.php"){echo "input-selected";} ?>"/>
+                            <input type="button" value="Home" onclick="window.location.href='index.php'" class="<?php if($templateParams["nome"] == "home.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
                             <input type="button" value="Explore" onclick="window.location.href='explore.php'" class="<?php if($templateParams["nome"] == "explore.php"){echo "input-selected";} ?>"/>
                         </li>

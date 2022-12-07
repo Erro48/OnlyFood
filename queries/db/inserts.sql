@@ -1,7 +1,7 @@
 INSERT INTO `recipes` (`recipeId`, `description`, `howTo`, `preview`) VALUES
 (0, 'Pizza stravagante', 'Devi fare roba', 'imgs/posts/pizza-stravagante.jpg'),
 (1, 'Il mio primo dolce-salato', 'Fatelo', 'imgs/posts/dolce-salato.jpg'),
-(2, 'Oggi cucinaramo por voi', 'In forno por dos ore', 'imgs/posts/torta-ronaldo.jpg');
+(2, 'Oggi cucinaramo por voi', 'Uno dei criteri fondamentali della cucina cinese è l’equilibrio armonioso di colori, sapori e consistenze. Il maiale in agrodolce è una ricetta della tradizione che rappresenta perfettamente questa caratteristica, a partire dalla scelta degli ingredienti: il verde dei peperoni, il rosso del pomodoro e il giallo dell’ananas, un mix dalle tinte vivaci che, insieme alla salsa agrodolce, conferisce al piatto il suo gusto inconfondibile. Dopo aver fritto i bocconcini di carne, mangiare', 'imgs/posts/torta-ronaldo.jpg');
 
 INSERT INTO `tags` (`name`) VALUES
 ('breakfast'),
@@ -42,7 +42,11 @@ INSERT INTO `compositions` (`recipe`, `ingredient`, `unit`, `quantity`) VALUES
 (0, 'oil', 'litre', 2),
 (1, 'salt', 'spoon', 4),
 (1, 'sugar', 'gram', 25),
-(2, 'sugar', 'gram', 500);
+(2, 'sugar', 'gram', 500),
+(2, 'egg', 'unit', 5),
+(2, 'flour', 'kilogram', 2),
+(2, 'salt', 'spoon', 20),
+(2, 'oil', 'litre', 1);
 
 INSERT INTO `users` (`username`, `name`, `surname`, `email`, `password`, `profilePic`) VALUES
 ('carlo61', 'Carlo', 'Conti', 'carlo@conti.com', 'ciao', 'imgs/propics/carlo61.jpg'),

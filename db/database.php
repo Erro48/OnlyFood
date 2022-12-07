@@ -118,5 +118,20 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getIngredientByPost($postId){
+        $stmt = $this->db->prepare("
+        SELECT i.color, i.name, c.quantity, m.acronym
+        FROM posts p, compositions c, ingredients i, measures m
+        WHERE p.postId = ?
+        AND c.recipe = p.recipe
+        AND c.ingredient = i.name
+        AND c.unit = m.name");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 ?>
