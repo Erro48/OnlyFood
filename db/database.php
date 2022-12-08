@@ -210,5 +210,16 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getTags(){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM tags
+        LIMIT 15");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
