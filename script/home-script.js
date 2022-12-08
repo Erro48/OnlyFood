@@ -1,5 +1,5 @@
 function showPicture(id){
-    const div = document.querySelector("article.article-".concat(id, " > div"));
+    const div = document.querySelector("article.article-".concat(id, " > section.recipe-section"));
     const img = document.querySelector("article.article-".concat(id, " > img"));
     const pictureInput = document.querySelector("article.article-".concat(id, " > footer > ul > li:first-child > input"));
     const recipeInput = document.querySelector("article.article-".concat(id, " > footer > ul > li:nth-child(2) > input"));
@@ -10,7 +10,7 @@ function showPicture(id){
 }
 
 function showRecipe(id){
-    const div = document.querySelector("article.article-".concat(id, " > div"));
+    const div = document.querySelector("article.article-".concat(id, " > section.recipe-section"));
     const img = document.querySelector("article.article-".concat(id, " > img"));
     const pictureInput = document.querySelector("article.article-".concat(id, " > footer > ul > li:first-child > input"));
     const recipeInput = document.querySelector("article.article-".concat(id, " > footer > ul > li:nth-child(2) > input"));
