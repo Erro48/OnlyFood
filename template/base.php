@@ -64,7 +64,7 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <input type="button" value="Profile" onclick="window.location.href='profile.php'" class="<?php if($templateParams["nome"] == "profile.php"){echo "input-selected";} ?>"/>
+                            <input type="button" value="Profile" onclick="window.location.href='profile.php'" class="<?php if($templateParams["nome"] == "profile-content.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
                             <input type="button" value="Post" onclick="window.location.href='post.php'" class="<?php if($templateParams["nome"] == "post.php"){echo "input-selected";} ?>"/>
                         </li><li class="col-3 col-md-12">
