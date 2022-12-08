@@ -52,7 +52,7 @@ function verifyUserPassword($user, $password) {
                     <div class="col-12 col-md-8">
                         
                         <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
-                            <div class="col-12 w-100 alert alert-danger">
+                            <div class="col-12 w-100 alert error-alert">
                                 <?= $error ?>
                             </div>
                         </div>
