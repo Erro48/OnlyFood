@@ -161,3 +161,10 @@ div.search-result-container > ul.search-result li {
 div.search-result-container > ul.search-result li:last-child {
 	border-bottom: none;
 }
+
+input.input-error {
+	border: 2px solid red;
+}
+
+@keyframes input-error-animation {
+}

@@ -1,3 +1,5 @@
+'use strict'
+
 function profilePicPreview() {
 	const inputImage = document.querySelector('#user-pic')
 	const preview = document.querySelector('#user-pic ~ p')
@@ -101,6 +103,100 @@ function hideLabel(element) {
 	element.value.trim() != ''
 		? sibling.classList.add('d-none')
 		: sibling.classList.remove('d-none')
+}
+
+function loadPage(event, pageNumber) {
+	// verify forms
+	if (verifyInputs(getCurrentPageNumber(event.target))) {
+		const elements = document.querySelectorAll(`.page-${pageNumber}`)
+		elements.forEach((element) => element.classList.remove('d-none'))
+
+		const otherNumbers = [0, 1, 2].filter((el) => el != pageNumber)
+		const classes = otherNumbers.map((el) => `.page-${el}`).join(',')
+		const otherElements = document.querySelectorAll(classes)
+		otherElements.forEach((element) => element.classList.add('d-none'))
+
+		setErrorMessage()
+	}
+}
+
+function getCurrentPageNumber(element) {
+	return [...element.parentNode.classList]
+		.filter((className) => className.includes('page-'))[0]
+		.substr(5)
+}
+
+function verifyInputs(pageNumber) {
+	let errors = []
+
+	if (pageNumber == 0) errors = verifyFirstPageInputs()
+	else if (pageNumber == 1) errors = verifySecondPageInputs()
+
+	setErrorClass(errors.map((error) => error.id))
+	if (errors.length > 0) setErrorMessage(errors.map((error) => error.msg))
+
+	return errors.length == 0
+}
+
+function setErrorClass(inputErrorsId) {
+	inputErrorsId.forEach((id) => {
+		document.querySelector(`#${id}`).classList.add('input-error')
+	})
+}
+
+function setErrorMessage(messages) {
+	const errorLog = document.querySelector('.alert')
+	if (messages !== undefined) {
+		errorLog.innerText = messages.map((message) => message).join('\n')
+		errorLog.parentNode.classList.remove('d-none')
+	} else {
+		errorLog.innerText = ''
+		errorLog.parentNode.classList.add('d-none')
+	}
+}
+
+function verifyFirstPageInputs() {
+	const inputs = [...document.querySelectorAll('.page-0 input')]
+	const results = []
+
+	// Check profile pic
+
+	// Check if name is correct
+	const name = inputs.filter((input) => input.id == 'user-name')[0].value
+	results.push(...verifyName(name, 'user-name'))
+
+	// Check if surname is correct
+	const surname = inputs.filter((input) => input.id == 'user-surname')[0].value
+	results.push(...verifySurname(surname, 'user-surname'))
+
+	return results
+}
+
+function verifySecondPageInputs() {
+	const inputs = [...document.querySelectorAll('.page-1 input')]
+	const results = []
+
+	// Check if username is correct
+	const username = inputs.filter((input) => input.id == 'user-username')[0]
+		.value
+	results.push(...verifyUsername(username, 'user-username'))
+
+	// Check if email is correct
+	const email = inputs.filter((input) => input.id == 'user-email')[0].value
+	results.push(...verifyEmail(email, 'user-email'))
+
+	const password = inputs.filter((input) => input.id == 'user-password')[0]
+		.value
+	const cpassword = inputs.filter((input) => input.id == 'user-cpassword')[0]
+		.value
+	results.push(
+		...verifyPassword(password, cpassword, {
+			password: 'user-password',
+			cpassword: 'user-cpassword',
+		})
+	)
+
+	return results
 }
 
 function createSearchResultOption(ingredient) {

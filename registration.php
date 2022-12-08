@@ -63,6 +63,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     <title>OnlyFood - Registration</title>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./script/verification.js"></script>
     <script src="./script/login-script.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
@@ -89,14 +90,18 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                         <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
                             <div class="col-12 w-100 alert alert-danger">
-                                <?= $error ?>
+                                <?php
+                                foreach($errors as $error) {
+                                    echo $error;
+                                }
+                                ?>
                             </div>
                         </div>
 
                         <form action="./registration.php" method="post" class="justify-content-center m-0 mt-4">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
-                            <fieldset class="p-0 m-0 col-12 d-flex flex-column">
+                            <fieldset class="page-0 p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
                                     <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview()">
@@ -116,12 +121,12 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </label>
                             </fieldset>
 
-                            <div class="row justify-content-end p-0 mx-0 my-3">
-                                <input type="button" value="Next" class="col-5 button-primary">
+                            <div class="page-0 row justify-content-end p-0 mx-0 my-3">
+                                <input type="button" value="Next" class="col-5 button-primary" onclick="loadPage(event, 1)">
                             </div>
 
 <!-- ----------------------- SECOND PAGE ----------------------- -->
-                        <!-- <fieldset class="p-0 m-0 col-12">
+                        <fieldset class="page-1 p-0 m-0 col-12 d-none">
                             <legend>Account Informations:</legend>
                             <label for="user-username" class="p-0">
                                 <input class="ps-3" type="text" name="username" id="user-username" required>
@@ -144,14 +149,14 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </label>
                         </fieldset>
                         
-                        <div class="row justify-content-center p-0 mx-0 my-3">
-                            <input type="button" value="Back" class="col-5 button-secondary">
+                        <div class="page-1 row justify-content-center p-0 mx-0 my-3 d-none">
+                            <input type="button" value="Back" class="col-5 button-secondary" onclick="loadPage(event, 0)">
                             <div class="col-2"></div>
-                            <input type="button" value="Next" class="col-5 button-primary">
-                        </div> -->
+                            <input type="button" value="Next" class="col-5 button-primary" onclick="loadPage(event, 2)">
+                        </div>
 
 <!-- ----------------------- THIRD PAGE ----------------------- -->
-                        <!-- <fieldset class="p-0 m-0 col-12">
+                        <fieldset class="page-2 p-0 m-0 col-12 d-none">
                             <legend>Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
@@ -165,7 +170,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                                 <!-- <button class="button-secondary col-2" onclick="addIngredientToList(event)">
                                     +
-                                </button>
+                                </button> -->
 
                                 <div class="search-result-container d-none p-0 col-12">
                                     <ul class="search-result p-0" id="search-result">
@@ -186,11 +191,11 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
 
                         </fieldset>
-                        <div class="row justify-content-center p-0 m-0 my-3">
-                            <input type="button" value="Back" class="col-5 button-secondary">
+                        <div class="page-2 row justify-content-center p-0 m-0 my-3 d-none">
+                            <input type="button" value="Back" class="col-5 button-secondary" onclick="loadPage(event, 1)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary">
-                        </div> -->
+                        </div>
 
                         </form>
 
