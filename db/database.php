@@ -193,5 +193,22 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getExplorePosts($username){
+        //TODO da cambiare
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM posts p, recipes r, users u
+        WHERE r.recipeId = p.recipe
+        AND p.owner = u.username
+        ORDER BY p.date DESC
+        LIMIT 15");
+
+        //$stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
