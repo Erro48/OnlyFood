@@ -148,7 +148,7 @@ main article.post-article > img {
 /* #region Media Queries */
 @media screen and (min-width: 768px){
     main div.posts-container {
-        height: 93vh;
+        height: 68vh;
     }
 }
 /* #endregion */
