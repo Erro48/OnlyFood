@@ -1,6 +1,6 @@
 <?php foreach($templateParams["posts"] as $post): ?>
     <article class="post-article article-<?php echo $post["postId"];?>">
-        <div>
+        <section class="recipe-section">
             <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                 <?php if($i == 0): ?>
                     <div class="row">
@@ -22,10 +22,10 @@
             <?php $i++; endforeach; ?>
             </div>
             <h2>How To</h2>
-            <div class="howto-div">
+            <section class="howto-section">
                 <p><?php echo $post["howTo"]; ?></p>
-            </div>
-        </div>
+                </section>
+        </section>
         <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
         <div class="row">
             <div class="col-2">
