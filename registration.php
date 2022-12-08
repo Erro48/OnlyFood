@@ -76,7 +76,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     <div class="row">
         <div class="col-1 d-md-none"></div>
         <div class="col-10 col-md-6 row vh-100 align-content-center justify-content-center mx-0">
-            <header class="row text-center mb-5">
+            <header class="row text-left mb-5">
                 <h1>Create an account</h1>
                 <em>Fields with <strong class="required-char">*</strong> are required</em>
             </header>
@@ -96,7 +96,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <form action="./registration.php" method="post" class="justify-content-center m-0 mt-4">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
-                            <!-- <fieldset class="p-0 m-0 col-12 d-flex flex-column">
+                            <fieldset class="p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
                                     <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview()">
@@ -118,7 +118,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                             <div class="row justify-content-end p-0 mx-0 my-3">
                                 <input type="button" value="Next" class="col-5 button-primary">
-                            </div> -->
+                            </div>
 
 <!-- ----------------------- SECOND PAGE ----------------------- -->
                         <!-- <fieldset class="p-0 m-0 col-12">
@@ -151,7 +151,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         </div> -->
 
 <!-- ----------------------- THIRD PAGE ----------------------- -->
-                        <fieldset class="p-0 m-0 col-12">
+                        <!-- <fieldset class="p-0 m-0 col-12">
                             <legend>Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
@@ -165,7 +165,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                                 <!-- <button class="button-secondary col-2" onclick="addIngredientToList(event)">
                                     +
-                                </button> -->
+                                </button>
 
                                 <div class="search-result-container d-none p-0 col-12">
                                     <ul class="search-result p-0" id="search-result">
@@ -190,7 +190,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <input type="button" value="Back" class="col-5 button-secondary">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary">
-                        </div>
+                        </div> -->
 
                         </form>
 
