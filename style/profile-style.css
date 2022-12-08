@@ -1,0 +1,76 @@
+
+main section.profile-section {
+    z-index: 2;
+    background-color: var(--primary);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+main section.profile-section > div.row {
+    margin-top: 0px;
+    padding-left: 0%;
+}
+
+main section.profile-section .profile-pic {
+    width: 100%;
+    border-radius: 50%;
+}
+
+main section.favourite-ingredients-section {
+    background-color: var(--accent);
+    padding-bottom: 1.5em;
+}
+
+main section.favourite-ingredients-section .ingredient {
+    background-color: var(--background);
+    border-radius: 0.6em;
+}
+
+main section.favourite-ingredients-section .ingredient-marker {
+    /* background-color: var(--background); */
+    border-radius: 50%;
+}
+
+main section.favourite-ingredients-section .ingredients-title-container {
+    border-bottom: solid 0.2em var(--secondary)
+}
+
+main section.favourite-ingredients-section .ingredients-title {
+    font-size: 1.2em;
+}
+
+main section .username-text {
+    font-weight: 700;
+    font-size: 1.6em;
+}
+
+main section .name-text {
+    font-weight: 100;
+    font-size: 1.6em;
+}
+
+main section .follow-container {
+
+}
+
+main section .follow-container p {
+    text-align: center;
+    background-color: var(--secondary);
+}
+
+main section .icon-button {
+    border-radius: 0.8em;
+    background-color: var(--secondary);
+    border: 0;
+}
+
+main section .icon-button > img {
+    height: 2em;
+    width: 2em;
+} 
+
+.posts-container {
+    display:inline-block
+}
+
+
