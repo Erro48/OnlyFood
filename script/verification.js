@@ -139,14 +139,9 @@ function verifyPassword(password, cpassword, ids) {
 			msg: `Password must have at least one ${missing}`,
 		})
 	} else if (password != cpassword) {
-		console.log(password, cpassword)
-		results.push({
-			id: ids.password,
-			msg: `Passwords doesn't match.`,
-		})
 		results.push({
 			id: ids.cpassword,
-			msg: '',
+			msg: `Passwords doesn't match.`,
 		})
 	}
 

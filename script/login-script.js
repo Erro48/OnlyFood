@@ -132,10 +132,16 @@ function verifyInputs(pageNumber) {
 	if (pageNumber == 0) errors = verifyFirstPageInputs()
 	else if (pageNumber == 1) errors = verifySecondPageInputs()
 
+	resetErrorClass()
 	setErrorClass(errors.map((error) => error.id))
 	if (errors.length > 0) setErrorMessage(errors.map((error) => error.msg))
 
 	return errors.length == 0
+}
+
+function resetErrorClass() {
+	const elements = document.querySelectorAll('.input-error')
+	elements.forEach((element) => element.classList.remove('input-error'))
 }
 
 function setErrorClass(inputErrorsId) {
