@@ -7,7 +7,7 @@ $templateParams["posts"] = $dbh->getUserPosts("ig_Massari"); //TODO use session 
 $templateParams["profile"] = $dbh->getProfileInfo("ig_Massari");
 $templateParams["favouriteIngredients"] = $dbh->getMostUsedIngredients("ig_Massari");
 $templateParams["style"] = array("profile-style.css", "home-style.css");
-$templateParams["script"] = array("home-script.js");
+$templateParams["script"] = array("profile-script.js", "home-script.js");
 
 require 'template/base.php';
 ?>
