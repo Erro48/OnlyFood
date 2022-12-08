@@ -62,12 +62,12 @@ function verifyUserPassword($user, $password) {
                             <fieldset class="p-0 m-0 col-12">
                                 <legend class="text-center mt-4 mb-1">Sign in to continue</legend>
 
-                                <label for="user-input" class="p-0 w-100 h-100 mt-4 mb-2">
+                                <label for="user-input" class="p-0 mb-2">
                                     <input class="ps-3" type="text" name="user" id="user-input" required>
                                     <p class="ps-3 m-0">Username</p>
                                 </label>
                             
-                                <label for="user-password" class="p-0 w-100 h-100 mt-4">
+                                <label for="user-password" class="p-0">
                                     <input class="ps-3" type="password" name="password" id="user-password" required>
                                     <p class="ps-3 m-0">Password</p>
                                 </label>

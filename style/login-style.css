@@ -43,6 +43,14 @@ section.login-section form label {
 	position: relative;
 }
 
+section.login-section
+	form
+	label:has(input[type='text'], input[type='password'], input[type='search']) {
+	width: 100%;
+	height: 100%;
+	margin-top: 1.5rem;
+}
+
 section.login-section form label:has(p.profile-pic) {
 	width: 20vh;
 	height: 20vh;
@@ -88,13 +96,20 @@ section.login-section form label p.profile-pic > img {
 	object-fit: cover;
 }
 
-section.login-section form label input:not([type='file']):focus ~ p,
-section.login-section form label input:not([type='file']):valid ~ p {
+section.login-section
+	form
+	label
+	input:not([type='file'], [type='search']):focus
+	~ p,
+section.login-section
+	form
+	label
+	input:not([type='file'], [type='search']):valid
+	~ p {
 	top: -50%;
 }
 
-section.login-section form label input[type='search']:focus ~ p,
-section.login-section form label input[type='search']:valid ~ p {
+section.login-section form label input[type='search']:focus ~ p {
 	display: none;
 }
 /* #endregion */

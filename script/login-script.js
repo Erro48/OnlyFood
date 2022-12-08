@@ -10,7 +10,7 @@ function profilePicPreview() {
 }
 
 function searchIngredient(e) {
-	const searchValue = document.querySelector('#search-ingredient').value
+	const searchValue = document.querySelector('#search-ingredient').value.trim()
 	const dropdownBody = document.querySelector('#search-result')
 
 	if (searchValue.length < 3) {
@@ -93,6 +93,14 @@ function addIngredientToList(event) {
 	listContainer.innerHTML = listItems.join('')
 	clearDropdown()
 	document.querySelector('#search-ingredient').value = ''
+}
+
+function hideLabel(element) {
+	const sibling = element.nextElementSibling
+
+	element.value.trim() != ''
+		? sibling.classList.add('d-none')
+		: sibling.classList.remove('d-none')
 }
 
 function createSearchResultOption(ingredient) {
