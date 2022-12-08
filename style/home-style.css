@@ -76,8 +76,11 @@ main article.post-article div.ingredient-div > div:last-child {
 main article.post-article div.ingredient-div > div > p {
     width: 100%;
     text-align: center;
-    font-size: 70%;
     margin: 0;
+}
+
+main article.post-article div.ingredient-div > div:last-child > p {
+    font-size: 70%;
 }
 
 main article.post-article > div.row {
