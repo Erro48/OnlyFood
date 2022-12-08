@@ -1,56 +1,25 @@
+/*	Table Of Contents:
+	------------------------
+	- Header
+	- Subheader
+	- Form
+		* Inputs
+			# Labels
+			# Input Fields
+		* Buttons
+		* Footer
+	- Footer
+*/
+
 section.login-section {
 	background: transparent;
-	font-family: var(--special-font);
+	font-family: var(--main-font);
 }
 
-section.login-section div > p {
-	font-size: 1.25em;
-	font-weight: bold;
-}
-
-section.login-section header h1 {
+header > h1 {
 	/* font-weight: bold; */
 	font-size: 2.4em;
-}
-
-section.login-section header em {
-	color: var(--accent);
-}
-
-strong.required-char {
-	position: relative;
-	top: 0.25em;
-	margin-right: 5px;
-}
-
-section.login-section div > p {
-	font-size: 20px;
-	font-family: Inter;
-	/* font-weight: bold; */
-}
-
-section.login-section form {
-	row-gap: 4em;
-}
-
-section.login-section form label {
-	position: relative;
-}
-
-section.login-section form label p {
-	position: absolute;
-	top: 60%;
-	transition: 0.25s top;
-}
-
-section.login-section form label input:not([type='file']):focus ~ p,
-section.login-section form label input:not([type='file']):valid ~ p {
-	top: -110%;
-}
-
-section.login-section form label input[type='search']:focus ~ p,
-section.login-section form label input[type='search']:valid ~ p {
-	display: none;
+	font-family: var(--special-font);
 }
 
 img.wallpaper {
@@ -60,9 +29,28 @@ img.wallpaper {
 	border-left: 5px solid var(--primary);
 }
 
+/* #region Form */
+section.login-section form {
+	row-gap: 4em;
+}
+
+/* #region Label */
+section.login-section form label {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-top: 2em;
+}
+
 section.login-section form label:has(p.profile-pic) {
 	width: 20vh;
 	height: 20vh;
+}
+
+section.login-section form label p {
+	position: absolute;
+	top: 25%;
+	transition: 0.25s top;
 }
 
 section.login-section form label p.profile-pic {
@@ -99,12 +87,40 @@ section.login-section form label p.profile-pic > img {
 	object-fit: cover;
 }
 
+section.login-section form label input:not([type='file']):focus ~ p,
+section.login-section form label input:not([type='file']):valid ~ p {
+	top: -50%;
+}
+
+section.login-section form label input[type='search']:focus ~ p,
+section.login-section form label input[type='search']:valid ~ p {
+	display: none;
+}
+/* #endregion */
+
 section.login-section form div.ingredients-list {
 	box-sizing: border-box;
 	background-color: var(--light-color);
 	border: 2px solid var(--primary);
 	border-radius: 10px;
 	height: 100px;
+}
+/* #endregion */
+
+/* Subtitle div */
+section.login-section form fieldset legend {
+	font-size: 1.25em;
+	/* font-weight: bold; */
+}
+
+section.login-section header em {
+	color: var(--accent);
+}
+
+strong.required-char {
+	position: relative;
+	top: 0.25em;
+	margin-right: 5px;
 }
 
 div.search-result-container {
