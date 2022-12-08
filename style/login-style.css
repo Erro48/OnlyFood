@@ -163,7 +163,15 @@ div.search-result-container > ul.search-result li:last-child {
 }
 
 input.input-error {
-	border: 2px solid red;
+	border: 2px solid var(--error-color);
+}
+
+.alert {
+	color: var(--error-color);
+	background-color: var(--light-color);
+	border: 2px solid var(--error-color);
+	border-radius: 10px;
+	font-weight: bold;
 }
 
 @keyframes input-error-animation {

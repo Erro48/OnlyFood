@@ -89,7 +89,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                     <div class="col-12 col-md-8">
 
                         <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
-                            <div class="col-12 w-100 alert alert-danger">
+                            <div class="col-12 w-100 alert error-alert">
                                 <?php
                                 foreach($errors as $error) {
                                     echo $error;
