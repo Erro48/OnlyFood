@@ -1,14 +1,24 @@
 
 main section.profile-section {
+    /*height: 50vh;*/
+    top: 7vh;
     z-index: 2;
     background-color: var(--primary);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    border-bottom-left-radius: 0.6em;
+    border-bottom-right-radius: 0.6em;
+    transition: height 0.5s linear;
 }
 
-main section.profile-section > div.row {
-    margin-top: 0px;
-    padding-left: 0%;
+/* Reduce - Extend action */
+
+.profile-section.reduced {
+    height: 18vh;
+}
+
+.hideable.hidden {
+    display: none;
 }
 
 main section.profile-section .profile-pic {
@@ -17,22 +27,25 @@ main section.profile-section .profile-pic {
 }
 
 main section.favourite-ingredients-section {
-    background-color: var(--accent);
+    background-color: var(--secondary);
     padding-bottom: 1.5em;
+    border-radius: 10px;
 }
 
 main section.favourite-ingredients-section .ingredient {
     background-color: var(--background);
-    border-radius: 0.6em;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 main section.favourite-ingredients-section .ingredient-marker {
-    /* background-color: var(--background); */
-    border-radius: 50%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 main section.favourite-ingredients-section .ingredients-title-container {
-    border-bottom: solid 0.2em var(--secondary)
+    border-bottom: solid 0.2em var(--accent)
 }
 
 main section.favourite-ingredients-section .ingredients-title {
@@ -50,18 +63,18 @@ main section .name-text {
 }
 
 main section .follow-container {
-
+    background-color: var(--secondary);
+    border-radius: 10px;
 }
 
 main section .follow-container p {
     text-align: center;
-    background-color: var(--secondary);
 }
 
 main section .icon-button {
-    border-radius: 0.8em;
     background-color: var(--secondary);
-    border: 0;
+    border-radius: 0.8em;
+    border: 0
 }
 
 main section .icon-button > img {
@@ -69,8 +82,39 @@ main section .icon-button > img {
     width: 2em;
 } 
 
-.posts-container {
-    display:inline-block
+.posts-section {
+    margin-top: 53vh;
 }
 
+.profile-position {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
 
+@media screen and (min-width: 768px) {
+    .profile-position {
+        position: relative
+    }
+
+    main section.profile-section {
+        /*height: 50vh;*/
+        top: 0vh;
+        z-index: 2;
+        background-color: var(--primary);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0.6em;
+        border-bottom-right-radius: 0.6em;
+        transition: height 0.5s linear;
+    }
+
+    .posts-container {
+        align-items: center;
+    }
+
+    .posts-section {
+        margin-top: 0vh;
+    }
+}
