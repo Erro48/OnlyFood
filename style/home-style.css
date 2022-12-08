@@ -9,24 +9,22 @@ div.footer-container {
     height: 6vh;
 }
 
-div.main-container {
+main div.posts-container {
     overflow-y: auto;
     height: 87vh;
-	display: flex;
-    flex-wrap: wrap;
-	justify-content: center;
 }
 
-main {
-    padding-bottom: 1rem;
+main div.single-post-container {
+	display: flex;
+	justify-content: center;
 }
 
 main article.post-article {
     background-color: var(--light-color);
     border-radius: 7px;
-    margin: 20px 15px 0;
-    filter: drop-shadow(0px 3.92982px 3.92982px rgba(0, 0, 0, 0.25));
-    padding-bottom: 0.5rem;
+    margin: 0.8rem 1rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 0 0 0.5rem 0;
     max-width: 400px;
 }
 
@@ -143,7 +141,7 @@ main article.post-article > img {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px){
-    div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
+    main div.posts-container {
         height: 93vh;
     }
 }
