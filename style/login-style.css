@@ -166,7 +166,7 @@ input.input-error {
 	border: 2px solid var(--error-color);
 }
 
-.alert {
+.error-alert {
 	color: var(--error-color);
 	background-color: var(--light-color);
 	border: 2px solid var(--error-color);
