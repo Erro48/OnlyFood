@@ -5,14 +5,15 @@
 */
 
 /* #region Post */
-div.container-fluid > div.row:nth-child(2) > div.col-12:nth-child(2) {
+div.footer-container {
     height: 6vh;
 }
 
-div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
+div.main-container {
     overflow-y: auto;
     height: 87vh;
 	display: flex;
+    flex-wrap: wrap;
 	justify-content: center;
 }
 

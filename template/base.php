@@ -49,7 +49,7 @@ footer (nav bar)
     
     <div class="row">
         <!--Main-->
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-9 main-container">
             <main>
                 <?php
                     if(isset($templateParams["nome"])){
@@ -60,7 +60,7 @@ footer (nav bar)
         </div>
 
         <!-- Footer -->
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 footer-container">
             <footer class="page-footer">
                 <div class="row">
                     <ul>
