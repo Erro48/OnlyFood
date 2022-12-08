@@ -1,6 +1,7 @@
 /*	Table Of Contents:
 	------------------------
 	- Post
+    - Media Queries
 */
 
 /* #region Post */
@@ -135,5 +136,13 @@ main article.post-article > footer > ul > li > input.preview-selected-right {
 main article.post-article > img {
     width: 100%;
     border-radius: 7px 7px 0 0;
+}
+/* #endregion */
+
+/* #region Media Queries */
+@media screen and (min-width: 768px){
+    div.container-fluid > div.row:nth-child(2) > div.col-12:first-child {
+        height: 93vh;
+    }
 }
 /* #endregion */
