@@ -21,6 +21,7 @@
 	--accent: #1a6b4e;
 	--text-dark: #000000;
 	--text-light: #ffffff;
+	--dark-color: #000000;
 	--light-color: #ffffff;
 
 	--main-font: 'Inter';
@@ -200,6 +201,14 @@ input[type='search'] {
 	height: 3rem;
 	box-sizing: border-box;
 	width: 100%;
+}
+
+input[type='checkbox'] {
+	border: solid 2px var(--dark-color); /*non va*/
+}
+
+input[type='checkbox']:checked {
+	background-color: var(--dark-color); /*non va*/
 }
 /* #endregion */
 

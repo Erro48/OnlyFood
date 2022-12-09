@@ -5,11 +5,21 @@
             <div class="row tag-h2-container">
                 <h2>Tags</h2>
             </div>
-            <?php foreach($templateParams["tags"] as $tag): ?>
-                <div class="row">
-                    <p><?php echo $tag["name"]; ?></p>
-                </div>
-            <?php endforeach; ?>
+            <div class="row search-bar-container">
+                <input type="text" placeholder="Search a tag"/>
+            </div>
+            <section class="tag-list-container">
+                <?php foreach($templateParams["tags"] as $tag): ?>
+                        <div class="row">
+                            <div class="col-1">
+                                <input id="input-<?php echo $tag["name"]; ?>" type="checkbox"/>
+                            </div>
+                            <div class="col-11">
+                                <label for="input-<?php echo $tag["name"]; ?>"><?php echo $tag["name"]; ?></label>
+                            </div>
+                        </div>
+                <?php endforeach; ?>
+            </section>
         </div>
         <div class="col-1"></div>
     </div>
