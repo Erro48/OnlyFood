@@ -1,7 +1,18 @@
 <section class="filter-section">
-    <?php foreach($templateParams["tags"] as $tag): ?>
-        <p><?php echo $tag["name"]; ?></p>
-    <?php endforeach; ?>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="row tag-h2-container">
+                <h2>Tags</h2>
+            </div>
+            <?php foreach($templateParams["tags"] as $tag): ?>
+                <div class="row">
+                    <p><?php echo $tag["name"]; ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="col-1"></div>
+    </div>
 </section>
 <div class="row">
     <div class="col-12 posts-container">

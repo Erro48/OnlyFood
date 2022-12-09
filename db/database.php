@@ -215,6 +215,7 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("
         SELECT *
         FROM tags
+        ORDER BY name
         LIMIT 15");
         $stmt->execute();
         $result = $stmt->get_result();

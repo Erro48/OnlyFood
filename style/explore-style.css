@@ -1,28 +1,52 @@
 /*	Table Of Contents:
 	------------------------
+    - Tags
 	- Post
     - Media Queries
 */
 
-/* #region Post */
-div.footer-container {
-    height: 6vh;
-}
 
+/* #region Tags */
 main section.filter-section {
-    height: 25vh;
+    height: 30vh;
     background-color: var(--primary);
     border-radius: 0 0 0.6rem 0.6rem;
+    margin: 0 2rem;
+}
+
+main section.filter-section > div.row {
+    height: 100%;
+}
+
+main section.filter-section > div.row > div.col-10 {
+    background-color: var(--secondary);
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+
+main section.filter-section div.tag-h2-container {
+    margin: 0 0.5rem;
+}
+
+main section.filter-section div.tag-h2-container > h2 {
+    padding: 0;
+    border-bottom: solid 0.2rem var(--accent);
 }
 
 main div.posts-container {
     overflow-y: auto;
-    height: 62vh;
+    height: 57vh;
 }
 
 main div.single-post-container {
 	display: flex;
 	justify-content: center;
+}
+/* #endregion */
+
+/* #region Post */
+div.footer-container {
+    height: 6vh;
 }
 
 main article.post-article {
@@ -148,7 +172,7 @@ main article.post-article > img {
 /* #region Media Queries */
 @media screen and (min-width: 768px){
     main div.posts-container {
-        height: 68vh;
+        height: 63vh;
     }
 }
 /* #endregion */
