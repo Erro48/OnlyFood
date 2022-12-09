@@ -107,16 +107,25 @@ function hideLabel(element) {
 
 function loadPage(event, pageNumber) {
 	// verify forms
-	if (verifyInputs(getCurrentPageNumber(event.target))) {
+
+	if (
+		pageNumber < getCurrentPageNumber(event.target) || // pressed 'Back' button
+		verifyInputs(getCurrentPageNumber(event.target)) // inputs are correct
+	) {
+		// remove display none from next / previous page
 		const elements = document.querySelectorAll(`.page-${pageNumber}`)
 		elements.forEach((element) => element.classList.remove('d-none'))
 
+		// add display none to other pages
 		const otherNumbers = [0, 1, 2].filter((el) => el != pageNumber)
 		const classes = otherNumbers.map((el) => `.page-${el}`).join(',')
 		const otherElements = document.querySelectorAll(classes)
 		otherElements.forEach((element) => element.classList.add('d-none'))
 
-		setErrorMessage()
+		resetErrors()
+	} else {
+		// when an error occurs scrolls to the top of the div, to make the errors visible
+		document.querySelector('.scrollable').scrollTop = 0
 	}
 }
 
@@ -132,16 +141,19 @@ function verifyInputs(pageNumber) {
 	if (pageNumber == 0) errors = verifyFirstPageInputs()
 	else if (pageNumber == 1) errors = verifySecondPageInputs()
 
-	resetErrorClass()
 	setErrorClass(errors.map((error) => error.id))
 	if (errors.length > 0) setErrorMessage(errors.map((error) => error.msg))
 
 	return errors.length == 0
 }
 
-function resetErrorClass() {
+function resetErrors() {
 	const elements = document.querySelectorAll('.input-error')
+	const errorLog = document.querySelector('.alert')
+
 	elements.forEach((element) => element.classList.remove('input-error'))
+	errorLog.innerText = ''
+	errorLog.parentNode.classList.add('d-none')
 }
 
 function setErrorClass(inputErrorsId) {
@@ -155,9 +167,6 @@ function setErrorMessage(messages) {
 	if (messages !== undefined) {
 		errorLog.innerText = messages.map((message) => message).join('\n')
 		errorLog.parentNode.classList.remove('d-none')
-	} else {
-		errorLog.innerText = ''
-		errorLog.parentNode.classList.add('d-none')
 	}
 }
 

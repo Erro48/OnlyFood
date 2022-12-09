@@ -25,7 +25,6 @@ function lengthBetween(value, min = 0, max = Infinity) {
 }
 
 function checkPassword(password) {
-	console.log(password)
 	if (!password.match(/[a-z]/)) return 'lower case letter'
 	if (!password.match(/[A-Z]/)) return 'upper case letter'
 	if (!password.match(/[0-9]/)) return 'number'

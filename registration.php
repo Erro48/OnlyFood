@@ -77,16 +77,16 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     <div class="row">
         <div class="col-1 d-md-none"></div>
         <div class="col-10 col-md-6 row vh-100 align-content-center justify-content-center mx-0">
-            <header class="row text-left mb-5">
-                <h1>Create an account</h1>
-                <em>Fields with <strong class="required-char">*</strong> are required</em>
+            <header class="row text-left text-md-center mb-5 p-0">
+                <h1 class="p-0">Create an account</h1>
+                <em class="p-0">Fields with <strong class="required-char">*</strong> are required</em>
             </header>
             
             <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5">
                 <section class="row login-section">
                     <div class="d-none d-md-block col-md-2"></div>
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-12 col-md-8 scrollable">
 
                         <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
                             <div class="col-12 w-100 alert error-alert">
@@ -98,7 +98,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
                         </div>
 
-                        <form action="./registration.php" method="post" class="justify-content-center m-0 mt-4">
+                        <form action="./registration.php" method="post" class="mt-4">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
                             <fieldset class="page-0 p-0 m-0 col-12 d-flex flex-column">
@@ -121,7 +121,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </label>
                             </fieldset>
 
-                            <div class="page-0 row justify-content-end p-0 mx-0 my-3">
+                            <div class="page-0 row justify-content-end p-0 mx-0 ">
                                 <input type="button" value="Next" class="col-5 button-primary" onclick="loadPage(event, 1)">
                             </div>
 
@@ -149,7 +149,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </label>
                         </fieldset>
                         
-                        <div class="page-1 row justify-content-center p-0 mx-0 my-3 d-none">
+                        <div class="page-1 row justify-content-center p-0 mx-0  d-none">
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="loadPage(event, 0)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary" onclick="loadPage(event, 2)">
@@ -191,7 +191,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
 
                         </fieldset>
-                        <div class="page-2 row justify-content-center p-0 m-0 my-3 d-none">
+                        <div class="page-2 row justify-content-center p-0 m-0  d-none">
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="loadPage(event, 1)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary">

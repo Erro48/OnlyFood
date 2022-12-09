@@ -35,7 +35,10 @@ img.wallpaper {
 
 /* #region Form */
 section.login-section form {
-	row-gap: 4em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 27em;
 }
 
 /* #region Label */
@@ -172,6 +175,19 @@ input.input-error {
 	border: 2px solid var(--error-color);
 	border-radius: 10px;
 	font-weight: bold;
+}
+
+.info-alert {
+	color: var(--accent);
+	background-color: var(--light-color);
+	border: 2px solid var(--accent);
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.scrollable {
+	overflow-y: auto;
+	max-height: 54vh;
 }
 
 @keyframes input-error-animation {
