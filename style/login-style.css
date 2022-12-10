@@ -107,11 +107,22 @@ section.login-section form div.ingredients-list {
 	border: 2px solid var(--primary);
 	border-radius: 10px;
 	height: 100px;
+	row-gap: 0.5em;
+}
+
+section.login-section form div.ingredients-list > label {
+	display: table;
+	word-wrap: break-word;
+}
+
+section.login-section form div.ingredients-list > label > span {
+	padding-left: 0.5em;
 }
 
 /* #region Labels ************************************************** */
 section.login-section form label {
 	position: relative;
+	user-select: none;
 }
 
 section.login-section form label:has(input.input-error) {

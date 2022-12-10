@@ -99,7 +99,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <form action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
-                            <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
+                            <!-- <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
                                     <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
@@ -121,10 +121,10 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                             <div class="fieldset-0 row justify-content-end p-0 mx-0 ">
                                 <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
-                            </div>
+                            </div> -->
 
 <!-- ----------------------- SECOND PAGE ----------------------- -->
-                        <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
+                        <!-- <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
                             <legend>Account Informations:</legend>
                             <label for="user-username" class="p-0">
                                 <input class="ps-3" type="text" name="username" id="user-username" required>
@@ -151,10 +151,10 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.PERSONAL_INFORMATIONS)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.INTOLERANCES_INFORMATIONS)">
-                        </div>
+                        </div> -->
 
 <!-- ----------------------- THIRD PAGE ----------------------- -->
-                        <fieldset class="fieldset-2 p-0 m-0 col-12 d-none">
+                        <fieldset class="fieldset-2 p-0 m-0 col-12">
                             <legend>Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
@@ -177,7 +177,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </div>
                             </section>
                             
-                            <div class="ingredients-list row  w-100 m-auto mt-4" data-server="true">
+                            <div class="ingredients-list row w-100 m-auto mt-4 scrollable" data-server="true">
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>
                                     
                                     <label for="ingr-<?= $intolerance['name'] ?>" class="col-6 col-md-4">
