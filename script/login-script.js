@@ -178,8 +178,8 @@ function hideLabel(element) {
  * @param {Event} event
  * @param {RegistrationFieldset} fieldset
  */
-function changeFieldset(event, fieldset) {
-	const errors = verifyInputs(getCurrentFieldset(event.target))
+async function changeFieldset(event, fieldset) {
+	const errors = await verifyInputs(getCurrentFieldset(event.target))
 	resetErrors()
 
 	if (
@@ -270,13 +270,13 @@ function setErrorMessage(messages) {
  * @param {RegistrationFieldset} fieldset
  * @returns {InputError[]} array of errors
  */
-function verifyInputs(fieldset) {
+async function verifyInputs(fieldset) {
 	let errors = []
 
 	if (fieldset == RegistrationFieldset.PERSONAL_INFORMATIONS)
 		errors = verifyPersonalInformations()
 	else if (fieldset == RegistrationFieldset.ACCOUNT_INFORMATIONS)
-		errors = verifyAccountInformations()
+		errors = await verifyAccountInformations()
 
 	return errors
 }
@@ -306,18 +306,18 @@ function verifyPersonalInformations() {
  * Verifies that inputs of the account informations fieldset are correct
  * @returns {InputError[]} array of errors
  */
-function verifyAccountInformations() {
+async function verifyAccountInformations() {
 	const inputs = [...document.querySelectorAll('.fieldset-1 input')]
 	const results = []
 
 	// Check if username is correct
 	const username = inputs.filter((input) => input.id == 'user-username')[0]
 		.value
-	results.push(...verifyUsername(username, 'user-username'))
+	results.push(...(await verifyUsername(username, 'user-username')))
 
 	// Check if email is correct
 	const email = inputs.filter((input) => input.id == 'user-email')[0].value
-	results.push(...verifyEmail(email, 'user-email'))
+	results.push(...(await verifyEmail(email, 'user-email')))
 
 	const password = inputs.filter((input) => input.id == 'user-password')[0]
 		.value

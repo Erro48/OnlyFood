@@ -49,6 +49,19 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getUserInfo($user) {
+        if (!isset($user)) {
+            throw new Exception('Variable $user is not defined');
+        }
+        $user = "%" . $user . "%";
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username LIKE ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
     
     public function getUserPassword($user) {
         if (!isset($user)) {
@@ -60,6 +73,18 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC)[0]['password'];
+    }
+
+    public function getUserByEmail($email) {
+        if (!isset($email)) {
+            throw new Exception('Variable $email is not defined');
+        }
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function userAlreadyRegistered($username, $email = '') {

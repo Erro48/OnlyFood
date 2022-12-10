@@ -3,6 +3,7 @@
 const REQUIRED_FIELD_MSG = 'is not optional.'
 const USERNAME_MSG = "can only contain letters, numbers and '_' character."
 const EMAIL_MSG = 'has an invalid format.'
+const ALREADY_USED_MESSAGE = 'already in use.'
 
 const NAME_REGEX = /^[a-zA-Z]*$/
 const SURNAME_REGEX = /^[a-zA-Z]*$/
@@ -33,7 +34,6 @@ function checkPassword(password) {
 	return true
 }
 
-/* Registration */
 function verifyName(name, id) {
 	const results = []
 
@@ -68,10 +68,9 @@ function verifySurname(surname, id) {
 	return results
 }
 
-function verifyUsername(username, id) {
+async function verifyUsername(username, id) {
 	const results = []
-
-	// username already present
+	const userInDb = await getUserInfo(username)
 
 	if (isEmpty(username)) {
 		results.push({
@@ -90,15 +89,18 @@ function verifyUsername(username, id) {
 			id,
 			msg: `Username ${USERNAME_MSG}`,
 		})
+	} else if (userInDb.length > 0) {
+		results.push({
+			id,
+			msg: `Username ${ALREADY_USED_MESSAGE}`,
+		})
 	}
-
 	return results
 }
 
-function verifyEmail(email, id) {
+async function verifyEmail(email, id) {
 	const results = []
-
-	// email already present
+	const usersInDb = await getUserByEmail(email)
 
 	if (isEmpty(email)) {
 		results.push({
@@ -114,6 +116,11 @@ function verifyEmail(email, id) {
 		results.push({
 			id,
 			msg: `Email ${EMAIL_MSG}`,
+		})
+	} else if (usersInDb.length > 0) {
+		results.push({
+			id,
+			msg: `Email ${ALREADY_USED_MESSAGE}`,
 		})
 	}
 
@@ -147,4 +154,21 @@ function verifyPassword(password, cpassword, ids) {
 	}
 
 	return results
+}
+
+async function getUserInfo(username) {
+	let users
+	await axios
+		.get(`./request/request.php?username=${username}`)
+		.then((result) => (users = result.data))
+		.catch((err) => console.error(err))
+	return users
+}
+async function getUserByEmail(email) {
+	let user
+	await axios
+		.get(`./request/request.php?email=${email}`)
+		.then((result) => (user = result.data))
+		.catch((err) => console.error(err))
+	return user
 }
