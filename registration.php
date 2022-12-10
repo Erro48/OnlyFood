@@ -99,10 +99,10 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <form action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
-                            <fieldset class="page-0 p-0 m-0 col-12 d-flex flex-column">
+                            <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
-                                    <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview()">
+                                    <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
                                     <p class="profile-pic m-0">
                                         <img src="./imgs/propics/default.png" alt="Profile pic preview">
                                     </p>
@@ -119,12 +119,12 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </label>
                             </fieldset>
 
-                            <div class="page-0 row justify-content-end p-0 mx-0 ">
-                                <input type="button" value="Next" class="col-5 button-primary" onclick="changePage(event, 1)">
+                            <div class="fieldset-0 row justify-content-end p-0 mx-0 ">
+                                <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             </div>
 
 <!-- ----------------------- SECOND PAGE ----------------------- -->
-                        <fieldset class="page-1 p-0 m-0 col-12 d-none">
+                        <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
                             <legend>Account Informations:</legend>
                             <label for="user-username" class="p-0">
                                 <input class="ps-3" type="text" name="username" id="user-username" required>
@@ -147,21 +147,21 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </label>
                         </fieldset>
                         
-                        <div class="page-1 row justify-content-center p-0 mx-0  d-none">
-                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changePage(event, 0)">
+                        <div class="fieldset-1 row justify-content-center p-0 mx-0  d-none">
+                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.PERSONAL_INFORMATIONS)">
                             <div class="col-2"></div>
-                            <input type="button" value="Next" class="col-5 button-primary" onclick="changePage(event, 2)">
+                            <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.INTOLERANCES_INFORMATIONS)">
                         </div>
 
 <!-- ----------------------- THIRD PAGE ----------------------- -->
-                        <fieldset class="page-2 p-0 m-0 col-12 d-none">
+                        <fieldset class="fieldset-2 p-0 m-0 col-12 d-none">
                             <legend>Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
                                 <label for="search-ingredient" class="p-0 col-12">
                                     <input class="ps-3 pe-2" type="search" name="search-ingredient" id="search-ingredient"
-                                        onkeyup="searchIngredient()"
-                                        onsearch="clearDropdown()"
+                                        onkeyup="search(this)"
+                                        onsearch="clearElement()"
                                         onfocusout="hideLabel(this)">
                                     <p class="ps-3 m-0">Search ingredient</p>
                                 </label>
@@ -170,7 +170,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                     +
                                 </button> -->
 
-                                <div class="search-result-container d-none p-0 col-12">
+                                <div class="search-result-container p-0 col-12">
                                     <ul class="search-result p-0" id="search-result">
                         
                                     </ul>
@@ -189,8 +189,8 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
 
                         </fieldset>
-                        <div class="page-2 row justify-content-center p-0 m-0  d-none">
-                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changePage(event, 1)">
+                        <div class="fieldset-2 row justify-content-center p-0 m-0  d-none">
+                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary">
                         </div>
