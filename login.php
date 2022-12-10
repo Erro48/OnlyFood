@@ -51,7 +51,7 @@ function verifyUserPassword($user, $password) {
                     
                     <div class="col-12 col-md-8">
                         
-                        <div class="alert error-alert <?= !isset($error) ? 'd-none' : '' ?>">
+                        <div class="alert error-alert <?= !isset($error) ? 'd-none' : 'fade-out' ?>">
                             <?= $error ?>
                         </div>
                         

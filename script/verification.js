@@ -33,6 +33,7 @@ function checkPassword(password) {
 	return true
 }
 
+/* Registration */
 function verifyName(name, id) {
 	const results = []
 

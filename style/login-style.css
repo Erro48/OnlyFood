@@ -209,8 +209,8 @@ input.input-error {
 	max-height: 54vh;
 }
 
-.hide {
-	animation: hide 0.25s linear forwards;
+.fade-out {
+	animation: hide 0.25s linear 5s forwards;
 }
 
 @keyframes hide {

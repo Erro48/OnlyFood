@@ -106,27 +106,34 @@ function hideLabel(element) {
 		: sibling.classList.remove('d-none')
 }
 
-function loadPage(event, pageNumber) {
-	// verify forms
-
+function changePage(event, pageNumber) {
+	const errors = verifyInputs(getCurrentPageNumber(event.target))
 	resetErrors()
+
 	if (
 		pageNumber < getCurrentPageNumber(event.target) || // pressed 'Back' button
-		verifyInputs(getCurrentPageNumber(event.target)) // inputs are correct
+		errors.length == 0
 	) {
-		// remove display none from next / previous page
-		const elements = document.querySelectorAll(`.page-${pageNumber}`)
-		elements.forEach((element) => element.classList.remove('d-none'))
-
-		// add display none to other pages
-		const otherNumbers = [0, 1, 2].filter((el) => el != pageNumber)
-		const classes = otherNumbers.map((el) => `.page-${el}`).join(',')
-		const otherElements = document.querySelectorAll(classes)
-		otherElements.forEach((element) => element.classList.add('d-none'))
+		loadPage(pageNumber)
 	} else {
-		// when an error occurs scrolls to the top of the div, to make the errors visible
-		document.querySelector('.scrollable').scrollTop = 0
+		setErrorClass(errors.map((error) => error.id))
+		if (errors.length > 0) {
+			setErrorMessage(errors.map((error) => error.msg))
+			document.querySelector('.alert').classList.add('fade-out')
+		}
 	}
+}
+
+function loadPage(pageNumber) {
+	// remove display none from next / previous page
+	const elements = document.querySelectorAll(`.page-${pageNumber}`)
+	elements.forEach((element) => element.classList.remove('d-none'))
+
+	// add display none to other pages
+	const otherNumbers = [0, 1, 2].filter((el) => el != pageNumber)
+	const classes = otherNumbers.map((el) => `.page-${el}`).join(',')
+	const otherElements = document.querySelectorAll(classes)
+	otherElements.forEach((element) => element.classList.add('d-none'))
 }
 
 function getCurrentPageNumber(element) {
@@ -141,16 +148,7 @@ function verifyInputs(pageNumber) {
 	if (pageNumber == 0) errors = verifyFirstPageInputs()
 	else if (pageNumber == 1) errors = verifySecondPageInputs()
 
-	setErrorClass(errors.map((error) => error.id))
-	if (errors.length > 0) {
-		setErrorMessage(errors.map((error) => error.msg))
-		setTimeout(
-			() => document.querySelector('.alert').classList.add('hide'),
-			ALERT_POPUP_TIME
-		)
-	}
-
-	return errors.length == 0
+	return errors
 }
 
 function resetErrors() {
@@ -160,7 +158,7 @@ function resetErrors() {
 	elements.forEach((element) => element.classList.remove('input-error'))
 	errorLog.innerText = ''
 	errorLog.classList.add('d-none')
-	errorLog.classList.remove('hide')
+	errorLog.classList.remove('fade-out')
 }
 
 function setErrorClass(inputErrorsId) {
@@ -220,6 +218,10 @@ function verifySecondPageInputs() {
 
 	return results
 }
+
+// function verifyLoginInputs() {
+// 	return [{ id: 'user-input', msg: 'ciao a tutti' }]
+// }
 
 function createSearchResultOption(ingredient) {
 	const container = document.createElement('li')

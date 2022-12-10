@@ -120,7 +120,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </fieldset>
 
                             <div class="page-0 row justify-content-end p-0 mx-0 ">
-                                <input type="button" value="Next" class="col-5 button-primary" onclick="loadPage(event, 1)">
+                                <input type="button" value="Next" class="col-5 button-primary" onclick="changePage(event, 1)">
                             </div>
 
 <!-- ----------------------- SECOND PAGE ----------------------- -->
@@ -148,9 +148,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         </fieldset>
                         
                         <div class="page-1 row justify-content-center p-0 mx-0  d-none">
-                            <input type="button" value="Back" class="col-5 button-secondary" onclick="loadPage(event, 0)">
+                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changePage(event, 0)">
                             <div class="col-2"></div>
-                            <input type="button" value="Next" class="col-5 button-primary" onclick="loadPage(event, 2)">
+                            <input type="button" value="Next" class="col-5 button-primary" onclick="changePage(event, 2)">
                         </div>
 
 <!-- ----------------------- THIRD PAGE ----------------------- -->
@@ -190,7 +190,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                         </fieldset>
                         <div class="page-2 row justify-content-center p-0 m-0  d-none">
-                            <input type="button" value="Back" class="col-5 button-secondary" onclick="loadPage(event, 1)">
+                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changePage(event, 1)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary">
                         </div>
