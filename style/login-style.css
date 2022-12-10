@@ -1,21 +1,79 @@
 /*	Table Of Contents:
 	------------------------
+	- Utils
+		* Alerts
+	- Container
 	- Header
-	- Subheader
 	- Form
+		* Labels
+			# Label's Contents
 		* Inputs
-			# Labels
-			# Input Fields
-		* Buttons
-		* Footer
-	- Footer
+		* Result Dropdown
+	- Animations
 */
 
+/* #region Utils --------------------------------------------------- */
+.scrollable {
+	overflow-y: auto;
+	max-height: 54vh;
+}
+
+.fade-out {
+	animation: fade-out 0.25s linear 5s forwards;
+}
+
+/* #region Alerts ************************************************** */
+.alert {
+	padding: 1em 2em;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.alert.error-alert {
+	box-sizing: border-box;
+	color: var(--error-color);
+	background-color: var(--light-color);
+	border: 2px solid var(--error-color);
+	border-radius: 10px;
+	font-weight: bold;
+	z-index: 20;
+	top: 25%;
+	width: 21em;
+	position: absolute;
+}
+
+.alert.info-alert {
+	color: var(--accent);
+	background-color: var(--light-color);
+	border: 2px solid var(--accent);
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+	.alert {
+		left: 25%;
+	}
+}
+/* #endregion Alerts */
+
+/* #endregion Utils */
+
+/* #region Container ----------------------------------------------- */
 section.login-section {
 	background: transparent;
 	font-family: var(--main-font);
 }
 
+img.wallpaper {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100vh;
+	border-left: 5px solid var(--primary);
+}
+/* #endregion Container */
+
+/* #region Header -------------------------------------------------- */
 header > h1 {
 	/* font-weight: bold; */
 	font-size: 2.4em;
@@ -26,21 +84,39 @@ header em {
 	color: var(--accent);
 }
 
-img.wallpaper {
-	box-sizing: border-box;
-	width: 100%;
-	height: 100vh;
-	border-left: 5px solid var(--primary);
+strong.required-char {
+	position: relative;
+	top: 0.25em;
+	margin-right: 5px;
 }
+/* #endregion Header */
 
-/* #region Form */
+/* #region Form ---------------------------------------------------- */
 section.login-section form {
 	height: 27em;
 }
 
-/* #region Label */
+section.login-section form fieldset legend {
+	font-size: 1.25em;
+	/* font-weight: bold; */
+}
+
+section.login-section form div.ingredients-list {
+	box-sizing: border-box;
+	background-color: var(--light-color);
+	border: 2px solid var(--primary);
+	border-radius: 10px;
+	height: 100px;
+}
+
+/* #region Labels ************************************************** */
 section.login-section form label {
 	position: relative;
+}
+
+section.login-section form label:has(input.input-error) {
+	--error-animation-offset: 5px;
+	animation: shake 0.25s ease;
 }
 
 section.login-section
@@ -56,6 +132,7 @@ section.login-section form label:has(p.profile-pic) {
 	height: 20vh;
 }
 
+/* #region Label's Contents ######################################## */
 section.login-section form label p {
 	position: absolute;
 	top: 25%;
@@ -95,6 +172,23 @@ section.login-section form label p.profile-pic > img {
 	max-height: 100%;
 	object-fit: cover;
 }
+/* #endregion Label's Contents */
+
+/* #endregion Labels */
+
+/* #region Inputs ************************************************** */
+section.login-section form label input.input-error {
+	border: 2px solid var(--error-color);
+}
+
+section.login-section form label input::selection {
+	color: var(--text-light);
+	background-color: var(--primary);
+}
+
+section.login-section form label input[type='search']:focus ~ p {
+	display: none;
+}
 
 section.login-section
 	form
@@ -109,37 +203,9 @@ section.login-section
 	top: -50%;
 }
 
-section.login-section form label input[type='search']:focus ~ p {
-	display: none;
-}
+/* #endregion Inputs */
 
-section.login-section form label input::selection {
-	color: var(--text-light);
-	background-color: var(--primary);
-}
-/* #endregion */
-
-section.login-section form div.ingredients-list {
-	box-sizing: border-box;
-	background-color: var(--light-color);
-	border: 2px solid var(--primary);
-	border-radius: 10px;
-	height: 100px;
-}
-/* #endregion */
-
-/* Subtitle div */
-section.login-section form fieldset legend {
-	font-size: 1.25em;
-	/* font-weight: bold; */
-}
-
-strong.required-char {
-	position: relative;
-	top: 0.25em;
-	margin-right: 5px;
-}
-
+/* #region Result Dropdown ***************************************** */
 div.search-result-container {
 	position: relative;
 }
@@ -166,59 +232,12 @@ div.search-result-container > ul.search-result li {
 div.search-result-container > ul.search-result li:last-child {
 	border-bottom: none;
 }
+/* #endregion Result Dropdown */
 
-label:has(input.input-error) {
-	--error-animation-offset: 5px;
-	animation: input-error-animation 0.25s ease;
-}
+/* #endregion Form */
 
-input.input-error {
-	border: 2px solid var(--error-color);
-}
-
-.alert {
-	padding: 1em 2em;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-@media screen and (min-width: 768px) {
-	.alert {
-		left: 25%;
-	}
-}
-
-.error-alert {
-	box-sizing: border-box;
-	color: var(--error-color);
-	background-color: var(--light-color);
-	border: 2px solid var(--error-color);
-	border-radius: 10px;
-	font-weight: bold;
-	z-index: 20;
-	top: 25%;
-	width: 21em;
-	position: absolute;
-}
-
-.info-alert {
-	color: var(--accent);
-	background-color: var(--light-color);
-	border: 2px solid var(--accent);
-	border-radius: 10px;
-	font-weight: bold;
-}
-
-.scrollable {
-	overflow-y: auto;
-	max-height: 54vh;
-}
-
-.fade-out {
-	animation: hide 0.25s linear 5s forwards;
-}
-
-@keyframes hide {
+/* #region Animations ---------------------------------------------- */
+@keyframes fade-out {
 	0% {
 		opacity: 1;
 	}
@@ -228,7 +247,7 @@ input.input-error {
 	}
 }
 
-@keyframes input-error-animation {
+@keyframes shake {
 	0% {
 		position: relative;
 		left: calc((-1) * var(--error-animation-offset));
@@ -250,3 +269,4 @@ input.input-error {
 		left: 0px;
 	}
 }
+/* #endregion Animations */
