@@ -1,17 +1,18 @@
 'use strict'
 
 const REQUIRED_FIELD_MSG = 'is not optional.'
+const USERNAME_MSG = "can only contain letters, numbers and '_' character."
+const EMAIL_MSG = 'has an invalid format.'
 
 const NAME_REGEX = /^[a-zA-Z]*$/
 const SURNAME_REGEX = /^[a-zA-Z]*$/
 const USERNAME_REGEX = /^[^\W_]+$/
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-const PASSWORD_REGEX = /^[a-zA-Z]*[0-9a-zA-Z_!$@#^&]$/
 
 const USERNAME_MAX_LENGTH = 20
 const USERNAME_MIN_LENGTH = 3
 
-const EMAIL_MAX_LENGTH = 20
+const EMAIL_MAX_LENGTH = 50
 const EMAIL_MIN_LENGTH = 3
 
 const PASSWORD_MIN_LENGTH = 7
@@ -28,7 +29,7 @@ function checkPassword(password) {
 	if (!password.match(/[a-z]/)) return 'lower case letter'
 	if (!password.match(/[A-Z]/)) return 'upper case letter'
 	if (!password.match(/[0-9]/)) return 'number'
-	if (!password.match(/[_!$@#^&]/)) return 'special char'
+	if (!password.match(/[_!$@#^&]/)) return 'special char (_ ! $ @ # ^ &)'
 	return true
 }
 
@@ -86,7 +87,7 @@ function verifyUsername(username, id) {
 	} else if (!username.match(USERNAME_REGEX)) {
 		results.push({
 			id,
-			msg: 'Username can only contain ...',
+			msg: `Username ${USERNAME_MSG}`,
 		})
 	}
 
@@ -111,7 +112,7 @@ function verifyEmail(email, id) {
 	} else if (!email.match(EMAIL_REGEX)) {
 		results.push({
 			id,
-			msg: 'Email can only contain ...',
+			msg: `Email ${EMAIL_MSG}`,
 		})
 	}
 

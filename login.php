@@ -51,13 +51,11 @@ function verifyUserPassword($user, $password) {
                     
                     <div class="col-12 col-md-8">
                         
-                        <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
-                            <div class="col-12 w-100 alert error-alert">
-                                <?= $error ?>
-                            </div>
+                        <div class="alert error-alert <?= !isset($error) ? 'd-none' : '' ?>">
+                            <?= $error ?>
                         </div>
                         
-                        <form action="./login.php" method="post" class="m-0 mt-4">
+                        <form action="./login.php" method="post" class="m-0 mt-4 d-flex flex-column justify-content-center">
 
                             <fieldset class="p-0 m-0 col-12">
                                 <legend class="text-center mt-4 mb-1">Sign in to continue</legend>

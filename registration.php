@@ -88,17 +88,15 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                     <div class="col-12 col-md-8 scrollable">
 
-                        <div class="row justify-content-center p-0 <?= !isset($error) ? 'd-none' : '' ?>">
-                            <div class="col-12 w-100 alert error-alert">
-                                <?php
+                        <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : '' ?>">
+                            <?php
                                 foreach($errors as $error) {
                                     echo $error;
                                 }
-                                ?>
-                            </div>
+                            ?>
                         </div>
 
-                        <form action="./registration.php" method="post" class="mt-4">
+                        <form action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
                             <fieldset class="page-0 p-0 m-0 col-12 d-flex flex-column">

@@ -1,4 +1,5 @@
 'use strict'
+const ALERT_POPUP_TIME = 5 * 1000
 
 function profilePicPreview() {
 	const inputImage = document.querySelector('#user-pic')
@@ -108,6 +109,7 @@ function hideLabel(element) {
 function loadPage(event, pageNumber) {
 	// verify forms
 
+	resetErrors()
 	if (
 		pageNumber < getCurrentPageNumber(event.target) || // pressed 'Back' button
 		verifyInputs(getCurrentPageNumber(event.target)) // inputs are correct
@@ -121,8 +123,6 @@ function loadPage(event, pageNumber) {
 		const classes = otherNumbers.map((el) => `.page-${el}`).join(',')
 		const otherElements = document.querySelectorAll(classes)
 		otherElements.forEach((element) => element.classList.add('d-none'))
-
-		resetErrors()
 	} else {
 		// when an error occurs scrolls to the top of the div, to make the errors visible
 		document.querySelector('.scrollable').scrollTop = 0
@@ -142,7 +142,13 @@ function verifyInputs(pageNumber) {
 	else if (pageNumber == 1) errors = verifySecondPageInputs()
 
 	setErrorClass(errors.map((error) => error.id))
-	if (errors.length > 0) setErrorMessage(errors.map((error) => error.msg))
+	if (errors.length > 0) {
+		setErrorMessage(errors.map((error) => error.msg))
+		setTimeout(
+			() => document.querySelector('.alert').classList.add('hide'),
+			ALERT_POPUP_TIME
+		)
+	}
 
 	return errors.length == 0
 }
@@ -153,7 +159,8 @@ function resetErrors() {
 
 	elements.forEach((element) => element.classList.remove('input-error'))
 	errorLog.innerText = ''
-	errorLog.parentNode.classList.add('d-none')
+	errorLog.classList.add('d-none')
+	errorLog.classList.remove('hide')
 }
 
 function setErrorClass(inputErrorsId) {
@@ -166,7 +173,7 @@ function setErrorMessage(messages) {
 	const errorLog = document.querySelector('.alert')
 	if (messages !== undefined) {
 		errorLog.innerText = messages.map((message) => message).join('\n')
-		errorLog.parentNode.classList.remove('d-none')
+		errorLog.classList.remove('d-none')
 	}
 }
 
