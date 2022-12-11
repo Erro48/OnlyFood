@@ -27,7 +27,7 @@
                         <h2>How To</h2>
                         <section class="howto-section">
                             <p><?php echo $post["howTo"]; ?></p>
-                            </section>
+                        </section>
                     </section>
                     <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
                     <div class="row">
@@ -39,17 +39,17 @@
                             <p><?php echo $post["description"]; ?></p>
                         </div>
                         <div class="col-1">
-                            <input type="button" value="L"/>
+                            <input class="action-button like-button" type="button"/>
                             <p><?php echo $dbh->getLikesByPost($post["postId"])[0]["likes"]; ?></p>
                         </div>
                         <div class="col-1">
-                            <input type="button" value="C"/>
+                            <input class="action-button comments-button" type="button"/>
                             <p><?php echo $dbh->getCommentsByPost($post["postId"])[0]["comments"]; ?></p>
                         </div>
                         <div class="col-1"></div>
                     </div>
                     <footer>
-                        <ul>
+                        <ul class="double-selector">
                             <li class="col-6">
                                 <input type="button" value="Picture" class="preview-selected-left" onclick="showPicture(<?php echo $post['postId'];?>)"/>
                             </li><li class="col-6">
