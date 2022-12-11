@@ -222,5 +222,20 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function searchUser($username){
+        $username = $username."%";
+        $stmt = $this->db->prepare("
+        SELECT username, profilePic
+        FROM users
+        WHERE username LIKE ?
+        ");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
