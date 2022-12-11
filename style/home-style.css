@@ -5,10 +5,6 @@
 */
 
 /* #region Post */
-div.footer-container {
-    height: 6vh;
-}
-
 main div.posts-container {
     overflow-y: auto;
     height: 87vh;

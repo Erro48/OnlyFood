@@ -96,6 +96,10 @@ header.page-header > div:nth-child(2) > div.row > div.col-6:last-child > input {
 /* #endregion */
 
 /* #region Footer */
+div.footer-container {
+    height: 6vh;
+}
+
 footer.page-footer {
     height: 100%;
     background-color: var(--secondary);
