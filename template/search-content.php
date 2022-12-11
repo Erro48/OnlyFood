@@ -18,7 +18,7 @@
         </div>
         <div class="col-3 col-md-4"></div>
     </div>
-    <div class="row mb-4">
+    <div class="row mb-4 mt-2">
         <div class="col-1 col-md-3"></div>
         <div class="col">
             <input class="ps-3 pe-2" type="search" onkeyup="search(this)" placeholder="Search here..." />
@@ -28,13 +28,10 @@
 </section>
 
 <!-- Search output -->
-<section class="output">
+<section class="output mt-5">
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col">
-            <section>
-                
-            </section>
+        <div class="col-1 col-md-3"></div>
+        <div id="output-list" class="col col-md-6">
         </div>
         <div class="col-1"></div>
     </div>
