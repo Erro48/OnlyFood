@@ -1,5 +1,6 @@
 <?php
 require_once './bootstrap.php';
+$DEFAULT_PROFILE_PIC = "/imgs/propics/default.png";
 
 $errors = array();
     
@@ -10,44 +11,41 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm-password'];
+    $profile_pic = (isset($_POST['profile-pic']) && !empty($_POST['profile-pic'])) ? $_POST['profile-pic'] : $DEFAULT_PROFILE_PIC;
+    $intolerances = $_POST['intolerances'];
     
     // controllo username già presente
     // controllo email già presente
     if ($dbh->userAlreadyRegistered($username, $email)) {
         array_push($errors, "User already registered");
-
     }
     if (strcmp($password, $confirm_password) != 0) {
         // controllo password uguali
         array_push($errors, "Passwords are not equal");
-        
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // controllo email valida
         array_push($errors, "Email is not valid");
-
     }
     if(preg_match('/^[^\W_]{3,}+$/', $username) == 0) {
         // controllo username valido
-        echo $username;
+        // echo $username;
         array_push($errors, "Username is not valid");
-        
     }
     if (preg_match("/^[a-zA-Z][0-9a-zA-Z_!$@#^&]{7,}$/", $password) == 0) {
         // controllo password valida
         array_push($errors, "Password is not valid");
-        
     }
     
     if (count($errors) == 0) {
-        $insert_result = $dbh->registerUser($name, $surname, $username, $email, $password);
+        $insert_result = $dbh->registerUser($name, $surname, $username, $email, $password, $profile_pic, $intolerances);
         if ($insert_result == false) {
             array_push($errors, "Registration fails");
         } else {
             // set session
             $_SESSION['username'] = $username;
 
-            header("Location: ./index.php");
+            // header("Location: ./index.php");
         }
     }
 
@@ -99,7 +97,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <form action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
-                            <!-- <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
+                            <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
                                     <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
@@ -121,10 +119,10 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                             <div class="fieldset-0 row justify-content-end p-0 mx-0 ">
                                 <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
-                            </div> -->
+                            </div>
 
 <!-- ----------------------- SECOND PAGE ----------------------- -->
-                        <!-- <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
+                        <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
                             <legend>Account Informations:</legend>
                             <label for="user-username" class="p-0">
                                 <input class="ps-3" type="text" name="username" id="user-username" required>
@@ -142,7 +140,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </label>
                             
                             <label for="user-cpassword" class="p-0">
-                                <input class="ps-3" type="password" name="cpassword" id="user-cpassword" required>
+                                <input class="ps-3" type="password" name="confirm-password" id="user-cpassword" required>
                                 <p class="ps-3 m-0"><strong class="required-char">*</strong> Confirm Password</p>
                             </label>
                         </fieldset>
@@ -151,10 +149,10 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.PERSONAL_INFORMATIONS)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.INTOLERANCES_INFORMATIONS)">
-                        </div> -->
+                        </div>
 
 <!-- ----------------------- THIRD PAGE ----------------------- -->
-                        <fieldset class="fieldset-2 p-0 m-0 col-12">
+                        <fieldset class="fieldset-2 p-0 m-0 col-12 d-none">
                             <legend>Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
@@ -181,7 +179,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>
                                     
                                     <label for="ingr-<?= $intolerance['name'] ?>" class="col-6 col-md-4">
-                                        <input type="checkbox" name="ingredient-chk" id="ingr-<?= $intolerance['name'] ?>">
+                                        <input type="checkbox" name="intolerances[]" id="ingr-<?= $intolerance['name'] ?>" value="<?= $intolerance['name'] ?>">
                                         <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
                                     </label>
 
@@ -192,7 +190,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <div class="fieldset-2 row justify-content-center p-0 m-0  d-none">
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             <div class="col-2"></div>
-                            <input type="button" value="Next" class="col-5 button-primary">
+                            <input type="submit" value="Sign Up" class="col-5 button-primary">
                         </div>
 
                         </form>

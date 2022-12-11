@@ -148,8 +148,8 @@ function addIngredientToList(event) {
 		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
 
 		return `<label for="ingr-${ingredientId}" class="col-6 col-md-4">
-			<input type="checkbox" name="ingredient-chk" id="ingr-${ingredientId}" 
-			${ingredient.checked ? 'checked' : ''}>
+			<input type="checkbox" name="intolerances[]" id="ingr-${ingredientId}" 
+			${ingredient.checked ? 'checked' : ''} value="${ingredientId}">
 			<span class="ingredient-pill">${ingredientName}</span>
 		</label>`
 	})
@@ -206,7 +206,9 @@ function loadFieldset(fieldset) {
 	elements.forEach((element) => element.classList.remove('d-none'))
 
 	// add display none to other pages
-	const otherNumbers = [0, 1, 2].filter((el) => el != fieldset)
+	const otherNumbers = Object.values(RegistrationFieldset).filter(
+		(el) => el != fieldset
+	)
 	const classes = otherNumbers.map((el) => `.fieldset-${el}`).join(',')
 	const otherElements = document.querySelectorAll(classes)
 	otherElements.forEach((element) => element.classList.add('d-none'))

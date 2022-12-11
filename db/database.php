@@ -6,7 +6,7 @@ class DatabaseHelper{
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $db->connect_error);
-        }        
+        }  
     }
 
     public function getPostsByUser($username){
@@ -101,28 +101,29 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("INSERT INTO `users` (`username`, `name`, `surname`, `email`, `password`, `profilePic`) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $username, $name, $surname, $email, $hashed_password, $profile_pic);
         
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         if ($stmt->execute() === true) {
             if (count($intolerances) == 0) {
                 return true;
             }
-
-            $last_user = $this->db->insert_id;
 
             $query = "INSERT INTO `intolerances` (`user`, `ingredient`) VALUES ";
             $params_types = "";
             $params = array();
 
             foreach ($intolerances as $ingredient) {
-                $query .= '(?, ?)';
+                $query .= '(?, ?),';
                 $params_types .= 'ss';
-                array_push($params, $last_user);
-                array_push($params, $ingredient);
+                array_push($params, $username);
+                array_push($params, str_replace('_', ' ', $ingredient));
             }
-            echo $query;
+            $query = rtrim($query, ',');
+
             $stmt_insert = $this->db->prepare($query);
             $stmt_insert->bind_param($params_types, ...$params);
 
-            return $stmt->execute();
+            return $stmt_insert->execute();
         }
 
         return false;
