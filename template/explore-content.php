@@ -11,11 +11,17 @@
             <section class="tag-list-container">
                 <?php foreach($templateParams["tags"] as $tag): ?>
                         <div class="row">
-                            <div class="col-1">
+                            <!--div class="col-1">
                                 <input id="input-<?php echo $tag["name"]; ?>" type="checkbox" onclick="handleClick(this)"/>
                             </div>
                             <div class="col-11">
                                 <label for="input-<?php echo $tag["name"]; ?>"><?php echo $tag["name"]; ?></label>
+                            </div-->
+                            <div class="col-12">
+                                <label>
+                                    <input type="checkbox" onclick="handleClick(this)"/>
+                                    <?php echo $tag["name"]; ?>
+                                </label>
                             </div>
                         </div>
                 <?php endforeach; ?>

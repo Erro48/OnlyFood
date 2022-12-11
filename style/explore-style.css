@@ -31,6 +31,7 @@ main section.filter-section div.tag-h2-container {
 main section.filter-section div.tag-h2-container > h2 {
     padding: 0;
     border-bottom: solid 0.2rem var(--accent);
+    margin: 0.8rem 0;
 }
 
 main section.filter-section div.search-bar-container {
