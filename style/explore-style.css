@@ -12,6 +12,7 @@ main section.filter-section {
     background-color: var(--primary);
     border-radius: 0 0 0.6rem 0.6rem;
     margin: 0 2rem;
+    padding: 1rem 0;
 }
 
 main section.filter-section > div.row {
@@ -20,7 +21,6 @@ main section.filter-section > div.row {
 
 main section.filter-section > div.row > div.col-10 {
     background-color: var(--secondary);
-    margin: 1rem 0;
     border-radius: 10px;
 }
 
