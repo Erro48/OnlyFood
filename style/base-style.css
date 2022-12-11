@@ -216,18 +216,6 @@ input[type='checkbox'] {
 input[type='checkbox']:checked {
 	background-color: var(--dark-color);
 }
-
-/*.checkmark{
-	position: absolute; /*senza questo non si vede*//*
-	height: 1rem;
-	width: 1rem;
-	border: solid 2px var(--dark-color);
-	border-radius: 0.2rem;
-}
-
-input[type='checkbox']:checked ~ .checkmark {
-	background-color: var(--dark-color);
-}*/
 /* #endregion */
 
 /* #region Labels */
