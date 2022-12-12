@@ -40,6 +40,31 @@ ul.selector > li > button.selected {
 
 /* ------------------------------------------------------------ */
 
+section.hidden {
+    display: none
+}
+
+.search-sections-container {
+    height: 87vh;
+}
+
+.search {
+    height: 9vh;
+}
+
+.toggle {
+    height: 6vh;
+}
+
+.toggle > .init-row {
+    margin-top: 2vh;
+}
+
+.output {
+    height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 .output .user-search {
     background-color: var(--light-color);
@@ -57,4 +82,18 @@ ul.selector > li > button.selected {
 .output .user-search .username-label {
     font-size: 14pt;
     font-weight: 600;
+    width: 100%;
 }
+
+.output .user-search .name-surname-label {
+    font-size: 12pt;
+    font-weight: 400;
+    width: 100%;
+    opacity: 80%;
+}
+
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+  }

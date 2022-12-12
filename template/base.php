@@ -37,7 +37,7 @@ footer (nav bar)
         <div class="col-6">
             <div class="row align-content-center">
                     <div class="col-6">
-                        <input type="button">
+                        <input type="button" onclick="window.location.href='search.php'">
                     </div>
                     <div class="col-6">
                         <input type="button">

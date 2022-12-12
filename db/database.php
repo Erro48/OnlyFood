@@ -223,15 +223,20 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchUser($username){
-        $username = $username."%";
+    public function searchUser($name){
+        $username = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $name);
+        $name = $name."%";
         $stmt = $this->db->prepare("
-        SELECT username, profilePic
+        SELECT username, profilePic, name, surname
         FROM users
-        WHERE username LIKE ?
+        WHERE username LIKE ? 
+            OR name LIKE ?
+            OR surname LIKE ?
+            OR CONCAT(name, ' ', surname) LIKE ?
+            OR CONCAT(surname, ' ', name) LIKE ?
         ");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('sssss', $name, $name, $name, $name, $name);
         $stmt->execute();
         $result = $stmt->get_result();
 
