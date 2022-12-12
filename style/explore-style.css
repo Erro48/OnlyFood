@@ -23,7 +23,7 @@ main section.filter-section > div.col-10 {
 
 main section.filter-section div.tag-h2-container {
     margin: 0 0.5rem;
-    height: 25%;
+    max-height: 25%;
 }
 
 main section.filter-section div.tag-h2-container > h2 {
@@ -34,7 +34,7 @@ main section.filter-section div.tag-h2-container > h2 {
 
 main section.filter-section div.search-bar-container {
     margin: 0 0.8rem 1rem;
-    height: calc(25% - 0.8rem);
+    max-height: calc(25% - 1rem);
 }
 
 main section.filter-section div.search-bar-container > input {
