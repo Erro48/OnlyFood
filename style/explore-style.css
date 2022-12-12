@@ -15,17 +15,15 @@ main section.filter-section {
     padding: 1rem 0;
 }
 
-main section.filter-section > div.row {
-    height: 100%;
-}
-
-main section.filter-section > div.row > div.col-10 {
+main section.filter-section > div.col-10 {
     background-color: var(--secondary);
     border-radius: 10px;
+    height: 100%;
 }
 
 main section.filter-section div.tag-h2-container {
     margin: 0 0.5rem;
+    height: 25%;
 }
 
 main section.filter-section div.tag-h2-container > h2 {
@@ -36,6 +34,7 @@ main section.filter-section div.tag-h2-container > h2 {
 
 main section.filter-section div.search-bar-container {
     margin: 0 0.8rem 1rem;
+    height: calc(25% - 0.8rem);
 }
 
 main section.filter-section div.search-bar-container > input {
@@ -45,6 +44,7 @@ main section.filter-section div.search-bar-container > input {
 main section.filter-section section.tag-list-container {
     overflow-y: auto;
     overflow-x: hidden;
+    height: 50%;
 }
 /* #endregion */
 
