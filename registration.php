@@ -11,36 +11,32 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm-password'];
-    $profile_pic = $_FILES['profile-pic']; //isset($_FILES['profile-pic']) ? $_FILES['profile-pic'] : $DEFAULT_PROFILE_PIC;
+    $profile_pic = $_FILES['profile-pic'];
     $intolerances = (isset($_POST['intolerances'])) ? $_POST['intolerances'] : array();
 
-    print_r($profile_pic);
-
-    // controllo username già presente
-    // controllo email già presente
+    // check if username and email are already present
     if ($dbh->userAlreadyRegistered($username, $email)) {
         array_push($errors, "User already registered");
     }
     if (strcmp($password, $confirm_password) != 0) {
-        // controllo password uguali
+        // check if password and confirm password are equal
         array_push($errors, "Passwords are not equal");
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // controllo email valida
+        // check if email has a valid format
         array_push($errors, "Email is not valid");
     }
     if(preg_match('/^[^\W_]{3,}+$/', $username) == 0) {
-        // controllo username valido
-        // echo $username;
+        // check if username has a valid format
         array_push($errors, "Username is not valid");
     }
     if (preg_match("/^[a-zA-Z][0-9a-zA-Z_!$@#^&]{7,}$/", $password) == 0) {
-        // controllo password valida
+        // check if password has a valid format
         array_push($errors, "Password is not valid");
     }
     
     if (count($errors) == 0) {
-        $profile_pic_name = isset($_FILES['profile-pic']) 
+        $profile_pic_name = isset($profile_pic) && $profile_pic['size'] > 0 
                 ? encryptProfilePic($username, $profile_pic['name']) 
                 : $DEFAULT_PROFILE_PIC;
         
@@ -51,10 +47,10 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             // set session
             $_SESSION['username'] = $username;
             
-            if (isset($_FILES['profile-pic'])) {
+            if (isset($profile_pic) && $profile_pic['size'] > 0) {
                 downloadProfilePic($profile_pic, $dbh);
             }
-            // header("Location: ./index.php");
+            header("Location: ./index.php");
         }
     }
 
@@ -204,15 +200,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                         </form>
 
-                        
-
-                        
-                        
                     </div>
 
                     <div class="d-none d-md-block col-md-2"></div>
-                    
-
                 </section>
             </main>
             <footer class="row text-center fixed-bottom mb-3">
