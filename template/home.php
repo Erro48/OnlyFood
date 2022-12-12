@@ -2,8 +2,8 @@
     <div class="col-12 posts-container">
         <?php foreach($templateParams["posts"] as $post): ?>
             <div class="col-12 single-post-container">
-                <article class="post-article article-<?php echo $post["postId"];?>">
-                    <section class="recipe-section">
+                <article class="row post-article article-<?php echo $post["postId"];?>">
+                    <section class="col-12 recipe-section">
                         <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                             <?php if($i == 0): ?>
                                 <div class="row">
@@ -29,8 +29,8 @@
                             <p><?php echo $post["howTo"]; ?></p>
                         </section>
                     </section>
-                    <img src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
-                    <div class="row">
+                    <img class="col-12" src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
+                    <div class="row info-container">
                         <div class="col-2">
                             <img src="<?php echo $post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
                         </div>
@@ -48,14 +48,16 @@
                         </div>
                         <div class="col-1"></div>
                     </div>
-                    <footer>
-                        <ul class="double-selector">
+                    <footer class="row">
+                        <div class="col-2"></div>
+                        <ul class="col-8 double-selector">
                             <li class="col-6">
                                 <input type="button" value="Picture" class="preview-selected-left" onclick="showPicture(<?php echo $post['postId'];?>)"/>
                             </li><li class="col-6">
                                 <input type="button" value="Recipe" onclick="showRecipe(<?php echo $post['postId'];?>)"/>
                             </li>
                         </ul>
+                        <div class="col-2"></div>
                     </footer>
                 </article>
             </div>
