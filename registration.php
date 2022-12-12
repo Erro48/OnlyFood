@@ -11,9 +11,11 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm-password'];
-    $profile_pic = (isset($_POST['profile-pic']) && !empty($_POST['profile-pic'])) ? $_POST['profile-pic'] : $DEFAULT_PROFILE_PIC;
-    $intolerances = $_POST['intolerances'];
-    
+    $profile_pic = $_FILES['profile-pic']; //isset($_FILES['profile-pic']) ? $_FILES['profile-pic'] : $DEFAULT_PROFILE_PIC;
+    $intolerances = (isset($_POST['intolerances'])) ? $_POST['intolerances'] : array();
+
+    print_r($profile_pic);
+
     // controllo username già presente
     // controllo email già presente
     if ($dbh->userAlreadyRegistered($username, $email)) {
@@ -38,13 +40,20 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     }
     
     if (count($errors) == 0) {
-        $insert_result = $dbh->registerUser($name, $surname, $username, $email, $password, $profile_pic, $intolerances);
+        $profile_pic_name = isset($_FILES['profile-pic']) 
+                ? encryptProfilePic($username, $profile_pic['name']) 
+                : $DEFAULT_PROFILE_PIC;
+        
+        $insert_result = $dbh->registerUser($name, $surname, $username, $email, $password, $profile_pic_name, $intolerances);
         if ($insert_result == false) {
             array_push($errors, "Registration fails");
         } else {
             // set session
             $_SESSION['username'] = $username;
-
+            
+            if (isset($_FILES['profile-pic'])) {
+                downloadProfilePic($profile_pic, $dbh);
+            }
             // header("Location: ./index.php");
         }
     }
@@ -94,7 +103,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             ?>
                         </div>
 
-                        <form action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
+                        <form enctype="multipart/form-data" action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!-- ----------------------- FIRST PAGE ----------------------- -->
                             <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">

@@ -96,10 +96,11 @@ class DatabaseHelper{
         return count($result->fetch_all(MYSQLI_ASSOC)) > 0;
     }
 
-    public function registerUser($name, $surname, $username, $email, $password, $profile_pic = "/imgs/propics/default.png", $intolerances = array()) {
+    public function registerUser($name, $surname, $username, $email, $password, $profile_pic_name, $intolerances = array()) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
         $stmt = $this->db->prepare("INSERT INTO `users` (`username`, `name`, `surname`, `email`, `password`, `profilePic`) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $username, $name, $surname, $email, $hashed_password, $profile_pic);
+        $stmt->bind_param("ssssss", $username, $name, $surname, $email, $hashed_password, $profile_pic_name);
         
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -167,6 +168,12 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateProfilePic($photo_name) {
+        $stmt = $this->db->prepare("UPDATE users SET profilePic= ? WHERE username= ?");
+        $stmt->bind_param("ss", $photo_name, $_SESSION["username"]);
+        return $stmt->execute();
     }
 
 }

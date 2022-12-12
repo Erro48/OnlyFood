@@ -20,6 +20,8 @@ function profilePicPreview(
 	preview = input.parentNode.querySelector(`#${input.id} ~ p`)
 ) {
 	const fReader = new FileReader()
+	// const file = input.files
+	// const formData = new FormData()
 
 	fReader.readAsDataURL(input.files[0])
 	fReader.onloadend = function (event) {
