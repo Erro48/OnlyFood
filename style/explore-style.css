@@ -23,7 +23,7 @@ main section.filter-section > div.col-10 {
 
 main section.filter-section div.tag-h2-container {
     margin: 0 0.5rem;
-    max-height: 15%;
+    max-height: 20%;
 }
 
 main section.filter-section div.tag-h2-container > h2 {
@@ -44,7 +44,7 @@ main section.filter-section div.search-bar-container > input {
 main section.filter-section section.tag-list-container {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 65%;
+    height: 60%;
 }
 /* #endregion */
 
