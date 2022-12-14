@@ -1,46 +1,38 @@
 <?php
-
-define("PROPICS_DIR", "./imgs/propics/");
+require_once(__DIR__ . "/consts.php");
 
 function downloadProfilePic($file, $dbh) {
-    define("MAX_FILE_SIZE", 10000000);
+    $file_name = $file['name'];
+    $file_tmp_name = $file['tmp_name'];
+    $file_size = $file['size'];
+    $file_error = $file['error'];
+    $file_type = $file['type'];
 
-    $fileName = $file['name'];
-    $fileTmpName = $file['tmp_name'];
-    $fileSize = $file['size'];
-    $fileError = $file['error'];
-    $fileType = $file['type'];
+    $file_extension = explode('.', $file_name);
+    $file_extension = strtolower(end($file_extension));
 
-    $fileExtension = explode('.', $fileName);
-    $fileExtension = strtolower(end($fileExtension));
-
-    $allowedExtension = array('jpg', 'jpeg', 'png');
-
-    if(in_array($fileExtension, $allowedExtension)) {
-        if($fileError === 0){
-            if($fileSize < MAX_FILE_SIZE){
-                //ELIMINO LA VECCHIA FOTO PROFILO SE ESISTENTE
+    if(in_array($file_extension, array('jpg', 'jpeg', 'png', "gif", "jfif"))) {
+        if($file_error === 0){
+            if($file_size < $MAX_FILE_SIZE){
+                var_dump($PROFILE_PIC_DIR);
+                // delete old photo (if present)
                 $result = $dbh->getUserInfo($_SESSION['username']);
-                
                 if(count($result) == 1){
                     $row = $result[0];
-                    if($row['profilePic'] && file_exists(PROPICS_DIR . $row["profilePic"])){
-                        unlink(PROPICS_DIR.$row['profilePic']);
+                    if($row['profilePic'] && file_exists($PROFILE_PIC_DIR . $row["profilePic"])){
+                        unlink($PROFILE_PIC_DIR.$row['profilePic']);
                     }
                 }
 
-                $new_file_name = encryptProfilePic($_SESSION['username'], $fileName);
+                $new_file_name = encryptProfilePic($_SESSION['username'], $file_name);
                 
-                //CARICO LA NUOVA FOTO PROFILO
+                // upload new photo
                 $dbh->updateProfilePic($new_file_name);
 
-                $fileDestination = PROPICS_DIR.$new_file_name;
+                $file_destination = $PROFILE_PIC_DIR.$new_file_name;
 
-                move_uploaded_file($fileTmpName, $fileDestination);                    
-                //header("location: ../settings.php");
+                move_uploaded_file($file_tmp_name, $file_destination);                    
             }
-        } else {
-            //header("location: ../settings.php?error=3");
         }
     }
 }
