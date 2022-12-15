@@ -20,7 +20,8 @@ function handleClick(cb) {
     const container = document.createElement("div");
     container.classList.add("col-12");
     container.classList.add("single-post-container");
-    container.innerHTML = ` <article class="post-article article-<?php echo $post["postId"];?>">
+    container.innerHTML = "OAHOFU";
+    /*container.innerHTML = ` <article class="post-article article-<?php echo $post["postId"];?>">
                               <section class="recipe-section">
                                   <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                                       <?php if($i == 0): ?>
@@ -76,6 +77,6 @@ function handleClick(cb) {
                                   </ul>
                               </footer>
                           </article>
-    `;
+    `;*/
     return container;
   }
