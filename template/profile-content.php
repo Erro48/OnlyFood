@@ -68,7 +68,7 @@
         </div>
     </section>
     <div class="col-md-2"></div>
-</div>
+<!--/div Non so perché mettendo questo si sminchia il footer a schermo grande -->
 <section class="row posts-section"> <!-- posts container -->
     <?php
         /* Users posts */
@@ -76,4 +76,3 @@
     ?>
     </div>
 </section>
-    
