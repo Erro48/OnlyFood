@@ -75,7 +75,7 @@
     <div class="posts-container d-md-flex flex-column">
     <?php
         /* Users posts */
-        require_once("template/home.php");
+        require_once("template/posts.php");
     ?>
     </div>
 </section>

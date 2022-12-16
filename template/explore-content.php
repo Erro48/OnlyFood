@@ -20,7 +20,11 @@
     </div>
     <div class="col-1"></div>
 </section>
-<div class="row">
+<section class="row posts-section">
+    <?php require('template/posts.php'); ?>
+</section>
+
+<!--div class="row">
     <div class="col-12 posts-container">
         <?php foreach($templateParams["posts"] as $post): ?>
             <div class="col-12 single-post-container">
@@ -83,4 +87,4 @@
             </div>
         <?php endforeach ?>
     </div>
-</div>
+</div-->

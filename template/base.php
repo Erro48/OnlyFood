@@ -52,8 +52,8 @@ footer (nav bar)
         <div class="col-12 col-md-9 main-container">
             <main>
                 <?php
-                    if(isset($templateParams["nome"])){
-                        require($templateParams["nome"]);
+                    if(isset($templateParams["name"])){
+                        require($templateParams["name"]);
                     }
                 ?>
             </main>
@@ -65,13 +65,25 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <input type="button" value="Profile" onclick="window.location.href='profile.php'" class="<?php if($templateParams["nome"] == "profile-content.php"){echo "input-selected";} ?>"/>
+                            <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["title"] == "OnlyFood - Profile"){echo "button-selected";} ?>">
+                                <img src="imgs/icons/profile.png" alt="profile page" />
+                                <p>Profile</p>
+                            </button>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Post" onclick="window.location.href='post.php'" class="<?php if($templateParams["nome"] == "post.php"){echo "input-selected";} ?>"/>
+                            <button onclick="window.location.href='post.php'" class="<?php if($templateParams["title"] == "OnlyFood - Post"){echo "button-selected";} ?>">
+                                <img src="imgs/icons/post.png" alt="post page" />
+                                <p>Post</p>
+                            </button>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Home" onclick="window.location.href='index.php'" class="<?php if($templateParams["nome"] == "home.php"){echo "input-selected";} ?>"/>
+                            <button onclick="window.location.href='index.php'" class="<?php if($templateParams["title"] == "OnlyFood - Home"){echo "button-selected";} ?>">
+                                <img src="imgs/icons/home.png" alt="home page" />
+                                <p>Home</p>
+                            </button>
                         </li><li class="col-3 col-md-12">
-                            <input type="button" value="Explore" onclick="window.location.href='explore.php'" class="<?php if($templateParams["nome"] == "explore-content.php"){echo "input-selected";} ?>"/>
+                            <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["title"] == "OnlyFood - Explore"){echo "button-selected";} ?>">
+                                <img src="imgs/icons/explore.png" alt="explore page" />
+                                <p>Explore</p>
+                            </button>
                         </li>
                     </ul>
                 </div>

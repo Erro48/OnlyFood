@@ -128,35 +128,26 @@ footer.page-footer > div > ul > li {
 	height: 100%;
 }
 
-footer.page-footer > div > ul > li > input {
+footer.page-footer > div > ul > li > button {
 	background-color: var(--secondary);
 	border: none;
 	border-radius: 10px;
 	height: 100%;
 	width: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
 	font-size: 0;
 }
 
-footer.page-footer > div > ul > li > input.input-selected {
+footer.page-footer > div > ul > li > button.button-selected {
 	background-color: var(--primary);
 }
 
-footer.page-footer > div > ul > li:first-child > input {
-	background-image: url('../imgs/icons/profile.png');
+footer.page-footer > div > ul > li > button > img {
+	width: 2.5rem;
+	height: 2.5rem;
 }
 
-footer.page-footer > div > ul > li:nth-child(2) > input {
-	background-image: url('../imgs/icons/post.png');
-}
-
-footer.page-footer > div > ul > li:nth-child(3) > input {
-	background-image: url('../imgs/icons/home.png');
-}
-
-footer.page-footer > div > ul > li:last-child > input {
-	background-image: url('../imgs/icons/explore.png');
+footer.page-footer > div > ul > li > button > p {
+	display: none;
 }
 /* #endregion */
 
@@ -307,9 +298,13 @@ label {
 		height: 90px;
 	}
 
-	footer.page-footer > div > ul > li > input {
+	footer.page-footer > div > ul > li > button {
 		background-position: left;
 		font-size: 100%;
+	}
+	
+	footer.page-footer > div > ul > li > button > p {
+		display: inline-block;
 	}
 }
 /* #endregion */

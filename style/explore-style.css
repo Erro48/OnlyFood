@@ -49,6 +49,10 @@ main section.filter-section section.tag-list-container {
 /* #endregion */
 
 /* #region Post */
+section.posts-section{
+    height: 57vh;
+}
+
 main div.posts-container {
     overflow-y: auto;
     height: 57vh;
