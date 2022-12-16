@@ -6,7 +6,7 @@ class DatabaseHelper{
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
             die("Connection failed: " . $db->connect_error);
-        }        
+        }  
     }
 
     public function getPostsByUser($username){
@@ -49,6 +49,19 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getUserInfo($user) {
+        if (!isset($user)) {
+            throw new Exception('Variable $user is not defined');
+        }
+        $user = "%" . $user . "%";
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username LIKE ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
     
     public function getUserPassword($user) {
         if (!isset($user)) {
@@ -62,6 +75,18 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC)[0]['password'];
     }
 
+    public function getUserByEmail($email) {
+        if (!isset($email)) {
+            throw new Exception('Variable $email is not defined');
+        }
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function userAlreadyRegistered($username, $email = '') {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
         $stmt->bind_param("ss", $username, $email);
@@ -71,33 +96,35 @@ class DatabaseHelper{
         return count($result->fetch_all(MYSQLI_ASSOC)) > 0;
     }
 
-    public function registerUser($name, $surname, $username, $email, $password, $profile_pic = "/imgs/propics/default.png", $intolerances = array()) {
+    public function registerUser($name, $surname, $username, $email, $password, $profile_pic_name, $intolerances = array()) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
         $stmt = $this->db->prepare("INSERT INTO `users` (`username`, `name`, `surname`, `email`, `password`, `profilePic`) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $username, $name, $surname, $email, $hashed_password, $profile_pic);
+        $stmt->bind_param("ssssss", $username, $name, $surname, $email, $hashed_password, $profile_pic_name);
         
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         if ($stmt->execute() === true) {
             if (count($intolerances) == 0) {
                 return true;
             }
-
-            $last_user = $this->db->insert_id;
 
             $query = "INSERT INTO `intolerances` (`user`, `ingredient`) VALUES ";
             $params_types = "";
             $params = array();
 
             foreach ($intolerances as $ingredient) {
-                $query .= '(?, ?)';
+                $query .= '(?, ?),';
                 $params_types .= 'ss';
-                array_push($params, $last_user);
-                array_push($params, $ingredient);
+                array_push($params, $username);
+                array_push($params, str_replace('_', ' ', $ingredient));
             }
-            echo $query;
+            $query = rtrim($query, ',');
+
             $stmt_insert = $this->db->prepare($query);
             $stmt_insert->bind_param($params_types, ...$params);
 
-            return $stmt->execute();
+            return $stmt_insert->execute();
         }
 
         return false;
@@ -222,5 +249,12 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    
+    public function updateProfilePic($photo_name) {
+        $stmt = $this->db->prepare("UPDATE users SET profilePic= ? WHERE username= ?");
+        $stmt->bind_param("ss", $photo_name, $_SESSION["username"]);
+        return $stmt->execute();
+    }
+
 }
 ?>
