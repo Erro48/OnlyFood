@@ -6,6 +6,8 @@
 /* #region Post */
 main div.posts-container {
     padding: 0;
+    height: 100%;
+    overflow-y: auto;
 }
 
 main div.single-post-container {
