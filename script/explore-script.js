@@ -1,3 +1,16 @@
+window.onload = (event) => {
+    setTagListContainerHeight();
+}
+
+window.onresize = (event) => {
+    setTagListContainerHeight();
+}
+
+function setTagListContainerHeight(){
+    const height = document.querySelector(".tags-container").offsetHeight - (document.querySelector(".tag-h2-container").offsetHeight + document.querySelector(".search-bar-container").offsetHeight + parseInt(getComputedStyle(document.querySelector(".search-bar-container")).marginBottom));
+    document.querySelector(".tag-list-container").style.height = "".concat(height, "px");
+}
+
 function handleClick(cb) {
     console.log("Clicked, new value = " + cb.checked);
     const tag = "breakfast";
