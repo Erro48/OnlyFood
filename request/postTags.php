@@ -2,10 +2,11 @@
 require_once '../bootstrap.php';
 
 if (isset($_GET["tag"])) {
-    $tag = $_GET["tag"];
-    
-    $postList = $dbh->getExplorePosts("carlo61");
+    $tags = json_decode($_GET["tag"]);
+
+    $postList = $dbh->getExplorePosts("carlo61", $tags);
     echo json_encode($postList);
 }
+
 
 ?>

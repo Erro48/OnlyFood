@@ -13,7 +13,8 @@ function setTagListContainerHeight(){
 
 function handleClick(cb) {
     console.log("Clicked, new value = " + cb.checked);
-    const tag = "breakfast";
+
+    const tag = "[\"breakfast\",\"launch\",\"dinner\"]";
     const postsContainer = document.querySelector(".posts-container");
 
     axios.get(`request/postTags.php?tag=${tag}`)
@@ -23,22 +24,22 @@ function handleClick(cb) {
             postsContainer.append(createPost(post));
         }
     });
-  }
-
-  function clearItems(container){
-    while (container.firstChild) {
-      container.removeChild(container.lastChild)
     }
-  }
 
-  function createPost(postData){
+    function clearItems(container){
+    while (container.firstChild) {
+        container.removeChild(container.lastChild)
+    }
+    }
+
+    function createPost(postData){
     console.log(postData);
 
     const container = document.createElement("div");
     container.classList.add("col-12");
     container.classList.add("single-post-container");
-    let containerContent = ` <article class="post-article article-${postData.postId}">
-                                <section class="recipe-section">`;
+    let containerContent = ` <article class="row post-article article-${postData.postId}">
+                                <section class="col-12 recipe-section">`;
     containerContent += "INGREDIENTI";       //TODO mettere ingredienti
     containerContent += `<h2>How To</h2>
                         <section class="howto-section">
@@ -70,4 +71,4 @@ function handleClick(cb) {
                     </article>`;
     container.innerHTML = containerContent;
     return container;
-  }
+    }

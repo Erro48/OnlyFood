@@ -221,17 +221,45 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getExplorePosts($username){
-        //TODO da cambiare
-        $stmt = $this->db->prepare("
+    public function getExplorePosts($username, $tags = NULL){
+        //var_dump($tags);
+        $query = "
         SELECT *
-        FROM posts p, recipes r, users u
+        FROM posts p, recipes r, users u";
+
+        if(isset($tags)){
+            $query .= ", belongto b";
+        }
+        
+        $query .= "
         WHERE r.recipeId = p.recipe
         AND p.owner = u.username
-        ORDER BY p.date DESC
-        LIMIT 15");
+        AND p.owner != ?";
 
-        //$stmt->bind_param('s', $username);
+        $bindParamString = "s";
+        $params = $username;
+        
+        if(isset($tags)){
+            $query .= " AND b.recipe = p.recipe";
+            foreach($tags as $tag){
+                $query .= " AND b.tag = ?";
+                $bindParamString .= "s";
+            }
+            $params = array_merge(array($username), $tags);
+        }
+
+        $query .= " ORDER BY p.date DESC
+                    LIMIT 15";
+
+        /*
+        SELECT * FROM posts p, recipes r, users u, belongto b WHERE r.recipeId = p.recipe AND p.owner = u.username AND p.owner != 'carlo61' AND b.recipe = p.recipe AND b.tag = "launch" AND b.tag = "breakfast" ORDER BY p.date DESC LIMIT 15
+        */
+
+        /*var_dump($query);
+        var_dump($bindParamString);
+        var_dump($params);*/
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($bindParamString, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
 
