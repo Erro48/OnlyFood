@@ -1,7 +1,6 @@
 /*	Table Of Contents:
 	------------------------
 	- Post
-    - Media Queries
 */
 
 /* #region Post */
@@ -34,7 +33,6 @@ main article.post-article > section.recipe-section > h2 {
     margin-top: 1rem;
 }
 
-/*Questo div senza margine sfora! Da risolvere*/
 main article.post-article > section.recipe-section > div.row {
     margin-top: 0.4rem;
     margin-bottom: 0.4rem;
@@ -127,12 +125,4 @@ main article.post-article > footer {
     padding: 0;
 }
 
-/* #endregion */
-
-/* #region Media Queries */
-@media screen and (min-width: 768px){
-    main div.posts-container {
-        height: 93vh;
-    }
-}
 /* #endregion */
