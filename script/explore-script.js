@@ -14,10 +14,21 @@ function setTagListContainerHeight(){
 function handleClick(cb) {
     console.log("Clicked, new value = " + cb.checked);
 
-    const tag = "[\"breakfast\",\"launch\",\"dinner\"]";
+    let tags = "[";
+    const tagListContainer = document.querySelector(".tag-list-container");
+    for (let i = 0; i < tagListContainer.children.length; i++) {
+        const label = tagListContainer.children[i].children[0];
+        if(label.children[0].checked){
+            tags = tags.concat("\"", label.innerText.replace(" ", ""), "\",");
+        }
+    }
+    tags = tags.substring(0, tags.length - 1);
+    tags = tags.concat("]");
+    console.log(tags);
+    //const tags = "[\"breakfast\",\"launch\",\"dinner\"]";
     const postsContainer = document.querySelector(".posts-container");
 
-    axios.get(`request/postTags.php?tag=${tag}`)
+    axios.get(`request/postTags.php?tag=${tags}`)
     .then((data) => {
       clearItems(postsContainer);
       for(post of data.data){

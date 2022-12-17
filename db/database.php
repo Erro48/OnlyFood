@@ -237,7 +237,6 @@ class DatabaseHelper{
         AND p.owner != ?";
 
         $bindParamString = "s";
-        $params = $username;
         
         if(isset($tags)){
             $query .= " AND b.recipe = p.recipe";
@@ -264,7 +263,11 @@ class DatabaseHelper{
         var_dump($bindParamString);
         var_dump($params);*/
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param($bindParamString, ...$params);
+        if(isset($tags)){
+            $stmt->bind_param($bindParamString, ...$params);
+        } else {
+            $stmt->bind_param($bindParamString, $username);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
 
