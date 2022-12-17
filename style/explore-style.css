@@ -10,8 +10,7 @@
 main section.filter-section {
     height: 30vh;
     background-color: var(--primary);
-    border-radius: 0 0 0.6rem 0.6rem;
-    margin: 0 2rem;
+    border-radius: 0 0 1.6rem 1.6rem;
     padding: 1rem 0;
 }
 
@@ -51,6 +50,10 @@ section.posts-section {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px){
+    main section.filter-section {
+        margin: 0 2rem;
+    }
+
     section.posts-section {
         height: 63vh;
     }
