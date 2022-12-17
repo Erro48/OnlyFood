@@ -241,10 +241,15 @@ class DatabaseHelper{
         
         if(isset($tags)){
             $query .= " AND b.recipe = p.recipe";
-            foreach($tags as $tag){
-                $query .= " AND b.tag = ?";
+            for($i = 0; $i < count($tags); $i++){
+                if($i == 0){
+                    $query .= " AND (b.tag = ?";
+                } else {
+                    $query .= " OR b.tag = ?";
+                }
                 $bindParamString .= "s";
             }
+            $query .= ")";
             $params = array_merge(array($username), $tags);
         }
 
@@ -252,7 +257,7 @@ class DatabaseHelper{
                     LIMIT 15";
 
         /*
-        SELECT * FROM posts p, recipes r, users u, belongto b WHERE r.recipeId = p.recipe AND p.owner = u.username AND p.owner != 'carlo61' AND b.recipe = p.recipe AND b.tag = "launch" AND b.tag = "breakfast" ORDER BY p.date DESC LIMIT 15
+        SELECT * FROM posts p, recipes r, users u, belongto b WHERE r.recipeId = p.recipe AND p.owner = u.username AND p.owner != 'carlo61' AND b.recipe = p.recipe AND (b.tag = "launch" OR b.tag = "breakfast") ORDER BY p.date DESC LIMIT 15
         */
 
         /*var_dump($query);
