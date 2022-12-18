@@ -18,4 +18,10 @@ if (isset($_GET["email"])) {
     echo json_encode($user);
 }
 
+if (isset($_GET["user"])) {
+    $username = $_GET["user"];
+    $users_list = $dbh->searchUser($username);
+    echo json_encode($users_list);
+}
+
 ?>

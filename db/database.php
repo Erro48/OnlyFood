@@ -190,12 +190,12 @@ class DatabaseHelper{
     public function getProfileInfo($username){
         $stmt = $this->db->prepare("
         SELECT u.username, u.name, u.surname, u.profilePic, 
-            (SELECT Count(*) FROM follows WHERE follower='carlo61') as numFollowing,
-	        (SELECT Count(*) FROM follows WHERE followed='carlo61') as numFollower
+            (SELECT Count(*) FROM follows WHERE follower=?) as numFollowing,
+	        (SELECT Count(*) FROM follows WHERE followed=?) as numFollower
         FROM users u
         WHERE u.username=?");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('sss', $username, $username, $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -256,5 +256,25 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+
+    public function searchUser($name){
+        $username = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $name);
+        $name = $name."%";
+        $stmt = $this->db->prepare("
+        SELECT username, profilePic, name, surname
+        FROM users
+        WHERE username LIKE ? 
+            OR name LIKE ?
+            OR surname LIKE ?
+            OR CONCAT(name, ' ', surname) LIKE ?
+            OR CONCAT(surname, ' ', name) LIKE ?
+       ");
+
+        $stmt->bind_param('sssss', $name, $name, $name, $name, $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
