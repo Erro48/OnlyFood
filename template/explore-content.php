@@ -11,7 +11,7 @@
             <?php foreach($templateParams["tags"] as $tag): ?>
                 <div class="col-12">
                     <label>
-                        <input type="checkbox" onclick="handleClick(this)"/>
+                        <input type="checkbox" onclick="handleClick()"/>
                         <?php echo $tag["name"]; ?>
                     </label>
                 </div>

@@ -11,9 +11,7 @@ function setTagListContainerHeight(){
     document.querySelector(".tag-list-container").style.height = "".concat(height, "px");
 }
 
-function handleClick(cb) {
-    console.log("Clicked, new value = " + cb.checked);
-
+function handleClick() {
     let tags = "[";
     const tagListContainer = document.querySelector(".tag-list-container");
     for (let i = 0; i < tagListContainer.children.length; i++) {
@@ -24,62 +22,62 @@ function handleClick(cb) {
     }
     tags = tags.substring(0, tags.length - 1);
     tags = tags.concat("]");
-    console.log(tags);
-    //const tags = "[\"breakfast\",\"launch\",\"dinner\"]";
     const postsContainer = document.querySelector(".posts-container");
 
     axios.get(`request/postTags.php?tag=${tags}`)
     .then((data) => {
-      clearItems(postsContainer);
-      for(post of data.data){
-            postsContainer.append(createPost(post));
+        clearItems(postsContainer);
+        if(data.data.length > 0){
+            for(post of data.data){
+                postsContainer.append(createPost(post));
+            }
+        } else {
+            postsContainer.innerHTML = "<p>There isn't any post with those categories.</p>";
         }
     });
     }
 
     function clearItems(container){
-    while (container.firstChild) {
-        container.removeChild(container.lastChild)
-    }
+        while (container.firstChild) {
+            container.removeChild(container.lastChild)
+        }
     }
 
     function createPost(postData){
-    console.log(postData);
-
-    const container = document.createElement("div");
-    container.classList.add("col-12");
-    container.classList.add("single-post-container");
-    let containerContent = ` <article class="row post-article article-${postData.postId}">
-                                <section class="col-12 recipe-section">`;
-    containerContent += "INGREDIENTI";       //TODO mettere ingredienti
-    containerContent += `<h2>How To</h2>
-                        <section class="howto-section">
-                            <p>${postData.howTo}</p>
+        const container = document.createElement("div");
+        container.classList.add("col-12");
+        container.classList.add("single-post-container");
+        let containerContent = ` <article class="row post-article article-${postData.postId}">
+                                    <section class="col-12 recipe-section">`;
+        containerContent += "INGREDIENTI";       //TODO mettere ingredienti
+        containerContent += `<h2>How To</h2>
+                            <section class="howto-section">
+                                <p>${postData.howTo}</p>
+                            </section>
                         </section>
-                    </section>
-                    <img src="${postData.preview}" alt="${postData.description}" />
-                    <div class="row info-container">
-                        <div class="col-2">
-                            <img src="${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                        <img src="${postData.preview}" alt="${postData.description}" />
+                        <div class="row info-container">
+                            <div class="col-2">
+                                <img src="${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            </div>
+                            <div class="col-7">
+                                <p>${postData.owner}</p>
+                                <p>${postData.description}</p>
+                            </div>
+                            BOTTONI
                         </div>
-                        <div class="col-7">
-                            <p>${postData.owner}</p>
-                            <p>${postData.description}</p>
-                        </div>
-                        BOTTONI
-                    </div>
-                    <footer class="row">
-                        <div class="col-2"></div>
-                        <ul class="col-8 double-selector">
-                            <li class="col-6">
-                                <input type="button" value="Picture" class="preview-selected-left" onclick="showPicture(${postData.postId})">
-                            </li><li class="col-6">
-                                <input type="button" value="Recipe" onclick="showRecipe(${postData.postId})">
-                            </li>
-                        </ul>
-                        <div class="col-2"></div>
-                    </footer>
-                    </article>`;
-    container.innerHTML = containerContent;
-    return container;
+                        <footer class="row">
+                            <div class="col-2"></div>
+                            <ul class="col-8 double-selector">
+                                <li class="col-6">
+                                    <input type="button" value="Picture" class="preview-selected-left" onclick="showPicture(${postData.postId})">
+                                </li><li class="col-6">
+                                    <input type="button" value="Recipe" onclick="showRecipe(${postData.postId})">
+                                </li>
+                            </ul>
+                            <div class="col-2"></div>
+                        </footer>
+                        </article>`;
+        container.innerHTML = containerContent;
+        return container;
     }
