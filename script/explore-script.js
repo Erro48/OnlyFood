@@ -26,6 +26,8 @@ function handleClick() {
 
     axios.get(`request/postTags.php?tag=${tags}`)
     .then((data) => {
+        console.log(data.data);
+
         clearItems(postsContainer);
         if(data.data.length > 0){
             for(post of data.data){
@@ -47,9 +49,30 @@ function handleClick() {
         const container = document.createElement("div");
         container.classList.add("col-12");
         container.classList.add("single-post-container");
-        let containerContent = ` <article class="row post-article article-${postData.postId}">
+        let containerContent = `<article class="row post-article article-${postData.postId}">
                                     <section class="col-12 recipe-section">`;
-        containerContent += "INGREDIENTI";       //TODO mettere ingredienti
+        let i = 0;
+        postData.ingredients.forEach(element => {
+            if(i == 0){
+                containerContent += `<div class="row">`;
+            } else if (i % 2 == 0 && i != 0){
+                containerContent += `</div>
+                                    <div class="row">`;
+            }
+            containerContent += `<div class="col-6">
+                                    <div class="row ingredient-div" style="border: 3.5px solid #${element.color};">
+                                        <div class="col-8">
+                                            <p>${element.name}</p>
+                                        </div>
+                                        <div class="col-4" style="border-left: 3.5px solid #${element.color}; border-top: 3.5px solid #${element.color}; border-bottom: 3.5px solid #${element.color};">
+                                            <p>${element.quantity} ${element.acronym}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+            i++;
+        });
+        //containerContent += "INGREDIENTI";       //TODO mettere ingredienti
         containerContent += `<h2>How To</h2>
                             <section class="howto-section">
                                 <p>${postData.howTo}</p>
