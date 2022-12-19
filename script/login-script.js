@@ -30,6 +30,14 @@ function profilePicPreview(
 }
 
 /**
+ * Remove all the option of a dropdown menu
+ */
+function clearDropdownElements() {
+	const dropdown = document.querySelector('ul.search-result')
+	clearElement(dropdown)
+}
+
+/**
  * Searches ingredients and display the output
  * @param {HTLMInputElement} searchInput - The input element where the search is happening
  */
@@ -76,28 +84,6 @@ function displayIngredients(ingredients, container) {
 	ingredients.forEach((ingredient) =>
 		container.append(createSearchResultOption(ingredient))
 	)
-}
-
-/**
- * Removes every children of the given element
- * @param {Element} [element=document.querySelector('.search-result')] - Element to be cleared
- */
-function clearElement(element = document.querySelector('.search-result')) {
-	while (element.firstChild) {
-		element.removeChild(element.lastChild)
-	}
-}
-
-/**
- * Return the string with each word capitalized
- * @param {String} string - String to be capitalized
- * @returns {String} the capitalized string
- */
-function capitalizeString(text) {
-	return text
-		.split(' ')
-		.map((word) => word[0].toUpperCase() + word.substr(1))
-		.join(' ')
 }
 
 /**
@@ -158,21 +144,9 @@ function addIngredientToList(event) {
 
 	// add to container
 	listContainer.innerHTML = listItems.join('')
-	clearElement()
+	clearElement(document.querySelector('.search-result'))
 	inputSearchField.value = ''
 	hideLabel(inputSearchField)
-}
-
-/**
- * Hides the label of the element's sibling
- * @param {HTMLInputElement} element - Input element to hide the label
- */
-function hideLabel(element) {
-	const sibling = element.nextElementSibling
-
-	element.value.trim() != ''
-		? sibling.classList.add('d-none')
-		: sibling.classList.remove('d-none')
 }
 
 /**
