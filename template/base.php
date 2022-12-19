@@ -5,14 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><?php echo $templateParams["title"]; ?></title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
     <link rel="stylesheet" href="./style/base-style.css"/>
+    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./script/script.js"></script>
+
     <?php if(isset($templateParams["style"])): ?>
         <?php foreach($templateParams["style"] as $style): ?>
             <link rel="stylesheet" href="./style/<?php echo $style; ?>"/>
         <?php endforeach; ?>
     <?php endif; ?>
+    
     <?php if(isset($templateParams["script"])): ?>
         <?php foreach($templateParams["script"] as $script): ?>
             <script type="text/javascript" src="script/<?php echo $script; ?>"></script>

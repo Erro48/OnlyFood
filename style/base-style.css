@@ -164,6 +164,16 @@ footer.page-footer > div > ul > li > button > p {
 /* #endregion */
 
 /* #region Inputs */
+input:not([type='checkbox'], [type='file']),
+input:not([type='file']) ~ p {
+	padding-left: 1em;
+}
+
+input::selection {
+	color: var(--text-light);
+	background-color: var(--primary);
+}
+
 input[type='text'],
 input[type='password'] {
 	background: var(--light-color);
@@ -181,6 +191,7 @@ input[type='search'] {
 	height: 3rem;
 	box-sizing: border-box;
 	width: 100%;
+	padding-right: 0.5em;
 }
 
 input[type='checkbox'] {
@@ -195,6 +206,15 @@ input[type='checkbox'] {
 
 input[type='checkbox']:checked {
 	background-color: var(--dark-color);
+}
+
+input:not([type='file'], [type='search']):focus ~ p,
+input:not([type='file'], [type='search']):valid ~ p {
+	top: -50%;
+}
+
+input ~ p {
+	margin: 0;
 }
 /* #endregion */
 
@@ -235,11 +255,34 @@ ul.double-selector > li > input.preview-selected-right {
 /* #endregion */
 
 /* #region Labels */
-label {
+form label {
 	font-size: 16px;
 	color: black;
 	height: 18px;
+	position: relative;
+	user-select: none;
 }
+
+form
+	label:has(input[type='text'], input[type='password'], input[type='search']) {
+	width: 100%;
+	height: 100%;
+	margin-top: 1.5rem;
+}
+
+form label:has(input.input-error) {
+	--error-animation-offset: 5px;
+	animation: shake 0.25s ease;
+}
+
+/* #region Labels Content */
+form label p {
+	position: absolute;
+	top: 25%;
+	transition: 0.25s top;
+}
+/* #endregion Labels Content */
+
 /* #endregion */
 
 /* #region Links */
@@ -281,7 +324,7 @@ label {
 		background-position: left;
 		font-size: 100%;
 	}
-	
+
 	footer.page-footer > div > ul > li > button > p {
 		display: inline-block;
 	}
