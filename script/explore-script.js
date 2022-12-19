@@ -72,7 +72,6 @@ function handleClick() {
                                 `;
             i++;
         });
-        //containerContent += "INGREDIENTI";       //TODO mettere ingredienti
         containerContent += `</div>
                             <h2>How To</h2>
                             <section class="howto-section">
