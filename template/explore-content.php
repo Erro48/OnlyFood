@@ -5,7 +5,7 @@
             <h2>Tags</h2>
         </div>
         <div class="row search-bar-container">
-            <input type="text" placeholder="Search a tag"/>
+            <input type="text" onkeyup="searchTag(this)" placeholder="Search a tag..."/>
         </div>
         <section class="row tag-list-container">
             <?php foreach($templateParams["tags"] as $tag): ?>
