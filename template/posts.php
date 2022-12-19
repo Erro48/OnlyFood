@@ -33,7 +33,7 @@
                     <div class="col-2">
                         <img src="<?php echo $post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
                     </div>
-                    <div class="col-7">
+                    <div class="col-8">
                         <p><?php echo $post["owner"]; ?></p>
                         <p><?php echo $post["description"]; ?></p>
                     </div>
@@ -57,7 +57,6 @@
                             <p><?php echo $dbh->getCommentsByPost($post["postId"])[0]["comments"]; ?></p>
                         </div>
                     </div>
-                    <div class="col-1"></div>
                 </div>
                 <footer class="row">
                     <div class="col-2"></div>
