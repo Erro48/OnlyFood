@@ -11,7 +11,6 @@ main section.filter-section {
     height: 30vh;
     background-color: var(--primary);
     border-radius: 0 0 0.6rem 0.6rem;
-    margin: 0 2rem;
     padding: 1rem 0;
 }
 
@@ -23,7 +22,6 @@ main section.filter-section > div.col-10 {
 
 main section.filter-section div.tag-h2-container {
     margin: 0 0.5rem;
-    max-height: 20%;
 }
 
 main section.filter-section div.tag-h2-container > h2 {
@@ -34,7 +32,6 @@ main section.filter-section div.tag-h2-container > h2 {
 
 main section.filter-section div.search-bar-container {
     margin: 0 0.8rem 1rem;
-    max-height: calc(20% - 1rem);
 }
 
 main section.filter-section div.search-bar-container > input {
@@ -43,8 +40,6 @@ main section.filter-section div.search-bar-container > input {
 
 main section.filter-section section.tag-list-container {
     overflow-y: auto;
-    overflow-x: hidden;
-    height: 60%;
 }
 /* #endregion */
 
@@ -55,6 +50,10 @@ section.posts-section {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px){
+    main section.filter-section {
+        margin: 0 2rem;
+    }
+
     section.posts-section {
         height: 63vh;
     }

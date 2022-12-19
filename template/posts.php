@@ -12,7 +12,7 @@
                             <div class="row">
                         <?php endif; ?>
                         <div class="col-6">
-                            <div class="ingredient-div row" style="border: 3.5px solid #<?php echo $ingredient["color"]; ?>">
+                            <div class="row ingredient-div" style="border: 3.5px solid #<?php echo $ingredient["color"]; ?>">
                                 <div class="col-8">
                                     <p><?php echo $ingredient["name"]; ?></p>
                                 </div>

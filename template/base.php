@@ -47,7 +47,7 @@ footer (nav bar)
         </div>
     </header>
     
-    <div class="row">
+    <div class="row m-0">
         <!--Main-->
         <div class="col-12 col-md-9 main-container">
             <main>
@@ -60,7 +60,7 @@ footer (nav bar)
         </div>
 
         <!-- Footer -->
-        <div class="col-12 col-md-3 footer-container">
+        <div class="col-12 col-md-3 p-0 footer-container">
             <footer class="page-footer">
                 <div class="row">
                     <ul>
