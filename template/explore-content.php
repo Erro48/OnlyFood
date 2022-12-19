@@ -9,7 +9,7 @@
         </div>
         <section class="row tag-list-container">
             <?php foreach($templateParams["tags"] as $tag): ?>
-                <div class="col-12">
+                <div class="col-12 col-md-6">
                     <label>
                         <input type="checkbox" onclick="handleClick()"/>
                         <?php echo $tag["name"]; ?>

@@ -30,6 +30,7 @@ function searchTag(elem){
 function createTagRow(tagData){
     const container = document.createElement("div");
     container.classList.add("col-12");
+    container.classList.add("col-md-6");
     container.innerHTML = `<label>
                                 <input type="checkbox" onclick="handleClick()">
                                 ${tagData.name}
