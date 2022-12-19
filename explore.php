@@ -2,10 +2,9 @@
 require_once 'bootstrap.php';
 
 $templateParams["title"] = "OnlyFood - Explore";
-$templateParams["nome"] = "explore-content.php";
-$templateParams["style"][0] = "explore-style.css";
-$templateParams["script"][0] = "home-script.js";
-$templateParams["script"][1] = "explore-script.js";
+$templateParams["name"] = "explore-content.php";
+$templateParams["style"] = array("explore-style.css", "posts-style.css");
+$templateParams["script"] = array("home-script.js", "explore-script.js");
 $templateParams["tags"] = $dbh->getTags();
 $templateParams["posts"] = $dbh->getExplorePosts("carlo61");
 

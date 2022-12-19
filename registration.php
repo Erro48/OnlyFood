@@ -50,7 +50,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             if (isset($profile_pic) && $profile_pic['size'] > 0) {
                 downloadProfilePic($profile_pic, $dbh);
             }
-            // header("Location: ./index.php");
+            header("Location: ./index.php");
         }
     }
 
@@ -67,6 +67,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./script/verification.js"></script>
+    <script src="./script/script.js"></script>
     <script src="./script/login-script.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
@@ -105,20 +106,20 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
-                                    <input class="ps-3 d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
+                                    <input class="d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
                                     <p class="profile-pic m-0">
                                         <img src="./imgs/propics/default.png" alt="Profile pic preview">
                                     </p>
                                 </label>
 
                                 <label for="user-name" class="p-0">
-                                    <input class="ps-3" type="text" name="name" id="user-name" required>
-                                    <p class="ps-3 m-0"><strong class="required-char">*</strong> First Name</p>
+                                    <input type="text" name="name" id="user-name" required>
+                                    <p ><strong class="required-char">*</strong> First Name</p>
                                 </label>
                             
                                 <label for="user-surname" class="p-0">
-                                    <input class="ps-3" type="text" name="surname" id="user-surname" required>
-                                    <p class="ps-3 m-0"><strong class="required-char">*</strong> Last Name</p>
+                                    <input type="text" name="surname" id="user-surname" required>
+                                    <p ><strong class="required-char">*</strong> Last Name</p>
                                 </label>
                             </fieldset>
 
@@ -130,23 +131,23 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
                             <legend>Account Informations:</legend>
                             <label for="user-username" class="p-0">
-                                <input class="ps-3" type="text" name="username" id="user-username" required>
-                                <p class="ps-3 m-0"><strong class="required-char">*</strong> Username</p>
+                                <input type="text" name="username" id="user-username" required>
+                                <p ><strong class="required-char">*</strong> Username</p>
                             </label>
                         
                             <label for="user-email" class="p-0">
-                                <input class="ps-3" type="text" name="email" id="user-email" required>
-                                <p class="ps-3 m-0"><strong class="required-char">*</strong> Email</p>
+                                <input type="text" name="email" id="user-email" required>
+                                <p ><strong class="required-char">*</strong> Email</p>
                             </label>
 
                             <label for="user-password" class="p-0">
-                                <input class="ps-3" type="password" name="password" id="user-password" required>
-                                <p class="ps-3 m-0"><strong class="required-char">*</strong> Password</p>
+                                <input type="password" name="password" id="user-password" required>
+                                <p ><strong class="required-char">*</strong> Password</p>
                             </label>
                             
                             <label for="user-cpassword" class="p-0">
-                                <input class="ps-3" type="password" name="confirm-password" id="user-cpassword" required>
-                                <p class="ps-3 m-0"><strong class="required-char">*</strong> Confirm Password</p>
+                                <input type="password" name="confirm-password" id="user-cpassword" required>
+                                <p ><strong class="required-char">*</strong> Confirm Password</p>
                             </label>
                         </fieldset>
                         
@@ -162,11 +163,11 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
                                 <label for="search-ingredient" class="p-0 col-12">
-                                    <input class="ps-3 pe-2" type="search" name="search-ingredient" id="search-ingredient"
+                                    <input type="search" name="search-ingredient" id="search-ingredient"
                                         onkeyup="search(this)"
-                                        onsearch="clearElement()"
+                                        onsearch="clearDropdownElements()"
                                         onfocusout="hideLabel(this)">
-                                    <p class="ps-3 m-0">Search ingredient</p>
+                                    <p>Search ingredient</p>
                                 </label>
 
                                 <!-- <button class="button-secondary col-2" onclick="addIngredientToList(event)">

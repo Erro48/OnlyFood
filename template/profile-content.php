@@ -12,11 +12,18 @@
                     <div class="col-8 mini-box">
                         <p class="username-text m-0"><?php echo $profile["username"]; ?></p>
                     </div>
+                    <?php if (!isset($_GET["user"])): ?>
                     <div class="col-2 mini-box">
                         <button class="p-2 icon-button hideable">
                             <img src="imgs/icons/settings.png" alt="Settings"/>
                         </button>
                     </div>
+                    <?php else: ?>
+                    <div class="col-2 mini-box">
+                        <div class="p-4">
+                        </div>
+                    </div>
+                    <?php endif ?>   
                 </div>
                 <div class="row">
                     <div class="col mini-box">
@@ -75,7 +82,7 @@
     <div class="posts-container d-md-flex flex-column">
     <?php
         /* Users posts */
-        require_once("template/home.php");
+        require_once("template/posts.php");
     ?>
     </div>
 </section>

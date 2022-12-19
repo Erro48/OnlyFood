@@ -28,6 +28,7 @@ function verifyUserPassword($user, $password) {
     <title>OnlyFood - Login</title>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./script/script.js"></script>
     <script src="./script/login-script.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
@@ -61,13 +62,13 @@ function verifyUserPassword($user, $password) {
                                 <legend class="text-center mt-4 mb-1">Sign in to continue</legend>
 
                                 <label for="user-input" class="p-0 mb-2">
-                                    <input class="ps-3" type="text" name="user" id="user-input" required>
-                                    <p class="ps-3 m-0">Username</p>
+                                    <input type="text" name="user" id="user-input" required>
+                                    <p>Username</p>
                                 </label>
                             
                                 <label for="user-password" class="p-0">
-                                    <input class="ps-3" type="password" name="password" id="user-password" required>
-                                    <p class="ps-3 m-0">Password</p>
+                                    <input type="password" name="password" id="user-password" required>
+                                    <p>Password</p>
                                 </label>
 
                             </fieldset>
