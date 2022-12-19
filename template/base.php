@@ -35,12 +35,17 @@ footer (nav bar)
             <h1>OnlyFood</h1>
         </div>
         <div class="col-6">
-            <div class="row align-content-center">
+            <div class="row align-content-center buttons-container">
                     <div class="col-6">
-                        <input type="button" onclick="window.location.href='search.php'">
+                        <button onlick="window.location.href='search.php'">
+                            <img src="imgs/icons/search.png" alt="search icon" />
+                        </button>
+                        <!--input type="button" onclick="window.location.href='search.php'"-->
                     </div>
                     <div class="col-6">
-                        <input type="button">
+                        <button>
+                            <img src="imgs/icons/notification.png" alt="notifications icon" />
+                        </button>
                     </div>
                 </ul>
             </div>
