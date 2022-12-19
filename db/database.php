@@ -278,8 +278,22 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("
         SELECT *
         FROM tags
-        ORDER BY name
-        LIMIT 15");
+        ORDER BY name");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTag($name){
+        $name = $name."%";
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM tags
+        WHERE name LIKE ?
+        ORDER BY name");
+
+        $stmt->bind_param("s", $name);
         $stmt->execute();
         $result = $stmt->get_result();
 

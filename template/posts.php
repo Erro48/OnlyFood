@@ -37,13 +37,25 @@
                         <p><?php echo $post["owner"]; ?></p>
                         <p><?php echo $post["description"]; ?></p>
                     </div>
-                    <div class="col-1">
-                        <input class="action-button like-button" type="button"/>
-                        <p><?php echo $dbh->getLikesByPost($post["postId"])[0]["likes"]; ?></p>
+                    <div class="col-1 p-0">
+                        <div class="row w-100">
+                            <button class="action-button like-button">
+                                <img src="imgs/icons/like-button.png" alt="like button icon" />
+                            </button>
+                        </div>
+                        <div class="row w-100">
+                            <p><?php echo $dbh->getLikesByPost($post["postId"])[0]["likes"]; ?></p>
+                        </div>
                     </div>
-                    <div class="col-1">
-                        <input class="action-button comments-button" type="button"/>
-                        <p><?php echo $dbh->getCommentsByPost($post["postId"])[0]["comments"]; ?></p>
+                    <div class="col-1 p-0">
+                        <div class="row w-100">
+                            <button class="action-button comments-button">
+                                <img src="imgs/icons/comments-button.png" alt="comments button icon" />
+                            </button>
+                        </div>
+                        <div class="row w-100">
+                            <p><?php echo $dbh->getCommentsByPost($post["postId"])[0]["comments"]; ?></p>
+                        </div>
                     </div>
                     <div class="col-1"></div>
                 </div>

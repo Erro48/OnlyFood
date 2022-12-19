@@ -78,6 +78,11 @@ header.page-header div.buttons-container button {
 	border-radius: 10px;
 	margin-right: 1rem;
 }
+
+header.page-header div.buttons-container button > img {
+	width: 80%;
+	aspect-ratio: 1/1;
+}
 /* #endregion */
 
 /* #region Footer */
