@@ -37,10 +37,9 @@ footer (nav bar)
         <div class="col-6">
             <div class="row align-content-center buttons-container">
                     <div class="col-6">
-                        <button onlick="window.location.href='search.php'">
+                        <button onclick="window.location.href='search.php'">
                             <img src="imgs/icons/search.png" alt="search icon" />
                         </button>
-                        <!--input type="button" onclick="window.location.href='search.php'"-->
                     </div>
                     <div class="col-6">
                         <button>
