@@ -73,7 +73,8 @@ function handleClick() {
             i++;
         });
         //containerContent += "INGREDIENTI";       //TODO mettere ingredienti
-        containerContent += `<h2>How To</h2>
+        containerContent += `</div>
+                            <h2>How To</h2>
                             <section class="howto-section">
                                 <p>${postData.howTo}</p>
                             </section>
