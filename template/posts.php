@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-1 p-0">
                         <div class="row w-100">
-                            <button class="action-button like-button">
+                            <button class="action-button like-button" <?php if($dbh->didUserLikePost("carlo61", $post["postId"])){echo "style=\"background-color: var(--primary);\"";} ?>>
                                 <img src="imgs/icons/like-button.png" alt="like button icon" />
                             </button>
                         </div>
