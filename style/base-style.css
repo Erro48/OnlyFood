@@ -170,7 +170,7 @@ footer.page-footer > div > ul > li > button > p {
 
 /* #region Inputs */
 input:not([type='checkbox'], [type='file']),
-input:not([type='file']) ~ p {
+input:not([type='file']) ~ span {
 	padding-left: 1em;
 }
 
@@ -213,12 +213,12 @@ input[type='checkbox']:checked {
 	background-color: var(--dark-color);
 }
 
-input:not([type='file'], [type='search']):focus ~ p,
-input:not([type='file'], [type='search']):valid ~ p {
+input:not([type='file'], [type='search']):focus ~ span,
+input:not([type='file'], [type='search']):valid ~ span {
 	top: -50%;
 }
 
-input ~ p {
+input ~ span {
 	margin: 0;
 }
 /* #endregion */
@@ -281,9 +281,10 @@ form label:has(input.input-error) {
 }
 
 /* #region Labels Content */
-form label p {
+form label span {
 	position: absolute;
 	top: 25%;
+	left: 0;
 	transition: 0.25s top;
 }
 /* #endregion Labels Content */
