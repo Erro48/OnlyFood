@@ -8,7 +8,7 @@ window.onresize = (event) => {
 
 function setTagListContainerHeight(){
     const height = document.querySelector(".tags-container").offsetHeight - (document.querySelector(".tag-h2-container").offsetHeight + document.querySelector(".search-bar-container").offsetHeight + parseInt(getComputedStyle(document.querySelector(".search-bar-container")).marginBottom));
-    document.querySelector(".tag-list-container").style.height = "".concat(height, "px");
+    document.querySelector(".tag-list-container").style.maxHeight = "".concat(height, "px");
 }
 
 function searchTag(elem){
