@@ -327,7 +327,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function didUserLikePost($username, $postId){
+    public function postAlreadyLikedByUser($username, $postId){
         $stmt = $this->db->prepare("
         SELECT *
         FROM LIKES
@@ -339,6 +339,29 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return count($result->fetch_all(MYSQLI_ASSOC)) > 0 ? true : false;
+    }
+
+    public function likePost($username, $postId){
+        if(!postAlreadyLikedByUser($username, $postId)){
+            $stmt = $this->db->prepare("
+            INSERT INTO likes(user, post)
+            VALUES (?, ?)");
+
+            $stmt->bind_param('si', $username, $postId);
+            $stmt->execute();
+        }
+    }
+
+    public function unlikePost($username, $postId){
+        if(postAlreadyLikedByUser($username, $postId)){
+            $stmt = $this->db->prepare("
+            DELETE FROM likes
+            WHERE user = ?
+            AND post = ?");
+
+            $stmt->bind_param('si', $username, $postId);
+            $stmt->execute();
+        }
     }
 }
 ?>
