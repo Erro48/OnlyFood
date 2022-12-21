@@ -7,16 +7,16 @@
                         <?php if($i == 0): ?>
                             <div class="row">
                         <?php endif; ?>
-                        <?php if($i % 2 == 0 && $i != 0): ?>
+                        <?php if($i % 3 == 0 && $i != 0): ?>
                             </div>
                             <div class="row">
                         <?php endif; ?>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="row ingredient-div" style="border: 3.5px solid #<?php echo $ingredient["color"]; ?>">
-                                <div class="col-8">
+                                <div class="col-7">
                                     <p><?php echo $ingredient["name"]; ?></p>
                                 </div>
-                                <div class="col-4" style="border-left: 3.5px solid #<?php echo $ingredient["color"]; ?>; border-top: 3.5px solid #<?php echo $ingredient["color"]; ?>; border-bottom: 3.5px solid #<?php echo $ingredient["color"]; ?>">
+                                <div class="col-5" style="border-left: 3.5px solid #<?php echo $ingredient["color"]; ?>; border-top: 3.5px solid #<?php echo $ingredient["color"]; ?>; border-bottom: 3.5px solid #<?php echo $ingredient["color"]; ?>">
                                     <p><?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?></p>
                                 </div>
                             </div>
