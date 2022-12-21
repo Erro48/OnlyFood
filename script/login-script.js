@@ -1,5 +1,11 @@
 'use strict'
 
+window.onload = () => {
+	document
+		.querySelector('input#search-ingredient')
+		.addEventListener('search', clearDropdownElements)
+}
+
 /**
  * @enum RegistrationFieldset
  * Fieldsets in the registration page.

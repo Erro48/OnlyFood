@@ -165,7 +165,6 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
                                 <label for="search-ingredient" class="p-0">
                                     <input type="search" name="search-ingredient" id="search-ingredient"
-                                        onsearch="clearDropdownElements()"
                                         onkeyup="search(this)"
                                         placeholder="Search your intolerances"
                                         aria-label="Search your intolerances">
