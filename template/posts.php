@@ -44,7 +44,10 @@
                             </button>
                         </div>
                         <div class="row w-100">
-                            <p><?php echo $dbh->getLikesByPost($post["postId"])[0]["likes"]; ?></p>
+                            <p class="likes-comments-p" id="like-number-p"><?php
+                                $likes = $dbh->getLikesByPost($post["postId"])[0]["likes"] + 999999999;
+                                echo printApproximateNumber($likes);
+                            ?></p>
                         </div>
                     </div>
                     <div class="col-1 p-0">
@@ -54,7 +57,9 @@
                             </button>
                         </div>
                         <div class="row w-100">
-                            <p><?php echo $dbh->getCommentsByPost($post["postId"])[0]["comments"]; ?></p>
+                            <p class="likes-comments-p"><?php
+                                $comments = $dbh->getCommentsByPost($post["postId"])[0]["comments"];
+                                echo printApproximateNumber($comments); ?></p>
                         </div>
                     </div>
                 </div>

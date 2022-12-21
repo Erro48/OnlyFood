@@ -126,6 +126,12 @@ main article.post-article button.action-button > img {
     height: 70%;
 }
 
+main article.post-article div.info-container p.likes-comments-p {
+    font-size: 75%;
+    padding: 0;
+    text-align: center;
+}
+
 main article.post-article > footer {
     margin: 0;
     padding: 0;

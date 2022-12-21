@@ -11,6 +11,8 @@ if (isset($_GET["postId"])) {
         $dbh->likePost("carlo61", $postId);
         $data["backgroundColor"] = "var(--primary)";
     }
+    $likes = $dbh->getLikesByPost($postId)[0]["likes"] + 999999999;
+    $data["likeNumber"] = printApproximateNumber($likes);
     echo json_encode($data);
 }
 

@@ -44,4 +44,19 @@ function encryptProfilePic($username, $profile_pic_name) {
     return hash("md5", $username)."_".uniqid('', true).".".$file_extension;
 }
 
+function printApproximateNumber($n){
+    if($n >= 1000 && $n < 1000000) {
+        $n = ($n / 1000)."k";
+    } else if($n >= 1000000 && $n < 1000000000) {
+        $n = ($n / 1000000)."m";
+    } else if($n >= 1000000000) {
+        $n = ($n / 1000000000)."b";
+    }
+    if(strpos($n, ".") != false) {
+        return substr($n, 0, strpos($n, ".")).substr($n, -1, 1);
+    } else {
+        return $n;
+    }
+}
+
 ?>
