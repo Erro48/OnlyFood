@@ -33,30 +33,30 @@
                     <div class="col-2">
                         <img src="<?php echo $post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
                     </div>
-                    <div class="col-8">
+                    <div class="col-6">
                         <p><?php echo $post["owner"]; ?></p>
                         <p><?php echo $post["description"]; ?></p>
                     </div>
-                    <div class="col-1 p-0">
-                        <div class="row w-100">
+                    <div class="col-2 p-0">
+                        <div class="row w-100 justify-content-center m-0">
                             <button class="action-button like-button" onclick="like(<?php echo $post['postId'];?>)" <?php if($dbh->postAlreadyLikedByUser("carlo61", $post["postId"])){echo "style=\"background-color: var(--primary);\"";} ?>>
                                 <img src="imgs/icons/like-button.png" alt="like button icon" />
                             </button>
                         </div>
-                        <div class="row w-100">
+                        <div class="row w-100 justify-content-center m-0">
                             <p class="likes-comments-p" id="like-number-p"><?php
-                                $likes = $dbh->getLikesByPost($post["postId"])[0]["likes"] + 999999999;
+                                $likes = $dbh->getLikesByPost($post["postId"])[0]["likes"];
                                 echo printApproximateNumber($likes);
                             ?></p>
                         </div>
                     </div>
-                    <div class="col-1 p-0">
-                        <div class="row w-100">
+                    <div class="col-2 p-0">
+                        <div class="row w-100 justify-content-center m-0">
                             <button class="action-button comments-button">
                                 <img src="imgs/icons/comments-button.png" alt="comments button icon" />
                             </button>
                         </div>
-                        <div class="row w-100">
+                        <div class="row w-100 justify-content-center m-0">
                             <p class="likes-comments-p"><?php
                                 $comments = $dbh->getCommentsByPost($post["postId"])[0]["comments"];
                                 echo printApproximateNumber($comments); ?></p>
