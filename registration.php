@@ -50,7 +50,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             if (isset($profile_pic) && $profile_pic['size'] > 0) {
                 downloadProfilePic($profile_pic, $dbh);
             }
-            header("Location: ./index.php");
+            // header("Location: ./index.php");
         }
     }
 
@@ -102,24 +102,25 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                         <form enctype="multipart/form-data" action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
-<!-- ----------------------- FIRST PAGE ----------------------- -->
+<!--  FIRST PAGE  -->
                             <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
                                 <legend>Personal informations:</legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto">
                                     <input class="d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
-                                    <p class="profile-pic m-0">
+                                    <span class="profile-pic m-0">
+                                        <span class="d-none">Profile pic preview</span>
                                         <img src="./imgs/propics/default.png" alt="Profile pic preview">
-                                    </p>
+                                    </span>
                                 </label>
 
                                 <label for="user-name" class="p-0">
                                     <input type="text" name="name" id="user-name" required>
-                                    <p ><strong class="required-char">*</strong> First Name</p>
+                                    <span ><strong class="required-char">*</strong> First Name</span>
                                 </label>
                             
                                 <label for="user-surname" class="p-0">
                                     <input type="text" name="surname" id="user-surname" required>
-                                    <p ><strong class="required-char">*</strong> Last Name</p>
+                                    <span ><strong class="required-char">*</strong> Last Name</span>
                                 </label>
                             </fieldset>
 
@@ -127,27 +128,27 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             </div>
 
-<!-- ----------------------- SECOND PAGE ----------------------- -->
+<!--  SECOND PAGE  -->
                         <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
                             <legend>Account Informations:</legend>
                             <label for="user-username" class="p-0">
                                 <input type="text" name="username" id="user-username" required>
-                                <p ><strong class="required-char">*</strong> Username</p>
+                                <span ><strong class="required-char">*</strong> Username</span>
                             </label>
                         
                             <label for="user-email" class="p-0">
                                 <input type="text" name="email" id="user-email" required>
-                                <p ><strong class="required-char">*</strong> Email</p>
+                                <span ><strong class="required-char">*</strong> Email</span>
                             </label>
 
                             <label for="user-password" class="p-0">
                                 <input type="password" name="password" id="user-password" required>
-                                <p ><strong class="required-char">*</strong> Password</p>
+                                <span ><strong class="required-char">*</strong> Password</span>
                             </label>
                             
                             <label for="user-cpassword" class="p-0">
                                 <input type="password" name="confirm-password" id="user-cpassword" required>
-                                <p ><strong class="required-char">*</strong> Confirm Password</p>
+                                <span ><strong class="required-char">*</strong> Confirm Password</span>
                             </label>
                         </fieldset>
                         
@@ -157,17 +158,17 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.INTOLERANCES_INFORMATIONS)">
                         </div>
 
-<!-- ----------------------- THIRD PAGE ----------------------- -->
+<!--  THIRD PAGE  -->
                         <fieldset class="fieldset-2 p-0 m-0 col-12 d-none">
                             <legend>Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
-                                <label for="search-ingredient" class="p-0 col-12">
+                                <label for="search-ingredient" class="p-0">
                                     <input type="search" name="search-ingredient" id="search-ingredient"
                                         onkeyup="search(this)"
-                                        onsearch="clearDropdownElements()"
-                                        onfocusout="hideLabel(this)">
-                                    <p>Search ingredient</p>
+                                        placeholder="Search your intolerances"
+                                        aria-label="Search your intolerances">
+                                    <span class="d-none">Search your intolerances</span>
                                 </label>
 
                                 <!-- <button class="button-secondary col-2" onclick="addIngredientToList(event)">
@@ -184,8 +185,8 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <div class="ingredients-list row w-100 m-auto mt-4 scrollable" data-server="true">
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>
                                     
-                                    <label for="ingr-<?= $intolerance['name'] ?>" class="col-6 col-md-4">
-                                        <input type="checkbox" name="intolerances[]" id="ingr-<?= $intolerance['name'] ?>" value="<?= $intolerance['name'] ?>">
+                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-md-4">
+                                        <input type="checkbox" name="intolerances[]" id="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" value="<?= str_replace(' ', '_', $intolerance['name']) ?>">
                                         <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
                                     </label>
 
@@ -193,7 +194,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
 
                         </fieldset>
-                        <div class="fieldset-2 row justify-content-center p-0 m-0  d-none">
+                        <div class="fieldset-2 row justify-content-center p-0 m-0 d-none">
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             <div class="col-2"></div>
                             <input type="submit" value="Sign Up" class="col-5 button-primary">

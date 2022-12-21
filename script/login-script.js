@@ -1,5 +1,11 @@
 'use strict'
 
+window.onload = () => {
+	document
+		.querySelector('input#search-ingredient')
+		.addEventListener('search', clearDropdownElements)
+}
+
 /**
  * @enum RegistrationFieldset
  * Fieldsets in the registration page.
@@ -13,11 +19,11 @@ const RegistrationFieldset = {
 /**
  * Displays a loaded image into a preview <img>
  * @param {HTMLInputElement} input - The input element to load the image from
- * @param {HTMLInputElement} [preview=input.parentNode.querySelector(`#${input.id} ~ p`)] - The HTML element to loead the image into
+ * @param {HTMLInputElement} [preview=input.parentNode.querySelector(`#${input.id} ~ span`)] - The HTML element to loead the image into
  */
 function profilePicPreview(
 	input,
-	preview = input.parentNode.querySelector(`#${input.id} ~ p`)
+	preview = input.parentNode.querySelector(`#${input.id} ~ span`)
 ) {
 	const fReader = new FileReader()
 	// const file = input.files
@@ -32,7 +38,7 @@ function profilePicPreview(
 /**
  * Remove all the option of a dropdown menu
  */
-function clearDropdownElements() {
+async function clearDropdownElements() {
 	const dropdown = document.querySelector('ul.search-result')
 	clearElement(dropdown)
 }
@@ -134,6 +140,7 @@ function addIngredientToList(event) {
 	listItems = listItems.map((ingredient) => {
 		const ingredientName = ingredient.name
 		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
+		console.log(ingredientId)
 
 		return `<label for="ingr-${ingredientId}" class="col-6 col-md-4">
 			<input type="checkbox" name="intolerances[]" id="ingr-${ingredientId}" 
