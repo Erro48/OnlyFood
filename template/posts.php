@@ -33,7 +33,7 @@
                     <div class="col-2">
                         <img src="<?php echo $post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 p-1">
                         <p><?php echo $post["owner"]; ?></p>
                         <p><?php echo $post["description"]; ?></p>
                     </div>
