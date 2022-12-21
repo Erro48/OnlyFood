@@ -342,7 +342,7 @@ class DatabaseHelper{
     }
 
     public function likePost($username, $postId){
-        if(!postAlreadyLikedByUser($username, $postId)){
+        if(!$this->postAlreadyLikedByUser($username, $postId)){
             $stmt = $this->db->prepare("
             INSERT INTO likes(user, post)
             VALUES (?, ?)");
@@ -353,7 +353,7 @@ class DatabaseHelper{
     }
 
     public function unlikePost($username, $postId){
-        if(postAlreadyLikedByUser($username, $postId)){
+        if($this->postAlreadyLikedByUser($username, $postId)){
             $stmt = $this->db->prepare("
             DELETE FROM likes
             WHERE user = ?

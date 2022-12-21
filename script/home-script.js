@@ -23,6 +23,7 @@ function showRecipe(id){
 function like(id){
     axios.get(`request/like.php?postId=${id}`)
     .then((data) => {
+        console.log(data);
         document.querySelector("article.article-".concat(id, " button.like-button")).style.backgroundColor = data.data.backgroundColor;
     })
     .catch((err) => console.error(err));
