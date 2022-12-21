@@ -275,13 +275,17 @@ form
 	margin-top: 1.5rem;
 }
 
+form label:has(input[type='file'] ~ .profile-pic) {
+	height: 10em;
+}
+
 form label:has(input.input-error) {
 	--error-animation-offset: 5px;
 	animation: shake 0.25s ease;
 }
 
 /* #region Labels Content */
-form label span {
+form label:not(:has(input[type='checkbox'])) span {
 	position: absolute;
 	top: 25%;
 	left: 0;
