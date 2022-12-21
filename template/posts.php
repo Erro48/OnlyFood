@@ -12,11 +12,11 @@
                             <div class="row">
                         <?php endif; ?>
                         <div class="col-4">
-                            <div class="row ingredient-div" style="border: 3.5px solid #<?php echo $ingredient["color"]; ?>">
-                                <div class="col-7">
+                            <div class="ingredient-div" style="outline: 3.5px solid #<?php echo $ingredient["color"]; ?>">
+                                <div class="ingredient-name-div">
                                     <p><?php echo $ingredient["name"]; ?></p>
                                 </div>
-                                <div class="col-5" style="border-left: 3.5px solid #<?php echo $ingredient["color"]; ?>; border-top: 3.5px solid #<?php echo $ingredient["color"]; ?>; border-bottom: 3.5px solid #<?php echo $ingredient["color"]; ?>">
+                                <div class="ingredient-quantity-div" style="outline: 3.5px solid #<?php echo $ingredient["color"]; ?>">
                                     <p><?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?></p>
                                 </div>
                             </div>
