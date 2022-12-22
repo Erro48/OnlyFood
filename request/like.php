@@ -6,7 +6,7 @@ if (isset($_GET["postId"])) {
 
     if($dbh->postAlreadyLikedByUser("carlo61", $postId)){ //TODO cambiare user
         $dbh->unlikePost("carlo61", $postId);
-        $data["backgroundColor"] = "var(--background)";
+        $data["backgroundColor"] = "#f0f0f0";
     } else {
         $dbh->likePost("carlo61", $postId);
         $data["backgroundColor"] = "var(--primary)";
