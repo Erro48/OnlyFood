@@ -76,7 +76,7 @@ main article.post-article div.ingredient-div div.ingredient-quantity-div {
     min-width: 2rem;
     margin-left: 1rem;
     text-align: center;
-    box-shadow: -7px 0px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.5);
 }
 main article.post-article div.ingredient-div div.ingredient-name-div > p {
     margin: 0;

@@ -125,13 +125,23 @@ footer.page-footer > div > ul > li > button.button-selected {
 	background-color: var(--primary);
 }
 
-footer.page-footer > div > ul > li > button > img {
-	width: 2.5rem;
-	height: 2.5rem;
+footer.page-footer > div > ul > li > button div.col-12 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-footer.page-footer > div > ul > li > button > p {
+footer.page-footer > div > ul > li > button div.col-md-8 {
 	display: none;
+}
+
+footer.page-footer > div > ul > li > button img {
+	width: 2.2rem;
+	height: 2.2rem;
+}
+
+footer.page-footer > div > ul > li > button p.p-selected {
+	color: var(--text-light);
 }
 /* #endregion */
 
@@ -312,31 +322,59 @@ form label:not(:has(input[type='checkbox'])) span {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px) {
+	div.footer-container {
+		height: 100%;
+	}
+	
 	footer.page-footer {
 		margin-top: 1.1rem;
-		margin-left: 0.8rem;
-		border-radius: 10px;
+		margin-left: 1.5rem;
+		border-radius: 10px 0 0 10px;
 	}
 
-	footer.page-footer > div > ul {
-		padding-left: 0;
+	footer.page-footer > div.row {
+		width: 100%;
+		margin: 0;
 	}
 
-	div.container-fluid > div.row:nth-child(2) > div.col-8 {
+	footer.page-footer > div.row > ul {
+		padding: 0;
+		border-radius: 10px 0 0 10px;
+	}
+
+	/*div.container-fluid > div.row:nth-child(2) > div.col-8 {
 		height: 93vh;
-	}
+	}*/
 
 	footer.page-footer > div > ul > li {
 		height: 5.7rem;
 	}
 
 	footer.page-footer > div > ul > li > button {
-		background-position: left;
 		font-size: 100%;
 	}
 
-	footer.page-footer > div > ul > li > button > p {
+	footer.page-footer > div > ul > li > button div.col-4 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+
+	footer.page-footer > div > ul > li > button div.col-md-8 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	footer.page-footer > div > ul > li > button img {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	footer.page-footer > div > ul > li > button p {
 		display: inline-block;
+		margin: 0;
 	}
 }
 /* #endregion */

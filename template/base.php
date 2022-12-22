@@ -75,23 +75,47 @@ footer (nav bar)
                     <ul>
                         <li class="col-3 col-md-12">
                             <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["name"] == "profile-content.php"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/profile.png" alt="profile page" />
-                                <p>Profile</p>
+                                <div class="row ps-1 h-100">
+                                    <div class="col-12 col-md-4">
+                                        <img src="imgs/icons/profile.png" alt="profile page" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="<?php if($templateParams["name"] == "profile-content.php"){echo "p-selected";} ?>">Profile</p>
+                                    </div>
+                                </div>
                             </button>
                         </li><li class="col-3 col-md-12">
                             <button onclick="window.location.href='post.php'" class="<?php if($templateParams["name"] == "create-post.php"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/post.png" alt="post page" />
-                                <p>Post</p>
+                                <div class="row ps-1 h-100">
+                                    <div class="col-12 col-md-4">
+                                        <img src="imgs/icons/post.png" alt="post page" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="<?php if($templateParams["name"] == "create-post.php"){echo "p-selected";} ?>">Post</p>
+                                    </div>
+                                </div>
                             </button>
                         </li><li class="col-3 col-md-12">
                             <button onclick="window.location.href='index.php'" class="<?php if($templateParams["name"] == "home.php"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/home.png" alt="home page" />
-                                <p>Home</p>
+                                <div class="row ps-1 h-100">
+                                    <div class="col-12 col-md-4">
+                                        <img src="imgs/icons/home.png" alt="home page" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="<?php if($templateParams["name"] == "home.php"){echo "p-selected";} ?>">Home</p>
+                                    </div>
+                                </div>
                             </button>
                         </li><li class="col-3 col-md-12">
                             <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["name"] == "explore-content.php"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/explore.png" alt="explore page" />
-                                <p>Explore</p>
+                                <div class="row ps-1 h-100">
+                                    <div class="col-12 col-md-4">
+                                        <img src="imgs/icons/explore.png" alt="explore page" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="<?php if($templateParams["name"] == "explore-content.php"){echo "p-selected";} ?>">Explore</p>
+                                    </div>
+                                </div>
                             </button>
                         </li>
                     </ul>
