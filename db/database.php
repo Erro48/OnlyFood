@@ -278,8 +278,22 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("
         SELECT *
         FROM tags
-        ORDER BY name
-        LIMIT 15");
+        ORDER BY name");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTag($name){
+        $name = $name."%";
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM tags
+        WHERE name LIKE ?
+        ORDER BY name");
+
+        $stmt->bind_param("s", $name);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -311,6 +325,43 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function postAlreadyLikedByUser($username, $postId){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM LIKES
+        WHERE user = ?
+        AND post  = ?");
+
+        $stmt->bind_param('si', $username, $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) > 0 ? true : false;
+    }
+
+    public function likePost($username, $postId){
+        if(!$this->postAlreadyLikedByUser($username, $postId)){
+            $stmt = $this->db->prepare("
+            INSERT INTO likes(user, post)
+            VALUES (?, ?)");
+
+            $stmt->bind_param('si', $username, $postId);
+            $stmt->execute();
+        }
+    }
+
+    public function unlikePost($username, $postId){
+        if($this->postAlreadyLikedByUser($username, $postId)){
+            $stmt = $this->db->prepare("
+            DELETE FROM likes
+            WHERE user = ?
+            AND post = ?");
+
+            $stmt->bind_param('si', $username, $postId);
+            $stmt->execute();
+        }
     }
 }
 ?>
