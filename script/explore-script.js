@@ -109,11 +109,35 @@ function createPost(postData){
                         <div class="col-2">
                             <img src="${postData.profilePic}" alt="Propic of ${postData.owner}" />
                         </div>
-                        <div class="col-7">
+                        <div class="col-6 p-1">
                             <p>${postData.owner}</p>
                             <p>${postData.description}</p>
                         </div>
-                        BOTTONI
+                        <div class="col-2 p-0">
+                            <div class="row w-100 justify-content-center m-0">
+                                <button class="action-button like-button ${postData.likeButtonClass}" onclick="like(${postData.postId})">
+                                    <img src="imgs/icons/like-button.png" alt="like button icon" />
+                                </button>
+                            </div>
+                            <div class="row w-100 justify-content-center m-0">
+                                <p class="likes-comments-p" id="like-number-p">
+                                    ${postData.likes}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-2 p-0">
+                            <div class="row w-100 justify-content-center m-0">
+                                <button class="action-button comments-button">
+                                    <img src="imgs/icons/comments-button.png" alt="comments button icon" />
+                                </button>
+                            </div>
+                            <div class="row w-100 justify-content-center m-0">
+                                <p class="likes-comments-p">
+                                    ${postData.comments}
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                     <footer class="row">
                         <div class="col-2"></div>

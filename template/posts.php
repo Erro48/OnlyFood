@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-2 p-0">
                         <div class="row w-100 justify-content-center m-0">
-                            <button class="action-button like-button" onclick="like(<?php echo $post['postId'];?>)" <?php if($dbh->postAlreadyLikedByUser("carlo61", $post["postId"])){echo "style=\"background-color: var(--primary);\"";} ?>>
+                            <button class="action-button like-button <?php if($dbh->postAlreadyLikedByUser("carlo61", $post["postId"])){echo "liked";}else{echo "not-liked";}?>" onclick="like(<?php echo $post['postId'];?>)">
                                 <img src="imgs/icons/like-button.png" alt="like button icon" />
                             </button>
                         </div>

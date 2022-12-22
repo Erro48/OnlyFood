@@ -138,6 +138,14 @@ main article.post-article button.action-button {
     padding: 0;
 }
 
+main article.post-article button.not-liked {
+    background-color: var(--button-base-color);
+}
+
+main article.post-article button.liked {
+    background-color: var(--primary);
+}
+
 main article.post-article button.action-button > img {
     width: 70%;
     height: 70%;
