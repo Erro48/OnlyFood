@@ -74,22 +74,22 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["title"] == "OnlyFood - Profile"){echo "button-selected";} ?>">
+                            <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["name"] == "profile-content.php"){echo "button-selected";} ?>">
                                 <img src="imgs/icons/profile.png" alt="profile page" />
                                 <p>Profile</p>
                             </button>
                         </li><li class="col-3 col-md-12">
-                            <button onclick="window.location.href='post.php'" class="<?php if($templateParams["title"] == "OnlyFood - Post"){echo "button-selected";} ?>">
+                            <button onclick="window.location.href='post.php'" class="<?php if($templateParams["name"] == "create-post.php"){echo "button-selected";} ?>">
                                 <img src="imgs/icons/post.png" alt="post page" />
                                 <p>Post</p>
                             </button>
                         </li><li class="col-3 col-md-12">
-                            <button onclick="window.location.href='index.php'" class="<?php if($templateParams["title"] == "OnlyFood - Home"){echo "button-selected";} ?>">
+                            <button onclick="window.location.href='index.php'" class="<?php if($templateParams["name"] == "home.php"){echo "button-selected";} ?>">
                                 <img src="imgs/icons/home.png" alt="home page" />
                                 <p>Home</p>
                             </button>
                         </li><li class="col-3 col-md-12">
-                            <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["title"] == "OnlyFood - Explore"){echo "button-selected";} ?>">
+                            <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["name"] == "explore-content.php"){echo "button-selected";} ?>">
                                 <img src="imgs/icons/explore.png" alt="explore page" />
                                 <p>Explore</p>
                             </button>
