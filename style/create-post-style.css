@@ -13,7 +13,7 @@ form fieldset ul {
 	list-style: none;
 }
 
-/* Modal */
+/* #region Modal */
 .modal-content {
 	height: 92vh;
 }
@@ -22,11 +22,55 @@ form fieldset ul {
 	background-color: var(--background);
 }
 
-.modal-content section .ingredient-name {
+/* #region Ingredients List */
+.modal-content section .modal-ingredients-list {
+	max-height: 62vh;
+	overflow-y: auto;
+	padding: 0.5em 0;
+}
+
+.modal-content section .modal-ingredients-list:has(*) {
+	border-top: 2px solid var(--accent);
+}
+
+.modal-content section .modal-ingredients-list.list-border-bottom {
+	border-bottom: 2px solid var(--accent);
+}
+
+/* #region Ingredients List Item */
+.modal-content section .modal-ingredients-list .row {
+	height: 3em;
+	padding: 0;
+}
+
+.modal-content section .modal-ingredients-list .row .ingredient-name {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+.modal-content section .modal-ingredients-list .row input[type='number'] {
+	height: 2em;
+	padding: 0 0.25em;
+}
+
+.modal-content section .modal-ingredients-list .row select {
+	background: var(--light-color);
+	border: 2px solid var(--primary);
+	border-radius: 10px;
+	height: 2em;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.modal-content section .modal-ingredients-list .row img {
+	width: 1.5em;
+}
+/* #endregion Ingredients List Item */
+
+/* #endregion Ingredients List */
+
+/* #endregion Modal */
 
 /* #region Result Dropdown*/
 div.search-result-container {

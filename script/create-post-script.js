@@ -1,5 +1,7 @@
 'use strict'
 
+const VH_UNIT = window.innerHeight / 100
+
 /**
  * Adds an ingredient to the list of the chosen ingredients
  * @param {Event} event
@@ -55,6 +57,21 @@ async function addIngredientToList(event) {
 	clearElement(document.querySelector('.search-result'))
 	inputSearchField.value = ''
 	hideLabel(inputSearchField)
+	checkIngredientsListMaxHeight()
+}
+
+/**
+ * Checks if max height of the ingredients list is greater than a 62vh. If it is
+ * it gives the class list-border-bottom to the ingredients list
+ */
+function checkIngredientsListMaxHeight() {
+	const maxHeight = 62 * VH_UNIT
+	const modalIngredientsList = document.querySelector('.modal-ingredients-list')
+	const scrollHeight = modalIngredientsList.scrollHeight
+
+	if (scrollHeight > maxHeight) {
+		modalIngredientsList.classList.add('list-border-bottom')
+	}
 }
 
 async function getMeasuresByIngredient(ingredient) {
