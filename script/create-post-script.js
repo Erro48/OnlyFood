@@ -24,9 +24,8 @@ async function addIngredientToList(event) {
 	// create HTML tags
 	listItems = await Promise.all(
 		listItems.map(async (ingredient) => {
-			const ingredientName = ingredient.name
-			const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
-			let measuresAllowed = await getMeasuresByIngredient(ingredientName)
+			const ingredientId = ingredient.name.toLowerCase().replaceAll(' ', '_')
+			let measuresAllowed = await getMeasuresByIngredient(ingredient.name)
 
 			// remove the used measure, if present
 			measuresAllowed = measuresAllowed.filter((measure) =>
@@ -47,19 +46,7 @@ async function addIngredientToList(event) {
 					options.indexOf(measure) == 0 ? 'selected="selected"' : ''
 				return `<option value="${measure.name}" ${selected}>${measure.acronym}</option>`
 			})
-			return `
-                <div class="row m-auto align-items-center">
-                    <div class="col-6 ingredient-name">${ingredientName}</div>
-                    <div class="col-3">
-                        <input type="number" value="${ingredient.quantity}">
-                    </div>
-                    <div class="col-2">
-                        <select name="measures" id="measures">
-                            ${options}
-                        </select>
-                    </div>
-                    <div class="col-1">X</div>
-                </div>`
+			return createIngredientsListItem(ingredient, options)
 		})
 	)
 
@@ -96,6 +83,10 @@ function addIngredients() {
 	ingredientsContainer.innerHTML = ingredients.join('')
 }
 
+/**
+ * Returns the list of the ingredients present in the ingredients list
+ * @returns an array containg the ingredients
+ */
 function getIngredientsOfModalList() {
 	const listContainer = document.querySelector('div.modal-ingredients-list')
 	return Array.from(listContainer.children).map((item) => {
@@ -110,4 +101,45 @@ function getIngredientsOfModalList() {
 			},
 		}
 	})
+}
+
+/**
+ * Removes the specified element from the ingredients list
+ * @param {*} element - The element to remove
+ */
+function removeElementFromList(element) {
+	const ingredientsList = document.querySelector('.modal-ingredients-list')
+	element = element.parentElement.parentElement
+
+	ingredientsList.innerHTML = ingredientsList.innerHTML.replace(
+		element.outerHTML,
+		''
+	)
+}
+
+/**
+ * Returns the html of an ingredient list item
+ * @param {*} ingredient - The ingredient to create the row of
+ * @param {*} options  - The options for the measures dropdown
+ * @returns the html of the list item
+ */
+function createIngredientsListItem(ingredient, options) {
+	return `<div class="row m-auto align-items-center" id="${ingredient.name
+		.toLowerCase()
+		.replaceAll(' ', '_')}-row">
+				<div class="col-5 ingredient-name">${ingredient.name}</div>
+				<div class="col-3">
+					<input type="number" value="${ingredient.quantity}">
+				</div>
+				<div class="col-3">
+					<select name="measures" id="measures">
+						${options}
+					</select>
+				</div>
+				<div class="col-1 text-end p-0">
+					<img src="./imgs/icons/minus.svg" alt="Remove element ${
+						ingredient.name
+					}" onclick="removeElementFromList(this)">
+				</div>
+			</div>`
 }
