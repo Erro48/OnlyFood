@@ -43,12 +43,12 @@ footer (nav bar)
             <div class="row align-content-center buttons-container">
                     <div class="col-6">
                         <button onclick="window.location.href='search.php'">
-                            <img src="imgs/icons/search.png" alt="search icon" />
+                            <img src="imgs/icons/search.svg" alt="search icon" />
                         </button>
                     </div>
                     <div class="col-6">
                         <button>
-                            <img src="imgs/icons/notification.png" alt="notifications icon" />
+                            <img src="imgs/icons/notification.svg" alt="notifications icon" />
                         </button>
                     </div>
                 </ul>
@@ -77,7 +77,7 @@ footer (nav bar)
                             <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["name"] == "profile-content.php"){echo "button-selected";} ?>">
                                 <div class="row ps-1 h-100">
                                     <div class="col-12 col-md-4">
-                                        <img src="imgs/icons/profile.png" alt="profile page" />
+                                        <img src="imgs/icons/profile.svg" alt="profile page" />
                                     </div>
                                     <div class="col-md-8">
                                         <p class="<?php if($templateParams["name"] == "profile-content.php"){echo "p-selected";} ?>">Profile</p>
@@ -88,7 +88,7 @@ footer (nav bar)
                             <button onclick="window.location.href='post.php'" class="<?php if($templateParams["name"] == "create-post.php"){echo "button-selected";} ?>">
                                 <div class="row ps-1 h-100">
                                     <div class="col-12 col-md-4">
-                                        <img src="imgs/icons/post.png" alt="post page" />
+                                        <img src="imgs/icons/post.svg" alt="post page" />
                                     </div>
                                     <div class="col-md-8">
                                         <p class="<?php if($templateParams["name"] == "create-post.php"){echo "p-selected";} ?>">Post</p>
@@ -99,7 +99,7 @@ footer (nav bar)
                             <button onclick="window.location.href='index.php'" class="<?php if($templateParams["name"] == "home.php"){echo "button-selected";} ?>">
                                 <div class="row ps-1 h-100">
                                     <div class="col-12 col-md-4">
-                                        <img src="imgs/icons/home.png" alt="home page" />
+                                        <img src="imgs/icons/home.svg" alt="home page" />
                                     </div>
                                     <div class="col-md-8">
                                         <p class="<?php if($templateParams["name"] == "home.php"){echo "p-selected";} ?>">Home</p>
@@ -110,7 +110,7 @@ footer (nav bar)
                             <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["name"] == "explore-content.php"){echo "button-selected";} ?>">
                                 <div class="row ps-1 h-100">
                                     <div class="col-12 col-md-4">
-                                        <img src="imgs/icons/explore.png" alt="explore page" />
+                                        <img src="imgs/icons/explore.svg" alt="explore page" />
                                     </div>
                                     <div class="col-md-8">
                                         <p class="<?php if($templateParams["name"] == "explore-content.php"){echo "p-selected";} ?>">Explore</p>

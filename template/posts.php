@@ -33,7 +33,7 @@
                     <div class="col-2 p-0">
                         <div class="row w-100 justify-content-center m-0">
                             <button class="action-button like-button <?php if($dbh->postAlreadyLikedByUser("carlo61", $post["postId"])){echo "liked";}else{echo "not-liked";}?>" onclick="like(<?php echo $post['postId'];?>)">
-                                <img src="imgs/icons/like-button.png" alt="like button icon" />
+                                <img src="imgs/icons/like-button.svg" alt="like button icon" />
                             </button>
                         </div>
                         <div class="row w-100 justify-content-center m-0">
@@ -48,7 +48,7 @@
                     <div class="col-2 p-0">
                         <div class="row w-100 justify-content-center m-0">
                             <button class="action-button comments-button">
-                                <img src="imgs/icons/comments-button.png" alt="comments button icon" />
+                                <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
                             </button>
                         </div>
                         <div class="row w-100 justify-content-center m-0">

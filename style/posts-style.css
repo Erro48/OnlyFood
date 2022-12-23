@@ -143,12 +143,12 @@ main article.post-article button.not-liked {
 }
 
 main article.post-article button.liked {
-    background-color: var(--primary);
+    background-color: var(--accent);
 }
 
 main article.post-article button.action-button > img {
-    width: 70%;
-    height: 70%;
+    width: 85%;
+    height: 85%;
 }
 
 main article.post-article div.info-container p.likes-comments-p {

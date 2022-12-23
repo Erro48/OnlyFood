@@ -137,8 +137,7 @@ footer.page-footer > div > ul > li > button div.col-md-8 {
 }
 
 footer.page-footer > div > ul > li > button img {
-	width: 2.2rem;
-	height: 2.2rem;
+	height: 68%;
 }
 
 footer.page-footer > div > ul > li > button p.p-selected {
@@ -237,9 +236,10 @@ input ~ span {
 /* #region DoubleSelector */
 ul.double-selector {
 	border-radius: 6px;
-	border: 2px solid var(--secondary);
+	/*border: 2px solid var(--secondary);*/
 	margin: 0;
 	padding: 0;
+	background-color: var(--button-base-color);
 }
 
 ul.double-selector > li {
@@ -247,26 +247,27 @@ ul.double-selector > li {
 }
 
 ul.double-selector > li > input {
+	position: relative;	/*per far apparire l'ombra sopra agli altri elementi*/
+	z-index: 0;			/*per far apparire l'ombra sopra agli altri elementi*/
 	border: none;
 	width: 100%;
-}
-
-ul.double-selector > li > input {
 	border-radius: 4px;
-	background-color: var(--light-color);
+	/*background-color: var(--light-color);*/
 }
 
 ul.double-selector > li > input.preview-selected-left {
+    z-index: 1;
 	background-color: var(--accent);
 	color: var(--text-light);
-	box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.25);
-	z-index: 100;
+	/*box-shadow: 50px 0px 20px rgba(0, 0, 0, 0.25);*/
+	box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
 }
 
 ul.double-selector > li > input.preview-selected-right {
+    z-index: 1;
 	background-color: var(--accent);
 	color: var(--text-light);
-	box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.25);
+	box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.25);
 }
 /* #endregion */
 
