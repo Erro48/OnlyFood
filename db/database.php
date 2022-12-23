@@ -363,5 +363,92 @@ class DatabaseHelper{
             $stmt->execute();
         }
     }
+
+    public function unreadNotificationCount($username){
+        $notificationCount = 0;
+        $stmt = $this->db->prepare("
+                SELECT username as sender, profilePic, f.date
+                FROM follows f
+                JOIN users u on u.username=f.follower
+                WHERE f.followed=? AND f.seen=0
+                ORDER BY f.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+        
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic
+                FROM likes l 
+                JOIN users u on u.username=l.user
+                JOIN posts p on p.postId=l.post
+                WHERE p.owner=?");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic, c.date
+                FROM comments c 
+                JOIN users u on u.username=c.user
+                JOIN posts p on p.postId=c.postId
+                WHERE p.owner=?
+                ORDER BY c.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+        
+        return $notificationCount;
+    }
+
+    public function getUnreadNotifications($username){
+        $stmt = $this->db->prepare("
+                SELECT username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
+                FROM follows f
+                JOIN users u on u.username=f.follower
+                WHERE f.followed=? AND f.seen=0
+                ORDER BY f.date DESC");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultFollow = $stmt->get_result();
+
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                FROM likes l 
+                JOIN users u on u.username=l.user
+                JOIN posts p on p.postId=l.post
+                WHERE p.owner=?");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultLikes = $stmt->get_result();
+        
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
+                FROM comments c 
+                JOIN users u on u.username=c.user
+                JOIN posts p on p.postId=c.postId
+                WHERE p.owner=?
+                ORDER BY c.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultComments = $stmt->get_result();
+        
+        return array_merge($resultFollow->fetch_all(MYSQLI_ASSOC),
+                            $resultLikes->fetch_all(MYSQLI_ASSOC),
+                            $resultComments->fetch_all(MYSQLI_ASSOC));
+    }
+
+    public function markNotificationsAsRead($notifications){
+        foreach ($notifications as $not) {
+
+        }
+    }
 }
 ?>

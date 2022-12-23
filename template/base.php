@@ -47,8 +47,22 @@ footer (nav bar)
                         </button>
                     </div>
                     <div class="col-6">
-                        <button>
-                            <img src="imgs/icons/notification.png" alt="notifications icon" />
+                        <button onclick="window.location.href='notifications.php'">
+                            <div>
+                                <img src="imgs/icons/notification.png" alt="notifications icon" />
+                                <?php
+                                    $count = $dbh->unreadNotificationCount($_SESSION["username"]);
+                                    if ($count == 0):
+                                ?>
+                                <div class="badge hidden">
+                                    <p id="notification-counter"></p>    
+                                </div>
+                                <?php else: ?>
+                                <div class="badge">
+                                    <p id="notification-counter"><?php echo $count ?></p>    
+                                </div>
+                                <?php endif ?>   
+                            </div>
                         </button>
                     </div>
                 </ul>
@@ -99,7 +113,6 @@ footer (nav bar)
             </footer>
         </div>
     </div>
-    
  </div>
 
 
