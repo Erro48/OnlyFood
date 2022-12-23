@@ -2,9 +2,9 @@
 require_once 'bootstrap.php';
 
 $templateParams["title"] = "OnlyFood - Create Post";
-$templateParams["nome"] = "create-post.php";
-$templateParams["style"][0] = "create-post-style.css";
-$templateParams["script"][0] = "home-script.js";
+$templateParams["name"] = "create-post.php";
+$templateParams["style"] = array("create-post-style.css");
+$templateParams["script"] = array("create-post-script.js", "search-ingredient.js");
 
 require 'template/base.php';
 ?>

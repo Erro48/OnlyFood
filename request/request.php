@@ -24,4 +24,10 @@ if (isset($_GET["user"])) {
     echo json_encode($users_list);
 }
 
+if (isset($_GET["measures"])) {
+    $ingredient = $_GET["measures"];
+    $measures = $dbh->getIngredientsMeasures($ingredient);
+    echo json_encode($measures);
+}
+
 ?>

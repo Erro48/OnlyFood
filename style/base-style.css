@@ -180,7 +180,8 @@ input::selection {
 }
 
 input[type='text'],
-input[type='password'] {
+input[type='password'],
+input[type='number'] {
 	background: var(--light-color);
 	border: 2px solid var(--primary);
 	border-radius: 10px;

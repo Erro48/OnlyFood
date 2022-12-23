@@ -363,5 +363,18 @@ class DatabaseHelper{
             $stmt->execute();
         }
     }
+
+    public function getIngredientsMeasures($ingredient) {
+        $stmt = $this->db->prepare(
+            'SELECT m.*
+            FROM expressedin e
+            JOIN measures m on m.name = e.unit
+            WHERE e.ingredient = ?');
+        $stmt->bind_param('s', $ingredient);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
