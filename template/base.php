@@ -41,17 +41,16 @@ footer (nav bar)
         </div>
         <div class="col-6">
             <div class="row align-content-center buttons-container">
-                    <div class="col-6">
-                        <button onclick="window.location.href='search.php'">
-                            <img src="imgs/icons/search.svg" alt="search icon" />
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button>
-                            <img src="imgs/icons/notification.svg" alt="notifications icon" />
-                        </button>
-                    </div>
-                </ul>
+                <div class="col-6">
+                    <button onclick="window.location.href='search.php'">
+                        <img src="imgs/icons/search.svg" alt="search icon" />
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button>
+                        <img src="imgs/icons/notification.svg" alt="notifications icon" />
+                    </button>
+                </div>
             </div>
         </div>
     </header>

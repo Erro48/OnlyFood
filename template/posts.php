@@ -37,7 +37,7 @@
                             </button>
                         </div>
                         <div class="row w-100 justify-content-center m-0">
-                            <p class="likes-comments-p" id="like-number-p">
+                            <p class="likes-comments-p like-number-p">
                                 <?php
                                     $likes = $dbh->getLikesByPost($post["postId"])[0]["likes"];
                                     echo printApproximateNumber($likes);
