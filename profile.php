@@ -27,7 +27,7 @@ if (isset($_GET["user"])) {
 }
 
 $templateParams["style"] = array("profile-style.css", "posts-style.css");
-$templateParams["script"] = array("profile-script.js", "home-script.js");
+$templateParams["script"] = array("profile-script.js", "posts-script.js");
 
 require 'template/base.php';
 ?>
