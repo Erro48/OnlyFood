@@ -8,10 +8,12 @@
                         <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                             <div class="ingredient-div" style="outline: 3.5px solid #<?php echo $ingredient["color"]; ?>">
                                 <div class="ingredient-name-div">
-                                    <p><?php echo $ingredient["name"]; ?></p>
+                                    <?php echo $ingredient["name"]; ?>
+                                    <!--p><?php echo $ingredient["name"]; ?></p-->
                                 </div>
                                 <div class="ingredient-quantity-div" style="outline: 3.5px solid #<?php echo $ingredient["color"]; ?>">
-                                    <p><?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?></p>
+                                    <?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?>
+                                    <!--p><?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?></p-->
                                 </div>
                             </div>
                         <?php $i++; endforeach; ?>

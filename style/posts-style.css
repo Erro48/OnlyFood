@@ -62,6 +62,7 @@ main article.post-article div.ingredient-div {
 
 main article.post-article div.ingredient-div div.ingredient-name-div {
     max-width: 100%;
+    font-size: 85%;
     text-overflow: ellipsis;
     overflow: hidden;
 }
@@ -76,9 +77,11 @@ main article.post-article div.ingredient-div div.ingredient-quantity-div {
     min-width: 2rem;
     margin-left: 1rem;
     text-align: center;
+    font-size: 70%;
     box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.5);
 }
-main article.post-article div.ingredient-div div.ingredient-name-div > p {
+
+/*main article.post-article div.ingredient-div div.ingredient-name-div > p {
     margin: 0;
     font-size: 85%;
     max-width: 100%;
@@ -89,7 +92,7 @@ main article.post-article div.ingredient-div div.ingredient-name-div > p {
 main article.post-article div.ingredient-div div.ingredient-quantity-div > p {
     margin: 0;
     font-size: 70%;
-}
+}*/
 
 main article.post-article > div.row {
     margin-top: 1rem;

@@ -76,29 +76,20 @@ function createPost(postData){
     container.classList.add("col-12");
     container.classList.add("single-post-container");
     let containerContent = `<article class="row post-article article-${postData.postId}">
-                                <section class="col-12 recipe-section">`;
+                                <section class="col-12 recipe-section">
+                                    <section class="ingredients-container">`;
     let i = 0;
-    postData.ingredients.forEach(element => {
-        if(i == 0){
-            containerContent += `<div class="row">`;
-        } else if (i % 2 == 0 && i != 0){
-            containerContent += `</div>
-                                <div class="row">`;
-        }
-        containerContent += `<div class="col-6">
-                                <div class="row ingredient-div" style="border: 3.5px solid #${element.color};">
-                                    <div class="col-8">
-                                        <p>${element.name}</p>
-                                    </div>
-                                    <div class="col-4" style="border-left: 3.5px solid #${element.color}; border-top: 3.5px solid #${element.color}; border-bottom: 3.5px solid #${element.color};">
-                                        <p>${element.quantity} ${element.acronym}</p>
-                                    </div>
+    postData.ingredients.forEach(ingredient => {
+        containerContent += `<div class="ingredient-div" style="outline: 3.5px solid #${ingredient.color};">
+                                <div class="ingredient-name-div">
+                                    ${ingredient.name}
                                 </div>
-                            </div>
-                            `;
-        i++;
+                                <div class="ingredient-quantity-div" style="outline: 3.5px solid #${ingredient.color};">
+                                    ${ingredient.quantity} ${ingredient.acronym}
+                                </div>
+                            </div>`;
     });
-    containerContent += `</div>
+    containerContent += `</section>
                         <h2>How To</h2>
                         <section class="howto-section">
                             <p>${postData.howTo}</p>
@@ -137,7 +128,6 @@ function createPost(postData){
                                 </p>
                             </div>
                         </div>
-
                     </div>
                     <footer class="row">
                         <div class="col-2"></div>
