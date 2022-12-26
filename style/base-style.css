@@ -4,6 +4,7 @@
 	- Fonts
 	- Body
 	- Header
+	- Main
 	- Footer
 	- Components
 		* Buttons
@@ -83,6 +84,13 @@ header.page-header div.buttons-container button {
 header.page-header div.buttons-container button > img {
 	width: 80%;
 	aspect-ratio: 1/1;
+}
+/* #endregion */
+
+
+/* #region Main */
+main {
+	height: 87vh;
 }
 /* #endregion */
 
@@ -334,6 +342,10 @@ form label:not(:has(input[type='checkbox'])) span {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px) {
+	main {
+		height: 93vh;
+	}
+
 	div.footer-container {
 		height: 100%;
 	}

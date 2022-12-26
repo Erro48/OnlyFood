@@ -49,9 +49,11 @@ INSERT INTO `compositions` (`recipe`, `ingredient`, `unit`, `quantity`) VALUES
 (2, 'oil', 'litre', 1);
 
 INSERT INTO `users` (`username`, `name`, `surname`, `email`, `password`, `profilePic`) VALUES
-('carlo61', 'Carlo', 'Conti', 'carlo@conti.com', 'ciao', 'imgs/propics/carlo61.jpg'),
-('ig_Massari', 'Iginio', 'Massari', 'iginio@massari.com', 'ciao', 'imgs/propics/ig_Massari.jpg'),
-('cr7', 'Cristiano', 'Ronaldo', 'cris@ronaldo.com', 'ciao', 'imgs/propics/cr7.jpg');
+('carlo61', 'Carlo', 'Conti', 'carlo@conti.com', 'ciao', 'carlo61.jpg'),
+('ig_Massari', 'Iginio', 'Massari', 'iginio@massari.com', 'ciao', 'ig_Massari.jpg'),
+('cr7', 'Cristiano', 'Ronaldo', 'cris@ronaldo.com', 'ciao', 'cr7.jpg'),
+('antonino75', 'Antonino', 'Cannavacciuolo', 'antoninocannavacciuolo@antonino.it', 'ciao', 'antonino75.jfif'),
+('aleborghese', 'Alessandro', 'Borghese', 'ale@borghese.it', 'ciao', 'aleborghese.jpg');
 
 INSERT INTO `follows` (`follower`, `followed`, `date`) VALUES
 ('carlo61', 'ig_Massari', '2022-11-01 00:00:00'),
@@ -69,3 +71,9 @@ INSERT INTO `posts` (`postId`, `date`, `owner`, `recipe`) VALUES
 INSERT INTO `likes` (`likeId`, `user`, `post`) VALUES
 (0, 'carlo61', 0),
 (1, 'ig_Massari', 0);
+
+INSERT INTO `comments` (`commentId`, `content`, `date`, `user`, `postId`) VALUES
+(0, 'Spacca bro!', '2022-12-20 11:05', 'ig_Massari', 2),
+(1, 'Mi fa ribrezzo', '2022-12-21 20:42', 'antonino75', 2),
+(2, 'Top', '2022-12-20 10:18', 'carlo61', 2),
+(3, 'Sembra veramente deliziosa!! Ottimo lavoro Cristiano!!! Fanne altre ti prego che le voglio portare nei miei ristoranti!', '2022-12-22 15:36', 'aleborghese', 2);

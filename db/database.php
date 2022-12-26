@@ -26,6 +26,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getPostsById($postId){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM posts p, recipes r
+        WHERE p.recipe = r.recipeId
+        AND p.postId = ?");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getLikesByPost($postId){
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS likes
@@ -38,11 +51,25 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getCommentsByPost($postId){
+    public function getCommentsCountByPost($postId){
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS comments
         FROM comments c
         WHERE c.postId = ?");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCommentsByPost($postId){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM comments c, users u
+        WHERE c.user = u.username
+        AND c.postId = ?
+        ORDER BY date DESC");
         $stmt->bind_param('i', $postId);
         $stmt->execute();
         $result = $stmt->get_result();

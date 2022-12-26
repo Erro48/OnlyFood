@@ -1,0 +1,60 @@
+/* #region Recipe */
+div#recipe-div {
+    background-color: var(--light-color);
+    margin-top: 1rem;
+    padding: 0;
+    border-radius: 7rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+div#recipe-div img {
+    width: 100%;
+    border-radius: 7rem;
+}
+
+/* #endregion */
+
+/* #region Comments */
+section#comments-section article.comment-article {
+    background-color: var(--light-color);
+    margin: 1rem 0;
+    padding: 0;
+    border-radius: 1rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+section#comments-section article.comment-article > div.propic-container {
+    display: flex;
+    align-items: center;
+}
+
+section#comments-section article.comment-article > div.propic-container > img {
+    width: 100%;
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+section#comments-section article.comment-article > div:nth-child(2) > p:first-child {
+    font-size: 75%;
+}
+
+section#comments-section article.comment-article > div:nth-child(2) > p:nth-child(2) {
+    font-size: 70%;
+}
+
+section#comments-section article.comment-article > div:nth-child(2) > p:nth-child(3) {
+    font-size: 85%;
+}
+/* #endregion */
+
+/* #region Write a comment */
+section#write-comment-section {
+    background-color: var(--accent);
+}
+/* #endregion */
+
+/* #region Media Queries */
+@media screen and (min-width: 768px){
+
+}
+/* #endregion */

@@ -98,7 +98,7 @@ function createPost(postData){
                     <img src="${postData.preview}" alt="${postData.description}" />
                     <div class="row info-container">
                         <div class="col-2">
-                            <img src="${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />
                         </div>
                         <div class="col-6 p-1">
                             <p>${postData.owner}</p>
@@ -118,7 +118,7 @@ function createPost(postData){
                         </div>
                         <div class="col-2 p-0">
                             <div class="row w-100 justify-content-center m-0">
-                                <button class="action-button comments-button">
+                                <button class="action-button comments-button" onclick="window.location.href='comments.php?post=${postData.postId}'">
                                     <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
                                 </button>
                             </div>

@@ -26,7 +26,7 @@
                 <img class="col-12" src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
                 <div class="row info-container">
                     <div class="col-2">
-                        <img src="<?php echo $post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
+                        <img src="<?php echo $PROFILE_PIC_DIR.$post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
                     </div>
                     <div class="col-6 p-1">
                         <p><?php echo $post["owner"]; ?></p>
@@ -49,14 +49,14 @@
                     </div>
                     <div class="col-2 p-0">
                         <div class="row w-100 justify-content-center m-0">
-                            <button class="action-button comments-button">
+                            <button class="action-button comments-button" onclick="window.location.href='comments.php?post=<?php echo $post["postId"]; ?>'">
                                 <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
                             </button>
                         </div>
                         <div class="row w-100 justify-content-center m-0">
                             <p class="likes-comments-p">
                                 <?php
-                                    $comments = $dbh->getCommentsByPost($post["postId"])[0]["comments"];
+                                    $comments = $dbh->getCommentsCountByPost($post["postId"])[0]["comments"];
                                     echo printApproximateNumber($comments);
                                 ?>
                             </p>
