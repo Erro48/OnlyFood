@@ -17,7 +17,7 @@ function setCommentsSectionHeight(){
     commentsSection.style.height = "".concat(height, "px");
 }
 
-function setCommentsHeight(){
+/*function setCommentsHeight(){
     const commentArticles = document.getElementsByClassName("comment-article");
     for(let i = 0; i < commentArticles.length; i++) {
         const img = commentArticles[i].children[0].children[0];
@@ -28,4 +28,4 @@ function setCommentsHeight(){
         const height = img.offsetHeight - (maxHeightP.offsetHeight + parseInt(getComputedStyle(maxHeightP).marginBottom));
         commentP.style.maxHeight = "".concat(height, "px");
     }
-}
+}*/
