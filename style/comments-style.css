@@ -76,11 +76,17 @@ section#comments-section article.comment-article > div:nth-child(2) > p {
 /* #region Write a comment */
 section#write-comment-section {
     background-color: var(--accent);
+    padding: 1rem;
 }
 
 section#write-comment-section div#comment-input-container {
     display: flex;
     align-items: center;
+    padding-left: 0;
+}
+
+section#write-comment-section div#comment-input-container > label {
+    width: 100%;
 }
 
 section#write-comment-section input#comment-input {

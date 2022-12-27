@@ -3,6 +3,8 @@ require_once 'bootstrap.php';
 
 if(isset($_POST["comment-text"])){
     //Inserire commento nel db
+    unset($_POST["comment-text"]);
+    
 }
 
 $templateParams["title"] = "OnlyFood - Comments";

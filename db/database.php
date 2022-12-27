@@ -51,7 +51,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getCommentsCountByPost($postId){
+    public function getCommentsCountByPost($postId) {
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS comments
         FROM comments c
@@ -63,7 +63,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getCommentsByPost($postId){
+    public function getCommentsByPost($postId) {
         $stmt = $this->db->prepare("
         SELECT *
         FROM comments c, users u
@@ -75,6 +75,15 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertComment($username, $postId, $text) {
+        $stmt = $this->db->prepare("
+        INSERT INTO comments(content, date, user, postId) VALUES
+        (?, NOW(), ?, ?);");
+        $stmt->bind_param('ssi', $text, $username, $postId);
+        $stmt->execute();
+        return $stmt->get_result();
     }
 
     public function getUserInfo($user) {

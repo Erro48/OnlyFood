@@ -29,16 +29,14 @@
         <?php endforeach; ?>
     </section>
     <section id="write-comment-section" class="row">
-        <form class="col-12 row" action="" method="POST">
-            <div id="comment-input-container" class="col-11">
-                <label for="comment-input">
-                    <input id="comment-input" type="text" name="comment-text" placeholder="Write a comment..." />
-                </label>
-            </div>
-            <div class="col-1 p-0 d-flex align-items-center">
-                <input id="post-comment-input" class="col-2" type="submit" value="" />
-            </div>
-        </form>
+        <div id="comment-input-container" class="col-11">
+            <label for="comment-input">
+                <input id="comment-input" type="text" name="comment-text" placeholder="Write a comment..." />
+            </label>
+        </div>
+        <div class="col-1 p-0 d-flex align-items-center">
+            <input id="post-comment-input" class="col-2" type="submit" value="" onclick="sendComment(<?php echo $templateParams['postId'] ?>, document.querySelector('input#comment-input').value)" />
+        </div>
     </section>
 <?php endif; if($templateParams["postId"] == -1): ?>
     <p>Errore</p>
