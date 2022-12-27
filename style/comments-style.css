@@ -9,7 +9,7 @@ section#post-info-section article#recipe-article {
     background-color: var(--light-color);
     margin: 1rem 0 0 0;
     padding: 0;
-    max-width: 500px;
+    max-width: 550px;
     width: 100%;
     border-radius: 7rem;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -20,6 +20,9 @@ section#post-info-section article#recipe-article img {
     border-radius: 7rem;
 }
 
+section#post-info-section article#recipe-article p#owner-username {
+    font-size: 85%;
+}
 /* #endregion */
 
 /* #region Comments */
@@ -38,7 +41,7 @@ section#comments-section article.comment-article {
     background-color: var(--light-color);
     margin: 1rem;
     padding: 0;
-    max-width: 350px;
+    max-width: 400px;
     width: 100%;
     border-radius: 0.6rem;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -46,7 +49,7 @@ section#comments-section article.comment-article {
 
 section#comments-section article.comment-article > div.propic-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 section#comments-section article.comment-article > div.propic-container > img {
@@ -55,16 +58,18 @@ section#comments-section article.comment-article > div.propic-container > img {
     padding: 0.5rem;
 }
 
-section#comments-section article.comment-article > div:nth-child(2) > p:first-child {
+section#comments-section article.comment-article > div:nth-child(2) > div > p:first-child {
     font-size: 75%;
 }
 
-section#comments-section article.comment-article > div:nth-child(2) > p:nth-child(2) {
+section#comments-section article.comment-article > div:nth-child(2) > div > p:nth-child(2) {
     font-size: 70%;
 }
 
-section#comments-section article.comment-article > div:nth-child(2) > p:nth-child(3) {
+section#comments-section article.comment-article > div:nth-child(2) > p {
     font-size: 85%;
+    margin-bottom: 0.3rem;
+    margin-top: 1rem;
 }
 /* #endregion */
 
@@ -73,9 +78,23 @@ section#write-comment-section {
     background-color: var(--accent);
 }
 
-/*section#write-comment-section input#comment-input {
+section#write-comment-section div#comment-input-container {
+    display: flex;
+    align-items: center;
+}
 
-}*/
+section#write-comment-section input#comment-input {
+    border: none;
+    border-radius: 10rem 0 0 10rem;
+}
+
+section#write-comment-section input#post-comment-input {
+    background-color: var(--light-color);
+    border: none;
+    border-radius: 0 10rem 10rem 0;
+    width: 100%;
+    height: 3rem;
+}
 /* #endregion */
 
 /* #region Media Queries */
