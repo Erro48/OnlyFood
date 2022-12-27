@@ -170,10 +170,6 @@ section.login-section form label span.profile-pic > img {
 /* #endregion Labels */
 
 /* #region Inputs ************************************************** */
-section.login-section form label input.input-error {
-	border: 2px solid var(--error-color);
-}
-
 section.login-section form label input[type='search']:focus ~ span {
 	display: none;
 }
@@ -219,29 +215,6 @@ div.search-result-container > ul.search-result li:last-child {
 	100% {
 		opacity: 0;
 		display: none;
-	}
-}
-
-@keyframes shake {
-	0% {
-		position: relative;
-		left: calc((-1) * var(--error-animation-offset));
-	}
-	25% {
-		position: relative;
-		left: var(--error-animation-offset);
-	}
-	50% {
-		position: relative;
-		left: calc((-1) * var(--error-animation-offset));
-	}
-	75% {
-		position: relative;
-		left: var(--error-animation-offset);
-	}
-	100% {
-		position: relative;
-		left: 0px;
 	}
 }
 /* #endregion Animations */

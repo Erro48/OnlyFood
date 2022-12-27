@@ -11,6 +11,7 @@
 		* Labels
 		* Links
 	- Media Queries
+	- Animations
 */
 
 /* #region Root */
@@ -169,6 +170,7 @@ footer.page-footer > div > ul > li > button > p {
 /* #endregion */
 
 /* #region Inputs */
+
 input:not([type='checkbox'], [type='file']),
 input:not([type='file']) ~ span {
 	padding-left: 1em;
@@ -217,6 +219,10 @@ input[type='checkbox']:checked {
 input:not([type='file'], [type='search']):focus ~ span,
 input:not([type='file'], [type='search']):valid ~ span {
 	top: -50%;
+}
+
+input.input-error {
+	border: 2px solid var(--error-color);
 }
 
 input ~ span {
@@ -269,6 +275,11 @@ form label {
 	user-select: none;
 }
 
+label:has(input.input-error) {
+	--error-animation-offset: 5px;
+	animation: shake 0.25s ease;
+}
+
 form
 	label:has(input[type='text'], input[type='password'], input[type='search']) {
 	width: 100%;
@@ -278,11 +289,6 @@ form
 
 form label:has(input[type='file'] ~ .profile-pic) {
 	height: 10em;
-}
-
-form label:has(input.input-error) {
-	--error-animation-offset: 5px;
-	animation: shake 0.25s ease;
 }
 
 /* #region Labels Content */
@@ -341,3 +347,28 @@ form label:not(:has(input[type='checkbox'])) span {
 	}
 }
 /* #endregion */
+
+/* #region Animations */
+@keyframes shake {
+	0% {
+		position: relative;
+		left: calc((-1) * var(--error-animation-offset));
+	}
+	25% {
+		position: relative;
+		left: var(--error-animation-offset);
+	}
+	50% {
+		position: relative;
+		left: calc((-1) * var(--error-animation-offset));
+	}
+	75% {
+		position: relative;
+		left: var(--error-animation-offset);
+	}
+	100% {
+		position: relative;
+		left: 0px;
+	}
+}
+/* #endregion Animations */

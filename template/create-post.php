@@ -37,7 +37,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </header>
 
-                            <!-- Section 1 -->
                             <section class="modal-body">
                                 <input type="search" name="search-ingredient" id="search-ingredient"
                                     onkeyup="search(this)"

@@ -1,6 +1,7 @@
 'use strict'
 
 const VH_UNIT = window.innerHeight / 100
+const QUANTITY_DEFAULT = 1
 
 /**
  * Adds an ingredient to the list of the chosen ingredients
@@ -19,7 +20,7 @@ async function addIngredientToList(event) {
 	if (listItems.filter((item) => item.name == ingredientName).length == 0) {
 		listItems.push({
 			name: ingredientName,
-			quantity: '1',
+			quantity: QUANTITY_DEFAULT,
 		})
 	}
 
@@ -35,8 +36,6 @@ async function addIngredientToList(event) {
 					? measure.name != ingredient.measure.name
 					: true
 			)
-
-			console.log(ingredient.measure)
 
 			let options =
 				ingredient.measure === undefined
@@ -89,13 +88,16 @@ function addIngredients() {
 	const ingredientsContainer = document.querySelector('.ingredients-list')
 	let ingredients = getIngredientsOfModalList()
 
-	ingredients = ingredients.map(
-		(ingredient) => `
-            <li data-quantity="${ingredient.quantity}" data-measure="${ingredient.measure.name}">
-                <span>${ingredient.name}</span>
-                <span>X</span>
-            </li>`
-	)
+	ingredients = ingredients.map((ingredient) => {
+		return `
+			<li data-quantity="${
+				// if the quantity is not valid use the default value
+				ingredient.quantity > 0 ? ingredient.quantity : QUANTITY_DEFAULT
+			}" data-measure="${ingredient.measure.name}">
+				<span>${ingredient.name}</span>
+				<span>X</span>
+			</li>`
+	})
 
 	ingredientsContainer.innerHTML = ingredients.join('')
 }
@@ -135,6 +137,26 @@ function removeElementFromList(element) {
 }
 
 /**
+ * Set the error class to the input specified by the inputErrorId
+ * @param {number} inputErrorsId - The id of the input with a wrong value
+ */
+function setErrorClass(inputErrorsId) {
+	inputErrorsId.forEach((id) => {
+		document.querySelector(`#${id}`).classList.add('input-error')
+	})
+}
+
+/**
+ * Reset the error class to the input specified by the inputErrorId
+ * @param {number} inputErrorsId - The id of the input with a wrong value
+ */
+function resetErrorClass(inputErrorsId) {
+	inputErrorsId.forEach((id) => {
+		document.querySelector(`#${id}`).classList.remove('input-error')
+	})
+}
+
+/**
  * Returns the html of an ingredient list item
  * @param {*} ingredient - The ingredient to create the row of
  * @param {*} options  - The options for the measures dropdown
@@ -146,7 +168,16 @@ function createIngredientsListItem(ingredient, options) {
 		.replaceAll(' ', '_')}-row">
 				<div class="col-5 ingredient-name">${ingredient.name}</div>
 				<div class="col-3">
-					<input type="number" value="${ingredient.quantity}">
+					<label>
+						<input type="number" value="${
+							ingredient.quantity
+						}" min="0" id="quantity-${ingredient.name
+		.toLowerCase()
+		.replaceAll(' ', '_')}"
+						onkeyup="checkQuantityValidity(this)">
+						<span class="invisible">Quantity</span>
+					</label>
+					
 				</div>
 				<div class="col-3">
 					<select name="measures" id="measures">
@@ -159,4 +190,12 @@ function createIngredientsListItem(ingredient, options) {
 					}" onclick="removeElementFromList(this)">
 				</div>
 			</div>`
+}
+
+function checkQuantityValidity(inputElement) {
+	if (inputElement.value <= 0 && inputElement.value != '') {
+		setErrorClass([inputElement.id])
+	} else {
+		resetErrorClass([inputElement.id])
+	}
 }
