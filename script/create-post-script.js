@@ -163,26 +163,27 @@ function resetErrorClass(inputErrorsId) {
  * @returns the html of the list item
  */
 function createIngredientsListItem(ingredient, options) {
-	return `<div class="row m-auto align-items-center" id="${ingredient.name
-		.toLowerCase()
-		.replaceAll(' ', '_')}-row">
+	const ingredientId = ingredient.name.toLowerCase().replaceAll(' ', '_')
+
+	return `<div class="row m-auto align-items-center" id="${ingredientId}-row">
 				<div class="col-5 ingredient-name">${ingredient.name}</div>
 				<div class="col-3">
 					<label>
 						<input type="number" value="${
 							ingredient.quantity
-						}" min="0" id="quantity-${ingredient.name
-		.toLowerCase()
-		.replaceAll(' ', '_')}"
+						}" min="0" id="quantity-${ingredientId}"
 						onkeyup="checkQuantityValidity(this)">
 						<span class="invisible">Quantity</span>
+						</label>
+						
+						</div>
+						<div class="col-3">
+					<label>
+						<select name="measures" id="${ingredientId}-measures">
+							${options.join('')}
+						</select>
+						<span class="invisible">Unit of measurement</span>
 					</label>
-					
-				</div>
-				<div class="col-3">
-					<select name="measures" id="measures">
-						${options}
-					</select>
 				</div>
 				<div class="col-1 text-end p-0">
 					<img src="./imgs/icons/minus.svg" alt="Remove element ${
