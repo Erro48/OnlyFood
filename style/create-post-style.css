@@ -68,7 +68,7 @@ form fieldset ul {
 	width: 100%;
 }
 
-.modal-content section .modal-ingredients-list .row img {
+img.icon {
 	width: 1.5em;
 }
 /* #endregion Ingredients List Item */

@@ -43,16 +43,3 @@ function capitalizeString(text) {
 		.map((word) => word[0].toUpperCase() + word.substr(1))
 		.join(' ')
 }
-
-/* ARRAYS */
-/**
- * Move an array element in the array
- * @param {*} arr - The array in which to move the elements
- * @param {*} fromIndex - The starting index of the element to move
- * @param {*} toIndex  - The index of the position where to place the element
- */
-function arraymove(arr, fromIndex, toIndex) {
-	var element = arr[fromIndex]
-	arr.splice(fromIndex, 1)
-	arr.splice(toIndex, 0, element)
-}

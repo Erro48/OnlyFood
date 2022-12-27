@@ -21,12 +21,12 @@
                 
                 <div class="list-container-secondary ingredients-container p-0 col-12">
                     <h3>Ingredients:</h3>
-                    <ul class="ingredients-list p-0" id="ingredients-list">
+                    <ul class="ingredients-list p-0 row m-0" id="ingredients-list">
                         
                     </ul>
                 </div>
 
-                <input type="button" value="Add ingredient" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-ingredient-modal">
+                <input type="button" value="Add ingredient" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-ingredient-modal" onclick="loadModal()">
 
                 <!-- Add Ingredient Modal -->
                 <section class="modal fade" id="add-ingredient-modal" tabindex="-1" aria-labelledby="add-ingredient-modal-label" aria-hidden="true">

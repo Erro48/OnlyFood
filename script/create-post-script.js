@@ -27,27 +27,9 @@ async function addIngredientToList(event) {
 	// create HTML tags
 	listItems = await Promise.all(
 		listItems.map(async (ingredient) => {
-			const ingredientId = ingredient.name.toLowerCase().replaceAll(' ', '_')
-			let measuresAllowed = await getMeasuresByIngredient(ingredient.name)
+			const measures = await getOptions(ingredient)
 
-			// remove the used measure, if present
-			measuresAllowed = measuresAllowed.filter((measure) =>
-				ingredient.measure !== undefined
-					? measure.name != ingredient.measure.name
-					: true
-			)
-
-			let options =
-				ingredient.measure === undefined
-					? measuresAllowed
-					: [ingredient.measure, ...measuresAllowed]
-
-			options = options.map((measure) => {
-				const selected =
-					options.indexOf(measure) == 0 ? 'selected="selected"' : ''
-				return `<option value="${measure.name}" ${selected}>${measure.acronym}</option>`
-			})
-			return createIngredientsListItem(ingredient, options)
+			return createIngredientsListItem(ingredient, measures)
 		})
 	)
 
@@ -57,6 +39,32 @@ async function addIngredientToList(event) {
 	inputSearchField.value = ''
 	hideLabel(inputSearchField)
 	checkIngredientsListMaxHeight()
+}
+
+/**
+ * Returns the measures allowed of a given ingredient
+ * @param {*} ingredient - The ingredient to know the measures of
+ * @returns an array with the measures allowed for the ingredient
+ */
+async function getOptions(ingredient) {
+	let measuresAllowed = await getMeasuresByIngredient(ingredient.name)
+
+	// remove the used measure, if present
+	measuresAllowed = measuresAllowed.filter((measure) =>
+		ingredient.measure !== undefined
+			? measure.name != ingredient.measure.name
+			: true
+	)
+
+	let options =
+		ingredient.measure === undefined
+			? measuresAllowed
+			: [ingredient.measure, ...measuresAllowed]
+
+	return options.map((measure) => {
+		const selected = options.indexOf(measure) == 0 ? 'selected="selected"' : ''
+		return `<option value="${measure.name}" ${selected}>${measure.acronym}</option>`
+	})
 }
 
 /**
@@ -73,6 +81,11 @@ function checkIngredientsListMaxHeight() {
 	}
 }
 
+/**
+ * Gets all the allowed unit of measure of a given ingredient
+ * @param {*} ingredient - The ingredient to know the units of measure of
+ * @returns an array wit the allowed unit of measures
+ */
 async function getMeasuresByIngredient(ingredient) {
 	let measures = []
 	await axios
@@ -84,19 +97,30 @@ async function getMeasuresByIngredient(ingredient) {
 	return measures
 }
 
+/**
+ * Adds the ingredients of the modal list to the ingredients list
+ */
 function addIngredients() {
 	const ingredientsContainer = document.querySelector('.ingredients-list')
 	let ingredients = getIngredientsOfModalList()
 
 	ingredients = ingredients.map((ingredient) => {
 		return `
-			<li data-quantity="${
+		<div class="col-6">
+			<li class="row" data-quantity="${
 				// if the quantity is not valid use the default value
 				ingredient.quantity > 0 ? ingredient.quantity : QUANTITY_DEFAULT
-			}" data-measure="${ingredient.measure.name}">
-				<span>${ingredient.name}</span>
-				<span>X</span>
-			</li>`
+			}" data-measure-name="${ingredient.measure.name}" data-measure-acronym="${
+			ingredient.measure.acronym
+		}">
+				<span class="col-7">${ingredient.name}</span>
+				<span class="col-5">
+					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${
+						ingredient.name
+					}" onclick="removeElementFromList(this)" />
+				</span>
+			</li>
+		</div>`
 	})
 
 	ingredientsContainer.innerHTML = ingredients.join('')
@@ -123,12 +147,26 @@ function getIngredientsOfModalList() {
 }
 
 /**
+ * Removes the specified element from the modal ingredients list
+ * @param {*} element - The element to remove
+ */
+function removeElementFromModalList(element) {
+	const ingredientsList = document.querySelector('.modal-ingredients-list')
+	element = element.parentElement.parentElement
+
+	ingredientsList.innerHTML = ingredientsList.innerHTML.replace(
+		element.outerHTML,
+		''
+	)
+}
+
+/**
  * Removes the specified element from the ingredients list
  * @param {*} element - The element to remove
  */
 function removeElementFromList(element) {
-	const ingredientsList = document.querySelector('.modal-ingredients-list')
-	element = element.parentElement.parentElement
+	const ingredientsList = document.querySelector('#ingredients-list')
+	element = element.parentElement.parentElement.parentElement
 
 	ingredientsList.innerHTML = ingredientsList.innerHTML.replace(
 		element.outerHTML,
@@ -186,17 +224,47 @@ function createIngredientsListItem(ingredient, options) {
 					</label>
 				</div>
 				<div class="col-1 text-end p-0">
-					<img src="./imgs/icons/minus.svg" alt="Remove element ${
+					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${
 						ingredient.name
-					}" onclick="removeElementFromList(this)">
+					}" onclick="removeElementFromModalList(this)" />
 				</div>
 			</div>`
 }
 
+/**
+ * Controls if the inserted quantity for an ingredient is valid
+ * @param {*} inputElement - The element to check the quantity
+ */
 function checkQuantityValidity(inputElement) {
 	if (inputElement.value <= 0 && inputElement.value != '') {
 		setErrorClass([inputElement.id])
 	} else {
 		resetErrorClass([inputElement.id])
 	}
+}
+
+/**
+ * Removes all the elements in the modal list and adds the elements in the ingredients list
+ */
+function loadModal() {
+	const ingredientsModalList = document.querySelector('.modal-ingredients-list')
+	const ingredientsList = document.querySelector('#ingredients-list')
+	const ingredientsListItems = ingredientsList.querySelectorAll('li')
+
+	clearElement(ingredientsModalList)
+	ingredientsListItems.forEach(async (ingredient) => {
+		const ingredientObj = {
+			name: ingredient.querySelector('span').innerText,
+			quantity: ingredient.dataset.quantity,
+			measure: {
+				name: ingredient.dataset.measureName,
+				acronym: ingredient.dataset.measureAcronym,
+			},
+		}
+		const options = await getOptions(ingredientObj)
+		ingredientsModalList.innerHTML += createIngredientsListItem(
+			ingredientObj,
+			options
+		)
+	})
 }
