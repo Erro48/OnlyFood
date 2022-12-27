@@ -17,11 +17,12 @@ main div.single-post-container {
 
 main article.post-article {
     background-color: var(--light-color);
-    border-radius: 7px;
+    border-radius: 0.6rem;
     margin: 0.8rem 1rem;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     padding: 0 0 0.5rem 0;
     max-width: 350px;
+    width: 100%;
 }
 
 main article.post-article > section.recipe-section {
@@ -116,7 +117,7 @@ main article.post-article section.howto-section {
 
 main article.post-article > img {
     width: 100%;
-    border-radius: 7px 7px 0 0;
+    border-radius: 0.6rem 0.6rem 0 0;
     padding: 0;
     margin: 0;
 }

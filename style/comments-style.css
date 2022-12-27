@@ -1,13 +1,21 @@
 /* #region Recipe */
-section#post-info-section div#recipe-div {
+section#post-info-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section#post-info-section article#recipe-article {
     background-color: var(--light-color);
     margin: 1rem 0 0 0;
     padding: 0;
+    max-width: 500px;
+    width: 100%;
     border-radius: 7rem;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-section#post-info-section div#recipe-div img {
+section#post-info-section article#recipe-article img {
     width: 100%;
     border-radius: 7rem;
 }
@@ -16,14 +24,23 @@ section#post-info-section div#recipe-div img {
 
 /* #region Comments */
 section#comments-section {
+    margin: 0;
+    padding: 0;
     overflow: auto;
+}
+
+section#comments-section > div.single-comment-container {
+    display: flex;
+    justify-content: center;
 }
 
 section#comments-section article.comment-article {
     background-color: var(--light-color);
-    margin: 1rem 0;
+    margin: 1rem;
     padding: 0;
-    border-radius: 1rem;
+    max-width: 350px;
+    width: 100%;
+    border-radius: 0.6rem;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -55,10 +72,20 @@ section#comments-section article.comment-article > div:nth-child(2) > p:nth-chil
 section#write-comment-section {
     background-color: var(--accent);
 }
+
+/*section#write-comment-section input#comment-input {
+
+}*/
 /* #endregion */
 
 /* #region Media Queries */
 @media screen and (min-width: 768px){
+    section#post-info-section article#recipe-article {
+        max-width: 800px;
+    }
 
+    section#comments-section article.comment-article {
+        max-width: 450px;
+    }
 }
 /* #endregion */
