@@ -47,22 +47,21 @@ footer (nav bar)
                         </button>
                     </div>
                     <div class="col-6">
-                        <button onclick="window.location.href='notifications.php'">
-                            <div>
-                                <img src="imgs/icons/notification.png" alt="notifications icon" />
-                                <?php
-                                    $count = $dbh->unreadNotificationCount($_SESSION["username"]);
-                                    if ($count == 0):
-                                ?>
-                                <div class="badge hidden">
-                                    <p id="notification-counter"></p>    
-                                </div>
-                                <?php else: ?>
-                                <div class="badge">
-                                    <p id="notification-counter"><?php echo $count ?></p>    
-                                </div>
-                                <?php endif ?>   
-                            </div>
+                        <button class="position-relative" onclick="window.location.href='notifications.php'">
+                            <img src="imgs/icons/notification.png" alt="notifications icon" />
+                            <?php
+                                $count = $dbh->unreadNotificationCount($_SESSION["username"]);
+                                if ($count == 0):
+                            ?>
+                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger d-none">
+                                <span class="visually-hidden"> unseen notifications </span>    
+                            </span>
+                            <?php else: ?>
+                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?php echo $count ?>
+                                <span class="visually-hidden"> unseen notifications </span>    
+                            </span>
+                            <?php endif ?>   
                         </button>
                     </div>
                 </ul>
