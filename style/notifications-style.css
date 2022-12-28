@@ -35,3 +35,8 @@
     color: inherit;
     outline: 0;
 }
+
+.info-message {
+    text-align: center;
+    font-size: 18pt;
+}
