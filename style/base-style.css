@@ -81,10 +81,11 @@ header.page-header div.buttons-container button {
 	margin-right: 1rem;
 }
 
-header.page-header div.buttons-container button > img {
+header.page-header div.buttons-container button img {
 	width: 80%;
 	aspect-ratio: 1/1;
 }
+
 /* #endregion */
 
 
@@ -161,6 +162,7 @@ footer.page-footer > div > ul > li > button img {
 footer.page-footer > div > ul > li > button span.col-md-8 {
 	display: none;
 }
+
 /* #endregion */
 
 /* #region Components */

@@ -27,7 +27,6 @@
 <body>
 
 <!-- 
-
 header [nome btn btn -> ]
 main
 footer (nav bar)
@@ -41,16 +40,30 @@ footer (nav bar)
         </div>
         <div class="col-6">
             <div class="row align-content-center buttons-container">
-                <div class="col-6">
-                    <button onclick="window.location.href='search.php'">
-                        <img src="imgs/icons/search.svg" alt="search icon" />
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button>
-                        <img src="imgs/icons/notification.svg" alt="notifications icon" />
-                    </button>
-                </div>
+                    <div class="col-6">
+                        <button onclick="window.location.href='search.php'">
+                            <img src="imgs/icons/search.svg" alt="search icon" />
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="position-relative" onclick="window.location.href='notifications.php'">
+                            <img src="imgs/icons/notification.svg" alt="notifications icon" />
+                            <?php
+                                $count = $dbh->unreadNotificationCount($_SESSION["username"]);
+                                if ($count == 0):
+                            ?>
+                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger invisible">
+                                <span class="visually-hidden"> unseen notifications </span>    
+                            </span>
+                            <?php else: ?>
+                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?php echo $count ?>
+                                <span class="visually-hidden"> unseen notifications </span>    
+                            </span>
+                            <?php endif ?>   
+                        </button>
+                    </div>
+                </ul>
             </div>
         </div>
     </header>
@@ -122,10 +135,8 @@ footer (nav bar)
             </footer>
         </div>
     </div>
-    
  </div>
-
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
