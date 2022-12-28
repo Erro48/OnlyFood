@@ -32,3 +32,11 @@ function getCookie(name) {
 	}
 	return ''
 }
+
+/**
+ * Removes the specified cookie
+ * @param {String} name - The name of the cookie to remove
+ */
+function deleteCookie(name) {
+	document.cookie = `${name}=;Thu, 01 Jan 1970 00:00:00 UTC;path=/`
+}
