@@ -12,7 +12,7 @@ window.onload = () => {
  */
 async function search(searchInput) {
 	const searchValue = searchInput.value.trim()
-	const dropdownBody = document.querySelector('#search-result')
+	const dropdownBody = document.querySelector('#search-ingredient-result')
 
 	if (searchValue.length < 3) {
 		clearElement(dropdownBody)
@@ -20,7 +20,7 @@ async function search(searchInput) {
 		return
 	}
 
-	const ingredients = await searchIngredient(searchValue)
+	const ingredients = await searchForIngredient(searchValue)
 	dropdownBody.parentElement.classList.remove('d-none')
 	displayIngredients(ingredients, dropdownBody)
 }
@@ -30,7 +30,7 @@ async function search(searchInput) {
  * @param {string} ingredient - The ingredient to look for
  * @returns {String[]} An array containing the ingredients matched
  */
-async function searchIngredient(ingredient) {
+async function searchForIngredient(ingredient) {
 	const ingredients = []
 	await axios
 		.get(`./request/request.php?ingredient=${ingredient}`)
@@ -51,7 +51,7 @@ async function searchIngredient(ingredient) {
 function displayIngredients(ingredients, container) {
 	clearElement(container)
 	ingredients.forEach((ingredient) =>
-		container.append(createSearchResultOption(ingredient))
+		container.append(createSearchIngredientResultOption(ingredient))
 	)
 }
 
@@ -68,7 +68,7 @@ async function clearDropdownElements() {
  * @param {string} ingredient - The ingredient to be displayed in the option
  * @returns {HTMLLIElement} the HTML li element
  */
-function createSearchResultOption(ingredient) {
+function createSearchIngredientResultOption(ingredient) {
 	const container = document.createElement('li')
 	container.innerText = ingredient.name
 	container.classList.add('px-3')

@@ -45,12 +45,12 @@
 
                                 <!-- Dropdown menu -->
                                 <div class="search-result-container p-0 col-12">
-                                    <ul class="search-result p-0" id="search-result">
+                                    <ul class="search-result p-0" id="search-ingredient-result">
                         
                                     </ul>
                                 </div>
 
-                                <div class="modal-ingredients-list row w-100 m-auto mt-4 scrollable">
+                                <div class="modal-list modal-ingredients-list row w-100 m-auto mt-4 scrollable">
 
                                 </div>
                             </section>
@@ -68,20 +68,46 @@
                 
                 <div class="list-container-secondary tags-container p-0 col-12">
                     <h3>Tags:</h3>
-                    <ul class="tags-list p-0" id="tags-list">
-                        <li class="pill tag-pill">
-                            <span class="pill tag-pill">Launch</span>
-                            <button class="icon delete-icon">-</button>
-                        </li>
-
-                        <li class="pill tag-pill">
-                            <span class="pill tag-pill">Vegan</span>
-                            <button class="icon delete-icon">-</button>
-                        </li>
+                    <ul class="tags-list p-0 row m-0" id="tags-list">
+                        
                     </ul>
                 </div>
 
-                <input type="button" value="Add tag" class="button-secondary w-100">
+                <input type="button" value="Add tag" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-tag-modal" onclick="loadAddTagsModal()">
+
+                <!-- Add Tags Modal -->
+                <section class="modal fade" id="add-tag-modal" tabindex="-1" aria-labelledby="add-tag-modal-label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <header class="modal-header">
+                                <h4 class="modal-title" id="add-tag-modal-label">Choose the tags</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </header>
+
+                            <section class="modal-body">
+                                <input type="search" name="search-tag" id="search-tag"
+                                    onkeyup="searchTag(this)"
+                                    aria-label="Search a tag"
+                                    placeholder="Search a tag...">
+
+                                <!-- Dropdown menu -->
+                                <div class="search-result-container p-0 col-12">
+                                    <ul class="search-result p-0" id="search-tag-result">
+                        
+                                    </ul>
+                                </div>
+
+                                <div class="modal-list modal-tags-list row w-100 m-auto mt-4 scrollable">
+
+                                </div>
+                            </section>
+
+                            <footer class="modal-footer">
+                                <button type="button" class="button-primary w-100" data-bs-dismiss="modal" onclick="addTags()">Add tag</button>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
             </fieldset>
 
             <fieldset>

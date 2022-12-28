@@ -35,6 +35,32 @@ function checkQuantityValidity(inputElement) {
 
 /* INGREDIENTS LIST */
 /**
+ * Removes all the elements in the modal list and adds the elements in the ingredients list
+ */
+function loadAddIngredientsModal() {
+	const ingredientsModalList = document.querySelector('.modal-ingredients-list')
+	const ingredientsList = document.querySelector('#ingredients-list')
+	const ingredientsListItems = ingredientsList.querySelectorAll('li')
+
+	clearElement(ingredientsModalList)
+	ingredientsListItems.forEach(async (ingredient) => {
+		const ingredientObj = {
+			name: ingredient.querySelector('span').innerText,
+			quantity: ingredient.dataset.quantity,
+			measure: {
+				name: ingredient.dataset.measureName,
+				acronym: ingredient.dataset.measureAcronym,
+			},
+		}
+		const options = await getAllowedMeasures(ingredientObj)
+		ingredientsModalList.innerHTML += createIngredientsListItem(
+			ingredientObj,
+			options
+		)
+	})
+}
+
+/**
  * Adds an ingredient to the list of the chosen ingredients
  * @param {Event} event
  */
@@ -116,7 +142,7 @@ function checkIngredientsListMaxHeight() {
  * Adds the ingredients of the modal list to the ingredients list
  */
 function addIngredients() {
-	const ingredientsContainer = document.querySelector('.ingredients-list')
+	const ingredientsContainer = document.querySelector('#ingredients-list')
 	let ingredients = getIngredientsOfModalList()
 
 	ingredients = ingredients.map((ingredient) => {
@@ -226,30 +252,141 @@ function createIngredientsListItem(ingredient, options) {
 			</div>`
 }
 
+/* TAGS LIST */
 /**
  * Removes all the elements in the modal list and adds the elements in the ingredients list
  */
-function loadAddIngredientsModal() {
-	const ingredientsModalList = document.querySelector('.modal-ingredients-list')
-	const ingredientsList = document.querySelector('#ingredients-list')
-	const ingredientsListItems = ingredientsList.querySelectorAll('li')
+function loadAddTagsModal() {
+	const tagsModalList = document.querySelector('.modal-tags-list')
+	const tagsList = document.querySelector('#tags-list')
+	const tagsListItems = tagsList.querySelectorAll('li')
 
-	clearElement(ingredientsModalList)
-	ingredientsListItems.forEach(async (ingredient) => {
+	clearElement(tagsModalList)
+	tagsListItems.forEach(async (tag) => {
 		const ingredientObj = {
-			name: ingredient.querySelector('span').innerText,
-			quantity: ingredient.dataset.quantity,
-			measure: {
-				name: ingredient.dataset.measureName,
-				acronym: ingredient.dataset.measureAcronym,
-			},
+			name: tag.querySelector('span').innerText,
 		}
-		const options = await getAllowedMeasures(ingredientObj)
-		ingredientsModalList.innerHTML += createIngredientsListItem(
-			ingredientObj,
-			options
-		)
+		tagsModalList.innerHTML += createTagsListItem(ingredientObj)
 	})
 }
 
-/* TAGS LIST */
+/**
+ * Adds an ingredient to the list of the chosen ingredients
+ * @param {Event} event
+ */
+async function addTagToList(event) {
+	// if used on button
+	event.preventDefault()
+	const listContainer = document.querySelector('div.modal-tags-list')
+	const inputSearchField = document.querySelector('input#search-tag')
+	const tagName = capitalizeString(event.path[0].innerText)
+
+	let listItems = getTagsOfModalList()
+
+	// add new element (if not already present)
+	if (listItems.filter((item) => item.name == tagName).length == 0) {
+		listItems.push({
+			name: tagName,
+		})
+	}
+
+	// create HTML tags
+	listItems = listItems.map((tag) => createTagsListItem(tag))
+
+	// // add to container
+	listContainer.innerHTML = listItems.join('')
+	const [ingredientContainer, tagContainer] =
+		document.querySelectorAll('.search-result')
+	clearElement(tagContainer)
+	inputSearchField.value = ''
+	hideLabel(inputSearchField)
+	checkTagsListMaxHeight()
+}
+
+/**
+ * Returns the list of the ingredients present in the ingredients list
+ * @returns an array containg the ingredients
+ */
+function getTagsOfModalList() {
+	const listContainer = document.querySelector('div.modal-tags-list')
+	return Array.from(listContainer.children).map((item) => {
+		const [name] = item.children
+		return {
+			name: name.innerText,
+		}
+	})
+}
+
+/**
+ * Returns the html of a tag list item
+ * @param {*} tag - The tag to create the row of
+ * @returns the html of the list item
+ */
+function createTagsListItem(tag) {
+	const tagId = tag.name.toLowerCase().replaceAll(' ', '_')
+
+	return `<div class="row m-auto align-items-center" id="${tagId}-row">
+				<div class="col-11 tag-name">${tag.name}</div>
+				<div class="col-1 text-end p-0">
+					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${tag.name}" onclick="removeElementFromModalTagsList(this)" />
+				</div>
+			</div>`
+}
+
+/**
+ * Checks if max height of the ingredients list is greater than a 62vh. If it is
+ * it gives the class list-border-bottom to the ingredients list
+ */
+function checkTagsListMaxHeight() {
+	const maxHeight = 62 * VH_UNIT
+	const modalTagsList = document.querySelector('.modal-tags-list')
+	const scrollHeight = modalTagsList.scrollHeight
+
+	if (scrollHeight > maxHeight) {
+		modalTagsList.classList.add('list-border-bottom')
+	}
+}
+
+/**
+ * Adds the ingredients of the modal list to the ingredients list
+ */
+function addTags() {
+	const tagsContainer = document.querySelector('#tags-list')
+	let tags = getTagsOfModalList()
+
+	tags = tags.map((tag) => {
+		return `
+		<div class="col-6">
+			<li class="row">
+				<span class="col-7">${tag.name}</span>
+				<span class="col-5">
+					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${tag.name}" onclick="removeElementFromTagsList(this)" />
+				</span>
+			</li>
+		</div>`
+	})
+
+	tagsContainer.innerHTML = tags.join('')
+}
+
+/**
+ * Removes the specified element from the tags list
+ * @param {*} element - The element to remove
+ */
+function removeElementFromTagsList(element) {
+	const tagsList = document.querySelector('#tags-list')
+	element = element.parentElement.parentElement.parentElement
+
+	tagsList.innerHTML = tagsList.innerHTML.replace(element.outerHTML, '')
+}
+
+/**
+ * Removes the specified element from the modal tags list
+ * @param {*} element - The element to remove
+ */
+function removeElementFromModalTagsList(element) {
+	const tagsList = document.querySelector('.modal-tags-list')
+	element = element.parentElement.parentElement
+
+	tagsList.innerHTML = tagsList.innerHTML.replace(element.outerHTML, '')
+}

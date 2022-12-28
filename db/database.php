@@ -274,11 +274,14 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getTags(){
+    public function getTags($tag = ""){
+        $tag = "%" . $tag . "%";
         $stmt = $this->db->prepare("
         SELECT *
         FROM tags
+        WHERE name LIKE ?
         ORDER BY name");
+        $stmt->bind_param("s", $tag);
         $stmt->execute();
         $result = $stmt->get_result();
 

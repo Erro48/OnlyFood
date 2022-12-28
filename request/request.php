@@ -2,8 +2,6 @@
 require_once '../bootstrap.php';
 
 if (isset($_GET["ingredient"])) {
-    $ingredient = $_GET["ingredient"];
-
     $ingredients_list = $dbh->getIngredients($_GET["ingredient"]);
     echo json_encode($ingredients_list);
 }
@@ -28,6 +26,11 @@ if (isset($_GET["measures"])) {
     $ingredient = $_GET["measures"];
     $measures = $dbh->getIngredientsMeasures($ingredient);
     echo json_encode($measures);
+}
+
+if (isset($_GET["tag"])) {
+    $tags_list = $dbh->getTags($_GET["tag"]);
+    echo json_encode($tags_list);
 }
 
 ?>
