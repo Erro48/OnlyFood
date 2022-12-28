@@ -26,7 +26,7 @@
                     </ul>
                 </div>
 
-                <input type="button" value="Add ingredient" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-ingredient-modal" onclick="loadAddIngredientsModal()">
+                <input type="button" value="Add ingredient" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-ingredient-modal" onclick="loadModal(ModalsType.INGREDIENTS, ingredientsCallback)">
 
                 <!-- Add Ingredient Modal -->
                 <section class="modal fade" id="add-ingredient-modal" tabindex="-1" aria-labelledby="add-ingredient-modal-label" aria-hidden="true">
@@ -38,19 +38,19 @@
                             </header>
 
                             <section class="modal-body">
-                                <input type="search" name="search-ingredient" id="search-ingredient"
+                                <input type="search" name="search-ingredient" id="search-ingredients"
                                     onkeyup="search(this)"
                                     aria-label="Search an ingredient"
                                     placeholder="Search an ingredient...">
 
                                 <!-- Dropdown menu -->
                                 <div class="search-result-container p-0 col-12">
-                                    <ul class="search-result p-0" id="search-ingredient-result">
+                                    <ul class="search-result p-0" id="search-ingredients-result">
                         
                                     </ul>
                                 </div>
 
-                                <div class="modal-list modal-ingredients-list row w-100 m-auto mt-4 scrollable">
+                                <div class="modal-list row w-100 m-auto mt-4 scrollable" id="modal-ingredients-list">
 
                                 </div>
                             </section>
@@ -73,7 +73,7 @@
                     </ul>
                 </div>
 
-                <input type="button" value="Add tag" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-tag-modal" onclick="loadAddTagsModal()">
+                <input type="button" value="Add tag" class="button-secondary w-100" data-bs-toggle="modal" data-bs-target="#add-tag-modal" onclick="loadModal(ModalsType.TAGS, tagsCallback)">
 
                 <!-- Add Tags Modal -->
                 <section class="modal fade" id="add-tag-modal" tabindex="-1" aria-labelledby="add-tag-modal-label" aria-hidden="true">
@@ -85,19 +85,19 @@
                             </header>
 
                             <section class="modal-body">
-                                <input type="search" name="search-tag" id="search-tag"
+                                <input type="search" name="search-tag" id="search-tags"
                                     onkeyup="searchTag(this)"
                                     aria-label="Search a tag"
                                     placeholder="Search a tag...">
 
                                 <!-- Dropdown menu -->
                                 <div class="search-result-container p-0 col-12">
-                                    <ul class="search-result p-0" id="search-tag-result">
+                                    <ul class="search-result p-0" id="search-tags-result">
                         
                                     </ul>
                                 </div>
 
-                                <div class="modal-list modal-tags-list row w-100 m-auto mt-4 scrollable">
+                                <div class="modal-list row w-100 m-auto mt-4 scrollable" id="modal-tags-list">
 
                                 </div>
                             </section>

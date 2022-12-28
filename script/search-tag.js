@@ -2,7 +2,7 @@
 
 window.onload = () => {
 	document
-		.querySelector('input#search-tag')
+		.querySelector('input#search-tags')
 		.addEventListener('search', clearDropdownElements)
 }
 
@@ -12,7 +12,7 @@ window.onload = () => {
  */
 async function searchTag(searchInput) {
 	const searchValue = searchInput.value.trim()
-	const dropdownBody = document.querySelector('#search-tag-result')
+	const dropdownBody = document.querySelector('#search-tags-result')
 
 	if (searchValue.length < 3) {
 		clearElement(dropdownBody)
@@ -71,6 +71,6 @@ function createSearchTagResultOption(ingredient) {
 	container.innerText = ingredient.name
 	container.classList.add('px-3')
 	container.classList.add('py-2')
-	container.setAttribute('onclick', 'addTagToList(event)')
+	container.setAttribute('onclick', 'addItemToList(event, ModalsType.TAGS)')
 	return container
 }

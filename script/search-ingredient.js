@@ -2,7 +2,7 @@
 
 window.onload = () => {
 	document
-		.querySelector('input#search-ingredient')
+		.querySelector('input#search-ingredients')
 		.addEventListener('search', clearDropdownElements)
 }
 
@@ -12,7 +12,7 @@ window.onload = () => {
  */
 async function search(searchInput) {
 	const searchValue = searchInput.value.trim()
-	const dropdownBody = document.querySelector('#search-ingredient-result')
+	const dropdownBody = document.querySelector('#search-ingredients-result')
 
 	if (searchValue.length < 3) {
 		clearElement(dropdownBody)
@@ -73,6 +73,9 @@ function createSearchIngredientResultOption(ingredient) {
 	container.innerText = ingredient.name
 	container.classList.add('px-3')
 	container.classList.add('py-2')
-	container.setAttribute('onclick', 'addIngredientToList(event)')
+	container.setAttribute(
+		'onclick',
+		'addItemToList(event, ModalsType.INGREDIENTS)'
+	)
 	return container
 }
