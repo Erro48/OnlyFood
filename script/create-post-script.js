@@ -1,8 +1,39 @@
 'use strict'
 
+/* CONSTANTS */
 const VH_UNIT = window.innerHeight / 100
 const QUANTITY_DEFAULT = 1
 
+/* COMMON */
+/**
+ * Gets all the allowed unit of measure of a given ingredient
+ * @param {*} ingredient - The ingredient to know the units of measure of
+ * @returns an array wit the allowed unit of measures
+ */
+async function getMeasuresByIngredient(ingredient) {
+	let measures = []
+	await axios
+		.get(`./request/request.php?measures=${ingredient}`)
+		.then((result) => {
+			measures = result.data
+		})
+		.catch((err) => console.error(err))
+	return measures
+}
+
+/**
+ * Controls if the inserted quantity for an ingredient is valid
+ * @param {*} inputElement - The element to check the quantity
+ */
+function checkQuantityValidity(inputElement) {
+	if (inputElement.value <= 0 && inputElement.value != '') {
+		setErrorClass([inputElement.id])
+	} else {
+		resetErrorClass([inputElement.id])
+	}
+}
+
+/* INGREDIENTS LIST */
 /**
  * Adds an ingredient to the list of the chosen ingredients
  * @param {Event} event
@@ -27,7 +58,7 @@ async function addIngredientToList(event) {
 	// create HTML tags
 	listItems = await Promise.all(
 		listItems.map(async (ingredient) => {
-			const measures = await getOptions(ingredient)
+			const measures = await getAllowedMeasures(ingredient)
 
 			return createIngredientsListItem(ingredient, measures)
 		})
@@ -46,7 +77,7 @@ async function addIngredientToList(event) {
  * @param {*} ingredient - The ingredient to know the measures of
  * @returns an array with the measures allowed for the ingredient
  */
-async function getOptions(ingredient) {
+async function getAllowedMeasures(ingredient) {
 	let measuresAllowed = await getMeasuresByIngredient(ingredient.name)
 
 	// remove the used measure, if present
@@ -82,22 +113,6 @@ function checkIngredientsListMaxHeight() {
 }
 
 /**
- * Gets all the allowed unit of measure of a given ingredient
- * @param {*} ingredient - The ingredient to know the units of measure of
- * @returns an array wit the allowed unit of measures
- */
-async function getMeasuresByIngredient(ingredient) {
-	let measures = []
-	await axios
-		.get(`./request/request.php?measures=${ingredient}`)
-		.then((result) => {
-			measures = result.data
-		})
-		.catch((err) => console.error(err))
-	return measures
-}
-
-/**
  * Adds the ingredients of the modal list to the ingredients list
  */
 function addIngredients() {
@@ -117,7 +132,7 @@ function addIngredients() {
 				<span class="col-5">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${
 						ingredient.name
-					}" onclick="removeElementFromList(this)" />
+					}" onclick="removeElementFromIngredientsList(this)" />
 				</span>
 			</li>
 		</div>`
@@ -150,7 +165,7 @@ function getIngredientsOfModalList() {
  * Removes the specified element from the modal ingredients list
  * @param {*} element - The element to remove
  */
-function removeElementFromModalList(element) {
+function removeElementFromModalIngredientsList(element) {
 	const ingredientsList = document.querySelector('.modal-ingredients-list')
 	element = element.parentElement.parentElement
 
@@ -164,7 +179,7 @@ function removeElementFromModalList(element) {
  * Removes the specified element from the ingredients list
  * @param {*} element - The element to remove
  */
-function removeElementFromList(element) {
+function removeElementFromIngredientsList(element) {
 	const ingredientsList = document.querySelector('#ingredients-list')
 	element = element.parentElement.parentElement.parentElement
 
@@ -172,26 +187,6 @@ function removeElementFromList(element) {
 		element.outerHTML,
 		''
 	)
-}
-
-/**
- * Set the error class to the input specified by the inputErrorId
- * @param {number} inputErrorsId - The id of the input with a wrong value
- */
-function setErrorClass(inputErrorsId) {
-	inputErrorsId.forEach((id) => {
-		document.querySelector(`#${id}`).classList.add('input-error')
-	})
-}
-
-/**
- * Reset the error class to the input specified by the inputErrorId
- * @param {number} inputErrorsId - The id of the input with a wrong value
- */
-function resetErrorClass(inputErrorsId) {
-	inputErrorsId.forEach((id) => {
-		document.querySelector(`#${id}`).classList.remove('input-error')
-	})
 }
 
 /**
@@ -226,27 +221,15 @@ function createIngredientsListItem(ingredient, options) {
 				<div class="col-1 text-end p-0">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${
 						ingredient.name
-					}" onclick="removeElementFromModalList(this)" />
+					}" onclick="removeElementFromModalIngredientsList(this)" />
 				</div>
 			</div>`
 }
 
 /**
- * Controls if the inserted quantity for an ingredient is valid
- * @param {*} inputElement - The element to check the quantity
- */
-function checkQuantityValidity(inputElement) {
-	if (inputElement.value <= 0 && inputElement.value != '') {
-		setErrorClass([inputElement.id])
-	} else {
-		resetErrorClass([inputElement.id])
-	}
-}
-
-/**
  * Removes all the elements in the modal list and adds the elements in the ingredients list
  */
-function loadModal() {
+function loadAddIngredientsModal() {
 	const ingredientsModalList = document.querySelector('.modal-ingredients-list')
 	const ingredientsList = document.querySelector('#ingredients-list')
 	const ingredientsListItems = ingredientsList.querySelectorAll('li')
@@ -261,10 +244,12 @@ function loadModal() {
 				acronym: ingredient.dataset.measureAcronym,
 			},
 		}
-		const options = await getOptions(ingredientObj)
+		const options = await getAllowedMeasures(ingredientObj)
 		ingredientsModalList.innerHTML += createIngredientsListItem(
 			ingredientObj,
 			options
 		)
 	})
 }
+
+/* TAGS LIST */

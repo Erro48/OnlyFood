@@ -166,16 +166,6 @@ function resetErrors() {
 }
 
 /**
- * Set the error class to the input specified by the inputErrorId
- * @param {number} inputErrorsId - The id of the input with a wrong value
- */
-function setErrorClass(inputErrorsId) {
-	inputErrorsId.forEach((id) => {
-		document.querySelector(`#${id}`).classList.add('input-error')
-	})
-}
-
-/**
  * Set the error messages in the alert
  * @param {string[]} messages - The messages to be displayed in the alert
  */
