@@ -1,4 +1,6 @@
-
+/**
+ * Switch the search mode from users to posts or viceversa
+ */
 function switchSearchMode() {
     const recipe = document.querySelector("#recipe-search");
     const users = document.querySelector("#users-search");
@@ -21,7 +23,12 @@ function switchSearchMode() {
     }
 }
 
-
+/**
+ * Updates asynchronously the search list depending on the search keywork in the 
+ * given input element
+ * @param {HTMLInputElement} elem, the element that provides the search words 
+ * @returns 
+ */
 function search(elem) {
     const searchValue = elem.value;
     const output = document.querySelector('#output-list');
@@ -43,7 +50,12 @@ function search(elem) {
         .catch((err) => console.error(err))
 }
 
-
+/**
+ * Creates the element that represents the clickable banner of a profile in the
+ * output list
+ * @param {QueryResult} data, ajax query data for a profile 
+ * @returns 
+ */
 function createUserSearchResult(data) {
     const container = document.createElement('article');
     container.innerHTML = ` <a class="row reset-a" href="profile.php?user=${data.username}">
@@ -63,6 +75,10 @@ function createUserSearchResult(data) {
     return container;
 }
 
+/**
+ * Clears all the children of an element
+ * @param {HTMLElement} container 
+ */
 function clearItems(container) {
     while (container.firstChild) {
         container.removeChild(container.lastChild)

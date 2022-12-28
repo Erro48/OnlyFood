@@ -383,7 +383,7 @@ class DatabaseHelper{
                 FROM likes l 
                 JOIN users u on u.username=l.user
                 JOIN posts p on p.postId=l.post
-                WHERE p.owner=?");
+                WHERE p.owner=? AND l.seen=0");
 
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -395,7 +395,7 @@ class DatabaseHelper{
                 FROM comments c 
                 JOIN users u on u.username=c.user
                 JOIN posts p on p.postId=c.postId
-                WHERE p.owner=?
+                WHERE p.owner=? AND c.seen=0
                 ORDER BY c.date DESC");
 
         $stmt->bind_param('s', $username);
@@ -418,22 +418,22 @@ class DatabaseHelper{
         $resultFollow = $stmt->get_result();
 
         $stmt = $this->db->prepare("
-                SELECT user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                SELECT likeId, user as sender, profilePic, ".NotificationTypes::Like->value." as type
                 FROM likes l 
                 JOIN users u on u.username=l.user
                 JOIN posts p on p.postId=l.post
-                WHERE p.owner=?");
+                WHERE p.owner=? AND l.seen=0");
 
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $resultLikes = $stmt->get_result();
         
         $stmt = $this->db->prepare("
-                SELECT user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
+                SELECT commentId, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
                 FROM comments c 
                 JOIN users u on u.username=c.user
                 JOIN posts p on p.postId=c.postId
-                WHERE p.owner=?
+                WHERE p.owner=? AND c.seen=0
                 ORDER BY c.date DESC");
 
         $stmt->bind_param('s', $username);
@@ -447,7 +447,35 @@ class DatabaseHelper{
 
     public function markNotificationsAsRead($notifications){
         foreach ($notifications as $not) {
-
+            switch($not["type"]) {
+                case NotificationTypes::Follow->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE follows f
+                        SET f.seen=1
+                        WHERE f.follower=? and f.followed=?
+                    ");
+                    $stmt->bind_param('ss', $not["sender"], $_SESSION["username"]);
+                    $stmt->execute();
+                break;
+                case NotificationTypes::Like->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE likes
+                        SET seen=1
+                        WHERE likeId=?
+                    ");
+                    $stmt->bind_param('i', $not["likeId"]);
+                    $stmt->execute();
+                    break;
+                case NotificationTypes::Comment->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE comments
+                        SET seen=1
+                        WHERE commentId=?
+                    ");
+                    $stmt->bind_param('i', $not["commentId"]);
+                    $stmt->execute();
+                    break;
+            }
         }
     }
 }

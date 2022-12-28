@@ -27,7 +27,6 @@
 <body>
 
 <!-- 
-
 header [nome btn btn -> ]
 main
 footer (nav bar)
@@ -53,7 +52,7 @@ footer (nav bar)
                                 $count = $dbh->unreadNotificationCount($_SESSION["username"]);
                                 if ($count == 0):
                             ?>
-                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger d-none">
+                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger invisible">
                                 <span class="visually-hidden"> unseen notifications </span>    
                             </span>
                             <?php else: ?>
@@ -113,8 +112,7 @@ footer (nav bar)
         </div>
     </div>
  </div>
-
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

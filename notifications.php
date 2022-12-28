@@ -7,7 +7,7 @@ $templateParams["style"] = array("notifications-style.css");
 $templateParams["script"] = array("notifications-script.js");
 $templateParams["notifications"] = $dbh->getUnreadNotifications($_SESSION["username"]);
 
-require 'template/base.php';
-
 $dbh->markNotificationsAsRead($templateParams["notifications"]);
+
+require 'template/base.php';
 ?>

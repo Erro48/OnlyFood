@@ -58,10 +58,10 @@ setInterval(() => {
 			let numNotifications = count.data;
 			if (numNotifications > 0) {
 				NOTIFICATION_COUNTER.innerHTML = numNotifications;
-				NOTIFICATION_COUNTER.parentElement.classList.remove("hidden");
+				NOTIFICATION_COUNTER.classList.remove("invisible");
 			} else {
 				NOTIFICATION_COUNTER.innerHTML = "";
-				NOTIFICATION_COUNTER.parentElement.classList.add("hidden");
+				NOTIFICATION_COUNTER.classList.add("invisible");
 			}
 		})
         .catch((err) => console.error(err))
