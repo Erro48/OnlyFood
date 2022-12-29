@@ -86,7 +86,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                 <em class="p-0">Fields with <strong class="required-char">*</strong> are required</em>
             </header>
             
-            <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5">
+            <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5 login-main">
                 <section class="row login-section">
                     <div class="d-none d-md-block col-md-2"></div>
 

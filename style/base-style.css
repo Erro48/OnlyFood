@@ -88,9 +88,8 @@ header.page-header div.buttons-container button img {
 
 /* #endregion */
 
-
 /* #region Main */
-main {
+main:not(.login-main) {
 	height: 87vh;
 }
 /* #endregion */
@@ -267,8 +266,8 @@ ul.double-selector > li {
 }
 
 ul.double-selector > li > input {
-	position: relative;	/*per far apparire l'ombra sopra agli altri elementi*/
-	z-index: 0;			/*per far apparire l'ombra sopra agli altri elementi*/
+	position: relative; /*per far apparire l'ombra sopra agli altri elementi*/
+	z-index: 0; /*per far apparire l'ombra sopra agli altri elementi*/
 	border: none;
 	width: 100%;
 	border-radius: 4px;
@@ -276,7 +275,7 @@ ul.double-selector > li > input {
 }
 
 ul.double-selector > li > input.preview-selected-left {
-    z-index: 1;
+	z-index: 1;
 	background-color: var(--accent);
 	color: var(--text-light);
 	/*box-shadow: 50px 0px 20px rgba(0, 0, 0, 0.25);*/
@@ -284,7 +283,7 @@ ul.double-selector > li > input.preview-selected-left {
 }
 
 ul.double-selector > li > input.preview-selected-right {
-    z-index: 1;
+	z-index: 1;
 	background-color: var(--accent);
 	color: var(--text-light);
 	box-shadow: -3px 0px 3px rgba(0, 0, 0, 0.25);
@@ -351,7 +350,7 @@ form label:not(:has(input[type='checkbox'])) span {
 	div.footer-container {
 		height: 100%;
 	}
-	
+
 	footer.page-footer {
 		margin-top: 1.1rem;
 		margin-left: 1.5rem;
