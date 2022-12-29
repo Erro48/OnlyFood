@@ -5,7 +5,7 @@
         <div class="row mb-4"> <!-- propic-name-followers -->
             <div class="col-1"></div>
             <div class="col-3">
-                <img class="profile-pic" src="<?php echo $profile["profilePic"]; ?>" alt="Propic of <?php echo $profile["username"]; ?>"/>
+                <img class="profile-pic" src="<?php echo $PROFILE_PIC_DIR.$profile["profilePic"]; ?>" alt="Propic of <?php echo $profile["username"]; ?>"/>
             </div>
             <div class="col">
                 <div class="row">

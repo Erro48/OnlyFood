@@ -32,6 +32,7 @@
         <div id="comment-input-container" class="col-11">
             <label for="comment-input">
                 <input id="comment-input" type="text" name="comment-text" placeholder="Write a comment..." />
+                <span class="d-none">Write a comment</span>
             </label>
         </div>
         <div class="col-1 p-0 d-flex align-items-center">

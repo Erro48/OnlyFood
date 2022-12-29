@@ -40,30 +40,29 @@ footer (nav bar)
         </div>
         <div class="col-6">
             <div class="row align-content-center buttons-container">
-                    <div class="col-6">
-                        <button onclick="window.location.href='search.php'">
-                            <img src="imgs/icons/search.svg" alt="search icon" />
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button class="position-relative" onclick="window.location.href='notifications.php'">
-                            <img src="imgs/icons/notification.svg" alt="notifications icon" />
-                            <?php
-                                $count = $dbh->unreadNotificationCount($_SESSION["username"]);
-                                if ($count == 0):
-                            ?>
-                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger invisible">
-                                <span class="visually-hidden"> unseen notifications </span>    
-                            </span>
-                            <?php else: ?>
-                            <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $count ?>
-                                <span class="visually-hidden"> unseen notifications </span>    
-                            </span>
-                            <?php endif ?>   
-                        </button>
-                    </div>
-                </ul>
+                <div class="col-6">
+                    <button onclick="window.location.href='search.php'">
+                        <img src="imgs/icons/search.svg" alt="search icon" />
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="position-relative" onclick="window.location.href='notifications.php'">
+                        <img src="imgs/icons/notification.svg" alt="notifications icon" />
+                        <?php
+                            $count = $dbh->unreadNotificationCount($_SESSION["username"]);
+                            if ($count == 0):
+                        ?>
+                        <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger invisible">
+                            <span class="visually-hidden"> unseen notifications </span>    
+                        </span>
+                        <?php else: ?>
+                        <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $count ?>
+                            <span class="visually-hidden"> unseen notifications </span>    
+                        </span>
+                        <?php endif ?>   
+                    </button>
+                </div>
             </div>
         </div>
     </header>
