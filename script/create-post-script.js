@@ -4,6 +4,10 @@ window.onload = () => {
 	deleteCookie('ingredients')
 }
 
+/**
+ * @enum ModalsType
+ * The types of modal used.
+ */
 const ModalsType = {
 	INGREDIENTS: 'ingredients',
 	TAGS: 'tags',
@@ -101,15 +105,6 @@ async function loadModal(modalType, callback) {
 	)
 }
 
-function createModalListItem(modalType, item) {
-	switch (modalType) {
-		case ModalsType.INGREDIENTS:
-			return createIngredientsListItem(item)
-		case ModalsType.TAGS:
-			return createTagsListItem(item)
-	}
-}
-
 /**
  * Adds an ingredient to the list of the chosen ingredients
  * @param {Event} event
@@ -139,6 +134,26 @@ async function addItemToList(event, modalType) {
 	checkModalListMaxHeight(modalType)
 }
 
+/**
+ * Returns the html of an item of the modal list, based on the type of modal
+ * @param {ModalsType} modalType - The type of the modal
+ * @param {*} item - The item to create the html of
+ * @returns the html of the given element
+ */
+function createModalListItem(modalType, item) {
+	switch (modalType) {
+		case ModalsType.INGREDIENTS:
+			return createIngredientsListItem(item)
+		case ModalsType.TAGS:
+			return createTagsListItem(item)
+	}
+}
+
+/**
+ * Returns the items of the modal list, based on the type of modal
+ * @param {ModalsType} modalType - The type of the modal
+ * @returns the html of the given element
+ */
 function getItemsOfModalList(modalType) {
 	switch (modalType) {
 		case ModalsType.INGREDIENTS:
@@ -148,6 +163,12 @@ function getItemsOfModalList(modalType) {
 	}
 }
 
+/**
+ * Converts an item of a modal list to the corresponding object, based on the type of the modal
+ * @param {String} itemName - The name of the item
+ * @param {ModalsType} modalType - The type of the modal
+ * @returns {Object} an object where the structure depends on the type of modal
+ */
 async function getObjectFromItem(itemName, modalType) {
 	let obj = { name: itemName }
 
@@ -168,7 +189,19 @@ async function getObjectFromItem(itemName, modalType) {
 }
 
 /* INGREDIENTS LIST */
-async function ingredientsCallback(ingredient) {
+/**
+ * Callback used when the modal is loaded, to convert the elements in the result list in objects
+ * @param {HTMLLIElement} ingredient - li element representing an ingredient
+ * @returns {Object} containing an ingredient and the associated unit of measurement
+ * @returns {Object} ingredient - Object representing the ingredient of one row
+ * @returns {String} ingredient.name - Name of the ingredient
+ * @returns {Number} ingredient.quantity - Quantity of the ingredient
+ * @returns {Object} ingredient.measures - Current unit of measurement used by the ingredient
+ * @returns {String} ingredient.measures.name - Name of the unit of measurement
+ * @returns {String} ingredient.measures.acronym - Acronym of the unit of measurement
+ * @returns {Array} measures - List of all the unit of measurement accepted by the ingredient
+ */
+function ingredientsCallback(ingredient) {
 	const ingredientObj = {
 		name: ingredient.querySelector('span').innerText,
 		quantity: ingredient.dataset.quantity,
@@ -184,7 +217,7 @@ async function ingredientsCallback(ingredient) {
 
 /**
  * Returns the measures allowed of a given ingredient
- * @param {*} ingredient - The ingredient to know the measures of
+ * @param {Object} ingredient - The ingredient to know the measures of
  * @returns an array with the measures allowed for the ingredient
  */
 async function getAllowedMeasures(ingredient) {
@@ -249,8 +282,16 @@ async function addIngredients() {
 }
 
 /**
- * Returns the list of the ingredients present in the ingredients list
- * @returns a promise containing array with the ingredients
+ * Returns an array of objects, each with a field ingredient and a field with the unit of measurement accepted for that ingredient
+ * @returns {Array} list of ingredients of the ingredient modal
+ * @returns {Object} containing an ingredient and the associated unit of measurement
+ * @returns {Object} ingredient - Object representing the ingredient of one row
+ * @returns {String} ingredient.name - Name of the ingredient
+ * @returns {Number} ingredient.quantity - Quantity of the ingredient
+ * @returns {Object} ingredient.measures - Current unit of measurement used by the ingredient
+ * @returns {String} ingredient.measures.name - Name of the unit of measurement
+ * @returns {String} ingredient.measures.acronym - Acronym of the unit of measurement
+ * @returns {Array} measures - List of all the unit of measurement accepted by the ingredient
  */
 function getIngredientsOfModalList() {
 	const listContainer = document.querySelector('div#modal-ingredients-list')
@@ -317,7 +358,13 @@ function createIngredientsListItem({ ingredient, measures }) {
 }
 
 /* TAGS LIST */
-const tagsCallback = (tag) => {
+/**
+ * Callback used when the modal is loaded, to convert the elements in the result list in objects
+ * @param {HTMLLIElement} tag - li element representing an ingredient
+ * @returns {Object} containing the name of the tag
+ * @returns {String} tag.name - The name of the tag
+ */
+function tagsCallback(tag) {
 	const tagObj = {
 		name: tag.querySelector('span').innerText,
 	}
@@ -325,8 +372,10 @@ const tagsCallback = (tag) => {
 }
 
 /**
- * Returns the list of the ingredients present in the ingredients list
- * @returns an array containg the ingredients
+ * Returns an array of objects, each one representing a tag
+ * @returns {Array} list of tags of the tag modal
+ * @returns {Object} containing the name of the tag
+ * @returns {String} tag.name - Name of the tag
  */
 function getTagsOfModalList() {
 	const listContainer = document.querySelector('div#modal-tags-list')
@@ -376,6 +425,13 @@ function addTags() {
 	tagsContainer.innerHTML = tags.join('')
 }
 
+/* COOKIES */
+/**
+ * Saves the given ingredient in the cookies, with the relatives unit of measurements. The ingredient is parsed to a string
+ * @param {Object} ingredient - Ingredient with a name and a list of allowed unit of measurements
+ * @param {String} ingredient.ingredientName - The name of the ingredient
+ * @param {Array} ingredient.measures - An array with the accepted unit of measurement for the ingredient
+ */
 function saveAllowedMeasuresInCookie({ ingredientName, measures }) {
 	measures = measures.map((measure) => {
 		let measureOption = document.createElement('option')
@@ -412,6 +468,13 @@ function saveAllowedMeasuresInCookie({ ingredientName, measures }) {
 	setCookie('ingredients', JSON.stringify(ingredientsInCookie))
 }
 
+/**
+ * Reads the ingredient, and the relative unit of measurements, from the cookies
+ * @param {String} ingredientName - The name of the ingredient to read
+ * @returns {Object} ingredient with a name and a list of allowed unit of measurements
+ * @returns {String} ingredient.ingredientName The name of the ingredient
+ * @returns {Array} ingredient.measures An array with the accepted unit of measurement for the ingredient
+ */
 function readAllowedMeasuresFromCookie(ingredientName) {
 	const cookies = getCookie('ingredients')
 	if (cookies == '') return []
