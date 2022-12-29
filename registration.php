@@ -50,7 +50,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             if (isset($profile_pic) && $profile_pic['size'] > 0) {
                 downloadProfilePic($profile_pic, $dbh);
             }
-            // header("Location: ./index.php");
+            header("Location: ./index.php");
         }
     }
 
