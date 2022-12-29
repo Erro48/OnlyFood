@@ -14,8 +14,8 @@
                     </div>
                     <?php if (!isset($_GET["user"])): ?>
                     <div class="col-2 mini-box">
-                        <button class="p-2 icon-button hideable">
-                            <img src="imgs/icons/settings.png" alt="Settings"/>
+                        <button class="p-2 icon-button hideable" onclick="logout()">
+                            <img src="imgs/icons/logout.svg" alt="Logout" />
                         </button>
                     </div>
                     <?php else: ?>

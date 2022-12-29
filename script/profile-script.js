@@ -1,10 +1,9 @@
-
-const SCROLL_OFFSET_TRIGGER = 200;
+const SCROLL_OFFSET_TRIGGER = 200
 
 function onScroll(event) {
-    let scrollDelta = event.srcElement.scrollTop;
-    let element = document.getElementsByClassName("profile-section")[0];
-/*
+	let scrollDelta = event.srcElement.scrollTop
+	let element = document.getElementsByClassName('profile-section')[0]
+	/*
     if (scrollDelta >= SCROLL_OFFSET_TRIGGER) {
         element.classList.add("reduced");
         Array.from(document.getElementsByClassName("hideable")).forEach(elem => {
@@ -23,7 +22,17 @@ function onScroll(event) {
 }
 
 window.onload = () => {
-    let obj = document.getElementById("main-container");
-    obj.addEventListener('scroll', onScroll);
-}    
+	let obj = document.getElementById('main-container')
+	obj.addEventListener('scroll', onScroll)
+}
 
+function logout() {
+	axios
+		.get(`./request/request.php?logout`)
+		.then((result) => {
+			if (result.data == 1) {
+				window.location.href = 'login.php'
+			}
+		})
+		.catch((err) => console.error(err))
+}

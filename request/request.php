@@ -24,4 +24,9 @@ if (isset($_GET["user"])) {
     echo json_encode($users_list);
 }
 
+if (isset($_GET["logout"])) {
+    unset($_SESSION['username']);
+    echo "1";
+}
+
 ?>
