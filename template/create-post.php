@@ -114,7 +114,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <fieldset id="image-fieldset" class="d-flex flex-column align-items-center">
-                    <legend><h2>Image</h2></legend>
+                    <legend class="d-none"><h2>Recipe Preview</h2></legend>
                     <label for="post-preview" class="row w-100">
                         <input type="file" class="d-none" name="post-preview" id="post-preview" onchange="profilePicPreview(this)">
                         <span class="col-12 p-0">
@@ -134,12 +134,7 @@
                 </fieldset>
             </div>
 
-
-            
-
-            
-
-            <input type="submit" value="Publish Post" class="button-secondary w-100 col-12">
+            <input type="submit" value="Publish Post" class="button-secondary w-100 col-12 my-3">
         </form>
     </div>
     <div class="col-1"></div>
