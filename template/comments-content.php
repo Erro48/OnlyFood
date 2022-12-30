@@ -15,7 +15,7 @@
             <div class="single-comment-container">
                 <article class="row comment-article">
                     <div class="col-3 p-0 propic-container">
-                        <img src="<?php echo $PROFILE_PIC_DIR.$comment["profilePic"];; ?>" alt="Recipe image" />
+                        <img src="<?php echo $PROFILE_PIC_DIR.$comment["profilePic"];; ?>" alt="Propic of <?php echo $comment["user"] ?>" />
                     </div>
                     <div class="col-9 row p-0 ms-2 align-items-center">
                         <div class="col-12 row pt-2">
