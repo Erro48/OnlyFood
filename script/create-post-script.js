@@ -261,15 +261,15 @@ async function addIngredients() {
 	ingredients = ingredients.map((ingredient) => {
 		ingredient = ingredient.ingredient
 		return `
-		<div class="col-6">
+		<div class="col-6 col-md-3">
 			<li class="row" data-quantity="${
 				// if the quantity is not valid use the default value
 				ingredient.quantity > 0 ? ingredient.quantity : QUANTITY_DEFAULT
 			}" data-measure-name="${ingredient.measure.name}" data-measure-acronym="${
 			ingredient.measure.acronym
 		}">
-				<span class="col-7">${ingredient.name}</span>
-				<span class="col-5">
+				<span class="col-9">${ingredient.name}</span>
+				<span class="col-3 p-0">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${
 						ingredient.name
 					}" onclick="removeElementFromResultList(this, ModalsType.INGREDIENTS)" />
@@ -412,10 +412,10 @@ function addTags() {
 
 	tags = tags.map((tag) => {
 		return `
-		<div class="col-6">
+		<div class="col-6 col-md-3">
 			<li class="row">
-				<span class="col-7">${tag.name}</span>
-				<span class="col-5">
+				<span class="col-9">${tag.name}</span>
+				<span class="col-3 p-0">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${tag.name}" onclick="removeElementFromResultList(this, ModalsType.TAGS)" />
 				</span>
 			</li>
@@ -483,4 +483,25 @@ function readAllowedMeasuresFromCookie(ingredientName) {
 	return ingredients.filter(
 		(ingredient) => ingredient.ingredient == ingredientName
 	)[0].measures
+}
+
+/* IMAGE */
+/**
+ * Displays a loaded image into a preview <img>
+ * @param {HTMLInputElement} input - The input element to load the image from
+ * @param {HTMLInputElement} [preview=input.parentNode.querySelector(`#${input.id} ~ span`)] - The HTML element to loead the image into
+ */
+function profilePicPreview(
+	input,
+	preview = input.parentNode.parentNode.querySelector(`div`)
+) {
+	const fReader = new FileReader()
+	const fileNameSpan = input.parentNode.querySelector('span.image-name')
+
+	fReader.readAsDataURL(input.files[0])
+	fReader.onloadend = function (event) {
+		preview.querySelector('img').src = event.target.result
+		preview.classList.remove('d-none')
+		fileNameSpan.innerText = input.files[0].name
+	}
 }

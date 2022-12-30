@@ -323,7 +323,7 @@ form label:has(input[type='file'] ~ .profile-pic) {
 }
 
 /* #region Labels Content */
-form label:not(:has(input[type='checkbox'])) span {
+form label:not(:has(input[type='checkbox'], input[type='file'])) span {
 	position: absolute;
 	top: 25%;
 	left: 0;
