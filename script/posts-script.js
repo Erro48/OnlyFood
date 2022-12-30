@@ -19,3 +19,12 @@ function showRecipe(id){
     img.style.display = "none";
     div.style.display = "inline-block";
 }
+
+function like(id){
+    axios.get(`request/like.php?postId=${id}`)
+    .then((data) => {
+        document.querySelector("article.article-".concat(id, " button.like-button")).className = "action-button like-button ".concat(data.data.class);
+        document.querySelector("article.article-".concat(id, " p.like-number-p")).innerHTML = data.data.likeNumber;
+    })
+    .catch((err) => console.error(err));
+}

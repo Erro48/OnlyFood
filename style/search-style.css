@@ -1,0 +1,101 @@
+
+/**
+    Main size to have nav bar bottom
+*/
+.main-container {
+    height: 87vh;
+}
+
+/** COPIED FROM home style 
+    TO DO -- use the same style in a base style file */
+ul.selector {
+    /* margin: 0 25%; */
+    border-radius: 4px;
+    background-color: var(--light-color);
+    /* border: 2px solid var(--secondary); */
+    padding: 0;
+}
+
+ul.selector > li {
+    display: inline-block;
+    padding: 0;
+}
+
+ul.selector li > button {
+    border: none;
+    width: 100%;
+}
+
+ul.selector > li > button {
+    border-radius: 4px;
+    background-color: var(--light-color);
+}
+
+ul.selector > li > button.selected {
+    background-color: var(--accent);
+    color: var(--text-light);
+    box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+}
+
+/* ------------------------------------------------------------ */
+
+section.hidden {
+    display: none
+}
+
+.search-sections-container {
+    height: 87vh;
+}
+
+.search {
+    height: 9vh;
+}
+
+.toggle {
+    height: 6vh;
+}
+
+.toggle > .init-row {
+    margin-top: 2vh;
+}
+
+.output {
+    height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.output .user-search {
+    background-color: var(--light-color);
+    border-radius: 3em;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+}
+
+.output .user-search .profile-preview {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.output .user-search .username-label {
+    font-size: 14pt;
+    font-weight: 600;
+    width: 100%;
+}
+
+.output .user-search .name-surname-label {
+    font-size: 12pt;
+    font-weight: 400;
+    width: 100%;
+    opacity: 80%;
+}
+
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+}

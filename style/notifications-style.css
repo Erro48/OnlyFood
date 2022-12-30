@@ -1,0 +1,44 @@
+
+/**
+    Main size to have nav bar bottom
+*/
+.main-container {
+    height: 87vh;
+}
+
+.output {
+    height: 79vh;
+    margin-top: 8vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.output .notification {
+    background-color: var(--light-color);
+    border-radius: 3em;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+}
+
+.output .notification .profile-preview {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.output .notification .notification-label {
+    width: 100%;
+}
+
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+}
+
+.info-message {
+    text-align: center;
+    font-size: 18pt;
+}

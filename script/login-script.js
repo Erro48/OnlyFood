@@ -1,5 +1,11 @@
 'use strict'
 
+window.onload = () => {
+	document
+		.querySelector('input#search-ingredient')
+		.addEventListener('search', clearDropdownElements)
+}
+
 /**
  * @enum RegistrationFieldset
  * Fieldsets in the registration page.
@@ -13,11 +19,11 @@ const RegistrationFieldset = {
 /**
  * Displays a loaded image into a preview <img>
  * @param {HTMLInputElement} input - The input element to load the image from
- * @param {HTMLInputElement} [preview=input.parentNode.querySelector(`#${input.id} ~ p`)] - The HTML element to loead the image into
+ * @param {HTMLInputElement} [preview=input.parentNode.querySelector(`#${input.id} ~ span`)] - The HTML element to loead the image into
  */
 function profilePicPreview(
 	input,
-	preview = input.parentNode.querySelector(`#${input.id} ~ p`)
+	preview = input.parentNode.querySelector(`#${input.id} ~ span`)
 ) {
 	const fReader = new FileReader()
 	// const file = input.files
@@ -27,6 +33,14 @@ function profilePicPreview(
 	fReader.onloadend = function (event) {
 		preview.querySelector('img').src = event.target.result
 	}
+}
+
+/**
+ * Remove all the option of a dropdown menu
+ */
+async function clearDropdownElements() {
+	const dropdown = document.querySelector('ul.search-result')
+	clearElement(dropdown)
 }
 
 /**
@@ -79,28 +93,6 @@ function displayIngredients(ingredients, container) {
 }
 
 /**
- * Removes every children of the given element
- * @param {Element} [element=document.querySelector('.search-result')] - Element to be cleared
- */
-function clearElement(element = document.querySelector('.search-result')) {
-	while (element.firstChild) {
-		element.removeChild(element.lastChild)
-	}
-}
-
-/**
- * Return the string with each word capitalized
- * @param {String} string - String to be capitalized
- * @returns {String} the capitalized string
- */
-function capitalizeString(text) {
-	return text
-		.split(' ')
-		.map((word) => word[0].toUpperCase() + word.substr(1))
-		.join(' ')
-}
-
-/**
  * Adds an ingredient to the list of the chosen ingredients
  * @param {Event} event
  */
@@ -148,6 +140,7 @@ function addIngredientToList(event) {
 	listItems = listItems.map((ingredient) => {
 		const ingredientName = ingredient.name
 		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
+		console.log(ingredientId)
 
 		return `<label for="ingr-${ingredientId}" class="col-6 col-md-4">
 			<input type="checkbox" name="intolerances[]" id="ingr-${ingredientId}" 
@@ -158,21 +151,9 @@ function addIngredientToList(event) {
 
 	// add to container
 	listContainer.innerHTML = listItems.join('')
-	clearElement()
+	clearElement(document.querySelector('.search-result'))
 	inputSearchField.value = ''
 	hideLabel(inputSearchField)
-}
-
-/**
- * Hides the label of the element's sibling
- * @param {HTMLInputElement} element - Input element to hide the label
- */
-function hideLabel(element) {
-	const sibling = element.nextElementSibling
-
-	element.value.trim() != ''
-		? sibling.classList.add('d-none')
-		: sibling.classList.remove('d-none')
 }
 
 /**

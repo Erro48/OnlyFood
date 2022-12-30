@@ -5,18 +5,25 @@
         <div class="row mb-4"> <!-- propic-name-followers -->
             <div class="col-1"></div>
             <div class="col-3">
-                <img class="profile-pic" src="<?php echo $profile["profilePic"]; ?>" alt="Propic of iginio"/>
+                <img class="profile-pic" src="<?php echo $PROFILE_PIC_DIR.$profile["profilePic"]; ?>" alt="Propic of <?php echo $profile["username"]; ?>"/>
             </div>
             <div class="col">
                 <div class="row">
                     <div class="col-8 mini-box">
                         <p class="username-text m-0"><?php echo $profile["username"]; ?></p>
                     </div>
+                    <?php if (!isset($_GET["user"])): ?>
                     <div class="col-2 mini-box">
-                        <button class="p-2 icon-button hideable">
-                            <img src="imgs/icons/settings.png" alt="Settings"/>
+                        <button class="p-2 icon-button hideable" onclick="logout()">
+                            <img src="imgs/icons/logout.svg" alt="Logout" />
                         </button>
                     </div>
+                    <?php else: ?>
+                    <div class="col-2 mini-box">
+                        <div class="p-4">
+                        </div>
+                    </div>
+                    <?php endif ?>   
                 </div>
                 <div class="row">
                     <div class="col mini-box">

@@ -121,23 +121,6 @@ section.login-section form div.ingredients-list > label > span {
 }
 
 /* #region Labels ************************************************** */
-section.login-section form label {
-	position: relative;
-	user-select: none;
-}
-
-section.login-section form label:has(input.input-error) {
-	--error-animation-offset: 5px;
-	animation: shake 0.25s ease;
-}
-
-section.login-section
-	form
-	label:has(input[type='text'], input[type='password'], input[type='search']) {
-	width: 100%;
-	height: 100%;
-	margin-top: 1.5rem;
-}
 
 section.login-section form label:has(p.profile-pic) {
 	width: 20vh;
@@ -145,24 +128,20 @@ section.login-section form label:has(p.profile-pic) {
 }
 
 /* #region Label's Contents ######################################## */
-section.login-section form label p {
-	position: absolute;
-	top: 25%;
-	transition: 0.25s top;
-}
 
-section.login-section form label p.profile-pic {
+section.login-section form label span.profile-pic {
 	box-sizing: border-box;
-	width: 100%;
-	height: 100%;
+	width: 10em;
+	height: 10em;
 	background-color: var(--light-color);
 	border: 3px solid var(--primary);
 	border-radius: 50%;
 	overflow: hidden;
 	top: 0;
+	transform: translateX(-50%);
 }
 
-section.login-section form label p.profile-pic::after {
+section.login-section form label span.profile-pic::after {
 	display: block;
 	position: relative;
 	left: 100%;
@@ -177,10 +156,12 @@ section.login-section form label p.profile-pic::after {
 	text-align: center;
 }
 
-section.login-section form label p.profile-pic > img {
+section.login-section form label span.profile-pic > img {
 	display: block;
-	width: 100%;
-	height: 100%;
+	/* 	10em: width of span.profile-pic;
+		6px: width of borders of span.profile-pic */
+	width: calc(10em - 6px);
+	height: calc(10em - 6px);
 	max-height: 100%;
 	object-fit: cover;
 }
@@ -193,26 +174,8 @@ section.login-section form label input.input-error {
 	border: 2px solid var(--error-color);
 }
 
-section.login-section form label input::selection {
-	color: var(--text-light);
-	background-color: var(--primary);
-}
-
-section.login-section form label input[type='search']:focus ~ p {
+section.login-section form label input[type='search']:focus ~ span {
 	display: none;
-}
-
-section.login-section
-	form
-	label
-	input:not([type='file'], [type='search']):focus
-	~ p,
-section.login-section
-	form
-	label
-	input:not([type='file'], [type='search']):valid
-	~ p {
-	top: -50%;
 }
 
 /* #endregion Inputs */

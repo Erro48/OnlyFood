@@ -25,6 +25,8 @@ main section.profile-section {
 main section.profile-section .profile-pic {
     width: 100%;
     border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 main section.favourite-ingredients-section {

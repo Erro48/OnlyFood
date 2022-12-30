@@ -26,6 +26,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getPostsById($postId){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM posts p, recipes r
+        WHERE p.recipe = r.recipeId
+        AND p.postId = ?");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getLikesByPost($postId){
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS likes
@@ -38,7 +51,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getCommentsByPost($postId){
+    public function getCommentsCountByPost($postId) {
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS comments
         FROM comments c
@@ -48,6 +61,29 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCommentsByPost($postId) {
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM comments c, users u
+        WHERE c.user = u.username
+        AND c.postId = ?
+        ORDER BY date DESC");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertComment($username, $postId, $text) {
+        $stmt = $this->db->prepare("
+        INSERT INTO comments(content, date, user, postId) VALUES
+        (?, NOW(), ?, ?);");
+        $stmt->bind_param('ssi', $text, $username, $postId);
+        $stmt->execute();
+        return $stmt->get_result();
     }
 
     public function getUserInfo($user) {
@@ -190,12 +226,12 @@ class DatabaseHelper{
     public function getProfileInfo($username){
         $stmt = $this->db->prepare("
         SELECT u.username, u.name, u.surname, u.profilePic, 
-            (SELECT Count(*) FROM follows WHERE follower='carlo61') as numFollowing,
-	        (SELECT Count(*) FROM follows WHERE followed='carlo61') as numFollower
+            (SELECT Count(*) FROM follows WHERE follower=?) as numFollowing,
+	        (SELECT Count(*) FROM follows WHERE followed=?) as numFollower
         FROM users u
         WHERE u.username=?");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('sss', $username, $username, $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -221,17 +257,49 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getExplorePosts($username){
-        //TODO da cambiare
-        $stmt = $this->db->prepare("
+    public function getExplorePosts($username, $tags = NULL){
+        $query = "
         SELECT *
-        FROM posts p, recipes r, users u
+        FROM posts p, recipes r, users u";
+
+        if(isset($tags)){
+            $query .= ", belongto b";
+        }
+        
+        $query .= "
         WHERE r.recipeId = p.recipe
         AND p.owner = u.username
-        ORDER BY p.date DESC
-        LIMIT 15");
+        AND p.owner != ?
+        AND r.recipeId NOT IN (SELECT c.recipe
+                                FROM compositions c, intolerances i
+                                WHERE i.user = ?
+                                AND c.ingredient = i.ingredient)";
 
-        //$stmt->bind_param('s', $username);
+        $bindParamString = "ss";
+        
+        if(isset($tags)){
+            $query .= " AND b.recipe = p.recipe";
+            for($i = 0; $i < count($tags); $i++){
+                if($i == 0){
+                    $query .= " AND (b.tag = ?";
+                } else {
+                    $query .= " OR b.tag = ?";
+                }
+                $bindParamString .= "s";
+            }
+            $query .= ")";
+            $params = array_merge(array($username, $username), $tags);
+        }
+
+        $query .= " ORDER BY p.date DESC
+                    LIMIT 15";
+        
+        $stmt = $this->db->prepare($query);
+        if(isset($tags)){
+            $stmt->bind_param($bindParamString, ...$params);
+        } else {
+            $stmt->bind_param($bindParamString, $username, $username);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -242,8 +310,22 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("
         SELECT *
         FROM tags
-        ORDER BY name
-        LIMIT 15");
+        ORDER BY name");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchTag($name){
+        $name = $name."%";
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM tags
+        WHERE name LIKE ?
+        ORDER BY name");
+
+        $stmt->bind_param("s", $name);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -256,5 +338,177 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+
+    public function searchUser($name){
+        $username = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $name);
+        $name = $name."%";
+        $stmt = $this->db->prepare("
+        SELECT username, profilePic, name, surname
+        FROM users
+        WHERE username LIKE ? 
+            OR name LIKE ?
+            OR surname LIKE ?
+            OR CONCAT(name, ' ', surname) LIKE ?
+            OR CONCAT(surname, ' ', name) LIKE ?
+       ");
+
+        $stmt->bind_param('sssss', $name, $name, $name, $name, $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function postAlreadyLikedByUser($username, $postId){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM LIKES
+        WHERE user = ?
+        AND post  = ?");
+
+        $stmt->bind_param('si', $username, $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC)) > 0 ? true : false;
+    }
+
+    public function likePost($username, $postId){
+        if(!$this->postAlreadyLikedByUser($username, $postId)){
+            $stmt = $this->db->prepare("
+            INSERT INTO likes(user, post)
+            VALUES (?, ?)");
+
+            $stmt->bind_param('si', $username, $postId);
+            $stmt->execute();
+        }
+    }
+
+    public function unlikePost($username, $postId){
+        if($this->postAlreadyLikedByUser($username, $postId)){
+            $stmt = $this->db->prepare("
+            DELETE FROM likes
+            WHERE user = ?
+            AND post = ?");
+
+            $stmt->bind_param('si', $username, $postId);
+            $stmt->execute();
+        }
+    }
+
+    public function unreadNotificationCount($username){
+        $notificationCount = 0;
+        $stmt = $this->db->prepare("
+                SELECT username as sender, profilePic, f.date
+                FROM follows f
+                JOIN users u on u.username=f.follower
+                WHERE f.followed=? AND f.seen=0
+                ORDER BY f.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+        
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic
+                FROM likes l 
+                JOIN users u on u.username=l.user
+                JOIN posts p on p.postId=l.post
+                WHERE p.owner=? AND l.seen=0");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic, c.date
+                FROM comments c 
+                JOIN users u on u.username=c.user
+                JOIN posts p on p.postId=c.postId
+                WHERE p.owner=? AND c.seen=0
+                ORDER BY c.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+        
+        return $notificationCount;
+    }
+
+    public function getUnreadNotifications($username){
+        $stmt = $this->db->prepare("
+                SELECT username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
+                FROM follows f
+                JOIN users u on u.username=f.follower
+                WHERE f.followed=? AND f.seen=0
+                ORDER BY f.date DESC");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultFollow = $stmt->get_result();
+
+        $stmt = $this->db->prepare("
+                SELECT likeId, user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                FROM likes l 
+                JOIN users u on u.username=l.user
+                JOIN posts p on p.postId=l.post
+                WHERE p.owner=? AND l.seen=0");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultLikes = $stmt->get_result();
+        
+        $stmt = $this->db->prepare("
+                SELECT commentId, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
+                FROM comments c 
+                JOIN users u on u.username=c.user
+                JOIN posts p on p.postId=c.postId
+                WHERE p.owner=? AND c.seen=0
+                ORDER BY c.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultComments = $stmt->get_result();
+        
+        return array_merge($resultFollow->fetch_all(MYSQLI_ASSOC),
+                            $resultLikes->fetch_all(MYSQLI_ASSOC),
+                            $resultComments->fetch_all(MYSQLI_ASSOC));
+    }
+
+    public function markNotificationsAsRead($notifications){
+        foreach ($notifications as $not) {
+            switch($not["type"]) {
+                case NotificationTypes::Follow->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE follows f
+                        SET f.seen=1
+                        WHERE f.follower=? and f.followed=?
+                    ");
+                    $stmt->bind_param('ss', $not["sender"], $_SESSION["username"]);
+                    $stmt->execute();
+                break;
+                case NotificationTypes::Like->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE likes
+                        SET seen=1
+                        WHERE likeId=?
+                    ");
+                    $stmt->bind_param('i', $not["likeId"]);
+                    $stmt->execute();
+                    break;
+                case NotificationTypes::Comment->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE comments
+                        SET seen=1
+                        WHERE commentId=?
+                    ");
+                    $stmt->bind_param('i', $not["commentId"]);
+                    $stmt->execute();
+                    break;
+            }
+        }
+    }
 }
 ?>
