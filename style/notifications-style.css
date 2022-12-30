@@ -23,7 +23,9 @@
 .output .notification .profile-preview {
     width: 100%;
     border-radius: 50%;
-    max-width: 5rem
+    max-width: 5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .output .notification .notification-label {

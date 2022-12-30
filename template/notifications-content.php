@@ -7,7 +7,7 @@
                     <?php if ($notification["type"] == NotificationTypes::Follow->value): ?>
                         <article class="row p-1 notification mt-2">    
                             <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
-                                <div class="col-4 ps-1">
+                                <div class="col-4 ps-1 d-flex align-items-center">
                                     <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                                 </div>
                                 <div class="col d-flex flex-column align-items-center">
@@ -19,7 +19,7 @@
                     <?php elseif ($notification["type"] == NotificationTypes::Like->value): ?>
                         <article class="row p-1 notification mt-2">    
                             <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
-                                <div class="col-4 ps-1">
+                                <div class="col-4 ps-1 d-flex align-items-center">
                                     <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                                 </div>
                                 <div class="col d-flex flex-column align-items-center">
@@ -30,7 +30,7 @@
                     <?php elseif ($notification["type"] == NotificationTypes::Comment->value): ?>
                         <article class="row p-1 notification mt-2">    
                             <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
-                                <div class="col-4 ps-1">
+                                <div class="col-4 ps-1 d-flex align-items-center">
                                     <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                                 </div>
                                 <div class="col d-flex flex-column align-items-center">
