@@ -13,7 +13,7 @@
     <section id="comments-section">
         <?php foreach($templateParams["comments"] as $comment): ?>
             <div class="single-comment-container">
-                <article class="row comment-article">
+                <article id="comment-<?php echo $comment["commentId"] ?>" class="row comment-article">
                     <div class="col-3 p-0 propic-container">
                         <img src="<?php echo $PROFILE_PIC_DIR.$comment["profilePic"];; ?>" alt="Propic of <?php echo $comment["user"] ?>" />
                     </div>
