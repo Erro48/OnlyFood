@@ -23,7 +23,12 @@ function onScroll(event) {
 
 window.onload = () => {
 	let obj = document.getElementById('main-container')
-	obj.addEventListener('scroll', onScroll)
+	//obj.addEventListener('scroll', onScroll)
+	setPostsContainerHeight()
+}
+
+window.onresize = () => {
+	setPostsContainerHeight()
 }
 
 function logout() {
@@ -35,4 +40,13 @@ function logout() {
 			}
 		})
 		.catch((err) => console.error(err))
+}
+
+function setPostsContainerHeight() {
+	const main = document.querySelector("main");
+	const profileSection = document.querySelector("section.profile-section");
+	const h2 = document.querySelector("section.posts-section > h2");
+	const postsContainerDiv = document.querySelector("#posts-container-div");
+	const height = main.offsetHeight - (profileSection.offsetHeight + h2.offsetHeight + parseInt(getComputedStyle(h2).marginTop) + parseInt(getComputedStyle(h2).marginBottom));
+	postsContainerDiv.style.height = "".concat(height, "px");
 }

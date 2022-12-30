@@ -3,7 +3,7 @@ main section.profile-section {
     /*height: 50vh;*/
     /*top: 7vh;
     z-index: 2;*/
-    height: 33vh;
+    /*height: 33vh;*/
     background-color: var(--primary);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -85,8 +85,8 @@ main section .icon-button > img {
     width: 2em;
 }
 
-.posts-section {
-    height: 54vh;
+.posts-section > #posts-container-div {
+    /*height: 54vh;*/
     overflow-y: auto;
 }
 
@@ -118,8 +118,8 @@ main section .icon-button > img {
         align-items: center;
     }
 
-    .posts-section {
-        /*margin-top: 0vh;*/
+    /*.posts-section > #posts-container-div {
+        /*margin-top: 0vh;*//*
         height: 60vh;
-    }
+    }*/
 }
