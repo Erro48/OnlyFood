@@ -75,11 +75,13 @@
         </div>
     </section>
     <div class="col-md-2"></div>
-<!--/div Non so perché mettendo questo si sminchia il footer a schermo grande -->
+</div>
 <section class="row posts-section"> <!-- posts container -->
-    <?php
-        /* Users posts */
-        require_once("template/posts.php");
-    ?>
+    <h2 class="mt-1">Posts</h2>
+    <div id="posts-container-div">
+        <?php
+            /* Users posts */
+            require_once("template/posts.php");
+        ?>
     </div>
 </section>
