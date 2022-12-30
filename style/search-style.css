@@ -76,7 +76,9 @@ section.hidden {
 .output .user-search .profile-preview {
     width: 100%;
     border-radius: 50%;
-    max-width: 5rem
+    max-width: 5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .output .user-search .username-label {

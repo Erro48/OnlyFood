@@ -59,7 +59,7 @@ function search(elem) {
 function createUserSearchResult(data) {
     const container = document.createElement('article');
     container.innerHTML = ` <a class="row reset-a" href="profile.php?user=${data.username}">
-                                <div class="col-3 ps-1">
+                                <div class="col-3 ps-1 d-flex align-items-center">
                                     <img class="profile-preview" src="imgs/propics/${data.profilePic}" alt="Propic of ${data.username}" />
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">

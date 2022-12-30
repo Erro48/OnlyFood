@@ -55,6 +55,8 @@ section#comments-section article.comment-article > div.propic-container {
 section#comments-section article.comment-article > div.propic-container > img {
     width: 100%;
     border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     padding: 0.5rem;
 }
 
