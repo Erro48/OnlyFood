@@ -343,10 +343,9 @@ form label:not(:has(input[type='checkbox'])) span {
 
 /* #region Media Queries */
 @media screen and (min-width: 768px) {
-	main {
+	main:not(.login-main) {
 		height: 93vh;
 	}
-
 	div.footer-container {
 		height: 100%;
 	}
