@@ -1,8 +1,9 @@
 
 main section.profile-section {
     /*height: 50vh;*/
-    top: 7vh;
-    z-index: 2;
+    /*top: 7vh;
+    z-index: 2;*/
+    height: 33vh;
     background-color: var(--primary);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -82,18 +83,19 @@ main section .icon-button {
 main section .icon-button > img {
     height: 2em;
     width: 2em;
-} 
-
-.posts-section {
-    margin-top: 53vh;
 }
 
-.profile-position {
+.posts-section {
+    height: 54vh;
+    overflow-y: auto;
+}
+
+/*.profile-position {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-}
+}*/
 
 @media screen and (min-width: 768px) {
     .profile-position {
@@ -102,8 +104,8 @@ main section .icon-button > img {
 
     main section.profile-section {
         /*height: 50vh;*/
-        top: 0vh;
-        z-index: 2;
+        /*top: 0vh;
+        z-index: 2;*/
         background-color: var(--primary);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -117,6 +119,7 @@ main section .icon-button > img {
     }
 
     .posts-section {
-        margin-top: 0vh;
+        /*margin-top: 0vh;*/
+        height: 60vh;
     }
 }
