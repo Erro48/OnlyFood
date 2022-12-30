@@ -7,7 +7,7 @@ INSERT INTO `tags` (`name`) VALUES
 ('breakfast'),
 ('dinner'),
 ('first course'),
-('launch'),
+('lunch'),
 ('vegan');
 
 INSERT INTO `ingredients` (`name`, `color`) VALUES
@@ -24,7 +24,7 @@ INSERT INTO `ingredients` (`name`, `color`) VALUES
 
 INSERT INTO `belongto` (`recipe`, `tag`) VALUES
 (0, 'dinner'),
-(0, 'launch'),
+(0, 'lunch'),
 (1, 'breakfast'),
 (1, 'vegan'),
 (2, 'dinner');
