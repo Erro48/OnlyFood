@@ -4,41 +4,47 @@
         <div id="output-list" class="col">
             <?php if (!empty($templateParams["notifications"])): ?>
                 <?php foreach($templateParams["notifications"] as $notification): ?>
-                    <?php if ($notification["type"] == NotificationTypes::Follow->value): ?>
-                        <article class="row p-1 notification mt-2">    
-                            <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
-                                <div class="col-4 ps-1 d-flex align-items-center">
-                                    <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
-                                </div>
-                                <div class="col d-flex flex-column align-items-center">
-                                    <p class="notification-label m-2"> This is a follow notification </p>
-                                </div>
-                            </a>
-                        </article>
-                        
+                    <article class="row p-1 notification mt-2">    
+                        <div class="col-12">
+                    <?php if ($notification["type"] == NotificationTypes::Follow->value): ?>                
+                        <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
+                            <div class="col-3 ps-1">
+                                <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
+                            </div>
+                            <div class="col-6">
+                                <p class="notification-label mt-2"> <strong><?php echo $notification["sender"]?></strong> started following you </p>
+                            </div>
+                            <div class="col-3">
+                                <p class="timestamp"><?php echo datetimeToString($notification["date"]) ?></p>
+                            </div>
+                        </a> 
                     <?php elseif ($notification["type"] == NotificationTypes::Like->value): ?>
-                        <article class="row p-1 notification mt-2">    
-                            <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
-                                <div class="col-4 ps-1 d-flex align-items-center">
-                                    <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
-                                </div>
-                                <div class="col d-flex flex-column align-items-center">
-                                    <p class="notification-label m-2"> This is a like notification </p>
-                                </div>
-                            </a>
-                        </article>
+                        <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
+                            <div class="col-3 ps-1 ">
+                                <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
+                            </div>
+                            <div class="col-6">
+                                <p class="notification-label mt-2"> <strong><?php echo $notification["sender"] ?></strong> liked your post </p>
+                            </div>
+                            <div class="col-3">
+                                <p class="timestamp"><?php echo datetimeToString($notification["date"]) ?></p>
+                            </div>
+                        </a>
                     <?php elseif ($notification["type"] == NotificationTypes::Comment->value): ?>
-                        <article class="row p-1 notification mt-2">    
-                            <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
-                                <div class="col-4 ps-1 d-flex align-items-center">
-                                    <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
-                                </div>
-                                <div class="col d-flex flex-column align-items-center">
-                                    <p class="notification-label m-2"> This is a comment notification </p>
-                                </div>
-                            </a>
-                        </article>
+                        <a class="row reset-a" href="comments.php?post=<?php echo $notification["postId"] ?>#<?php echo $notification["commentId"]?>">
+                            <div class="col-3 ps-1">
+                                <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
+                            </div>
+                            <div class="col-6">
+                                <p class="notification-label mt-2"><strong><?php echo $notification["sender"]?></strong> wrote a comment to your post</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="timestamp"><?php echo datetimeToString($notification["date"]) ?></p>
+                            </div>
+                        </a>
                     <?php endif ?>
+                        </div>    
+                    </article>       
                 <?php endforeach ?>
             <?php else: ?>
                 <p class="info-message"> <strong>No notifications found</strong> </p>

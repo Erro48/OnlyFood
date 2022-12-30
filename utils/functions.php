@@ -61,4 +61,23 @@ function printApproximateNumber($n){
     }
 }
 
+function datetimeToString($datestring) {
+    $date = new DateTime($datestring);
+    $current_date = new DateTime();
+    $timestamp = $current_date->diff($date);
+
+    $output_string = "less than a minute ago";
+    if ($timestamp->d > 0 || $timestamp->m > 0 || $timestamp->y > 0) {
+        $output_string = $date->format('d/m/Y'); 
+    } else {
+        if ($timestamp->h > 0) {
+            $output_string = $timestamp->h." hour".($timestamp->h > 1 ? "s" : "")." ago";
+        } else if ($timestamp->i > 0) {
+            $output_string = $timestamp->i." minute".($timestamp->i > 1 ? "s" : "")." ago";
+        }
+    }
+
+    return $output_string;
+}
+
 ?>

@@ -52,6 +52,7 @@ CREATE TABLE likes (
 	likeId int NOT NULL AUTO_INCREMENT,
 	user varchar(20) NOT NULL,
 	post int NOT NULL,
+	date datetime NOT NULL,
 	seen int NOT NULL DEFAULT 0,
 	CONSTRAINT PK_likes PRIMARY KEY (likeId),
 	CONSTRAINT FK_likes_user FOREIGN KEY (user) REFERENCES users(username),

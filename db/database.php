@@ -438,34 +438,35 @@ class DatabaseHelper{
         return $notificationCount;
     }
 
-    public function getUnreadNotifications($username){
+    public function getNotifications($username){
         $stmt = $this->db->prepare("
-                SELECT username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
+                SELECT f.date, username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
                 FROM follows f
                 JOIN users u on u.username=f.follower
-                WHERE f.followed=? AND f.seen=0
+                WHERE f.followed=?
                 ORDER BY f.date DESC");
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $resultFollow = $stmt->get_result();
 
         $stmt = $this->db->prepare("
-                SELECT likeId, user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                SELECT likeId, l.date, user as sender, profilePic, ".NotificationTypes::Like->value." as type
                 FROM likes l 
                 JOIN users u on u.username=l.user
                 JOIN posts p on p.postId=l.post
-                WHERE p.owner=? AND l.seen=0");
+                WHERE p.owner=?
+                ORDER BY l.date DESC");
 
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $resultLikes = $stmt->get_result();
         
         $stmt = $this->db->prepare("
-                SELECT commentId, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
+                SELECT commentId, p.postId, c.date, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
                 FROM comments c 
                 JOIN users u on u.username=c.user
                 JOIN posts p on p.postId=c.postId
-                WHERE p.owner=? AND c.seen=0
+                WHERE p.owner=?
                 ORDER BY c.date DESC");
 
         $stmt->bind_param('s', $username);
