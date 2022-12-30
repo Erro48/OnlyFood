@@ -261,7 +261,7 @@ async function addIngredients() {
 	ingredients = ingredients.map((ingredient) => {
 		ingredient = ingredient.ingredient
 		return `
-		<div class="col-6 col-md-3">
+		<div class="col-6 col-md-4">
 			<li class="row" data-quantity="${
 				// if the quantity is not valid use the default value
 				ingredient.quantity > 0 ? ingredient.quantity : QUANTITY_DEFAULT
@@ -412,7 +412,7 @@ function addTags() {
 
 	tags = tags.map((tag) => {
 		return `
-		<div class="col-6 col-md-3">
+		<div class="col-6 col-md-4">
 			<li class="row">
 				<span class="col-9">${tag.name}</span>
 				<span class="col-3 p-0">

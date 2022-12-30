@@ -134,7 +134,7 @@
                 </fieldset>
             </div>
 
-            <input type="submit" value="Publish Post" class="button-secondary w-100 col-12 my-3">
+            <input type="submit" value="Publish Post" class="button-primary w-100 col-12 my-3">
         </form>
     </div>
     <div class="col-1"></div>
