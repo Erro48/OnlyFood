@@ -5,17 +5,20 @@
             <h2>Tags</h2>
         </div>
         <div class="row search-bar-container">
-            <input type="text" onkeyup="searchTag(this)" placeholder="Search a tag..."/>
+            <label for="search-a-tag-input">
+                <span class="d-none">Search a tag</span>
+                <input id="search-a-tag-input" type="text" onkeyup="searchTag(this)" placeholder="Search a tag..."/>
+            </label>
         </div>
         <section class="row tag-list-container">
-            <?php foreach($templateParams["tags"] as $tag): ?>
+            <?php $i= 1; foreach($templateParams["tags"] as $tag): ?>
                 <div class="col-12 col-md-6">
-                    <label>
-                        <input type="checkbox" onclick="handleClick()"/>
+                    <label for="checkbox-<?php echo $i; ?>">
+                        <input id="checkbox-<?php echo $i; ?>" type="checkbox" onclick="handleClick()"/>
                         <?php echo $tag["name"]; ?>
                     </label>
                 </div>
-            <?php endforeach; ?>
+            <?php $i++; endforeach; ?>
         </section>
     </div>
     <div class="col-1"></div>

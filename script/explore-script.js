@@ -59,7 +59,7 @@ axios.get(`request/postTags.php?tag=${tags}`)
             postsContainer.append(createPost(post));
         }
     } else {
-        postsContainer.innerHTML = "<p>There isn't any post with those categories.</p>";
+        postsContainer.innerHTML = "<p class=\"ps-1\">There isn't any post with those categories.</p>";
     }
 })
 .catch((err) => console.error(err));
@@ -76,29 +76,20 @@ function createPost(postData){
     container.classList.add("col-12");
     container.classList.add("single-post-container");
     let containerContent = `<article class="row post-article article-${postData.postId}">
-                                <section class="col-12 recipe-section">`;
+                                <section class="col-12 recipe-section">
+                                    <section class="ingredients-container">`;
     let i = 0;
-    postData.ingredients.forEach(element => {
-        if(i == 0){
-            containerContent += `<div class="row">`;
-        } else if (i % 2 == 0 && i != 0){
-            containerContent += `</div>
-                                <div class="row">`;
-        }
-        containerContent += `<div class="col-6">
-                                <div class="row ingredient-div" style="border: 3.5px solid #${element.color};">
-                                    <div class="col-8">
-                                        <p>${element.name}</p>
-                                    </div>
-                                    <div class="col-4" style="border-left: 3.5px solid #${element.color}; border-top: 3.5px solid #${element.color}; border-bottom: 3.5px solid #${element.color};">
-                                        <p>${element.quantity} ${element.acronym}</p>
-                                    </div>
+    postData.ingredients.forEach(ingredient => {
+        containerContent += `<div class="ingredient-div" style="outline: 3.5px solid #${ingredient.color};">
+                                <div class="ingredient-name-div">
+                                    ${ingredient.name}
                                 </div>
-                            </div>
-                            `;
-        i++;
+                                <div class="ingredient-quantity-div" style="outline: 3.5px solid #${ingredient.color};">
+                                    ${ingredient.quantity} ${ingredient.acronym}
+                                </div>
+                            </div>`;
     });
-    containerContent += `</div>
+    containerContent += `</section>
                         <h2>How To</h2>
                         <section class="howto-section">
                             <p>${postData.howTo}</p>
@@ -107,13 +98,36 @@ function createPost(postData){
                     <img src="${postData.preview}" alt="${postData.description}" />
                     <div class="row info-container">
                         <div class="col-2">
-                            <img src="${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />
                         </div>
-                        <div class="col-7">
+                        <div class="col-6 p-1">
                             <p>${postData.owner}</p>
                             <p>${postData.description}</p>
                         </div>
-                        BOTTONI
+                        <div class="col-2 p-0">
+                            <div class="row w-100 justify-content-center m-0">
+                                <button class="action-button like-button ${postData.likeButtonClass}" onclick="like(${postData.postId})">
+                                    <img src="imgs/icons/like-button.svg" alt="like button icon" />
+                                </button>
+                            </div>
+                            <div class="row w-100 justify-content-center m-0">
+                                <p class="likes-comments-p like-number-p">
+                                    ${postData.likes}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-2 p-0">
+                            <div class="row w-100 justify-content-center m-0">
+                                <button class="action-button comments-button" onclick="window.location.href='comments.php?post=${postData.postId}'">
+                                    <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
+                                </button>
+                            </div>
+                            <div class="row w-100 justify-content-center m-0">
+                                <p class="likes-comments-p">
+                                    ${postData.comments}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <footer class="row">
                         <div class="col-2"></div>

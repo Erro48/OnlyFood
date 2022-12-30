@@ -26,6 +26,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getPostsById($postId){
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM posts p, recipes r
+        WHERE p.recipe = r.recipeId
+        AND p.postId = ?");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getLikesByPost($postId){
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS likes
@@ -38,7 +51,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getCommentsByPost($postId){
+    public function getCommentsCountByPost($postId) {
         $stmt = $this->db->prepare("
         SELECT COUNT(*) AS comments
         FROM comments c
@@ -48,6 +61,29 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCommentsByPost($postId) {
+        $stmt = $this->db->prepare("
+        SELECT *
+        FROM comments c, users u
+        WHERE c.user = u.username
+        AND c.postId = ?
+        ORDER BY date DESC");
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertComment($username, $postId, $text) {
+        $stmt = $this->db->prepare("
+        INSERT INTO comments(content, date, user, postId) VALUES
+        (?, NOW(), ?, ?);");
+        $stmt->bind_param('ssi', $text, $username, $postId);
+        $stmt->execute();
+        return $stmt->get_result();
     }
 
     public function getUserInfo($user) {
@@ -364,6 +400,121 @@ class DatabaseHelper{
 
             $stmt->bind_param('si', $username, $postId);
             $stmt->execute();
+        }
+    }
+
+    public function unreadNotificationCount($username){
+        $notificationCount = 0;
+        $stmt = $this->db->prepare("
+                SELECT username as sender, profilePic, f.date
+                FROM follows f
+                JOIN users u on u.username=f.follower
+                WHERE f.followed=? AND f.seen=0
+                ORDER BY f.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+        
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic
+                FROM likes l 
+                JOIN users u on u.username=l.user
+                JOIN posts p on p.postId=l.post
+                WHERE p.owner=? AND l.seen=0");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+
+        $stmt = $this->db->prepare("
+                SELECT user as sender, profilePic, c.date
+                FROM comments c 
+                JOIN users u on u.username=c.user
+                JOIN posts p on p.postId=c.postId
+                WHERE p.owner=? AND c.seen=0
+                ORDER BY c.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
+        
+        return $notificationCount;
+    }
+
+    public function getUnreadNotifications($username){
+        $stmt = $this->db->prepare("
+                SELECT username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
+                FROM follows f
+                JOIN users u on u.username=f.follower
+                WHERE f.followed=? AND f.seen=0
+                ORDER BY f.date DESC");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultFollow = $stmt->get_result();
+
+        $stmt = $this->db->prepare("
+                SELECT likeId, user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                FROM likes l 
+                JOIN users u on u.username=l.user
+                JOIN posts p on p.postId=l.post
+                WHERE p.owner=? AND l.seen=0");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultLikes = $stmt->get_result();
+        
+        $stmt = $this->db->prepare("
+                SELECT commentId, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
+                FROM comments c 
+                JOIN users u on u.username=c.user
+                JOIN posts p on p.postId=c.postId
+                WHERE p.owner=? AND c.seen=0
+                ORDER BY c.date DESC");
+
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $resultComments = $stmt->get_result();
+        
+        return array_merge($resultFollow->fetch_all(MYSQLI_ASSOC),
+                            $resultLikes->fetch_all(MYSQLI_ASSOC),
+                            $resultComments->fetch_all(MYSQLI_ASSOC));
+    }
+
+    public function markNotificationsAsRead($notifications){
+        foreach ($notifications as $not) {
+            switch($not["type"]) {
+                case NotificationTypes::Follow->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE follows f
+                        SET f.seen=1
+                        WHERE f.follower=? and f.followed=?
+                    ");
+                    $stmt->bind_param('ss', $not["sender"], $_SESSION["username"]);
+                    $stmt->execute();
+                break;
+                case NotificationTypes::Like->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE likes
+                        SET seen=1
+                        WHERE likeId=?
+                    ");
+                    $stmt->bind_param('i', $not["likeId"]);
+                    $stmt->execute();
+                    break;
+                case NotificationTypes::Comment->value:
+                    $stmt = $this->db->prepare("
+                        UPDATE comments
+                        SET seen=1
+                        WHERE commentId=?
+                    ");
+                    $stmt->bind_param('i', $not["commentId"]);
+                    $stmt->execute();
+                    break;
+            }
         }
     }
 

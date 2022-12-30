@@ -20,14 +20,14 @@ if (isset($_GET["user"])) {
         $templateParams["profile"] = $dbh->getProfileInfo($_SESSION["username"]);
         $templateParams["favouriteIngredients"] = $dbh->getMostUsedIngredients($_SESSION["username"]);    
     } else {
-        $templateParams["posts"] = $dbh->getUserPosts("ig_Massari");
-        $templateParams["profile"] = $dbh->getProfileInfo("ig_Massari");
-        $templateParams["favouriteIngredients"] = $dbh->getMostUsedIngredients("ig_Massari");    
+        $templateParams["posts"] = $dbh->getUserPosts($_SESSION["username"]);
+        $templateParams["profile"] = $dbh->getProfileInfo($_SESSION["username"]);
+        $templateParams["favouriteIngredients"] = $dbh->getMostUsedIngredients($_SESSION["username"]);    
     }
 }
 
 $templateParams["style"] = array("profile-style.css", "posts-style.css");
-$templateParams["script"] = array("profile-script.js", "home-script.js");
+$templateParams["script"] = array("profile-script.js", "posts-script.js");
 
 require 'template/base.php';
 ?>

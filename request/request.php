@@ -33,4 +33,9 @@ if (isset($_GET["tag"])) {
     echo json_encode($tags_list);
 }
 
+if (isset($_GET["logout"])) {
+    unset($_SESSION['username']);
+    echo "1";
+}
+
 ?>

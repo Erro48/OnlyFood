@@ -2,6 +2,9 @@
 require_once(__DIR__ . "/consts.php");
 
 function downloadProfilePic($file, $dbh) {
+    global $MAX_FILE_SIZE;
+    global $PROFILE_PIC_DIR;
+
     $file_name = $file['name'];
     $file_tmp_name = $file['tmp_name'];
     $file_size = $file['size'];
@@ -14,7 +17,6 @@ function downloadProfilePic($file, $dbh) {
     if(in_array($file_extension, array('jpg', 'jpeg', 'png', "gif", "jfif"))) {
         if($file_error === 0){
             if($file_size < $MAX_FILE_SIZE){
-                var_dump($PROFILE_PIC_DIR);
                 // delete old photo (if present)
                 $result = $dbh->getUserInfo($_SESSION['username']);
                 if(count($result) == 1){

@@ -45,7 +45,7 @@ function verifyUserPassword($user, $password) {
                         <h1>Welcome back Chef</h1>
                     </header>
                 
-                    <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5">
+                    <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5 login-main">
                         <section class="row login-section">
                             <div class="d-none d-md-block col-md-2"></div>
                         
@@ -79,9 +79,9 @@ function verifyUserPassword($user, $password) {
                                     <input type="submit" value="Sign In" class="button-primary my-3 col-12">
                                 </form>
 
-                                <div class="row justify-content-end m-0 mt-3">
+                                <!-- <div class="row justify-content-end m-0 mt-3">
                                     <a href="" class="link p-0 w-auto">Forgot Password?</a>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="d-none d-md-block col-md-2"></div>
                         </section>

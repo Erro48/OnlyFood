@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_SESSION['username'])) {
+        header("Location: ./login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +33,6 @@
 <body>
 
 <!-- 
-
 header [nome btn btn -> ]
 main
 footer (nav bar)
@@ -41,17 +46,29 @@ footer (nav bar)
         </div>
         <div class="col-6">
             <div class="row align-content-center buttons-container">
-                    <div class="col-6">
-                        <button onclick="window.location.href='search.php'">
-                            <img src="imgs/icons/search.png" alt="search icon" />
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button>
-                            <img src="imgs/icons/notification.png" alt="notifications icon" />
-                        </button>
-                    </div>
-                </ul>
+                <div class="col-6">
+                    <button onclick="window.location.href='search.php'">
+                        <img src="imgs/icons/search.svg" alt="search icon" />
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="position-relative" onclick="window.location.href='notifications.php'">
+                        <img src="imgs/icons/notification.svg" alt="notifications icon" />
+                        <?php
+                            $count = $dbh->unreadNotificationCount($_SESSION["username"]);
+                            if ($count == 0):
+                        ?>
+                        <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger invisible">
+                            <span class="visually-hidden"> unseen notifications </span>    
+                        </span>
+                        <?php else: ?>
+                        <span id="notification-counter" class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?php echo $count ?>
+                            <span class="visually-hidden"> unseen notifications </span>    
+                        </span>
+                        <?php endif ?>   
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -74,24 +91,48 @@ footer (nav bar)
                 <div class="row">
                     <ul>
                         <li class="col-3 col-md-12">
-                            <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["title"] == "OnlyFood - Profile"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/profile.png" alt="profile page" />
-                                <p>Profile</p>
+                            <button onclick="window.location.href='profile.php'" class="<?php if($templateParams["name"] == "profile-content.php"){echo "button-selected";} ?>">
+                                <span class="row ps-md-1 h-100">
+                                    <span class="col-12 col-md-4">
+                                        <img src="imgs/icons/profile.svg" alt="profile page" />
+                                    </span>
+                                    <span class="col-md-8 <?php if($templateParams["name"] == "profile-content.php"){echo "footer-span-selected";} ?>">
+                                        Profile
+                                    </span>
+                                </span>
                             </button>
                         </li><li class="col-3 col-md-12">
-                            <button onclick="window.location.href='post.php'" class="<?php if($templateParams["title"] == "OnlyFood - Post"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/post.png" alt="post page" />
-                                <p>Post</p>
+                            <button onclick="window.location.href='post.php'" class="<?php if($templateParams["name"] == "create-post.php"){echo "button-selected";} ?>">
+                                <span class="row ps-md-1 h-100">
+                                    <span class="col-12 col-md-4">
+                                        <img src="imgs/icons/post.svg" alt="post page" />
+                                    </span>
+                                    <span class="col-md-8 <?php if($templateParams["name"] == "create-post.php"){echo "footer-span-selected";} ?>">
+                                        Post
+                                    </span>
+                                </span>
                             </button>
                         </li><li class="col-3 col-md-12">
-                            <button onclick="window.location.href='index.php'" class="<?php if($templateParams["title"] == "OnlyFood - Home"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/home.png" alt="home page" />
-                                <p>Home</p>
+                            <button onclick="window.location.href='index.php'" class="<?php if($templateParams["name"] == "home.php"){echo "button-selected";} ?>">
+                                <span class="row ps-md-1 h-100">
+                                    <span class="col-12 col-md-4">
+                                        <img src="imgs/icons/home.svg" alt="home page" />
+                                    </span>
+                                    <span class="col-md-8 <?php if($templateParams["name"] == "home.php"){echo "footer-span-selected";} ?>">
+                                        Home
+                                    </span>
+                                </span>
                             </button>
                         </li><li class="col-3 col-md-12">
-                            <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["title"] == "OnlyFood - Explore"){echo "button-selected";} ?>">
-                                <img src="imgs/icons/explore.png" alt="explore page" />
-                                <p>Explore</p>
+                            <button onclick="window.location.href='explore.php'" class="<?php if($templateParams["name"] == "explore-content.php"){echo "button-selected";} ?>">
+                                <span class="row ps-md-1 h-100">
+                                    <span class="col-12 col-md-4">
+                                        <img src="imgs/icons/explore.svg" alt="explore page" />
+                                    </span>
+                                    <span class="col-md-8 <?php if($templateParams["name"] == "explore-content.php"){echo "footer-span-selected";} ?>">
+                                        Explore
+                                    </span>
+                                </span>
                             </button>
                         </li>
                     </ul>
@@ -99,10 +140,8 @@ footer (nav bar)
             </footer>
         </div>
     </div>
-    
  </div>
-
-
+ 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
