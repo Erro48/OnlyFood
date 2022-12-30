@@ -8,7 +8,7 @@
                         <article class="row p-1 notification mt-2">    
                             <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
                                 <div class="col-4 ps-1">
-                                    <img class="profile-preview" src="<?php echo $notification["profilePic"] ?>" />
+                                    <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                                 </div>
                                 <div class="col d-flex flex-column align-items-center">
                                     <p class="notification-label m-2"> This is a follow notification </p>
@@ -20,7 +20,7 @@
                         <article class="row p-1 notification mt-2">    
                             <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
                                 <div class="col-4 ps-1">
-                                    <img class="profile-preview" src="<?php echo $notification["profilePic"] ?>" />
+                                    <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                                 </div>
                                 <div class="col d-flex flex-column align-items-center">
                                     <p class="notification-label m-2"> This is a like notification </p>
@@ -31,7 +31,7 @@
                         <article class="row p-1 notification mt-2">    
                             <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
                                 <div class="col-4 ps-1">
-                                    <img class="profile-preview" src="<?php echo $notification["profilePic"] ?>" />
+                                    <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                                 </div>
                                 <div class="col d-flex flex-column align-items-center">
                                     <p class="notification-label m-2"> This is a comment notification </p>

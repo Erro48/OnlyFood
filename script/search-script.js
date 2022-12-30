@@ -42,10 +42,10 @@ function search(elem) {
         .get(`./request/request.php?user=${searchValue}`)
         .then((data) => {
             clearItems(output);
-            
-             for (user of data.data) {
+
+            for (user of data.data) {
                 output.append(createUserSearchResult(user))
-             }
+            }
         })
         .catch((err) => console.error(err))
 }
@@ -60,7 +60,7 @@ function createUserSearchResult(data) {
     const container = document.createElement('article');
     container.innerHTML = ` <a class="row reset-a" href="profile.php?user=${data.username}">
                                 <div class="col-3 ps-1 d-flex align-items-center">
-                                    <img class="profile-preview" src="imgs/propics/${data.profilePic}" alt="Propic of ${data.username}" />
+                                    <img class="profile-preview" src="${data.profilePic}" alt="Propic of ${data.username}" />
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <p class="username-label m-2"> ${data.username} </p>
