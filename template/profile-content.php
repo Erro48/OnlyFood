@@ -78,7 +78,7 @@
 </div>
 <section class="row posts-section"> <!-- posts container -->
     <h2 class="mt-1">Posts</h2>
-    <div id="posts-container-div">
+    <div id="posts-container-div" class="p-0">
         <?php
             /* Users posts */
             require_once("template/posts.php");

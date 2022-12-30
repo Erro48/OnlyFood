@@ -85,11 +85,6 @@ main section .icon-button > img {
     width: 2em;
 }
 
-.posts-section > #posts-container-div {
-    /*height: 54vh;*/
-    overflow-y: auto;
-}
-
 /*.profile-position {
     position: fixed;
     top: 0;
@@ -117,9 +112,4 @@ main section .icon-button > img {
     .posts-container {
         align-items: center;
     }
-
-    /*.posts-section > #posts-container-div {
-        /*margin-top: 0vh;*//*
-        height: 60vh;
-    }*/
 }
