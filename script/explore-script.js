@@ -59,7 +59,7 @@ axios.get(`request/postTags.php?tag=${tags}`)
             postsContainer.append(createPost(post));
         }
     } else {
-        postsContainer.innerHTML = "<p class=\"ps-1\">There isn't any post with those categories.</p>";
+        postsContainer.innerHTML = "<p class=\"ps-1\">There is no post to see.</p>";
     }
 })
 .catch((err) => console.error(err));

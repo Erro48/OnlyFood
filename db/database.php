@@ -258,7 +258,6 @@ class DatabaseHelper{
     }
 
     public function getExplorePosts($username, $tags = NULL){
-        //var_dump($tags);
         $query = "
         SELECT *
         FROM posts p, recipes r, users u";
@@ -270,9 +269,13 @@ class DatabaseHelper{
         $query .= "
         WHERE r.recipeId = p.recipe
         AND p.owner = u.username
-        AND p.owner != ?";
+        AND p.owner != ?
+        AND r.recipeId NOT IN (SELECT c.recipe
+                                FROM compositions c, intolerances i
+                                WHERE i.user = ?
+                                AND c.ingredient = i.ingredient)";
 
-        $bindParamString = "s";
+        $bindParamString = "ss";
         
         if(isset($tags)){
             $query .= " AND b.recipe = p.recipe";
@@ -285,24 +288,17 @@ class DatabaseHelper{
                 $bindParamString .= "s";
             }
             $query .= ")";
-            $params = array_merge(array($username), $tags);
+            $params = array_merge(array($username, $username), $tags);
         }
 
         $query .= " ORDER BY p.date DESC
                     LIMIT 15";
-
-        /*
-        SELECT * FROM posts p, recipes r, users u, belongto b WHERE r.recipeId = p.recipe AND p.owner = u.username AND p.owner != 'carlo61' AND b.recipe = p.recipe AND (b.tag = "launch" OR b.tag = "breakfast") ORDER BY p.date DESC LIMIT 15
-        */
-
-        /*var_dump($query);
-        var_dump($bindParamString);
-        var_dump($params);*/
+        
         $stmt = $this->db->prepare($query);
         if(isset($tags)){
             $stmt->bind_param($bindParamString, ...$params);
         } else {
-            $stmt->bind_param($bindParamString, $username);
+            $stmt->bind_param($bindParamString, $username, $username);
         }
         $stmt->execute();
         $result = $stmt->get_result();
