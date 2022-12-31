@@ -1,8 +1,9 @@
 
 main section.profile-section {
     /*height: 50vh;*/
-    top: 7vh;
-    z-index: 2;
+    /*top: 7vh;
+    z-index: 2;*/
+    /*height: 33vh;*/
     background-color: var(--primary);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -24,6 +25,8 @@ main section.profile-section {
 main section.profile-section .profile-pic {
     width: 100%;
     border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 main section.favourite-ingredients-section {
@@ -80,18 +83,14 @@ main section .icon-button {
 main section .icon-button > img {
     height: 2em;
     width: 2em;
-} 
-
-.posts-section {
-    margin-top: 53vh;
 }
 
-.profile-position {
+/*.profile-position {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-}
+}*/
 
 @media screen and (min-width: 768px) {
     .profile-position {
@@ -100,8 +99,8 @@ main section .icon-button > img {
 
     main section.profile-section {
         /*height: 50vh;*/
-        top: 0vh;
-        z-index: 2;
+        /*top: 0vh;
+        z-index: 2;*/
         background-color: var(--primary);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -112,9 +111,5 @@ main section .icon-button > img {
 
     .posts-container {
         align-items: center;
-    }
-
-    .posts-section {
-        margin-top: 0vh;
     }
 }

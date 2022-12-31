@@ -258,7 +258,6 @@ class DatabaseHelper{
     }
 
     public function getExplorePosts($username, $tags = NULL){
-        //var_dump($tags);
         $query = "
         SELECT *
         FROM posts p, recipes r, users u";
@@ -270,9 +269,13 @@ class DatabaseHelper{
         $query .= "
         WHERE r.recipeId = p.recipe
         AND p.owner = u.username
-        AND p.owner != ?";
+        AND p.owner != ?
+        AND r.recipeId NOT IN (SELECT c.recipe
+                                FROM compositions c, intolerances i
+                                WHERE i.user = ?
+                                AND c.ingredient = i.ingredient)";
 
-        $bindParamString = "s";
+        $bindParamString = "ss";
         
         if(isset($tags)){
             $query .= " AND b.recipe = p.recipe";
@@ -285,24 +288,17 @@ class DatabaseHelper{
                 $bindParamString .= "s";
             }
             $query .= ")";
-            $params = array_merge(array($username), $tags);
+            $params = array_merge(array($username, $username), $tags);
         }
 
         $query .= " ORDER BY p.date DESC
                     LIMIT 15";
-
-        /*
-        SELECT * FROM posts p, recipes r, users u, belongto b WHERE r.recipeId = p.recipe AND p.owner = u.username AND p.owner != 'carlo61' AND b.recipe = p.recipe AND (b.tag = "launch" OR b.tag = "breakfast") ORDER BY p.date DESC LIMIT 15
-        */
-
-        /*var_dump($query);
-        var_dump($bindParamString);
-        var_dump($params);*/
+        
         $stmt = $this->db->prepare($query);
         if(isset($tags)){
             $stmt->bind_param($bindParamString, ...$params);
         } else {
-            $stmt->bind_param($bindParamString, $username);
+            $stmt->bind_param($bindParamString, $username, $username);
         }
         $stmt->execute();
         $result = $stmt->get_result();
@@ -445,34 +441,35 @@ class DatabaseHelper{
         return $notificationCount;
     }
 
-    public function getUnreadNotifications($username){
+    public function getNotifications($username){
         $stmt = $this->db->prepare("
-                SELECT username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
+                SELECT f.date, username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
                 FROM follows f
                 JOIN users u on u.username=f.follower
-                WHERE f.followed=? AND f.seen=0
+                WHERE f.followed=?
                 ORDER BY f.date DESC");
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $resultFollow = $stmt->get_result();
 
         $stmt = $this->db->prepare("
-                SELECT likeId, user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                SELECT likeId, l.date, user as sender, profilePic, ".NotificationTypes::Like->value." as type
                 FROM likes l 
                 JOIN users u on u.username=l.user
                 JOIN posts p on p.postId=l.post
-                WHERE p.owner=? AND l.seen=0");
+                WHERE p.owner=?
+                ORDER BY l.date DESC");
 
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $resultLikes = $stmt->get_result();
         
         $stmt = $this->db->prepare("
-                SELECT commentId, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
+                SELECT commentId, p.postId, c.date, user as sender, profilePic, c.date, ".NotificationTypes::Comment->value." as type
                 FROM comments c 
                 JOIN users u on u.username=c.user
                 JOIN posts p on p.postId=c.postId
-                WHERE p.owner=? AND c.seen=0
+                WHERE p.owner=?
                 ORDER BY c.date DESC");
 
         $stmt->bind_param('s', $username);

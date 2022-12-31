@@ -59,7 +59,7 @@ axios.get(`request/postTags.php?tag=${tags}`)
             postsContainer.append(createPost(post));
         }
     } else {
-        postsContainer.innerHTML = "<p class=\"ps-1\">There isn't any post with those categories.</p>";
+        postsContainer.innerHTML = "<p class=\"ps-1\">There is no post to see.</p>";
     }
 })
 .catch((err) => console.error(err));
@@ -75,7 +75,7 @@ function createPost(postData){
     const container = document.createElement("div");
     container.classList.add("col-12");
     container.classList.add("single-post-container");
-    let containerContent = `<article class="row post-article article-${postData.postId}">
+    let containerContent = `<article id="article-${postData.postId}" class="row post-article">
                                 <section class="col-12 recipe-section">
                                     <section class="ingredients-container">`;
     let i = 0;

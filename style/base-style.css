@@ -398,10 +398,6 @@ form
 		border-radius: 10px 0 0 10px;
 	}
 
-	/*div.container-fluid > div.row:nth-child(2) > div.col-8 {
-		height: 93vh;
-	}*/
-
 	footer.page-footer > div > ul > li {
 		height: 5.7rem;
 	}
@@ -428,11 +424,6 @@ form
 		height: 3rem;
 	}
 
-	/*footer.page-footer > div > ul > li > button p {
-		display: inline-block;
-		margin: 0;
-	}*/
-
 	footer.page-footer > div > ul > li > button span.col-md-8 {
 		display: flex;
 		align-items: center;
@@ -440,7 +431,7 @@ form
 	}
 
 	footer.page-footer > div > ul > li > button span.footer-span-selected {
-		color: var(--text-light);
+		font-weight: bold;
 	}
 }
 /* #endregion */

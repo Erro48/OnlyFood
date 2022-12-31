@@ -2,7 +2,7 @@
     <?php if(count($templateParams["posts"]) > 0): ?>
         <?php foreach($templateParams["posts"] as $post): ?>
             <div class="col-12 single-post-container">
-                <article class="row post-article article-<?php echo $post["postId"];?>">
+                <article id="article-<?php echo $post["postId"];?>" class="row post-article">
                     <section class="col-12 recipe-section">
                         
                         <section class="ingredients-container">
