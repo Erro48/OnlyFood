@@ -15,7 +15,7 @@
 /* #region Utils --------------------------------------------------- */
 .scrollable {
 	overflow-y: auto;
-	max-height: 54vh;
+	max-height: 60vh;
 }
 
 .fade-out {
@@ -93,6 +93,10 @@ strong.required-char {
 /* #endregion Header */
 
 /* #region Form ---------------------------------------------------- */
+section.login-section .form-container {
+	height: 60vh;
+}
+
 section.login-section form {
 	height: 27em;
 }
@@ -130,6 +134,7 @@ section.login-section form label:has(p.profile-pic) {
 /* #region Label's Contents ######################################## */
 
 section.login-section form label span.profile-pic {
+	position: absolute;
 	box-sizing: border-box;
 	width: 10em;
 	height: 10em;

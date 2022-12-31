@@ -30,7 +30,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
         // check if username has a valid format
         array_push($errors, "Username is not valid");
     }
-    if (preg_match("/^[a-zA-Z][0-9a-zA-Z_!$@#^&]{7,}$/", $password) == 0) {
+    if (!passwordValidation($password)) {
         // check if password has a valid format
         array_push($errors, "Password is not valid");
     }
@@ -82,21 +82,21 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     <div class="row">
         <div class="col-1 d-md-none"></div>
         <div class="col-10 col-md-6 row vh-100 align-content-center justify-content-center mx-0">
-            <header class="row text-left text-md-center mb-5 p-0">
+            <header class="row text-left text-md-center mb-5 mb-md-0 p-0">
                 <h1 class="p-0">Create an account</h1>
                 <em class="p-0">Fields with <strong class="required-char">*</strong> are required</em>
             </header>
             
             <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5 login-main">
                 <section class="row login-section">
-                    <div class="d-none d-md-block col-md-2"></div>
+                    <div class="d-none d-md-block col-md-1"></div>
 
-                    <div class="col-12 col-md-8 scrollable">
+                    <div class="col-12 col-md-10 scrollable form-container">
 
                         <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : '' ?>">
                             <?php
                                 foreach($errors as $error) {
-                                    echo $error;
+                                    echo $error . '<br>';
                                 }
                             ?>
                         </div>
@@ -125,13 +125,13 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </label>
                             </fieldset>
 
-                            <div class="fieldset-0 row justify-content-end p-0 mx-0 ">
+                            <div class="fieldset-0 row justify-content-end p-0 mx-0 d-md-none">
                                 <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             </div>
 
 <!--  SECOND PAGE  -->
-                        <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
-                            <legend>Account Informations:</legend>
+                        <fieldset class="fieldset-1 p-0 m-0 mt-md-5 col-12 d-none d-md-inline-block">
+                            <legend class="mb-md-0">Account Informations:</legend>
                             <label for="user-username" class="p-0">
                                 <input type="text" name="username" id="user-username" required>
                                 <span ><strong class="required-char">*</strong> Username</span>
@@ -160,8 +160,8 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         </div>
 
 <!--  THIRD PAGE  -->
-                        <fieldset class="fieldset-2 p-0 m-0 col-12 d-none">
-                            <legend>Intolerances:</legend>
+                        <fieldset class="fieldset-2 p-0 m-0 mt-md-5 col-12 d-none d-md-inline-block">
+                            <legend class="mb-md-0">Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
                                 <label for="search-ingredient" class="p-0">
@@ -186,7 +186,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <div class="ingredients-list row w-100 m-auto mt-4 scrollable" data-server="true">
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>
                                     
-                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-md-4">
+                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-lg-4">
                                         <input type="checkbox" name="intolerances[]" id="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" value="<?= str_replace(' ', '_', $intolerance['name']) ?>">
                                         <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
                                     </label>
@@ -195,9 +195,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
 
                         </fieldset>
-                        <div class="fieldset-2 row justify-content-center p-0 m-0 d-none">
-                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
-                            <div class="col-2"></div>
+                        <div class="fieldset-2 row justify-content-center p-0 m-0 mt-md-4 d-none d-md-flex">
+                            <input type="button" value="Back" class="col-5 button-secondary d-md-none" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
+                            <div class="col-2 col-md-7"></div>
                             <input type="submit" value="Sign Up" class="col-5 button-primary">
                         </div>
 
@@ -205,7 +205,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                     </div>
 
-                    <div class="d-none d-md-block col-md-2"></div>
+                    <div class="d-none d-md-block col-md-1"></div>
                 </section>
             </main>
             <footer class="row text-center fixed-bottom mb-3">

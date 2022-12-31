@@ -85,7 +85,7 @@ function addIngredientToList(event) {
 		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
 		console.log(ingredientId)
 
-		return `<label for="ingr-${ingredientId}" class="col-6 col-md-4">
+		return `<label for="ingr-${ingredientId}" class="col-6 col-lg-4">
 			<input type="checkbox" name="intolerances[]" id="ingr-${ingredientId}" 
 			${ingredient.checked ? 'checked' : ''} value="${ingredientId}">
 			<span class="ingredient-pill">${ingredientName}</span>

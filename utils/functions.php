@@ -61,4 +61,13 @@ function printApproximateNumber($n){
     }
 }
 
+function passwordValidation($password) {
+    $is_special = preg_match('/[_!$@#^&+\?]/', $password);
+    $is_numeric = preg_match('/[0-9]/', $password);
+    $is_lower_char = preg_match('/[a-z]/', $password);
+    $is_upper_char = preg_match('/[A-Z]/', $password);
+
+    return $is_special + $is_numeric + $is_lower_char + $is_upper_char == 4 && strlen($password) >= 7;
+}
+
 ?>
