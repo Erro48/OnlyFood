@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . "/consts.php");
 
-function downloadProfilePic($file, $dbh) {
+function downloadProfilePic($file, $dbh, $file_destination) {
     global $MAX_FILE_SIZE;
     global $PROFILE_PIC_DIR;
 
@@ -31,7 +31,7 @@ function downloadProfilePic($file, $dbh) {
                 // upload new photo
                 $dbh->updateProfilePic($new_file_name);
 
-                $file_destination = $PROFILE_PIC_DIR.$new_file_name;
+                //$file_destination = $PROFILE_PIC_DIR.$new_file_name;
 
                 move_uploaded_file($file_tmp_name, $file_destination);                    
             }

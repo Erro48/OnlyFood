@@ -48,7 +48,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             $_SESSION['username'] = $username;
             
             if (isset($profile_pic) && $profile_pic['size'] > 0) {
-                downloadProfilePic($profile_pic, $dbh);
+                downloadProfilePic($profile_pic, $dbh, $PROFILE_PIC_DIR . $profile_pic_name);
             }
             header("Location: ./index.php");
         }

@@ -1,7 +1,25 @@
+<?php
+require_once './bootstrap.php';
+
+if (isset($_POST['publish'])) {
+    if (isset($_POST['recipe-name']) && isset($_POST['recipe-procedure']) && isset($_POST['ingredients']) && isset($_POST['tags']) && isset($_FILES['post-preview'])) {
+        $dbh->createPost(
+            $_POST['recipe-name'],
+            $_POST['recipe-procedure'],
+            $_POST['ingredients'],
+            $_POST['tags'],
+            $_FILES['post-preview']
+        );
+    } else {
+        echo "Non hai settato tutto";
+    }
+}
+?>
+
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-        <form action="" class="row gy-2 gy-md-5">
+        <form action="./post.php" class="row gy-2 gy-md-5" method="post" enctype="multipart/form-data">
 
             <div class="col-12 col-md-6">
                 <fieldset id="info-fieldset">
@@ -14,7 +32,7 @@
 
                     <label for="recipe-procedure">
                         
-                        <textarea name="recipe-procedure" id="recipe-procedure" rows="8" placeholder="How to..."></textarea>
+                        <textarea name="recipe-procedure" id="recipe-procedure" rows="8" placeholder="How to..." required></textarea>
                     </label>
                 </fieldset>
 
@@ -134,7 +152,7 @@
                 </fieldset>
             </div>
 
-            <input type="submit" value="Publish Post" class="button-primary w-100 col-12 my-3">
+            <input name="publish" type="submit" value="Publish Post" class="button-primary w-100 col-12 my-3">
         </form>
     </div>
     <div class="col-1"></div>

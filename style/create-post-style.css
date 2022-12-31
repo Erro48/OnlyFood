@@ -5,12 +5,16 @@
 	padding: 0.3em;
 }
 
-.list-container-secondary li span:first-child {
+.list-container-secondary li span:has(~ input) {
 	border: 2px solid var(--primary);
 	border-radius: 20px;
 	background-color: var(--light-color);
 	text-overflow: ellipsis;
 	overflow: hidden;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 0.75em;
+	display: inline-block;
 }
 
 .result-list {

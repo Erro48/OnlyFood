@@ -530,5 +530,69 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function createPost($name, $procedure, $ingredients, $tags, $image) {
+        $recipe_id = $this->insertRecipe($name, $procedure, $image);
+        $this->insertPost($recipe_id);
+        $this->insertRecipeIngredients($ingredients, $recipe_id);
+        $this->insertRecipeTags($tags, $recipe_id);
+
+    }
+
+    private function insertRecipe($name, $procedure, $image) {
+        $image_name = encryptProfilePic($_SESSION['username'], $image['name']);
+        $stmt = $this->db->prepare('INSERT INTO `recipes` (`description`, `howTo`, `preview`) VALUES (?, ?, ?)');
+        $stmt->bind_param('sss', $name, $procedure, $image_name);
+        $stmt->execute();
+
+        downloadProfilePic($image, $this, "imgs/posts/" . $image_name);
+
+        return $stmt->insert_id;
+    }
+
+    function insertPost($recipe_id) {
+        $stmt = $this->db->prepare('INSERT INTO `posts` (`date`, `owner`, `recipe`) VALUES (?, ?, ?)');
+        $stmt->bind_param('ssi', date("Y-m-d h:i:sa"), $_SESSION['username'], $recipe_id);
+        $stmt->execute();
+    }
+
+    function insertRecipeIngredients($ingredients, $recipe_id) {
+        $query = "INSERT INTO `compositions` (`recipe`, `ingredient`, `unit`, `quantity`) VALUES ";
+        $params = array();
+        $params_type = "";
+
+        foreach ($ingredients as $ingredient) {
+            [$name, $quantity, $measure] = explode(";", $ingredient);
+            $query .= "(?, ?, ?, ?),";
+            array_push($params, ...[$recipe_id, $name, $measure, intval($quantity, 10)]);
+            $params_type .= 'issi';
+        }
+        $query = rtrim($query, ',');
+
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($params_type, ...$params);
+        $stmt->execute();
+    }
+
+    function insertRecipeTags($tags, $recipe_id) {
+        $query = "INSERT INTO `belongto` (`recipe`, `tag`) VALUES ";
+        $params = array();
+        $params_type = "";
+
+        foreach ($tags as $tag) {
+            $query .= "(?, ?),";
+            array_push($params, ...[$recipe_id, $tag]);
+            $params_type .= 'is';
+        }
+        $query = rtrim($query, ',');
+
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($params_type, ...$params);
+        $stmt->execute();
+    }
+
+
 }
 ?>

@@ -203,7 +203,7 @@ async function getObjectFromItem(itemName, modalType) {
  */
 function ingredientsCallback(ingredient) {
 	const ingredientObj = {
-		name: ingredient.querySelector('span').innerText,
+		name: ingredient.querySelector('input').value,
 		quantity: ingredient.dataset.quantity,
 		measure: {
 			name: ingredient.dataset.measureName,
@@ -268,7 +268,12 @@ async function addIngredients() {
 			}" data-measure-name="${ingredient.measure.name}" data-measure-acronym="${
 			ingredient.measure.acronym
 		}">
-				<span class="col-9">${ingredient.name}</span>
+				<label class="col-9 p-0">
+					<span>${ingredient.name}</span>
+					<input type="hidden" name="ingredients[]" value="${ingredient.name};${
+			ingredient.quantity
+		};${ingredient.measure.name}" />
+				</label>
 				<span class="col-3 p-0">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${
 						ingredient.name
@@ -366,7 +371,7 @@ function createIngredientsListItem({ ingredient, measures }) {
  */
 function tagsCallback(tag) {
 	const tagObj = {
-		name: tag.querySelector('span').innerText,
+		name: tag.querySelector('input').value,
 	}
 	return tagObj
 }
@@ -409,12 +414,15 @@ function createTagsListItem(tag) {
 function addTags() {
 	const tagsContainer = document.querySelector('#tags-list')
 	let tags = getTagsOfModalList()
-
+	//Red<input type="checkbox" name="color[]" value="red">
 	tags = tags.map((tag) => {
 		return `
 		<div class="col-6 col-md-4">
 			<li class="row">
-				<span class="col-9">${tag.name}</span>
+				<label class="col-9 p-0">
+					<span>${tag.name}</span>
+					<input type="hidden" name="tags[]" value="${tag.name}" />
+				</label>
 				<span class="col-3 p-0">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${tag.name}" onclick="removeElementFromResultList(this, ModalsType.TAGS)" />
 				</span>

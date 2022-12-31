@@ -304,6 +304,7 @@ form label {
 	height: 18px;
 	position: relative;
 	user-select: none;
+	/* z-index: -1; */
 }
 
 label:has(input.input-error) {
@@ -323,7 +324,11 @@ form label:has(input[type='file'] ~ .profile-pic) {
 }
 
 /* #region Labels Content */
-form label:not(:has(input[type='checkbox'], input[type='file'])) span {
+form
+	label:not(
+		:has(input[type='checkbox'], input[type='file'], input[type='hidden'])
+	)
+	span {
 	position: absolute;
 	top: 25%;
 	left: 0;
