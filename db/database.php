@@ -542,7 +542,7 @@ class DatabaseHelper{
         $stmt->bind_param('sss', $name, $procedure, $image_name);
         $stmt->execute();
 
-        downloadProfilePic($image, $this, "imgs/posts/" . $image_name);
+        downloadImage($image, $this, "imgs/posts/" . $image_name);
 
         return $stmt->insert_id;
     }
