@@ -376,8 +376,8 @@ class DatabaseHelper{
     public function likePost($username, $postId){
         if(!$this->postAlreadyLikedByUser($username, $postId)){
             $stmt = $this->db->prepare("
-            INSERT INTO likes(user, post)
-            VALUES (?, ?)");
+            INSERT INTO likes(user, post, date)
+            VALUES (?, ?, NOW())");
 
             $stmt->bind_param('si', $username, $postId);
             $stmt->execute();
@@ -402,10 +402,10 @@ class DatabaseHelper{
                 SELECT username as sender, profilePic, f.date
                 FROM follows f
                 JOIN users u on u.username=f.follower
-                WHERE f.followed=? AND f.seen=0
+                WHERE f.followed=? AND f.seen=0 AND f.follower!=?
                 ORDER BY f.date DESC");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $username, $_SESSION["username"]);
         $stmt->execute();
         $result = $stmt->get_result();
         $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
@@ -415,9 +415,9 @@ class DatabaseHelper{
                 FROM likes l 
                 JOIN users u on u.username=l.user
                 JOIN posts p on p.postId=l.post
-                WHERE p.owner=? AND l.seen=0");
+                WHERE p.owner=? AND l.seen=0 AND user!=?");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $username, $_SESSION["username"]);
         $stmt->execute();
         $result = $stmt->get_result();
         $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
@@ -427,10 +427,10 @@ class DatabaseHelper{
                 FROM comments c 
                 JOIN users u on u.username=c.user
                 JOIN posts p on p.postId=c.postId
-                WHERE p.owner=? AND c.seen=0
+                WHERE p.owner=? AND c.seen=0 AND user!=?
                 ORDER BY c.date DESC");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $username, $_SESSION["username"]);
         $stmt->execute();
         $result = $stmt->get_result();
         $notificationCount += count($result->fetch_all(MYSQLI_ASSOC));
@@ -443,21 +443,21 @@ class DatabaseHelper{
                 SELECT f.date, username as sender, profilePic, f.date, ".NotificationTypes::Follow->value." as type
                 FROM follows f
                 JOIN users u on u.username=f.follower
-                WHERE f.followed=?
+                WHERE f.followed=? AND f.follower!=?
                 ORDER BY f.date DESC");
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $username, $_SESSION["username"]);
         $stmt->execute();
         $resultFollow = $stmt->get_result();
 
         $stmt = $this->db->prepare("
-                SELECT likeId, l.date, user as sender, profilePic, ".NotificationTypes::Like->value." as type
+                SELECT likeId, p.postId, l.date, user as sender, profilePic, ".NotificationTypes::Like->value." as type
                 FROM likes l 
                 JOIN users u on u.username=l.user
                 JOIN posts p on p.postId=l.post
-                WHERE p.owner=?
+                WHERE p.owner=? AND user!=?
                 ORDER BY l.date DESC");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $username, $_SESSION["username"]);
         $stmt->execute();
         $resultLikes = $stmt->get_result();
         
@@ -466,10 +466,10 @@ class DatabaseHelper{
                 FROM comments c 
                 JOIN users u on u.username=c.user
                 JOIN posts p on p.postId=c.postId
-                WHERE p.owner=?
+                WHERE p.owner=? AND user!=?
                 ORDER BY c.date DESC");
 
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $username, $_SESSION["username"]);
         $stmt->execute();
         $resultComments = $stmt->get_result();
         

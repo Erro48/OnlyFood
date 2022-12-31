@@ -19,7 +19,7 @@
                             </div>
                         </a> 
                     <?php elseif ($notification["type"] == NotificationTypes::Like->value): ?>
-                        <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>">
+                        <a class="row reset-a" href="profile.php?user=<?php echo $notification["sender"] ?>#article-<?php echo $notification["postId"]?>">
                             <div class="col-3 ps-1 ">
                                 <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                             </div>
@@ -31,7 +31,7 @@
                             </div>
                         </a>
                     <?php elseif ($notification["type"] == NotificationTypes::Comment->value): ?>
-                        <a class="row reset-a" href="comments.php?post=<?php echo $notification["postId"] ?>#<?php echo $notification["commentId"]?>">
+                        <a class="row reset-a" href="comments.php?post=<?php echo $notification["postId"] ?>#comment-<?php echo $notification["commentId"]?>">
                             <div class="col-3 ps-1">
                                 <img class="profile-preview" src="<?php echo $PROFILE_PIC_DIR.$notification["profilePic"] ?>" />
                             </div>
