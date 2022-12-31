@@ -37,9 +37,10 @@
 	border-radius: 10px;
 	font-weight: bold;
 	z-index: 20;
-	top: 25%;
+	top: 20%;
 	width: 21em;
 	position: absolute;
+	margin: 0;
 }
 
 .alert.info-alert {
@@ -219,7 +220,8 @@ div.search-result-container > ul.search-result li:last-child {
 	}
 	100% {
 		opacity: 0;
-		display: none;
+		visibility: hidden;
+		z-index: -1;
 	}
 }
 /* #endregion Animations */

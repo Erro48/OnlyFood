@@ -83,12 +83,11 @@ function addIngredientToList(event) {
 	listItems = listItems.map((ingredient) => {
 		const ingredientName = ingredient.name
 		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
-		console.log(ingredientId)
 
-		return `<label for="ingr-${ingredientId}" class="col-6 col-lg-4">
-			<input type="checkbox" name="intolerances[]" id="ingr-${ingredientId}" 
+		return `<label for="ingr-${ingredientId}" class="col-6 col-lg-4 d-flex align-items-center">
+			<input type="checkbox" name="intolerances[]" class="col-1" id="ingr-${ingredientId}" 
 			${ingredient.checked ? 'checked' : ''} value="${ingredientId}">
-			<span class="ingredient-pill">${ingredientName}</span>
+			<span class="dotted-word col-11">${ingredientName}</span>
 		</label>`
 	})
 
@@ -117,7 +116,7 @@ async function changeFieldset(event, fieldset) {
 		setErrorClass(errors.map((error) => error.id))
 		if (errors.length > 0) {
 			setErrorMessage(errors.map((error) => error.msg))
-			document.querySelector('.alert').classList.add('fade-out')
+			// document.querySelector('.alert').classList.add('fade-out')
 		}
 	}
 }
@@ -163,6 +162,7 @@ function resetErrors() {
 	errorLog.innerText = ''
 	errorLog.classList.add('d-none')
 	errorLog.classList.remove('fade-out')
+	console.log('reset errors')
 }
 
 /**
@@ -174,6 +174,11 @@ function setErrorMessage(messages) {
 	if (messages !== undefined) {
 		errorLog.innerText = messages.map((message) => message).join('\n')
 		errorLog.classList.remove('d-none')
+		errorLog.classList.add('fade-out')
+		setTimeout(() => {
+			errorLog.classList.add('d-none')
+		}, 6000)
+		console.log('add errors')
 	}
 }
 

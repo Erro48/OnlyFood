@@ -93,7 +93,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                     <div class="col-12 col-md-10 scrollable form-container">
 
-                        <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : '' ?>">
+                        <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
                             <?php
                                 foreach($errors as $error) {
                                     echo $error . '<br>';
@@ -104,9 +104,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <form enctype="multipart/form-data" action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!--  FIRST PAGE  -->
-                            <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
+                            <fieldset class="fieldset-0 p-0 m-0 col-12 row d-md-flex">
                                 <legend>Personal informations:</legend>
-                                <label for="user-pic" class="mt-2 p-0 mx-auto">
+                                <label for="user-pic" class="mt-2 p-0 mx-auto text-center">
                                     <input class="d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
                                     <span class="profile-pic m-0">
                                         <span class="d-none">Profile pic preview</span>
@@ -114,14 +114,14 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                     </span>
                                 </label>
 
-                                <label for="user-name" class="p-0">
-                                    <input type="text" name="name" id="user-name" required>
-                                    <span ><strong class="required-char">*</strong> First Name</span>
+                                <label for="user-name" class="ps-0 col-12 col-md-6">
+                                    <input class="registration-input" type="text" name="name" id="user-name" required>
+                                    <span class="dotted-word"><strong class="required-char">*</strong> First Name</span>
                                 </label>
                             
-                                <label for="user-surname" class="p-0">
-                                    <input type="text" name="surname" id="user-surname" required>
-                                    <span ><strong class="required-char">*</strong> Last Name</span>
+                                <label for="user-surname" class="ps-0 col-12 col-md-6">
+                                    <input class="registration-input" type="text" name="surname" id="user-surname" required>
+                                    <span class="dotted-word"><strong class="required-char">*</strong> Last Name</span>
                                 </label>
                             </fieldset>
 
@@ -130,30 +130,30 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             </div>
 
 <!--  SECOND PAGE  -->
-                        <fieldset class="fieldset-1 p-0 m-0 mt-md-5 col-12 d-none d-md-inline-block">
+                        <fieldset class="fieldset-1 p-0 m-0 mt-md-5 col-12 d-none d-md-flex row">
                             <legend class="mb-md-0">Account Informations:</legend>
-                            <label for="user-username" class="p-0">
-                                <input type="text" name="username" id="user-username" required>
-                                <span ><strong class="required-char">*</strong> Username</span>
+                            <label for="user-username" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="text" name="username" id="user-username" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Username</span>
                             </label>
                         
-                            <label for="user-email" class="p-0">
-                                <input type="text" name="email" id="user-email" required>
-                                <span ><strong class="required-char">*</strong> Email</span>
+                            <label for="user-email" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="text" name="email" id="user-email" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Email</span>
                             </label>
 
-                            <label for="user-password" class="p-0">
-                                <input type="password" name="password" id="user-password" required>
-                                <span ><strong class="required-char">*</strong> Password</span>
+                            <label for="user-password" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="password" name="password" id="user-password" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Password</span>
                             </label>
                             
-                            <label for="user-cpassword" class="p-0">
-                                <input type="password" name="confirm-password" id="user-cpassword" required>
-                                <span ><strong class="required-char">*</strong> Confirm Password</span>
+                            <label for="user-cpassword" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="password" name="confirm-password" id="user-cpassword" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Confirm Password</span>
                             </label>
                         </fieldset>
                         
-                        <div class="fieldset-1 row justify-content-center p-0 mx-0  d-none">
+                        <div class="fieldset-1 row justify-content-center p-0 mx-0  d-none d-md-none">
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.PERSONAL_INFORMATIONS)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.INTOLERANCES_INFORMATIONS)">
@@ -186,9 +186,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <div class="ingredients-list row w-100 m-auto mt-4 scrollable" data-server="true">
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>
                                     
-                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-lg-4">
-                                        <input type="checkbox" name="intolerances[]" id="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" value="<?= str_replace(' ', '_', $intolerance['name']) ?>">
-                                        <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
+                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-lg-4 d-flex align-items-center">
+                                        <input type="checkbox" name="intolerances[]" class="col-1" id="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" value="<?= str_replace(' ', '_', $intolerance['name']) ?>">
+                                        <span class="dotted-word col-11"><?= ucwords($intolerance['name']) ?></span>
                                     </label>
 
                                 <?php endforeach ?>
