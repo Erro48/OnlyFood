@@ -317,7 +317,6 @@ label:has(input.input-error) {
 
 form
 	label:has(input[type='text'], input[type='password'], input[type='search']) {
-	/* width: 100%; */
 	height: 100%;
 	margin-top: 1.5rem;
 }
