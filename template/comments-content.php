@@ -15,14 +15,14 @@
             <div class="single-comment-container">
                 <article id="comment-<?php echo $comment["commentId"] ?>" class="row comment-article">
                     <div class="col-3 p-0 propic-container">
-                        <img src="<?php echo $PROFILE_PIC_DIR.$comment["profilePic"];; ?>" alt="Propic of <?php echo $comment["user"] ?>" />
+                        <img src="<?php echo $PROFILE_PIC_DIR.$comment["profilePic"]; ?>" alt="Propic of <?php echo $comment["user"]; ?>" />
                     </div>
                     <div class="col-9 row p-0 ms-2 align-items-center">
                         <div class="col-12 row pt-2">
-                            <p class="col-6"><?php echo $comment["user"] ?></p>
-                            <p class="col-6"><?php echo $comment["date"] ?></p>
+                            <p class="col-6"><?php echo $comment["user"]; ?></p>
+                            <p class="col-6 d-flex justify-content-end"><?php echo datetimeToString($comment["date"]); ?></p>
                         </div>
-                        <p class="col-12"><?php echo $comment["content"] ?></p>
+                        <p class="col-12"><?php echo $comment["content"]; ?></p>
                     </div>
                 </article>
             </div>
