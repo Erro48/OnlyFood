@@ -178,7 +178,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </button> -->
 
                                 <div class="search-result-container p-0 col-12">
-                                    <ul class="search-result p-0" id="search-result">
+                                    <ul class="search-result p-0" id="search-ingredients-result">
                         
                                     </ul>
                                 </div>

@@ -91,7 +91,7 @@ function removeElementFromModalList(element, modalType) {
 async function loadModal(modalType, callback) {
 	const modalList = document.querySelector(`#modal-${modalType}-list`)
 	const list = document.querySelector(`#${modalType}-list`)
-	let resultLiItems = Array.from(list.querySelectorAll('li'))
+	let resultLiItems = Array.from(list.querySelectorAll('li > span'))
 
 	clearElement(modalList)
 
@@ -117,8 +117,16 @@ async function addItemToList(event, modalType) {
 
 	let listItems = await getItemsOfModalList(modalType)
 
+	console.log(listItems)
+
 	// add new element (if not already present)
-	if (listItems.filter((item) => item.name == itemName).length == 0) {
+	if (
+		listItems.filter((item) => {
+			return modalType == ModalsType.INGREDIENTS
+				? item.ingredient.name == itemName
+				: item.name == itemName
+		}).length == 0
+	) {
 		const obj = await getObjectFromItem(itemName, modalType)
 		listItems.push(obj)
 	}
@@ -130,7 +138,7 @@ async function addItemToList(event, modalType) {
 	listContainer.innerHTML = listItems.join('')
 	clearElement(document.querySelector(`#search-${modalType}-result`))
 	inputSearchField.value = ''
-	hideLabel(inputSearchField)
+	// hideLabel(inputSearchField)
 	checkModalListMaxHeight(modalType)
 }
 
@@ -203,7 +211,7 @@ async function getObjectFromItem(itemName, modalType) {
  */
 function ingredientsCallback(ingredient) {
 	const ingredientObj = {
-		name: ingredient.querySelector('input').value,
+		name: ingredient.querySelector('input').value.split(';')[0],
 		quantity: ingredient.dataset.quantity,
 		measure: {
 			name: ingredient.dataset.measureName,
@@ -260,9 +268,8 @@ async function addIngredients() {
 
 	ingredients = ingredients.map((ingredient) => {
 		ingredient = ingredient.ingredient
-		return `
-		<div class="col-6 col-md-4">
-			<li class="row" data-quantity="${
+		return `<li class=" col-6 col-md-4" >
+			<span class="row" data-quantity="${
 				// if the quantity is not valid use the default value
 				ingredient.quantity > 0 ? ingredient.quantity : QUANTITY_DEFAULT
 			}" data-measure-name="${ingredient.measure.name}" data-measure-acronym="${
@@ -279,8 +286,9 @@ async function addIngredients() {
 						ingredient.name
 					}" onclick="removeElementFromResultList(this, ModalsType.INGREDIENTS)" />
 				</span>
-			</li>
-		</div>`
+			</span>
+		</li>
+		`
 	})
 
 	ingredientsContainer.innerHTML = ingredients.join('')
@@ -337,18 +345,18 @@ function createIngredientsListItem({ ingredient, measures }) {
 	return `<div class="row m-auto align-items-center" id="${ingredientId}-row">
 				<div class="col-5 ingredient-name">${ingredient.name}</div>
 				<div class="col-3">
-					<label>
+					<label for="quantity-${ingredientId}">
 						<input type="number" value="${
 							ingredient.quantity
 						}" min="0" id="quantity-${ingredientId}"
 						onkeyup="checkQuantityValidity(this)">
 						<span class="invisible">Quantity</span>
-						</label>
+					</label>
 						
-						</div>
-						<div class="col-3">
-					<label>
-						<select name="measures" id="${ingredientId}-measures">
+				</div>
+				<div class="col-3">
+					<label for="${ingredientId}-measures">
+						<select id="${ingredientId}-measures">
 							${measures.join('')}
 						</select>
 						<span class="invisible">Unit of measurement</span>
@@ -417,8 +425,8 @@ function addTags() {
 	//Red<input type="checkbox" name="color[]" value="red">
 	tags = tags.map((tag) => {
 		return `
-		<div class="col-6 col-md-4">
-			<li class="row">
+		<li class="col-6 col-md-4">
+			<span class="row">
 				<label class="col-9 p-0">
 					<span>${tag.name}</span>
 					<input type="hidden" name="tags[]" value="${tag.name}" />
@@ -426,8 +434,9 @@ function addTags() {
 				<span class="col-3 p-0">
 					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${tag.name}" onclick="removeElementFromResultList(this, ModalsType.TAGS)" />
 				</span>
-			</li>
-		</div>`
+			</span>
+		</li>
+		`
 	})
 
 	tagsContainer.innerHTML = tags.join('')

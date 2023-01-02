@@ -10,7 +10,7 @@ window.onload = () => {
  * Searches ingredients and display the output
  * @param {HTLMInputElement} searchInput - The input element where the search is happening
  */
-async function search(searchInput) {
+async function search(searchInput, modal = false) {
 	const searchValue = searchInput.value.trim()
 	const dropdownBody = document.querySelector('#search-ingredients-result')
 
@@ -22,7 +22,7 @@ async function search(searchInput) {
 
 	const ingredients = await searchForIngredient(searchValue)
 	dropdownBody.parentElement.classList.remove('d-none')
-	displayIngredients(ingredients, dropdownBody)
+	displayIngredients(ingredients, dropdownBody, modal)
 }
 
 /**
@@ -48,10 +48,10 @@ async function searchForIngredient(ingredient) {
  * @param {String[]} ingredients - A list of ingredients
  * @param {Element} container - The container where to put the formatted ingredients
  */
-function displayIngredients(ingredients, container) {
+function displayIngredients(ingredients, container, modal) {
 	clearElement(container)
 	ingredients.forEach((ingredient) =>
-		container.append(createSearchIngredientResultOption(ingredient))
+		container.append(createSearchIngredientResultOption(ingredient, modal))
 	)
 }
 
@@ -68,14 +68,18 @@ async function clearDropdownElements() {
  * @param {string} ingredient - The ingredient to be displayed in the option
  * @returns {HTMLLIElement} the HTML li element
  */
-function createSearchIngredientResultOption(ingredient) {
+function createSearchIngredientResultOption(ingredient, modal) {
 	const container = document.createElement('li')
 	container.innerText = ingredient.name
 	container.classList.add('px-3')
 	container.classList.add('py-2')
-	container.setAttribute(
-		'onclick',
-		'addItemToList(event, ModalsType.INGREDIENTS)'
-	)
+	if (modal) {
+		container.setAttribute(
+			'onclick',
+			'addItemToList(event, ModalsType.INGREDIENTS)'
+		)
+	} else {
+		container.setAttribute('onclick', 'addIngredientToList(event)')
+	}
 	return container
 }

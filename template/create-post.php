@@ -33,6 +33,7 @@ if (isset($_POST['publish'])) {
                     <label for="recipe-procedure">
                         
                         <textarea name="recipe-procedure" id="recipe-procedure" rows="8" placeholder="How to..." required></textarea>
+                        <span class="d-none">Procedure</span>
                     </label>
                 </fieldset>
 
@@ -58,10 +59,13 @@ if (isset($_POST['publish'])) {
                                 </header>
 
                                 <section class="modal-body">
-                                    <input type="search" name="search-ingredient" id="search-ingredients"
-                                        onkeyup="search(this)"
-                                        aria-label="Search an ingredient"
-                                        placeholder="Search an ingredient...">
+                                    <label for="search-ingredients" class="h-auto">
+                                        <input type="search" name="search-ingredient" id="search-ingredients"
+                                            onkeyup="search(this, true)"
+                                            aria-label="Search an ingredient"
+                                            placeholder="Search an ingredient...">
+                                        <span class="d-none">Search an ingredient</span>
+                                    </label>
 
                                     <!-- Dropdown menu -->
                                     <div class="search-result-container p-0 col-12">
@@ -105,10 +109,13 @@ if (isset($_POST['publish'])) {
                                 </header>
 
                                 <section class="modal-body">
-                                    <input type="search" name="search-tag" id="search-tags"
-                                        onkeyup="searchTag(this)"
-                                        aria-label="Search a tag"
-                                        placeholder="Search a tag...">
+                                    <label for="search-tags" class="h-auto">
+                                        <input type="search" name="search-tag" id="search-tags"
+                                            onkeyup="searchTag(this)"
+                                            aria-label="Search a tag"
+                                            placeholder="Search a tag...">
+                                        <span class="d-none">Search a tag</span>
+                                    </label>
 
                                     <!-- Dropdown menu -->
                                     <div class="search-result-container p-0 col-12">

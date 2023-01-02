@@ -35,6 +35,11 @@ function profilePicPreview(
 	}
 }
 
+function addItemToList(event, modalType) {
+	console.log('dio bubu')
+	addIngredientToList(event)
+}
+
 /**
  * Adds an ingredient to the list of the chosen ingredients
  * @param {Event} event
