@@ -2,7 +2,7 @@
     <section id="post-info-section">
         <article id="recipe-article" class="row">
             <div class="col-3 p-0 d-flex align-items-center">
-                <img src="<?php echo $templateParams["postDetails"][0]["preview"]; ?>" alt="Recipe image"/>
+                <img src="<?php echo $POST_PIC_DIR.$templateParams["postDetails"][0]["preview"]; ?>" alt="Recipe image"/>
             </div>
             <div class="col-9 row ms-2 align-items-center">
                 <p id="owner-username"><?php echo $templateParams["postDetails"][0]["owner"]; ?></p>
