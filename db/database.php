@@ -511,5 +511,36 @@ class DatabaseHelper{
             }
         }
     }
+
+    public function follow($username){
+        $stmt = $this->db->prepare("
+                INSERT INTO follows
+                        (follower, followed)
+                VALUES  (?, ?)");
+        $stmt->bind_param('ss', $_SESSION["username"], $username);
+        $stmt->execute();
+    }
+
+    public function unfollow($username){    
+        $stmt = $this->db->prepare("
+                DELETE FROM follows
+                WHERE follower=? AND followed=?");
+        $stmt->bind_param('ss', $_SESSION["username"], $username);
+        $stmt->execute();
+    }
+
+    public function userAlreadyFollowed($username){
+        $stmt = $this->db->prepare("
+                SELECT IF(EXISTS(
+                    SELECT *
+                    FROM follows f
+                    WHERE f.follower=? and f.followed=?
+                 ), 1, 0) as result");
+        $stmt->bind_param('ss', $_SESSION["username"], $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["result"];
+    }
+    
 }
 ?>

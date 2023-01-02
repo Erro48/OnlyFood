@@ -18,10 +18,27 @@
                             <img src="imgs/icons/logout.svg" alt="Logout" />
                         </button>
                     </div>
+                    <?php elseif (!$templateParams["followed"]): ?>
+                    <div id="follow-button" class="col-2 mini-box d-flex justify-content-end">
+                        <button class="p-2 icon-button hideable" onclick="follow('<?php echo $_GET['user']?>')">
+                            <img src="imgs/icons/user-follow.svg" alt="Follow <?php echo $_GET['user'] ?>" />
+                        </button>
+                    </div>
+                    <div id="unfollow-button" class="col-2 mini-box d-flex justify-content-end d-none">
+                        <button class="p-2 icon-button hideable" onclick="unfollow('<?php echo $_GET['user']?>')">
+                            <img src="imgs/icons/user-unfollow.svg" alt="Unfollow <?php echo $_GET['user'] ?>" />
+                        </button>
+                    </div>
                     <?php else: ?>
-                    <div class="col-2 mini-box">
-                        <div class="p-4">
-                        </div>
+                    <div id="follow-button" class="col-2 mini-box d-flex justify-content-end d-none">
+                        <button class="p-2 icon-button hideable" onclick="follow('<?php echo $_GET['user']?>')">
+                            <img src="imgs/icons/user-follow.svg" alt="Follow <?php echo $_GET['user'] ?>" />
+                        </button>
+                    </div>
+                    <div id="unfollow-button" class="col-2 mini-box d-flex justify-content-end">
+                        <button class="p-2 icon-button hideable" onclick="unfollow('<?php echo $_GET['user']?>')">
+                            <img src="imgs/icons/user-unfollow.svg" alt="Unfollow <?php echo $_GET['user'] ?>" />
+                        </button>
                     </div>
                     <?php endif ?>
                     <div class="col-md-2"></div>
@@ -42,7 +59,7 @@
                     <div class="col-6 col-md-4 mini-box">
                         <div class="follow-container justify-content-center hideable">                    
                             <p class="m-0">Followers</p>
-                            <p class="m-0"><?php echo $profile["numFollower"] ?></p>
+                            <p id="num-follower" class="m-0"><?php echo $profile["numFollower"] ?></p>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
