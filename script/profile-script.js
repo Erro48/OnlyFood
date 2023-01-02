@@ -21,15 +21,14 @@ function onScroll(event) {
 	*/
 }
 
-window.onload = () => {
+/*window.onload = () => {
 	let obj = document.getElementById('main-container')
 	//obj.addEventListener('scroll', onScroll)
 	setPostsContainerHeight()
-}
+}*/
 
-window.onresize = () => {
-	setPostsContainerHeight()
-}
+window.addEventListener("onload", setPostsContainerHeight);
+window.addEventListener("onresize", setPostsContainerHeight);
 
 /**
  * Logout from the current session

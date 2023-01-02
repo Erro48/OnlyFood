@@ -1,10 +1,5 @@
-window.onload = (event) => {
-    setPostsHeight();
-}
-
-window.onresize = (event) => {
-    setPostsHeight();
-}
+window.addEventListener("onload", setPostsHeight);
+window.addEventListener("onresize", setPostsHeight);
 
 function setPostsHeight(){
     const posts = document.querySelector("div.posts-container").children;
@@ -18,10 +13,10 @@ function calculateRecipeSectionHeight(article) {
     img.src = article.querySelector("img").src;
     const ratio = img.width / img.height;
     const height = article.offsetWidth / ratio;
-    if(height > 300){
+    if(height > 350){
         article.querySelector("section.recipe-section").style.height = "".concat(height, "px");
     } else {
-        article.querySelector("section.recipe-section").style.height = "300px";
+        article.querySelector("section.recipe-section").style.height = "350px";
     }
 }
 
