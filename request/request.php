@@ -29,6 +29,18 @@ if (isset($_GET["user"])) {
     echo json_encode($users_list);
 }
 
+if (isset($_GET["follow"])) {
+    $username = $_GET["follow"];
+    $dbh->follow($username);
+    echo "1";
+}
+
+if (isset($_GET["unfollow"])) {
+    $username = $_GET["unfollow"];
+    $dbh->unfollow($username);
+    echo "1";
+}
+
 if (isset($_GET["logout"])) {
     unset($_SESSION['username']);
     echo "1";

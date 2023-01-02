@@ -80,6 +80,10 @@ main section .icon-button {
     border: 0
 }
 
+main section .icon-button:hover {
+    background-color: var(--accent);
+}
+
 main section .icon-button > img {
     height: 2em;
     width: 2em;

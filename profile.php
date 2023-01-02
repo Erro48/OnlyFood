@@ -13,6 +13,7 @@ if (isset($_GET["user"])) {
         header("Location: ./profile.php");
     }
 
+    $templateParams["followed"] = $dbh->userAlreadyFollowed($_GET["user"]);
     $templateParams["posts"] = $dbh->getUserPosts($_GET["user"]);
     $templateParams["profile"] = $dbh->getProfileInfo($_GET["user"]);
     $templateParams["favouriteIngredients"] = $dbh->getMostUsedIngredients($_GET["user"]);
