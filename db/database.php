@@ -515,8 +515,8 @@ class DatabaseHelper{
     public function follow($username){
         $stmt = $this->db->prepare("
                 INSERT INTO follows
-                        (follower, followed)
-                VALUES  (?, ?)");
+                        (follower, followed, date)
+                VALUES  (?, ?, NOW())");
         $stmt->bind_param('ss', $_SESSION["username"], $username);
         $stmt->execute();
     }
