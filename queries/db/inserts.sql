@@ -1,8 +1,8 @@
 INSERT INTO `recipes` (`recipeId`, `description`, `howTo`, `preview`) VALUES
-(0, 'Pizza stravagante', 'Devi fare roba', 'imgs/posts/pizza-stravagante.jpg'),
-(1, 'Il mio primo dolce-salato', 'Fatelo', 'imgs/posts/dolce-salato.jpg'),
-(2, 'Oggi cucinaramo por voi', 'Uno dei criteri fondamentali della cucina cinese è l’equilibrio armonioso di colori, sapori e consistenze. Il maiale in agrodolce è una ricetta della tradizione che rappresenta perfettamente questa caratteristica, a partire dalla scelta degli ingredienti: il verde dei peperoni, il rosso del pomodoro e il giallo dell’ananas, un mix dalle tinte vivaci che, insieme alla salsa agrodolce, conferisce al piatto il suo gusto inconfondibile. Dopo aver fritto i bocconcini di carne, mangiare', 'imgs/posts/torta-ronaldo.jpg'),
-(3, 'Carote', 'Tagliatele', 'imgs/posts/carote.jpg');
+(0, 'Pizza stravagante', 'Devi fare roba', 'pizza-stravagante.jpg'),
+(1, 'Il mio primo dolce-salato', 'Fatelo', 'dolce-salato.jpg'),
+(2, 'Oggi cucinaramo por voi', 'Uno dei criteri fondamentali della cucina cinese è l’equilibrio armonioso di colori, sapori e consistenze. Il maiale in agrodolce è una ricetta della tradizione che rappresenta perfettamente questa caratteristica, a partire dalla scelta degli ingredienti: il verde dei peperoni, il rosso del pomodoro e il giallo dell’ananas, un mix dalle tinte vivaci che, insieme alla salsa agrodolce, conferisce al piatto il suo gusto inconfondibile. Dopo aver fritto i bocconcini di carne, mangiare', 'torta-ronaldo.jpg'),
+(3, 'Carote', 'Tagliatele', 'carote.jpg');
 
 INSERT INTO `tags` (`name`) VALUES
 ('breakfast'),

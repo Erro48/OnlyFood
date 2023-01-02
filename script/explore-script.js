@@ -95,7 +95,7 @@ function createPost(postData){
                             <p>${postData.howTo}</p>
                         </section>
                     </section>
-                    <img src="${postData.preview}" alt="${postData.description}" />
+                    <img src="imgs/posts/${postData.preview}" alt="${postData.description}" />
                     <div class="row info-container">
                         <div class="col-2">
                             <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />

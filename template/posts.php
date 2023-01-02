@@ -22,7 +22,7 @@
                             <p><?php echo $post["howTo"]; ?></p>
                         </section>
                     </section>
-                    <img class="col-12" src="<?php echo $post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
+                    <img class="col-12" src="<?php echo $POST_PIC_DIR.$post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
                     <div class="row info-container">
                         <div class="col-2">
                             <img src="<?php echo $PROFILE_PIC_DIR.$post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
