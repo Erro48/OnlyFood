@@ -26,7 +26,9 @@ main article.post-article {
 }
 
 main article.post-article > section.recipe-section {
+    /*visibility: hidden;*/
     display: none;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -98,7 +100,7 @@ main article.post-article > div.row > div:nth-child(2) > p:last-child {
 }
 
 main article.post-article section.howto-section {
-    max-height: 300px;
+    /*max-height: 300px;*/
     overflow-y: auto;
 }
 
