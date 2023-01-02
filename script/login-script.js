@@ -35,61 +35,9 @@ function profilePicPreview(
 	}
 }
 
-/**
- * Remove all the option of a dropdown menu
- */
-async function clearDropdownElements() {
-	const dropdown = document.querySelector('ul.search-result')
-	clearElement(dropdown)
-}
-
-/**
- * Searches ingredients and display the output
- * @param {HTLMInputElement} searchInput - The input element where the search is happening
- */
-async function search(searchInput) {
-	const searchValue = searchInput.value.trim()
-	const dropdownBody = document.querySelector('#search-result')
-
-	if (searchValue.length < 3) {
-		clearElement(dropdownBody)
-		dropdownBody.parentElement.classList.add('d-none')
-		return
-	}
-
-	const ingredients = await searchIngredient(searchValue)
-	dropdownBody.parentElement.classList.remove('d-none')
-	displayIngredients(ingredients, dropdownBody)
-}
-
-/**
- * Performs an HTTP request to get the ingredients matching the input ingredient
- * @param {string} ingredient - The ingredient to look for
- * @returns {String[]} An array containing the ingredients matched
- */
-async function searchIngredient(ingredient) {
-	const ingredients = []
-	await axios
-		.get(`./request/request.php?ingredient=${ingredient}`)
-		.then((result) => {
-			for (let ingredient of result.data) {
-				ingredients.push(ingredient)
-			}
-		})
-		.catch((err) => console.error(err))
-	return ingredients
-}
-
-/**
- * Given a list of ingredients, it displays them in the container
- * @param {String[]} ingredients - A list of ingredients
- * @param {Element} container - The container where to put the formatted ingredients
- */
-function displayIngredients(ingredients, container) {
-	clearElement(container)
-	ingredients.forEach((ingredient) =>
-		container.append(createSearchResultOption(ingredient))
-	)
+function addItemToList(event, modalType) {
+	console.log('dio bubu')
+	addIngredientToList(event)
 }
 
 /**
@@ -140,12 +88,11 @@ function addIngredientToList(event) {
 	listItems = listItems.map((ingredient) => {
 		const ingredientName = ingredient.name
 		const ingredientId = ingredientName.toLowerCase().replaceAll(' ', '_')
-		console.log(ingredientId)
 
-		return `<label for="ingr-${ingredientId}" class="col-6 col-md-4">
-			<input type="checkbox" name="intolerances[]" id="ingr-${ingredientId}" 
+		return `<label for="ingr-${ingredientId}" class="col-6 col-lg-4 d-flex align-items-center">
+			<input type="checkbox" name="intolerances[]" class="col-1" id="ingr-${ingredientId}" 
 			${ingredient.checked ? 'checked' : ''} value="${ingredientId}">
-			<span class="ingredient-pill">${ingredientName}</span>
+			<span class="dotted-word col-11">${ingredientName}</span>
 		</label>`
 	})
 
@@ -174,7 +121,7 @@ async function changeFieldset(event, fieldset) {
 		setErrorClass(errors.map((error) => error.id))
 		if (errors.length > 0) {
 			setErrorMessage(errors.map((error) => error.msg))
-			document.querySelector('.alert').classList.add('fade-out')
+			// document.querySelector('.alert').classList.add('fade-out')
 		}
 	}
 }
@@ -220,16 +167,7 @@ function resetErrors() {
 	errorLog.innerText = ''
 	errorLog.classList.add('d-none')
 	errorLog.classList.remove('fade-out')
-}
-
-/**
- * Set the error class to the input specified by the inputErrorId
- * @param {number} inputErrorsId - The id of the input with a wrong value
- */
-function setErrorClass(inputErrorsId) {
-	inputErrorsId.forEach((id) => {
-		document.querySelector(`#${id}`).classList.add('input-error')
-	})
+	console.log('reset errors')
 }
 
 /**
@@ -241,6 +179,11 @@ function setErrorMessage(messages) {
 	if (messages !== undefined) {
 		errorLog.innerText = messages.map((message) => message).join('\n')
 		errorLog.classList.remove('d-none')
+		errorLog.classList.add('fade-out')
+		setTimeout(() => {
+			errorLog.classList.add('d-none')
+		}, 6000)
+		console.log('add errors')
 	}
 }
 
@@ -316,18 +259,4 @@ async function verifyAccountInformations() {
 	)
 
 	return results
-}
-
-/**
- * Create a list item representing an option of the dropdown menu
- * @param {string} ingredient - The ingredient to be displayed in the option
- * @returns {HTMLLIElement} the HTML li element
- */
-function createSearchResultOption(ingredient) {
-	const container = document.createElement('li')
-	container.innerText = ingredient.name
-	container.classList.add('px-3')
-	container.classList.add('py-2')
-	container.setAttribute('onclick', 'addIngredientToList(event)')
-	return container
 }

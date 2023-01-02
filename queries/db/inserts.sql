@@ -8,7 +8,7 @@ INSERT INTO `tags` (`name`) VALUES
 ('breakfast'),
 ('dinner'),
 ('first course'),
-('launch'),
+('lunch'),
 ('vegan');
 
 INSERT INTO `ingredients` (`name`, `color`) VALUES
@@ -25,14 +25,14 @@ INSERT INTO `ingredients` (`name`, `color`) VALUES
 
 INSERT INTO `belongto` (`recipe`, `tag`) VALUES
 (0, 'dinner'),
-(0, 'launch'),
+(0, 'lunch'),
 (1, 'breakfast'),
 (1, 'vegan'),
 (2, 'dinner'),
 (3, 'first course');
 
 INSERT INTO `measures` (`name`, `acronym`) VALUES
-('unit', ''),
+('unit', 'u'),
 ('gram', 'gr'),
 ('kilogram', 'kg'),
 ('litre', 'L'),
@@ -82,3 +82,25 @@ INSERT INTO `comments` (`commentId`, `content`, `date`, `user`, `postId`) VALUES
 (1, 'Mi fa ribrezzo', '2022-12-21 20:42', 'antonino75', 2),
 (2, 'Top', '2022-12-20 10:18', 'carlo61', 2),
 (3, 'Sembra veramente deliziosa!! Ottimo lavoro Cristiano!!! Fanne altre ti prego che le voglio portare nei miei ristoranti!', '2022-12-22 15:36', 'aleborghese', 2);
+
+INSERT INTO `expressedin` (`ingredient`, `unit`) VALUES
+('carrot', 'unit'),
+('carrot', 'gram'),
+('flour', 'gram'),
+('flour', 'kilogram'),
+('egg', 'unit'),
+('mint', 'unit'),
+('mint', 'gram'),
+('oil', 'gram'),
+('oil', 'litre'),
+('oil', 'spoon'),
+('salt', 'gram'),
+('salt', 'spoon'),
+('sugar', 'gram'),
+('sugar', 'spoon'),
+('water', 'gram'),
+('water', 'litre'),
+('rice', 'gram'),
+('pepper', 'gram'),
+('pepper', 'spoon'),
+('rice', 'kilogram');

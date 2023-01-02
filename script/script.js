@@ -3,6 +3,7 @@
 /*  Table Of Contents:
     - Elements
     - Typography
+	- Arrays
 */
 
 /* ELEMENTS */
@@ -27,6 +28,26 @@ function hideLabel(element) {
 	element.value.trim() != ''
 		? sibling.classList.add('d-none')
 		: sibling.classList.remove('d-none')
+}
+
+/**
+ * Set the error class to the input specified by the inputErrorId
+ * @param {number} inputErrorsId - The id of the input with a wrong value
+ */
+function setErrorClass(inputErrorsId) {
+	inputErrorsId.forEach((id) => {
+		document.querySelector(`#${id}`).classList.add('input-error')
+	})
+}
+
+/**
+ * Reset the error class to the input specified by the inputErrorId
+ * @param {number} inputErrorsId - The id of the input with a wrong value
+ */
+function resetErrorClass(inputErrorsId) {
+	inputErrorsId.forEach((id) => {
+		document.querySelector(`#${id}`).classList.remove('input-error')
+	})
 }
 
 /* TYPOGRAPHY */

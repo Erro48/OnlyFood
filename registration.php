@@ -30,7 +30,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
         // check if username has a valid format
         array_push($errors, "Username is not valid");
     }
-    if (preg_match("/^[a-zA-Z][0-9a-zA-Z_!$@#^&]{7,}$/", $password) == 0) {
+    if (!passwordValidation($password)) {
         // check if password has a valid format
         array_push($errors, "Password is not valid");
     }
@@ -48,7 +48,8 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
             $_SESSION['username'] = $username;
             
             if (isset($profile_pic) && $profile_pic['size'] > 0) {
-                downloadProfilePic($profile_pic, $dbh);
+                downloadImage($profile_pic, $dbh, $PROFILE_PIC_DIR . $profile_pic_name);
+                $dbh->updateProfilePic($profile_pic_name);
             }
             header("Location: ./index.php");
         }
@@ -68,6 +69,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./script/verification.js"></script>
     <script src="./script/script.js"></script>
+    <script src="./script/search-ingredient.js"></script>
     <script src="./script/login-script.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
@@ -81,21 +83,21 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     <div class="row">
         <div class="col-1 d-md-none"></div>
         <div class="col-10 col-md-6 row vh-100 align-content-center justify-content-center mx-0">
-            <header class="row text-left text-md-center mb-5 p-0">
+            <header class="row text-left text-md-center mb-5 mb-md-0 p-0">
                 <h1 class="p-0">Create an account</h1>
                 <em class="p-0">Fields with <strong class="required-char">*</strong> are required</em>
             </header>
             
             <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5 login-main">
                 <section class="row login-section">
-                    <div class="d-none d-md-block col-md-2"></div>
+                    <div class="d-none d-md-block col-md-1"></div>
 
-                    <div class="col-12 col-md-8 scrollable">
+                    <div class="col-12 col-md-10 scrollable form-container">
 
-                        <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : '' ?>">
+                        <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
                             <?php
                                 foreach($errors as $error) {
-                                    echo $error;
+                                    echo $error . '<br>';
                                 }
                             ?>
                         </div>
@@ -103,9 +105,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                         <form enctype="multipart/form-data" action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!--  FIRST PAGE  -->
-                            <fieldset class="fieldset-0 p-0 m-0 col-12 d-flex flex-column">
+                            <fieldset class="fieldset-0 p-0 m-0 col-12 row d-md-flex">
                                 <legend>Personal informations:</legend>
-                                <label for="user-pic" class="mt-2 p-0 mx-auto">
+                                <label for="user-pic" class="mt-2 p-0 mx-auto text-center">
                                     <input class="d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
                                     <span class="profile-pic m-0">
                                         <span class="d-none">Profile pic preview</span>
@@ -113,54 +115,54 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                     </span>
                                 </label>
 
-                                <label for="user-name" class="p-0">
-                                    <input type="text" name="name" id="user-name" required>
-                                    <span ><strong class="required-char">*</strong> First Name</span>
+                                <label for="user-name" class="ps-0 col-12 col-md-6">
+                                    <input class="registration-input" type="text" name="name" id="user-name" required>
+                                    <span class="dotted-word"><strong class="required-char">*</strong> First Name</span>
                                 </label>
                             
-                                <label for="user-surname" class="p-0">
-                                    <input type="text" name="surname" id="user-surname" required>
-                                    <span ><strong class="required-char">*</strong> Last Name</span>
+                                <label for="user-surname" class="ps-0 col-12 col-md-6">
+                                    <input class="registration-input" type="text" name="surname" id="user-surname" required>
+                                    <span class="dotted-word"><strong class="required-char">*</strong> Last Name</span>
                                 </label>
                             </fieldset>
 
-                            <div class="fieldset-0 row justify-content-end p-0 mx-0 ">
+                            <div class="fieldset-0 row justify-content-end p-0 mx-0 d-md-none">
                                 <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
                             </div>
 
 <!--  SECOND PAGE  -->
-                        <fieldset class="fieldset-1 p-0 m-0 col-12 d-none">
-                            <legend>Account Informations:</legend>
-                            <label for="user-username" class="p-0">
-                                <input type="text" name="username" id="user-username" required>
-                                <span ><strong class="required-char">*</strong> Username</span>
+                        <fieldset class="fieldset-1 p-0 m-0 mt-md-5 col-12 d-none d-md-flex row">
+                            <legend class="mb-md-0">Account Informations:</legend>
+                            <label for="user-username" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="text" name="username" id="user-username" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Username</span>
                             </label>
                         
-                            <label for="user-email" class="p-0">
-                                <input type="text" name="email" id="user-email" required>
-                                <span ><strong class="required-char">*</strong> Email</span>
+                            <label for="user-email" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="text" name="email" id="user-email" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Email</span>
                             </label>
 
-                            <label for="user-password" class="p-0">
-                                <input type="password" name="password" id="user-password" required>
-                                <span ><strong class="required-char">*</strong> Password</span>
+                            <label for="user-password" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="password" name="password" id="user-password" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Password</span>
                             </label>
                             
-                            <label for="user-cpassword" class="p-0">
-                                <input type="password" name="confirm-password" id="user-cpassword" required>
-                                <span ><strong class="required-char">*</strong> Confirm Password</span>
+                            <label for="user-cpassword" class="col-12 col-md-6 ps-0">
+                                <input class="registration-input" type="password" name="confirm-password" id="user-cpassword" required>
+                                <span class="dotted-word"><strong class="required-char">*</strong> Confirm Password</span>
                             </label>
                         </fieldset>
                         
-                        <div class="fieldset-1 row justify-content-center p-0 mx-0  d-none">
+                        <div class="fieldset-1 row justify-content-center p-0 mx-0  d-none d-md-none">
                             <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.PERSONAL_INFORMATIONS)">
                             <div class="col-2"></div>
                             <input type="button" value="Next" class="col-5 button-primary" onclick="changeFieldset(event, RegistrationFieldset.INTOLERANCES_INFORMATIONS)">
                         </div>
 
 <!--  THIRD PAGE  -->
-                        <fieldset class="fieldset-2 p-0 m-0 col-12 d-none">
-                            <legend>Intolerances:</legend>
+                        <fieldset class="fieldset-2 p-0 m-0 mt-md-5 col-12 d-none d-md-inline-block">
+                            <legend class="mb-md-0">Intolerances:</legend>
 
                             <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
                                 <label for="search-ingredient" class="p-0">
@@ -176,7 +178,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                 </button> -->
 
                                 <div class="search-result-container p-0 col-12">
-                                    <ul class="search-result p-0" id="search-result">
+                                    <ul class="search-result p-0" id="search-ingredients-result">
                         
                                     </ul>
                                 </div>
@@ -185,18 +187,18 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                             <div class="ingredients-list row w-100 m-auto mt-4 scrollable" data-server="true">
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>
                                     
-                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-md-4">
-                                        <input type="checkbox" name="intolerances[]" id="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" value="<?= str_replace(' ', '_', $intolerance['name']) ?>">
-                                        <span class="ingredient-pill"><?= ucwords($intolerance['name']) ?></span>
+                                    <label for="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" class="col-6 col-lg-4 d-flex align-items-center">
+                                        <input type="checkbox" name="intolerances[]" class="col-1" id="ingr-<?= str_replace(' ', '_', $intolerance['name']) ?>" value="<?= str_replace(' ', '_', $intolerance['name']) ?>">
+                                        <span class="dotted-word col-11"><?= ucwords($intolerance['name']) ?></span>
                                     </label>
 
                                 <?php endforeach ?>
                             </div>
 
                         </fieldset>
-                        <div class="fieldset-2 row justify-content-center p-0 m-0 d-none">
-                            <input type="button" value="Back" class="col-5 button-secondary" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
-                            <div class="col-2"></div>
+                        <div class="fieldset-2 row justify-content-center p-0 m-0 mt-md-4 d-none d-md-flex">
+                            <input type="button" value="Back" class="col-5 button-secondary d-md-none" onclick="changeFieldset(event, RegistrationFieldset.ACCOUNT_INFORMATIONS)">
+                            <div class="col-2 col-md-7"></div>
                             <input type="submit" value="Sign Up" class="col-5 button-primary">
                         </div>
 
@@ -204,7 +206,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
                     </div>
 
-                    <div class="d-none d-md-block col-md-2"></div>
+                    <div class="d-none d-md-block col-md-1"></div>
                 </section>
             </main>
             <footer class="row text-center fixed-bottom mb-3">

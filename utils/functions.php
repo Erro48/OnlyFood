@@ -1,11 +1,12 @@
 <?php
 require_once(__DIR__ . "/consts.php");
 
-function downloadProfilePic($file, $dbh) {
+function downloadImage($file, $dbh, $file_destination) {
     global $MAX_FILE_SIZE;
-    global $PROFILE_PIC_DIR;
 
-    $file_name = $file['name'];
+    $file_name = basename($file_destination);
+    $destination_folder = str_replace($file_name, '', $file_destination);
+
     $file_tmp_name = $file['tmp_name'];
     $file_size = $file['size'];
     $file_error = $file['error'];
@@ -17,22 +18,6 @@ function downloadProfilePic($file, $dbh) {
     if(in_array($file_extension, array('jpg', 'jpeg', 'png', "gif", "jfif"))) {
         if($file_error === 0){
             if($file_size < $MAX_FILE_SIZE){
-                // delete old photo (if present)
-                $result = $dbh->getUserInfo($_SESSION['username']);
-                if(count($result) == 1){
-                    $row = $result[0];
-                    if($row['profilePic'] && file_exists($PROFILE_PIC_DIR . $row["profilePic"])){
-                        unlink($PROFILE_PIC_DIR.$row['profilePic']);
-                    }
-                }
-
-                $new_file_name = encryptProfilePic($_SESSION['username'], $file_name);
-                
-                // upload new photo
-                $dbh->updateProfilePic($new_file_name);
-
-                $file_destination = $PROFILE_PIC_DIR.$new_file_name;
-
                 move_uploaded_file($file_tmp_name, $file_destination);                    
             }
         }
@@ -59,6 +44,15 @@ function printApproximateNumber($n){
     } else {
         return $n;
     }
+}
+
+function passwordValidation($password) {
+    $is_special = preg_match('/[_!$@#^&+\?]/', $password);
+    $is_numeric = preg_match('/[0-9]/', $password);
+    $is_lower_char = preg_match('/[a-z]/', $password);
+    $is_upper_char = preg_match('/[A-Z]/', $password);
+
+    return $is_special + $is_numeric + $is_lower_char + $is_upper_char == 4 && strlen($password) >= 7;
 }
 
 function datetimeToString($datestring) {

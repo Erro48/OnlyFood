@@ -12,6 +12,7 @@
 		* Labels
 		* Links
 	- Media Queries
+	- Animations
 */
 
 /* #region Root */
@@ -173,6 +174,9 @@ footer.page-footer > div > ul > li > button span.col-md-8 {
 	border-radius: 10px;
 	border: none;
 
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+
 	color: var(--text-light);
 	font-weight: bolder;
 	font-size: 18px;
@@ -198,7 +202,8 @@ footer.page-footer > div > ul > li > button span.col-md-8 {
 /* #endregion */
 
 /* #region Inputs */
-input:not([type='checkbox'], [type='file']),
+
+input:not([type='checkbox'], [type='file'], [type='submit']),
 input:not([type='file']) ~ span {
 	padding-left: 1em;
 }
@@ -209,7 +214,8 @@ input::selection {
 }
 
 input[type='text'],
-input[type='password'] {
+input[type='password'],
+input[type='number'] {
 	background: var(--light-color);
 	border: 2px solid var(--primary);
 	border-radius: 10px;
@@ -245,6 +251,10 @@ input[type='checkbox']:checked {
 input:not([type='file'], [type='search']):focus ~ span,
 input:not([type='file'], [type='search']):valid ~ span {
 	top: -50%;
+}
+
+input.input-error {
+	border: 2px solid var(--error-color);
 }
 
 input ~ span {
@@ -297,30 +307,44 @@ form label {
 	height: 18px;
 	position: relative;
 	user-select: none;
+	/* z-index: -1; */
+}
+
+label:has(input.input-error) {
+	--error-animation-offset: 5px;
+	animation: shake 0.25s ease;
 }
 
 form
 	label:has(input[type='text'], input[type='password'], input[type='search']) {
-	width: 100%;
 	height: 100%;
 	margin-top: 1.5rem;
+}
+
+form
+	label:has(
+		input[type='text']:not(.registration-input),
+		input[type='password']:not(.registration-input),
+		input[type='search']
+	) {
+	width: 100%;
 }
 
 form label:has(input[type='file'] ~ .profile-pic) {
 	height: 10em;
 }
 
-form label:has(input.input-error) {
-	--error-animation-offset: 5px;
-	animation: shake 0.25s ease;
-}
-
 /* #region Labels Content */
-form label:not(:has(input[type='checkbox'])) span {
+form
+	label:not(
+		:has(input[type='checkbox'], input[type='file'], input[type='hidden'])
+	)
+	span {
 	position: absolute;
 	top: 25%;
 	left: 0;
 	transition: 0.25s top;
+	width: calc(100% - calc(var(--bs-gutter-x) * 0.5));
 }
 /* #endregion Labels Content */
 
@@ -338,6 +362,14 @@ form label:not(:has(input[type='checkbox'])) span {
 	text-decoration: none;
 }
 /* #endregion */
+
+/* #region Texts */
+.dotted-word {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+/* #endregion Texts */
 
 /* #endregion Components */
 
@@ -403,3 +435,28 @@ form label:not(:has(input[type='checkbox'])) span {
 	}
 }
 /* #endregion */
+
+/* #region Animations */
+@keyframes shake {
+	0% {
+		position: relative;
+		left: calc((-1) * var(--error-animation-offset));
+	}
+	25% {
+		position: relative;
+		left: var(--error-animation-offset);
+	}
+	50% {
+		position: relative;
+		left: calc((-1) * var(--error-animation-offset));
+	}
+	75% {
+		position: relative;
+		left: var(--error-animation-offset);
+	}
+	100% {
+		position: relative;
+		left: 0px;
+	}
+}
+/* #endregion Animations */
