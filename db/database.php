@@ -306,11 +306,14 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getTags(){
+    public function getTags($tag = ""){
+        $tag = "%" . $tag . "%";
         $stmt = $this->db->prepare("
         SELECT *
         FROM tags
+        WHERE name LIKE ?
         ORDER BY name");
+        $stmt->bind_param("s", $tag);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -542,5 +545,81 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC)[0]["result"];
     }
     
+    public function getIngredientsMeasures($ingredient) {
+        $stmt = $this->db->prepare(
+            'SELECT m.*
+            FROM expressedin e
+            JOIN measures m on m.name = e.unit
+            WHERE e.ingredient = ?');
+        $stmt->bind_param('s', $ingredient);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function createPost($name, $procedure, $ingredients, $tags, $image) {
+        $recipe_id = $this->insertRecipe($name, $procedure, $image);
+        $this->insertPost($recipe_id);
+        $this->insertRecipeIngredients($ingredients, $recipe_id);
+        $this->insertRecipeTags($tags, $recipe_id);
+
+    }
+
+    private function insertRecipe($name, $procedure, $image) {
+        $image_name = encryptProfilePic($_SESSION['username'], $image['name']);
+        $stmt = $this->db->prepare('INSERT INTO `recipes` (`description`, `howTo`, `preview`) VALUES (?, ?, ?)');
+        $stmt->bind_param('sss', $name, $procedure, $image_name);
+        $stmt->execute();
+
+        downloadImage($image, $this, "imgs/posts/" . $image_name);
+
+        return $stmt->insert_id;
+    }
+
+    function insertPost($recipe_id) {
+        $stmt = $this->db->prepare('INSERT INTO `posts` (`date`, `owner`, `recipe`) VALUES (?, ?, ?)');
+        $stmt->bind_param('ssi', date("Y-m-d h:i:sa"), $_SESSION['username'], $recipe_id);
+        $stmt->execute();
+    }
+
+    function insertRecipeIngredients($ingredients, $recipe_id) {
+        $query = "INSERT INTO `compositions` (`recipe`, `ingredient`, `unit`, `quantity`) VALUES ";
+        $params = array();
+        $params_type = "";
+
+        foreach ($ingredients as $ingredient) {
+            [$name, $quantity, $measure] = explode(";", $ingredient);
+            $query .= "(?, ?, ?, ?),";
+            array_push($params, ...[$recipe_id, $name, $measure, intval($quantity, 10)]);
+            $params_type .= 'issi';
+        }
+        $query = rtrim($query, ',');
+
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($params_type, ...$params);
+        $stmt->execute();
+    }
+
+    function insertRecipeTags($tags, $recipe_id) {
+        $query = "INSERT INTO `belongto` (`recipe`, `tag`) VALUES ";
+        $params = array();
+        $params_type = "";
+
+        foreach ($tags as $tag) {
+            $query .= "(?, ?),";
+            array_push($params, ...[$recipe_id, $tag]);
+            $params_type .= 'is';
+        }
+        $query = rtrim($query, ',');
+
+        
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($params_type, ...$params);
+        $stmt->execute();
+    }
+
+
 }
 ?>
