@@ -104,10 +104,6 @@ function setPostsContainerHeight() {
 	const profileSection = document.querySelector("section.profile-section");
 	const h2 = document.querySelector("section.posts-section > h2");
 	const postsContainerDiv = document.querySelector("#posts-container-div");
-	console.log(main.offsetHeight);
-	console.log(profileSection.offsetHeight + h2.offsetHeight + parseInt(getComputedStyle(h2).marginTop) + parseInt(getComputedStyle(h2).marginBottom));
 	const height = main.offsetHeight - (profileSection.offsetHeight + h2.offsetHeight + parseInt(getComputedStyle(h2).marginTop) + parseInt(getComputedStyle(h2).marginBottom));
 	postsContainerDiv.style.height = "".concat(height - 1, "px");
-	console.log(postsContainerDiv.offsetHeight);
-	console.log(getComputedStyle(h2).marginBottom);
 }

@@ -20,7 +20,6 @@ function searchTag(elem){
         clearItems(tagListContainer);
 
         for (tag of data.data) {
-            console.log(tag);
             tagListContainer.append(createTagRow(tag));
          }
     })
