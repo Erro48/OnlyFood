@@ -38,6 +38,7 @@ function showRecipe(id){
     const recipeInput = document.querySelector("article#article-".concat(id, " > footer > ul > li:nth-child(2) > input"));
     pictureInput.classList.remove("preview-selected-left");
     recipeInput.classList.add("preview-selected-right");
+    calculateRecipeSectionHeight(document.querySelector("article#article-".concat(id)));
     img.style.display = "none";
     div.style.display = "flex";
 }

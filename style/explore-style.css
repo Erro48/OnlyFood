@@ -14,7 +14,9 @@ main section.filter-section {
     padding: 1rem 0;
 }
 
-main section.filter-section > div.col-10 {
+main section.filter-section > div.tags-container {
+    display: flex;
+    flex-direction: column;
     background-color: var(--secondary);
     border-radius: 10px;
     height: 100%;
