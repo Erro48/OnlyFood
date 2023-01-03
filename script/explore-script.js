@@ -12,7 +12,7 @@ function searchTag(elem){
 
     axios.get(`request/searchTag.php?tag=${searchValue}`)
     .then((data) => {
-        clearItems(tagListContainer);
+        clearElement(tagListContainer);
 
         for (tag of data.data) {
             tagListContainer.append(createTagRow(tag));
@@ -47,7 +47,7 @@ const postsContainer = document.querySelector(".posts-container");
 
 axios.get(`request/postTags.php?tag=${tags}`)
 .then((data) => {
-    clearItems(postsContainer);
+    clearElement(postsContainer);
     if(data.data.length > 0){
         for(post of data.data){
             postsContainer.append(createPost(post));
@@ -57,12 +57,6 @@ axios.get(`request/postTags.php?tag=${tags}`)
     }
 })
 .catch((err) => console.error(err));
-}
-
-function clearItems(container){
-    while (container.firstChild) {
-        container.removeChild(container.lastChild)
-    }
 }
 
 function createPost(postData){
