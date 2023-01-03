@@ -39,7 +39,7 @@ function search(elem) {
     }
     
     axios
-        .get(`./request/request.php?user=${searchValue}`)
+        .get(`./request/searchUser.php?user=${searchValue}`)
         .then((data) => {
             clearItems(output);
 

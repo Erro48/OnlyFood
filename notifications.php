@@ -4,7 +4,6 @@ require_once 'bootstrap.php';
 $templateParams["title"] = "OnlyFood - Notification";
 $templateParams["name"] = "notifications-content.php";
 $templateParams["style"] = array("notifications-style.css");
-$templateParams["script"] = array("notifications-script.js");
 $templateParams["notifications"] = $dbh->getNotifications($_SESSION["username"]);
 
 usort($templateParams["notifications"], function($a, $b) {

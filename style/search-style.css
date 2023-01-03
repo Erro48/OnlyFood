@@ -1,18 +1,8 @@
 
-/**
-    Main size to have nav bar bottom
-*/
-.main-container {
-    height: 87vh;
-}
-
-/** COPIED FROM home style 
-    TO DO -- use the same style in a base style file */
+/* #region selector */
 ul.selector {
-    /* margin: 0 25%; */
     border-radius: 4px;
     background-color: var(--light-color);
-    /* border: 2px solid var(--secondary); */
     padding: 0;
 }
 
@@ -38,8 +28,9 @@ ul.selector > li > button.selected {
     z-index: 100;
 }
 
-/* ------------------------------------------------------------ */
+/* #endregion */
 
+/* #region Output */
 section.hidden {
     display: none
 }
@@ -98,4 +89,10 @@ section.hidden {
     text-decoration: none;
     color: inherit;
     outline: 0;
+}
+
+/* #endregion */
+
+.main-container {
+    height: 87vh;
 }
