@@ -1,5 +1,6 @@
 <?php
 require_once './bootstrap.php';
+$errors = array();
 
 if (isset($_POST['publish'])) {
     if (isset($_POST['recipe-name']) && isset($_POST['recipe-procedure']) && isset($_POST['ingredients']) && isset($_POST['tags']) && isset($_FILES['post-preview'])) {
@@ -11,7 +12,22 @@ if (isset($_POST['publish'])) {
             $_FILES['post-preview']
         );
     } else {
-        echo "Non hai settato tutto";
+
+        if (!isset($_POST['recipe-name'])) {
+            array_push($errors, "Recipe must have a description.");
+        }
+        if (!isset($_POST['recipe-procedure'])) {
+            array_push($errors, "Recipe must have a procedure.");
+        }
+        if (!isset($_POST['ingredients'])) {
+            array_push($errors, "Recipe must have a at least one ingredient.");
+        }
+        if (!isset($_POST['tags'])) {
+            array_push($errors, "Recipe must have at least one tag.");
+        }
+        if (!isset($_FILES['post-preview'])) {
+            array_push($errors, "Recipe must have a preview.");
+        }
     }
 }
 ?>
@@ -19,6 +35,19 @@ if (isset($_POST['publish'])) {
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
+        <div class="row alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
+            <div class="col-11">
+                <?php
+                    foreach($errors as $error) {
+                        echo $error . '<br>';
+                    }
+                ?>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
+            </div>
+        </div>
+
         <form action="./post.php" class="row gy-2 gy-md-5" method="post" enctype="multipart/form-data">
 
             <div class="col-12 col-md-6">

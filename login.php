@@ -58,6 +58,19 @@ function verifyUserPassword($user, $password) {
                                         }
                                     ?>
                                 </div>
+
+                                <div class="row alert error-alert <?= !isset($error) == 0 ? 'd-none' : 'fade-out' ?>">
+                                    <div class="col-11">
+                                        <?php
+                                            if (isset($error)) {
+                                                echo $error;
+                                            }
+                                        ?>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
+                                    </div>
+                                </div>
                                 
                                 <form action="./login.php" method="post" class="m-0 mt-4 d-flex flex-column justify-content-center">
 

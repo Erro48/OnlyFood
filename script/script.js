@@ -50,6 +50,14 @@ function resetErrorClass(inputErrorsId) {
 	})
 }
 
+/**
+ * Hides and remove from DOM the given alert
+ * @param {*} alert
+ */
+function forceCloseAlert(alert) {
+	alert.classList.add('d-none')
+}
+
 /* TYPOGRAPHY */
 
 /**
