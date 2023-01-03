@@ -603,6 +603,9 @@ class DatabaseHelper{
     }
 
     function insertRecipeTags($tags, $recipe_id) {
+        // TODO: insert tags which are not in db
+        $this->insertTags($tags);
+
         $query = "INSERT INTO `belongto` (`recipe`, `tag`) VALUES ";
         $params = array();
         $params_type = "";
@@ -620,6 +623,23 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
+    public function insertTags($tags) {
+        $query = "INSERT IGNORE INTO `tags` (`name`) VALUES ";
+        $params = array();
+        $params_type = "";
+
+        foreach ($tags as $tag) {
+            $query .= "(?),";
+            array_push($params, $tag);
+            $params_type .= 's';
+        }
+
+        $query = rtrim($query, ',');
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($params_type, ...$params);
+        $stmt->execute();
+    }
 
 }
 ?>

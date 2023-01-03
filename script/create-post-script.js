@@ -111,13 +111,19 @@ async function loadModal(modalType, callback) {
  */
 async function addItemToList(event, modalType) {
 	event.preventDefault()
+
+	const item =
+		event.path[0] instanceof HTMLLIElement
+			? event.path[0].innerText
+			: document.querySelector('input#search-tags').value
+
+	if (item.trim() == '') return
+
 	const listContainer = document.querySelector(`div#modal-${modalType}-list`)
 	const inputSearchField = document.querySelector(`input#search-${modalType}`)
-	const itemName = capitalizeString(event.path[0].innerText)
+	const itemName = capitalizeString(item)
 
 	let listItems = await getItemsOfModalList(modalType)
-
-	console.log(listItems)
 
 	// add new element (if not already present)
 	if (
@@ -440,6 +446,14 @@ function addTags() {
 	})
 
 	tagsContainer.innerHTML = tags.join('')
+}
+
+function createTag(event) {
+	event.preventDefault()
+	const tag = document.querySelector('#search-tags').value
+
+	if (tag.length >= 3) {
+	}
 }
 
 /* COOKIES */

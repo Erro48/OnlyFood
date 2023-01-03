@@ -316,7 +316,11 @@ label:has(input.input-error) {
 }
 
 form
-	label:has(input[type='text'], input[type='password'], input[type='search']) {
+	label:has(
+		input[type='text'],
+		input[type='password'],
+		input[type='search']:not(.search-modal)
+	) {
 	height: 100%;
 	margin-top: 1.5rem;
 }
@@ -325,7 +329,7 @@ form
 	label:has(
 		input[type='text']:not(.registration-input),
 		input[type='password']:not(.registration-input),
-		input[type='search']
+		input[type='search']:not(.search-modal)
 	) {
 	width: 100%;
 }

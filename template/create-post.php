@@ -59,13 +59,19 @@ if (isset($_POST['publish'])) {
                                 </header>
 
                                 <section class="modal-body">
-                                    <label for="search-ingredients" class="h-auto">
-                                        <input type="search" name="search-ingredient" id="search-ingredients"
-                                            onkeyup="search(this, true)"
-                                            aria-label="Search an ingredient"
-                                            placeholder="Search an ingredient...">
-                                        <span class="d-none">Search an ingredient</span>
-                                    </label>
+                                    <div class="row">
+                                        <label for="search-ingredients" class="h-auto">
+                                            <input 
+                                                type="search"
+                                                name="search-ingredient"
+                                                id="search-ingredients"
+                                                class="search-modal"
+                                                onkeyup="search(this, true)"
+                                                aria-label="Search an ingredient"
+                                                placeholder="Search an ingredient...">
+                                            <span class="d-none">Search an ingredient</span>
+                                        </label>
+                                    </div>
 
                                     <!-- Dropdown menu -->
                                     <div class="search-result-container p-0 col-12">
@@ -109,13 +115,26 @@ if (isset($_POST['publish'])) {
                                 </header>
 
                                 <section class="modal-body">
-                                    <label for="search-tags" class="h-auto">
-                                        <input type="search" name="search-tag" id="search-tags"
-                                            onkeyup="searchTag(this)"
-                                            aria-label="Search a tag"
-                                            placeholder="Search a tag...">
-                                        <span class="d-none">Search a tag</span>
-                                    </label>
+                                    <div class="row">
+                                        <label for="search-tags" class="h-auto col-10">
+                                            <input
+                                                type="search"
+                                                name="search-tag"
+                                                id="search-tags"
+                                                class="search-modal"
+                                                onkeyup="searchTag(this)"
+                                                aria-label="Search a tag"
+                                                placeholder="Search a tag...">
+                                            <span class="d-none">Search a tag</span>
+                                        </label>
+
+                                        <div class="col-2">
+                                            <button class="button-secondary w-100" onclick="addItemToList(event, ModalsType.TAGS)">
+                                                <img class="w-100" src="./imgs/icons/plus.svg" alt="Add tag" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
 
                                     <!-- Dropdown menu -->
                                     <div class="search-result-container p-0 col-12">
@@ -144,10 +163,10 @@ if (isset($_POST['publish'])) {
                         <input type="file" class="d-none" name="post-preview" id="post-preview" onchange="profilePicPreview(this)">
                         <span class="col-12 p-0">
                             <span class="row m-0 align-items-center">
-                                <span class="col-3 col-md-2 p-0">
+                                <span class="col-3 col-lg-2 p-0">
                                     <img class="add-icon" src="./imgs/icons/plus.svg" alt="Add image" />
                                 </span>
-                                <span class="col-9 col-md-10 image-name">No preview image</span>
+                                <span class="col-9 col-lg-10 image-name">No preview image</span>
                             </span>
                         </span>
                     </label>
