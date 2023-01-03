@@ -9,7 +9,8 @@ if(isset($_GET["post"])) {
     $templateParams["postId"] = $_GET["post"];
     $templateParams["comments"] = $dbh->getCommentsByPost($_GET["post"]);
     $templateParams["postDetails"] = $dbh->getPostsById($_GET["post"]);
-} else {
+}
+if (!isset($_GET["post"]) || (isset($templateParams["postDetails"]) && count($templateParams["postDetails"]) == 0)){
     $templateParams["postId"] = -1;     //Per segnalare l'errore
 }
 

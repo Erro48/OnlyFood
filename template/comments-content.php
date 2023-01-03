@@ -40,5 +40,5 @@
         </div>
     </section>
 <?php endif; if($templateParams["postId"] == -1): ?>
-    <p>Errore</p>
+    <p>Error</p>
 <?php endif; ?>
