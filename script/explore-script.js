@@ -1,5 +1,5 @@
-window.addEventListener("onload", setTagListContainerHeight);
-window.addEventListener("onresize", setTagListContainerHeight);
+addLoadEventOnload(setTagListContainerHeight);
+addLoadEventOnresize(setTagListContainerHeight);
 
 function setTagListContainerHeight(){
     const height = document.querySelector(".tags-container").offsetHeight - (document.querySelector(".tag-h2-container").offsetHeight + document.querySelector(".search-bar-container").offsetHeight + parseInt(getComputedStyle(document.querySelector(".search-bar-container")).marginBottom));

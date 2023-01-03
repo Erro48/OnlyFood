@@ -1,5 +1,5 @@
-window.addEventListener("onload", setPostsHeight);
-window.addEventListener("onresize", setPostsHeight);
+addLoadEventOnload(setPostsHeight);
+addLoadEventOnresize(setPostsHeight);
 
 function setPostsHeight(){
     const posts = document.querySelector("div.posts-container").children;

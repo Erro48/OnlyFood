@@ -27,8 +27,8 @@ function onScroll(event) {
 	setPostsContainerHeight()
 }*/
 
-window.addEventListener("onload", setPostsContainerHeight);
-window.addEventListener("onresize", setPostsContainerHeight);
+addLoadEventOnload(setPostsContainerHeight);
+addLoadEventOnresize(setPostsContainerHeight);
 
 /**
  * Logout from the current session

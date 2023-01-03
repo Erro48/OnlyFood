@@ -1,10 +1,49 @@
 'use strict'
 
 /*  Table Of Contents:
+	- Onload and onresize
     - Elements
     - Typography
 	- Arrays
 */
+
+/* ONLOAD AND ONRESIZE */
+
+/**
+ * Adds a function to do in window.onload
+ * @param {*} func - Function to do on windows.onload 
+ */
+function addLoadEventOnload(func) { 
+	var oldonload = window.onload; 
+	if (typeof window.onload != 'function') { 
+		window.onload = func; 
+	} else { 
+		window.onload = function() { 
+			if (oldonload) { 
+				oldonload(); 
+			} 
+			func(); 
+		} 
+	} 
+}
+
+/**
+ * Adds a function to do in window.onresize
+ * @param {*} func - Function to do on windows.onresize 
+ */
+function addLoadEventOnresize(func) { 
+	var oldonresize = window.onresize; 
+	if (typeof window.onresize != 'function') { 
+		window.onresize = func; 
+	} else { 
+		window.onresize = function() { 
+			if (oldonresize) { 
+				oldonresize(); 
+			} 
+			func(); 
+		} 
+	} 
+}
 
 /* ELEMENTS */
 
