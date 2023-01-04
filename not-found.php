@@ -3,7 +3,7 @@ require_once 'bootstrap.php';
 
 $templateParams["title"] = "OnlyFood - 404";
 $templateParams["name"] = "not-found-content.php";
-$templateParams["style"] = array("base-style.css");
+$templateParams["style"] = array("base-style.css", "not-found-style.css");
 
 require 'template/base.php';
 ?>

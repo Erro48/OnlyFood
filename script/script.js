@@ -89,6 +89,14 @@ function resetErrorClass(inputErrorsId) {
 	})
 }
 
+/**
+ * Hides and remove from DOM the given alert
+ * @param {*} alert
+ */
+function forceCloseAlert(alert) {
+	alert.classList.add('d-none')
+}
+
 /* TYPOGRAPHY */
 
 /**
@@ -98,31 +106,31 @@ function resetErrorClass(inputErrorsId) {
  */
 function capitalizeString(text) {
 	return text
+		.toLowerCase()
 		.split(' ')
 		.map((word) => word[0].toUpperCase() + word.substr(1))
 		.join(' ')
 }
 
-
-const NOTIFICATION_POLLING_RATE = 5000;
+const NOTIFICATION_POLLING_RATE = 5000
 
 /**
  * Polling for unread notifications count
  */
 setInterval(() => {
-    const NOTIFICATION_COUNTER = document.querySelector("#notification-counter");
-	
+	const NOTIFICATION_COUNTER = document.querySelector('#notification-counter')
+
 	axios
-        .get(`./request/notification.php`)
-        .then((count) => {
-			let numNotifications = count.data;
+		.get(`./request/notification.php`)
+		.then((count) => {
+			let numNotifications = count.data
 			if (numNotifications > 0) {
-				NOTIFICATION_COUNTER.innerHTML = numNotifications;
-				NOTIFICATION_COUNTER.classList.remove("invisible");
+				NOTIFICATION_COUNTER.innerHTML = numNotifications
+				NOTIFICATION_COUNTER.classList.remove('invisible')
 			} else {
-				NOTIFICATION_COUNTER.innerHTML = "";
-				NOTIFICATION_COUNTER.classList.add("invisible");
+				NOTIFICATION_COUNTER.innerHTML = ''
+				NOTIFICATION_COUNTER.classList.add('invisible')
 			}
 		})
-        .catch((err) => console.error(err))
+		.catch((err) => console.error(err))
 }, NOTIFICATION_POLLING_RATE)
