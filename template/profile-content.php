@@ -7,35 +7,35 @@
             <div class="col-3 col-md-2">
                 <img class="profile-pic" src="<?php echo $PROFILE_PIC_DIR.$profile["profilePic"]; ?>" alt="Propic of <?php echo $profile["username"]; ?>"/>
             </div>
-            <div class="col">
+            <div class="col-7">
                 <div class="row">
                     <div class="col-10 col-md-8 mini-box">
-                        <p class="username-text m-0"><?php echo $profile["username"]; ?></p>
+                        <p class="username-text m-0 text-truncate"><?php echo $profile["username"]; ?></p>
                     </div>
                     <?php if (!isset($_GET["user"])): ?>
-                    <div class="col-2 mini-box d-flex justify-content-end">
+                    <div class="col-2 p-0 mini-box d-flex justify-content-end">
                         <button class="p-2 icon-button hideable" onclick="logout()">
                             <img src="imgs/icons/logout.svg" alt="Logout" />
                         </button>
                     </div>
                     <?php elseif (!$templateParams["followed"]): ?>
-                    <div id="follow-button" class="col-2 mini-box d-flex justify-content-end">
+                    <div id="follow-button" class="col-2 p-0 mini-box d-flex justify-content-end">
                         <button class="p-2 icon-button hideable" onclick="follow('<?php echo $_GET['user']?>')">
                             <img src="imgs/icons/user-follow.svg" alt="Follow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
-                    <div id="unfollow-button" class="col-2 mini-box d-flex justify-content-end d-none">
+                    <div id="unfollow-button" class="col-2 p-0 mini-box d-flex justify-content-end d-none">
                         <button class="p-2 icon-button hideable" onclick="unfollow('<?php echo $_GET['user']?>')">
                             <img src="imgs/icons/user-unfollow.svg" alt="Unfollow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
                     <?php else: ?>
-                    <div id="follow-button" class="col-2 mini-box d-flex justify-content-end d-none">
+                    <div id="follow-button" class="col-2 p-0 mini-box d-flex justify-content-end d-none">
                         <button class="p-2 icon-button hideable" onclick="follow('<?php echo $_GET['user']?>')">
                             <img src="imgs/icons/user-follow.svg" alt="Follow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
-                    <div id="unfollow-button" class="col-2 mini-box d-flex justify-content-end">
+                    <div id="unfollow-button" class="col-2 p-0 mini-box d-flex justify-content-end">
                         <button class="p-2 icon-button hideable" onclick="unfollow('<?php echo $_GET['user']?>')">
                             <img src="imgs/icons/user-unfollow.svg" alt="Unfollow <?php echo $_GET['user'] ?>" />
                         </button>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row">
                     <div class="col mini-box">
-                        <p class="mb-3 name-text"><?php echo $profile["name"]." ".$profile["surname"]; ?></p>
+                        <p class="mb-3 text-truncate name-text"><?php echo $profile["name"]." ".$profile["surname"]; ?></p>
                     </div>
                 </div>
                 <div class="row">
@@ -78,12 +78,10 @@
                     <?php else: ?>
                         <?php foreach($templateParams["favouriteIngredients"] as $ingredient): ?>
 
-                            <div class="col-12 ms-3">
-                                <div class="row">
-                                    <div class="col-1 ms-2 ingredient-marker" style="background-color: #<?php echo $ingredient["color"]?> "></div>
-                                    <div class="col-10 ms-1 ingredient">
-                                        <p class="m-2"> <?php echo ucfirst($ingredient["name"]); ?> </p>
-                                    </div>
+                            <div class="col-12 row mt-2">
+                                <div class="col-1 p-0 ingredient-marker" style="background-color: #<?php echo $ingredient["color"]?> "></div>
+                                <div class="col-11 ingredient">
+                                    <p class="m-2 text-truncate"> <?php echo ucfirst($ingredient["name"]); ?> </p>
                                 </div>
                             </div>
 

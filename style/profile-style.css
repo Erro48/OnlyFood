@@ -19,7 +19,7 @@ main section.profile-section .profile-pic {
 
 main section.favourite-ingredients-section {
     background-color: var(--secondary);
-    padding-bottom: 1.5em;
+    padding-bottom: 0.9em;
     border-radius: 10px;
 }
 
