@@ -17,7 +17,9 @@ section#post-info-section article#recipe-article {
 
 section#post-info-section article#recipe-article img {
     width: 100%;
-    border-radius: 7rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 section#post-info-section article#recipe-article p#owner-username {
@@ -57,21 +59,21 @@ section#comments-section article.comment-article > div.propic-container > img {
     border-radius: 50%;
     aspect-ratio: 1/1;
     object-fit: cover;
-    padding: 0.5rem;
+    padding: 0.8rem;
 }
 
-section#comments-section article.comment-article > div:nth-child(2) > div > p:first-child {
+section#comments-section article.comment-article > div:nth-child(2) > div:first-child > p {
     font-size: 75%;
 }
 
-section#comments-section article.comment-article > div:nth-child(2) > div > p:nth-child(2) {
-    font-size: 70%;
+section#comments-section article.comment-article > div:nth-child(2) > div:first-child > p:nth-child(2) {
+    text-align: right;
 }
 
-section#comments-section article.comment-article > div:nth-child(2) > p {
-    font-size: 85%;
+section#comments-section article.comment-article > div:nth-child(2) > div:nth-child(2) p {
+    font-size: 90%;
     margin-bottom: 0.3rem;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 /* #endregion */
 

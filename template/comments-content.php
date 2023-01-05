@@ -19,10 +19,13 @@
                     </div>
                     <div class="col-9 row p-0 ms-2 align-items-center">
                         <div class="col-12 row pt-2">
-                            <p class="col-6"><?php echo $comment["user"]; ?></p>
-                            <p class="col-6 d-flex justify-content-end"><?php echo datetimeToString($comment["date"]); ?></p>
+                            <p class="col-6 mb-0"><?php echo $comment["user"]; ?></p>
+                            <!--div class="col-4"></div-->
+                            <p class="col-6 mb-0"><?php echo datetimeToString($comment["date"]); ?></p>
                         </div>
-                        <p class="col-12"><?php echo $comment["content"]; ?></p>
+                        <div class="col-12 row">
+                            <p class="col-12"><?php echo $comment["content"]; ?></p>
+                        </div>
                     </div>
                 </article>
             </div>

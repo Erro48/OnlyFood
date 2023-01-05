@@ -126,7 +126,7 @@ main article.post-article button.action-button {
     width: 50%;
     aspect-ratio: 1/1;
     border: none;
-    border-radius: 100%;
+    border-radius: 50%;
     padding: 0;
 }
 
