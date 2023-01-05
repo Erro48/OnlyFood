@@ -1,9 +1,10 @@
 'use strict'
 
 window.onload = () => {
-	document
-		.querySelector('input#search-ingredient')
-		.addEventListener('search', clearDropdownElements)
+	const inputSearchField = document.querySelector('input#search-ingredient')
+	if (inputSearchField != null) {
+		inputSearchField.addEventListener('search', clearDropdownElements)
+	}
 }
 
 /**

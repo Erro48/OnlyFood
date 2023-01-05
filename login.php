@@ -50,16 +50,7 @@ function verifyUserPassword($user, $password) {
                             <div class="d-none d-md-block col-md-2"></div>
                         
                             <div class="col-12 col-md-8">
-                                
-                                <div class="alert error-alert <?= !isset($error) ? 'd-none' : 'fade-out' ?>">
-                                    <?php
-                                        if (isset($error)) {
-                                            echo $error;
-                                        }
-                                    ?>
-                                </div>
-
-                                <div class="row alert error-alert <?= !isset($error) == 0 ? 'd-none' : 'fade-out' ?>">
+                                <div class="row alert error-alert <?= !isset($error) ? 'd-none' : 'fade-out' ?>">
                                     <div class="col-11">
                                         <?php
                                             if (isset($error)) {

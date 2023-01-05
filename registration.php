@@ -93,15 +93,6 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                     <div class="d-none d-md-block col-md-1"></div>
 
                     <div class="col-12 col-md-10 scrollable form-container">
-
-                        <!-- <div class="alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
-                            <?php
-                                foreach($errors as $error) {
-                                    echo $error . '<br>';
-                                }
-                            ?>
-                        </div> -->
-
                         <div class="row alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
                             <div class="col-11">
                                 <?php
