@@ -14,7 +14,7 @@
                     </div>
                     <?php if (!isset($_GET["user"])): ?>
                     <div class="col-2 p-0 mini-box d-flex justify-content-end">
-                        <button class="p-2 icon-button hideable" onclick="logout()">
+                        <button class="p-2 icon-button" onclick="logout()">
                             <img src="imgs/icons/logout.svg" alt="Logout" />
                         </button>
                     </div>
@@ -74,18 +74,34 @@
                         <p class="mb-1 ingredients-title"> Favourite ingredients </p>
                     </div>
                     <?php if (empty($templateParams["favouriteIngredients"])): ?>
-                        <p class="mb-0 ms-3"> User has not posted any recipe yet </p>
+                        <?php for ($i=0; $i<$NUM_FAVOURITE_INGREDIENTS; $i++): ?>
+                            <div class="col-12 row mt-2">
+                                <div class="col-1 p-0 ingredient-marker empty"></div>
+                                <div class="col-11 ingredient">
+                                    <p class="m-2 text-truncate"> No ingredient yet </p>
+                                </div>
+                            </div>
+                        <?php endfor ?>
                     <?php else: ?>
                         <?php foreach($templateParams["favouriteIngredients"] as $ingredient): ?>
-
                             <div class="col-12 row mt-2">
                                 <div class="col-1 p-0 ingredient-marker" style="background-color: #<?php echo $ingredient["color"]?> "></div>
                                 <div class="col-11 ingredient">
                                     <p class="m-2 text-truncate"> <?php echo ucfirst($ingredient["name"]); ?> </p>
                                 </div>
                             </div>
-
                             <?php endforeach ?>
+                            <?php if (count($templateParams["favouriteIngredients"]) != $NUM_FAVOURITE_INGREDIENTS):
+                                    for ($i=0; $i<$NUM_FAVOURITE_INGREDIENTS - count($templateParams["favouriteIngredients"]); $i++):
+                                         ?>
+                                        <div class="col-12 row mt-2">
+                                            <div class="col-1 p-0 ingredient-marker empty"></div>
+                                            <div class="col-11 ingredient">
+                                                <p class="m-2 text-truncate"> No ingredient yet </p>
+                                            </div>
+                                        </div>
+                                <?php endfor;
+                                endif; ?>
                         <?php endif ?>
                 </section>
             </div>

@@ -1,34 +1,47 @@
 const SCROLL_OFFSET_TRIGGER = 200
 
+/**
+ * @enum Status
+ */
+const Status = {
+	REDUCED: 1,
+	NOT_REDUCED: 0
+}
+
+let currentStatus = Status.NOT_REDUCED;
+
 function onScroll(event) {
 	let scrollDelta = event.srcElement.scrollTop
 	let element = document.getElementsByClassName('profile-section')[0]
-	/*
-    if (scrollDelta >= SCROLL_OFFSET_TRIGGER) {
-        element.classList.add("reduced");
-        Array.from(document.getElementsByClassName("hideable")).forEach(elem => {
+	
+    if (scrollDelta >= SCROLL_OFFSET_TRIGGER && currentStatus == Status.NOT_REDUCED) {
+		element.classList.add("reduced")
+		currentStatus = Status.REDUCED;
+		Array.from(document.getElementsByClassName("hideable")).forEach(elem => {
             elem.classList.add("hidden");
         });
-        
-    }
+		setPostsContainerHeight();
+	}
 
-    if (scrollDelta < SCROLL_OFFSET_TRIGGER) {
-        element.classList.remove("reduced");
-        Array.from(document.getElementsByClassName("hideable")).forEach(elem => {
+    if (scrollDelta < SCROLL_OFFSET_TRIGGER && currentStatus == Status.REDUCED) {
+		element.classList.remove("reduced")
+		currentStatus = Status.NOT_REDUCED;
+		Array.from(document.getElementsByClassName("hideable")).forEach(elem => {
             elem.classList.remove("hidden");
         });
-    }
-	*/
+		setPostsContainerHeight();
+	}
 }
 
-/*window.onload = () => {
-	let obj = document.getElementById('main-container')
-	//obj.addEventListener('scroll', onScroll)
-	setPostsContainerHeight()
-}*/
-
+addLoadEventOnload(setScrollBehaviour);
 addLoadEventOnload(setPostsContainerHeight);
 addLoadEventOnresize(setPostsContainerHeight);
+
+function setScrollBehaviour() {
+	document
+		.querySelector("#posts-container-div")
+		.children[0].addEventListener('scroll', onScroll);
+}
 
 /**
  * Logout from the current session
@@ -104,5 +117,6 @@ function setPostsContainerHeight() {
 	const h2 = document.querySelector("section.posts-section > h2");
 	const postsContainerDiv = document.querySelector("#posts-container-div");
 	const height = main.offsetHeight - (profileSection.offsetHeight + h2.offsetHeight + parseInt(getComputedStyle(h2).marginTop) + parseInt(getComputedStyle(h2).marginBottom));
+	console.log("set height ", height);
 	postsContainerDiv.style.height = "".concat(height - 1, "px");
 }

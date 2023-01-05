@@ -45,6 +45,24 @@ function addLoadEventOnresize(func) {
 	} 
 }
 
+/**
+ * Adds a function to do in window.onscroll
+ * @param {*} func - Function to do on windows.onscroll 
+ */
+function addLoadEventOnscroll(func) { 
+	var oldonscroll = window.onscroll; 
+	if (typeof window.onscroll != 'function') { 
+		window.onscroll = func; 
+	} else { 
+		window.onscroll = function() { 
+			if (oldonscroll) { 
+				oldonscroll(); 
+			} 
+			func(); 
+		} 
+	} 
+}
+
 /* ELEMENTS */
 
 /**

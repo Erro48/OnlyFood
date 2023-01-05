@@ -239,6 +239,8 @@ class DatabaseHelper{
     }
 
     public function getMostUsedIngredients($username){
+        global $NUM_FAVOURITE_INGREDIENTS;
+
         $stmt = $this->db->prepare("
         SELECT c.ingredient as name, i.color, count(*) as timesUsed  
         FROM posts p
@@ -248,7 +250,7 @@ class DatabaseHelper{
         WHERE p.owner=?
         GROUP BY c.ingredient, i.name
         ORDER BY timesUsed DESC
-        LIMIT 3");
+        LIMIT ".strval($NUM_FAVOURITE_INGREDIENTS));
 
         $stmt->bind_param('s', $username);
         $stmt->execute();
