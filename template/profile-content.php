@@ -7,7 +7,7 @@
             <div class="col-3 col-md-2">
                 <img class="profile-pic" src="<?php echo $PROFILE_PIC_DIR.$profile["profilePic"]; ?>" alt="Propic of <?php echo $profile["username"]; ?>"/>
             </div>
-            <div class="col-7">
+            <div class="col-7 col-md-8">
                 <div class="row">
                     <div class="col-10 col-md-8 mini-box">
                         <p class="username-text m-0 text-truncate"><?php echo $profile["username"]; ?></p>
