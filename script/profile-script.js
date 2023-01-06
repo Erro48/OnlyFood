@@ -68,7 +68,22 @@ function switchButton(button) {
 	if (button.id == 'modal-follow-button') {
 		button.classList.toggle('button-primary')
 		button.classList.toggle('button-secondary')
-		button.innerText = button.innerText == 'Follow' ? 'Unfollow' : 'Follow'
+
+		if (button.dataset.follow == 'true') {
+			button.innerText = 'Unfollow'
+			button.setAttribute(
+				'onclick',
+				`unfollow('${button.dataset.user}',this,InteractionType.FOLLOWING)`
+			)
+		} else {
+			button.innerText = 'Follow'
+			button.setAttribute(
+				'onclick',
+				`follow('${button.dataset.user}',this,InteractionType.FOLLOWING)`
+			)
+		}
+
+		button.dataset.follow = !(button.dataset.follow == 'true')
 	}
 }
 
@@ -125,12 +140,10 @@ function setPostsContainerHeight() {
 }
 
 async function loadFollowModal(user, type) {
-	// prende i dati (follower / following)
 	const data = await (type == InteractionType.FOLLOWER
 		? getFollowers(user)
 		: getFollowings(user))
 
-	// li mostra nel modale
 	const modalTitle = document.querySelector('#followModal header *:first-child')
 	modalTitle.innerText = capitalizeString(type) + 's'
 	const modalListContainer = document
@@ -183,13 +196,13 @@ function createFollowModalListItem(user, type) {
 function createModalFollowButton({ username, follows_back }, type) {
 	if (type == InteractionType.FOLLOWING || follows_back) {
 		return `
-		<button id="modal-follow-button" class="button-primary" onclick="unfollow('${username}', this, InteractionType.FOLLOWING)">
+		<button id="modal-follow-button" class="button-primary" onclick="unfollow('${username}', this, InteractionType.FOLLOWING)" data-follow="false" data-user="${username}">
 			Unfollow
 		</button>`
 	}
 
 	return `
-		<button id="modal-follow-button" class="button-secondary" onclick="follow('${username}', this, InteractionType.FOLLOWING)">
+		<button id="modal-follow-button" class="button-secondary" onclick="follow('${username}', this, InteractionType.FOLLOWING)" data-follow="true" data-user="${username}">
 			Follow
 		</button>`
 }
