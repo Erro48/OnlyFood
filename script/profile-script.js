@@ -137,42 +137,8 @@ async function loadFollowModal(user, type) {
 		.querySelector(`#followModal`)
 		.querySelector('.modal-list')
 
-	// TODO: nell'elenco dei follower controllare che un user non sia già seguito da me
 	modalListContainer.innerHTML = data
-		.map(
-			(user) => `
-		<div class="row m-auto align-items-center" id="${user.username}-row">
-			<div class="col-2">
-				<img src="imgs/propics/${user.profilePic}" alt="">
-			</div>
-			<a class="col-7 user-username" href="./profile.php?user=${user.username}">
-				${user.username}
-			</a>
-			<div class="col-3">
-				<button id="modal-follow-button" class="button-${
-					type == InteractionType.FOLLOWER
-						? user.follows_back
-							? 'primary'
-							: 'secondary'
-						: 'primary'
-				}" onclick="${
-				type == InteractionType.FOLLOWER
-					? user.follows_back
-						? 'unfollow'
-						: 'follow'
-					: 'unfollow'
-			}('${user.username}', this, InteractionType.FOLLOWING)">
-					${
-						type == InteractionType.FOLLOWER
-							? user.follows_back
-								? 'Unfollow'
-								: 'Follow'
-							: 'Unfollow'
-					}
-				</button>
-			</div>
-		</div>`
-		)
+		.map((user) => createFollowModalListItem(user, type))
 		.join('')
 }
 
@@ -196,4 +162,34 @@ async function getFollowers(username) {
 		})
 		.catch((err) => console.error(err))
 	return followers
+}
+
+function createFollowModalListItem(user, type) {
+	const followButton = createModalFollowButton(user, type)
+	return `
+		<div class="row m-auto align-items-center" id="${user.username}-row">
+			<div class="col-2">
+				<img src="imgs/propics/${user.profilePic}" alt="">
+			</div>
+			<a class="col-7 user-username" href="./profile.php?user=${user.username}">
+				${user.username}
+			</a>
+			<div class="col-3">
+				${followButton}
+			</div>
+		</div>`
+}
+
+function createModalFollowButton({ username, follows_back }, type) {
+	if (type == InteractionType.FOLLOWING || follows_back) {
+		return `
+		<button id="modal-follow-button" class="button-primary" onclick="unfollow('${username}', this, InteractionType.FOLLOWING)">
+			Unfollow
+		</button>`
+	}
+
+	return `
+		<button id="modal-follow-button" class="button-secondary" onclick="follow('${username}', this, InteractionType.FOLLOWING)">
+			Follow
+		</button>`
 }
