@@ -1,3 +1,9 @@
+.modal-dialog img {
+	width: 100%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+
 /* #region Modal */
 .modal-content {
 	height: 92vh;

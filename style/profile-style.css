@@ -1,100 +1,100 @@
-
 /* #region Profile section */
 
 main section.profile-section {
-    background-color: var(--primary);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0.6em;
-    border-bottom-right-radius: 0.6em;
-    transition: height 0.5s linear;
+	background-color: var(--primary);
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 0.6em;
+	border-bottom-right-radius: 0.6em;
+	transition: height 0.5s linear;
 }
 
 main section.profile-section .profile-pic {
-    width: 100%;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+	width: 100%;
+	border-radius: 50%;
+	aspect-ratio: 1/1;
+	object-fit: cover;
 }
 
 main section.favourite-ingredients-section {
-    background-color: var(--secondary);
-    padding-bottom: 0.9em;
-    border-radius: 10px;
+	background-color: var(--secondary);
+	padding-bottom: 0.9em;
+	border-radius: 10px;
 }
 
 main section.favourite-ingredients-section .ingredient {
-    background-color: var(--background);
-    border-radius: 10px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+	background-color: var(--background);
+	border-radius: 10px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 main section.favourite-ingredients-section .ingredient-marker {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 main section.favourite-ingredients-section .ingredients-title-container {
-    border-bottom: solid 0.2em var(--accent)
+	border-bottom: solid 0.2em var(--accent);
 }
 
 main section.favourite-ingredients-section .ingredients-title {
-    font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 main section .username-text {
-    font-weight: 700;
-    font-size: 1.6em;
+	font-weight: 700;
+	font-size: 1.6em;
 }
 
 main section .name-text {
-    font-weight: 100;
-    font-size: 1.6em;
+	font-weight: 100;
+	font-size: 1.6em;
 }
 
 main section .follow-container {
-    background-color: var(--secondary);
-    border-radius: 10px;
+	background-color: var(--secondary);
+	border-radius: 10px;
+	border: none;
+	width: 100%;
 }
 
 main section .follow-container p {
-    text-align: center;
+	text-align: center;
 }
 
 main section .icon-button {
-    background-color: var(--secondary);
-    border-radius: 0.8em;
-    border: 0
+	background-color: var(--secondary);
+	border-radius: 0.8em;
+	border: 0;
 }
 
 main section .icon-button:hover {
-    background-color: var(--accent);
+	background-color: var(--accent);
 }
 
 main section .icon-button > img {
-    height: 2em;
-    width: 2em;
+	height: 2em;
+	width: 2em;
 }
 
-
 @media screen and (min-width: 768px) {
-    .profile-position {
-        position: relative
-    }
+	.profile-position {
+		position: relative;
+	}
 
-    main section.profile-section {
-        background-color: var(--primary);
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 0.6em;
-        border-bottom-right-radius: 0.6em;
-        transition: height 0.5s linear;
-    }
+	main section.profile-section {
+		background-color: var(--primary);
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		border-bottom-left-radius: 0.6em;
+		border-bottom-right-radius: 0.6em;
+		transition: height 0.5s linear;
+	}
 
-    .posts-container {
-        align-items: center;
-    }
+	.posts-container {
+		align-items: center;
+	}
 }
 
 /* #endregion */
@@ -102,11 +102,11 @@ main section .icon-button > img {
 /* #region Reduce action */
 
 .profile-section.reduced {
-    height: 18vh;
+	height: 18vh;
 }
 
 .hideable.hidden {
-    display: none;
+	display: none;
 }
 
 /* #endregion */
