@@ -605,7 +605,6 @@ class DatabaseHelper{
     }
 
     function insertRecipeTags($tags, $recipe_id) {
-        // TODO: insert tags which are not in db
         $this->insertTags($tags);
 
         $query = "INSERT INTO `belongto` (`recipe`, `tag`) VALUES ";
@@ -641,6 +640,37 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($params_type, ...$params);
         $stmt->execute();
+    }
+
+    public function getFollowers($username) {
+        $stmt = $this->db->prepare("
+        SELECT u.profilePic as 'profilePic', f.follower as 'username',
+            case when b.followed is null then 
+            0
+            else
+            1
+            end as follows_back
+        FROM `follows` f
+        LEFT JOIN follows b ON b.followed = f.follower AND b.follower = f.followed
+        JOIN users u ON u.username = f.follower
+        WHERE f.followed = ?");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getFollowings($username) {
+        $stmt = $this->db->prepare("SELECT profilePic, followed as username
+        FROM `follows` F
+        JOIN users ON username = followed
+        WHERE follower = ?");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
 }

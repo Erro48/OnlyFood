@@ -419,6 +419,17 @@ form
 .fade-out {
 	animation: fade-out 0.25s linear 5s forwards;
 }
+
+.add-icon {
+	border: 0.15em solid var(--primary);
+	border-radius: 50%;
+	background-color: var(--light-color);
+
+	box-sizing: border-box;
+	height: 100%;
+
+	text-align: center;
+}
 /* #endregion Utils */
 
 /* #region Media Queries */

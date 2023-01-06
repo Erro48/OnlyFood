@@ -23,8 +23,8 @@ if (isset($_GET["user"])) {
     $templateParams["favouriteIngredients"] = $dbh->getMostUsedIngredients($_SESSION["username"]);
 }
 
-$templateParams["style"] = array("profile-style.css", "posts-style.css");
-$templateParams["script"] = array("profile-script.js", "posts-script.js");
+$templateParams["style"] = array("profile-style.css", "posts-style.css", "modal.css");
+$templateParams["script"] = array("profile-script.js", "posts-script.js", "modal.js");
 
 require 'template/base.php';
 ?>
