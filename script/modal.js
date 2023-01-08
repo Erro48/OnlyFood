@@ -7,6 +7,7 @@
 const ModalsType = {
 	INGREDIENTS: 'ingredients',
 	TAGS: 'tags',
+	SIMPLE_INGREDIENTS: 'simple-ingredients'
 }
 
 /* CONSTANTS */
@@ -32,6 +33,44 @@ async function loadModal(modalType, callback) {
 			(modalList.innerHTML += createModalListItem(modalType, resultItem))
 	)
 }
+
+/**
+ * Converts an item of a modal list to the corresponding object, based on the type of the modal
+ * @param {String} itemName - The name of the item
+ * @param {ModalsType} modalType - The type of the modal
+ * @returns {Object} an object where the structure depends on the type of modal
+ */
+async function getObjectFromItem(itemName, modalType) {
+	let obj = { name: itemName }
+
+	if (modalType == ModalsType.INGREDIENTS) {
+		const ingredient = { ...obj, quantity: QUANTITY_DEFAULT }
+		const allowedMeasures = await getAllowedMeasures(ingredient)
+		saveAllowedMeasuresInCookie({
+			ingredientName: itemName,
+			measures: allowedMeasures,
+		})
+		obj = {
+			ingredient,
+			measures: allowedMeasures,
+		}
+	}
+
+	return obj
+}
+
+/**
+ * Removes the specified element from the result list
+ * @param {*} element - The element to remove
+ * @param ModalsType modalType - The type of the modal
+ */
+function removeElementFromResultList(element, modalType) {
+	const list = document.querySelector(`#${modalType}-list`)
+	element = element.parentElement.parentElement.parentElement
+
+	list.innerHTML = list.innerHTML.replace(element.outerHTML, '')
+}
+
 
 /**
  * Checks if max height of the modal list is greater than a 62vh. If it is
@@ -72,6 +111,8 @@ function createModalListItem(modalType, item) {
 			return createIngredientsListItem(item)
 		case ModalsType.TAGS:
 			return createTagsListItem(item)
+		case ModalsType.SIMPLE_INGREDIENTS:
+			return createSimpleIngredientsListItem(item)
 	}
 }
 
@@ -86,6 +127,8 @@ function getItemsOfModalList(modalType) {
 			return getIngredientsOfModalList()
 		case ModalsType.TAGS:
 			return getTagsOfModalList()
+		case ModalsType.SIMPLE_INGREDIENTS:
+			return getSimpleIngredientsOfModalList()
 	}
 }
 
@@ -114,6 +157,11 @@ function ingredientsCallback(ingredient) {
 	const options = readAllowedMeasuresFromCookie(ingredientObj.name)
 
 	return { ingredient: ingredientObj, measures: options }
+}
+
+
+function simpleIngredientsCallback(ingredient) {
+	return { name: ingredient.querySelector('input').value.split(';')[0] }
 }
 
 /**
@@ -263,6 +311,56 @@ function createIngredientsListItem({ ingredient, measures }) {
 			</div>`
 }
 
+/* SIMPLE INGREDIENTS LIST */
+
+function createSimpleIngredientsListItem(item) {
+	const itemId = item.name.toLowerCase().replaceAll(' ', '_')
+
+	return `<div class="row m-auto align-items-center" id="${itemId}-row">
+				<div class="col-11 tag-name">${item.name}</div>
+				<div class="col-1 text-end p-0">
+					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${item.name}" onclick="removeElementFromModalList(this, ModalsType.SIMPLE_INGREDIENTS)" />
+				</div>
+			</div>`
+}
+
+function getSimpleIngredientsOfModalList() {
+	const listContainer = document.querySelector('div#modal-simple-ingredients-list')
+	return Array.from(listContainer.children).map((item) => {
+		const [name] = item.children
+		return {
+			name: name.innerText,
+		}
+	})
+}
+
+/**
+ * Adds the ingredients of the modal list to the ingredients list
+ */
+function addSimpleIngredients() {
+	const ingredientsContainer = document.querySelector('#simple-ingredients-list')
+	let ingredients = getSimpleIngredientsOfModalList()
+	
+	ingredients = ingredients.map((ingredient) => {
+		return `
+		<li class="col-6 col-md-4">
+			<span class="row">
+				<label class="col-9 p-0">
+					<span class="dotted-word">${ingredient.name}</span>
+					<input type="hidden" name="tags[]" value="${ingredient.name}" />
+				</label>
+				<span class="col-3 p-0">
+					<img class="icon" src="./imgs/icons/minus.svg" alt="Remove element ${ingredient.name}" onclick="removeElementFromResultList(this, ModalsType.SIMPLE_INGREDIENTS)" />
+				</span>
+			</span>
+		</li>
+		`
+	})
+
+	ingredientsContainer.innerHTML = ingredients.join('')
+}
+
+
 /* TAGS LIST */
 /**
  * Callback used when the modal is loaded, to convert the elements in the result list in objects
@@ -310,7 +408,7 @@ function createTagsListItem(tag) {
 }
 
 /**
- * Adds the ingredients of the modal list to the ingredients list
+ * Adds the tags of the modal list to the tags list
  */
 function addTags() {
 	const tagsContainer = document.querySelector('#tags-list')
@@ -334,3 +432,4 @@ function addTags() {
 
 	tagsContainer.innerHTML = tags.join('')
 }
+

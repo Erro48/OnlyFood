@@ -51,6 +51,26 @@ function search(elem) {
 }
 
 /**
+ * 
+ * @param {*} elem 
+ * @returns 
+ */
+async function searchModal(searchInput) {
+    const searchValue = searchInput.value.trim()
+	const dropdownBody = document.querySelector('#search-simple-ingredients-result')
+
+	if (searchValue.length < 3) {
+		clearElement(dropdownBody)
+		dropdownBody.parentElement.classList.add('d-none')
+		return
+	}
+
+	const ingredients = await searchForIngredient(searchValue)
+	dropdownBody.parentElement.classList.remove('d-none')
+	displaySimpleIngredients(ingredients, dropdownBody)
+}
+
+/**
  * Creates the element that represents the clickable banner of a profile in the
  * output list
  * @param {QueryResult} data, ajax query data for a profile 
@@ -84,3 +104,4 @@ function clearItems(container) {
         container.removeChild(container.lastChild)
     }
 }
+
