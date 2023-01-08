@@ -18,7 +18,7 @@ class DatabaseHelper{
         AND r.recipeId = p.recipe
         AND p.owner = u.username
         ORDER BY p.date DESC
-        LIMIT 15");
+        LIMIT 50");
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -213,7 +213,7 @@ class DatabaseHelper{
         JOIN users u on u.username=p.owner
         WHERE p.owner=?
         ORDER BY p.date DESC
-        LIMIT 15;
+        LIMIT 50;
         ");
 
         $stmt->bind_param('s', $username);
@@ -294,7 +294,7 @@ class DatabaseHelper{
         }
 
         $query .= " ORDER BY p.date DESC
-                    LIMIT 15";
+                    LIMIT 50";
         
         $stmt = $this->db->prepare($query);
         if(isset($tags)){
