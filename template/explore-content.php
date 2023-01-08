@@ -12,7 +12,7 @@
         </div>
         <section class="row tag-list-container">
             <?php $i= 1; foreach($templateParams["tags"] as $tag): ?>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 text-truncate">
                     <label for="checkbox-<?php echo $i; ?>">
                         <input id="checkbox-<?php echo $i; ?>" type="checkbox" onclick="handleClick()"/>
                         <?php echo $tag["name"]; ?>

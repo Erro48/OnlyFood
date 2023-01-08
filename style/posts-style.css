@@ -67,6 +67,7 @@ main article.post-article div.ingredient-div div.ingredient-name-div {
     font-size: 85%;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 main article.post-article div.ingredient-div div.ingredient-quantity-div {
