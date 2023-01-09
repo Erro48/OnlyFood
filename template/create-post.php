@@ -3,14 +3,20 @@ require_once './bootstrap.php';
 $errors = array();
 
 if (isset($_POST['publish'])) {
-    if (isset($_POST['recipe-name']) && isset($_POST['recipe-procedure']) && isset($_POST['ingredients']) && isset($_POST['tags']) && isset($_FILES['post-preview'])) {
-        $dbh->createPost(
+    if (isset($_POST['recipe-name']) && isset($_POST['recipe-procedure']) && isset($_POST['ingredients']) && isset($_FILES['post-preview'])) {
+        $insert_error = !$dbh->createPost(
             $_POST['recipe-name'],
             $_POST['recipe-procedure'],
             $_POST['ingredients'],
-            $_POST['tags'],
+            isset($_POST['tags']) ? $_POST['tags'] : array(),
             $_FILES['post-preview']
         );
+
+        if ($insert_error) {
+            array_push($errors, "An error occurs.");
+        } else {
+            $confirm_msg = "Post inserted correctly.";
+        }
     } else {
 
         if (!isset($_POST['recipe-name'])) {
@@ -21,9 +27,6 @@ if (isset($_POST['publish'])) {
         }
         if (!isset($_POST['ingredients'])) {
             array_push($errors, "Recipe must have a at least one ingredient.");
-        }
-        if (!isset($_POST['tags'])) {
-            array_push($errors, "Recipe must have at least one tag.");
         }
         if (!isset($_FILES['post-preview'])) {
             array_push($errors, "Recipe must have a preview.");
@@ -47,6 +50,17 @@ if (isset($_POST['publish'])) {
                 <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
             </div>
         </div>
+
+        <?php if (isset($confirm_msg)): ?>
+            <div class="row alert success-alert fade-out">
+                <div class="col-11">
+                    <?= $confirm_msg . '<br>'; ?>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
+                </div>
+            </div>
+        <?php endif ?>
 
         <form action="./post.php" class="row gy-2 gy-md-5" method="post" enctype="multipart/form-data">
 

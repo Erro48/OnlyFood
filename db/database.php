@@ -562,10 +562,12 @@ class DatabaseHelper{
 
     public function createPost($name, $procedure, $ingredients, $tags, $image) {
         $recipe_id = $this->insertRecipe($name, $procedure, $image);
-        $this->insertPost($recipe_id);
-        $this->insertRecipeIngredients($ingredients, $recipe_id);
-        $this->insertRecipeTags($tags, $recipe_id);
 
+        if (!$this->insertPost($recipe_id)) return false;
+        if (!$this->insertRecipeIngredients($ingredients, $recipe_id)) return false;
+        if (count($tags) != 0 && !$this->insertRecipeTags($tags, $recipe_id)) return false;
+
+        return true;
     }
 
     private function insertRecipe($name, $procedure, $image) {
@@ -582,7 +584,7 @@ class DatabaseHelper{
     function insertPost($recipe_id) {
         $stmt = $this->db->prepare('INSERT INTO `posts` (`date`, `owner`, `recipe`) VALUES (?, ?, ?)');
         $stmt->bind_param('ssi', date("Y-m-d h:i:sa"), $_SESSION['username'], $recipe_id);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     function insertRecipeIngredients($ingredients, $recipe_id) {
@@ -601,7 +603,7 @@ class DatabaseHelper{
         
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($params_type, ...$params);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     function insertRecipeTags($tags, $recipe_id) {
@@ -621,7 +623,7 @@ class DatabaseHelper{
         
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($params_type, ...$params);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function insertTags($tags) {
@@ -639,7 +641,7 @@ class DatabaseHelper{
 
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($params_type, ...$params);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function getFollowers($username) {
