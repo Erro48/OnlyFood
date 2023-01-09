@@ -63,6 +63,12 @@ main section .follow-container {
 	border-radius: 10px;
 	border: none;
 	width: 100%;
+	box-shadow: 2px 2px 5px var(--accent);
+}
+
+main section .follow-container:hover {
+	background-color: var(--accent);
+	color: var(--text-light);
 }
 
 main section .follow-container p {

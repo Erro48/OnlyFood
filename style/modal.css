@@ -1,17 +1,44 @@
-.modal-dialog div:has(> img) {
+.modal-dialog div:has(> img.profile-pic) {
 	height: inherit;
+	display: flex;
+	justify-content: center;
 }
 
-.modal-dialog img {
+.modal-dialog div:has(> a.user-username) {
+	height: inherit;
+	display: flex;
+	align-items: center;
+}
+
+.modal-dialog a.user-username {
+	--transition-duration: 0.3s;
+	color: var(--text-dark);
+	text-decoration: none;
+	min-width: 50%;
+	transition: background var(--transition-duration) linear,
+		border-radius var(--transition-duration) linear;
+}
+
+.modal-dialog a.user-username:hover {
+	background-color: var(--background);
+	border-radius: 5px;
+	transition: background var(--transition-duration) linear,
+		border-radius var(--transition-duration) linear;
+}
+
+div.modal-dialog img.profile-pic {
 	height: 100%;
+	width: auto;
 	aspect-ratio: 1;
 	border-radius: 50%;
+	outline: 1px solid var(--accent);
 }
 
-.modal-dialog .button-primary,
-.modal-dialog .button-secondary {
-	font-size: 16px;
+.modal-dialog .button-primary.follow-button,
+.modal-dialog .button-secondary.follow-button {
+	font-size: 13px;
 	width: 100%;
+	height: 2rem;
 }
 
 .modal-dialog .button-secondary {
@@ -23,13 +50,19 @@
 	height: 92vh;
 }
 
+.modal-body {
+	display: flex;
+	flex-direction: column;
+}
+
 .modal-content section input[type='search'] {
 	background-color: var(--background);
 }
 
 /* #region Ingredients List */
 .modal-content section .modal-list {
-	max-height: 62vh;
+	flex: 1 1 0;
+	align-content: flex-start;
 	overflow-y: auto;
 	padding: 0.5em 0;
 	row-gap: 0.5em;

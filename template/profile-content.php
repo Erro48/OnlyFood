@@ -68,25 +68,17 @@
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-4 mini-box">
-                        <button type="button" class="follow-container justify-content-center hideable" data-bs-toggle="modal" data-bs-target="#followModal" onclick="loadFollowModal('<?= $_SESSION['username'] ?>', InteractionType.FOLLOWING)">
+                        <button type="button" class="follow-container justify-content-center hideable" data-bs-toggle="modal" data-bs-target="#followModal" onclick="loadFollowModal('<?= isset($_GET['user']) ? $_GET['user'] : $_SESSION['username'] ?>', '<?= $_SESSION['username'] ?>', InteractionType.FOLLOWING)">
                             <p class="m-0">Following</p>
                             <p class="m-0" id="num-following"><?php echo $profile["numFollowing"] ?></p>
                         </button>
-                        <!-- <div class="follow-container justify-content-center hideable">                    
-                            <p class="m-0">Following</p>
-                            <p class="m-0"><?php echo $profile["numFollowing"] ?></p>
-                        </div> -->
                     </div>
                     <div class="col-md-2 d-none d-md-block"></div>
                     <div class="col-6 col-md-4 mini-box">
-                        <button type="button" class="follow-container justify-content-center hideable" data-bs-toggle="modal" data-bs-target="#followModal" onclick="loadFollowModal('<?= $_SESSION['username'] ?>', InteractionType.FOLLOWER)">
+                        <button type="button" class="follow-container justify-content-center hideable" data-bs-toggle="modal" data-bs-target="#followModal" onclick="loadFollowModal('<?= isset($_GET['user']) ? $_GET['user'] : $_SESSION['username'] ?>', '<?= $_SESSION['username'] ?>', InteractionType.FOLLOWER)">
                             <p class="m-0">Followers</p>
                             <p class="m-0" id="num-follower"><?php echo $profile["numFollower"] ?></p>
                         </button>
-                        <!-- <div class="follow-container justify-content-center hideable">                    
-                            <p class="m-0">Followers</p>
-                            <p id="num-follower" class="m-0"><?php echo $profile["numFollower"] ?></p>
-                        </div> -->
                     </div>
                     <div class="col-md-2"></div>
                 </div>

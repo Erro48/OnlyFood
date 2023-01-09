@@ -111,6 +111,7 @@ function follow(user, button, type = InteractionType.FOLLOWER) {
 	axios
 		.get(`./request/request.php?follow=` + user)
 		.then((result) => {
+			console.log(result)
 			if (result.data == 1) {
 				let currentCount = document.querySelector(`#num-${type}`).innerHTML
 				document.querySelector(`#num-${type}`).innerHTML =
@@ -156,10 +157,12 @@ function setPostsContainerHeight() {
 	postsContainerDiv.style.height = ''.concat(height - 1, 'px')
 }
 
-async function loadFollowModal(user, type) {
+async function loadFollowModal(user, loggedUser, type) {
 	const data = await (type == InteractionType.FOLLOWER
 		? getFollowers(user)
 		: getFollowings(user))
+
+	// console.log(data)
 
 	const modalTitle = document.querySelector('#followModal header *:first-child')
 	modalTitle.innerText = capitalizeString(type) + 's'
@@ -168,7 +171,12 @@ async function loadFollowModal(user, type) {
 		.querySelector('.modal-list')
 
 	modalListContainer.innerHTML = data
-		.map((user) => createFollowModalListItem(user, type))
+		.map((user) =>
+			createFollowModalListItem(
+				{ currentUser: user, loggedUser: loggedUser },
+				type
+			)
+		)
 		.join('')
 }
 
@@ -194,32 +202,47 @@ async function getFollowers(username) {
 	return followers
 }
 
-function createFollowModalListItem(user, type) {
-	const followButton = createModalFollowButton(user, type)
+function createFollowModalListItem({ currentUser, loggedUser }, type) {
+	const followButton = createModalFollowButton(
+		currentUser.username,
+		loggedUser,
+		currentUser.follows_back,
+		type
+	)
 	return `
-		<div class="row m-auto align-items-center" id="${user.username}-row">
+		<div class="row g-0 m-auto align-items-center" id="${currentUser.username}-row">
 			<div class="col-2">
-				<img src="imgs/propics/${user.profilePic}" alt="">
+				<img class="profile-pic" src="imgs/propics/${currentUser.profilePic}" alt="${
+		currentUser.username
+	} profile picture">
 			</div>
-			<a class="col-7 user-username" href="./profile.php?user=${user.username}">
-				${user.username}
-			</a>
-			<div class="col-3">
-				${followButton}
+			<div class="col-7">
+				<a class="user-username dotted-word px-3 px-md-4 py-2" href="./profile.php?user=${
+					currentUser.username
+				}">
+					${currentUser.username}
+				</a>
+			</div>
+			<div class="col-3 ps-lg-4">
+				${currentUser.current == undefined ? followButton : ''}
 			</div>
 		</div>`
 }
 
-function createModalFollowButton({ username, follows_back }, type) {
-	if (type == InteractionType.FOLLOWING || follows_back) {
+function createModalFollowButton(username, loggedUser, follows_back, type) {
+	console.log(username, loggedUser, follows_back)
+	if (
+		(type == InteractionType.FOLLOWING && username == loggedUser) ||
+		follows_back
+	) {
 		return `
-		<button id="modal-follow-button" class="button-primary" onclick="unfollow('${username}', this, InteractionType.FOLLOWING)" data-follow="false" data-user="${username}">
+		<button id="modal-follow-button" class="follow-button button-primary" onclick="unfollow('${username}', this, InteractionType.FOLLOWING)" data-follow="false" data-user="${username}">
 			Unfollow
 		</button>`
 	}
 
 	return `
-		<button id="modal-follow-button" class="button-secondary" onclick="follow('${username}', this, InteractionType.FOLLOWING)" data-follow="true" data-user="${username}">
+		<button id="modal-follow-button" class="follow-button button-secondary" onclick="follow('${username}', this, InteractionType.FOLLOWING)" data-follow="true" data-user="${username}">
 			Follow
 		</button>`
 }
