@@ -651,10 +651,10 @@ class DatabaseHelper{
             1
             end as follows_back
         FROM `follows` f
-        LEFT JOIN follows b ON b.followed = f.follower AND b.follower = f.followed
+        LEFT JOIN follows b ON b.followed = f.follower AND b.follower = ?
         JOIN users u ON u.username = f.follower
         WHERE f.followed = ?");
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('ss', $_SESSION['username'], $username);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -662,11 +662,17 @@ class DatabaseHelper{
     }
 
     public function getFollowings($username) {
-        $stmt = $this->db->prepare("SELECT profilePic, followed as username
-        FROM `follows` F
-        JOIN users ON username = followed
-        WHERE follower = ?");
-        $stmt->bind_param('s', $username);
+        $stmt = $this->db->prepare("SELECT u.profilePic as 'profilePic', f.followed as 'username', 
+            case when b.follower is null then 
+            0
+            else
+            1
+            end as follows_back
+        FROM `follows` f
+        LEFT JOIN follows b ON b.follower = ? AND b.followed = f.followed
+        JOIN users u ON u.username = f.followed
+        WHERE f.follower = ?;");
+        $stmt->bind_param('ss', $_SESSION['username'], $username);
         $stmt->execute();
         $result = $stmt->get_result();
 

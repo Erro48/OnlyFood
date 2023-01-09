@@ -20,23 +20,23 @@
                     </div>
                     <?php elseif (!$templateParams["followed"]): ?>
                     <div class="col-2 p-0 mini-box d-flex justify-content-end">
-                        <button id="follow-button" class="p-2 icon-button hideable" onclick="follow('<?php echo $_GET['user']?>', this)">
+                        <button id="follow-button" class="p-2 icon-button hideable" data-current-page="true" onclick="follow('<?php echo $_GET['user']?>', this)">
                             <img src="imgs/icons/user-follow.svg" alt="Follow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
                     <div class="col-2 p-0 mini-box d-flex justify-content-end d-none">
-                        <button id="unfollow-button" class="p-2 icon-button hideable" onclick="unfollow('<?php echo $_GET['user']?>', this)">
+                        <button id="unfollow-button" class="p-2 icon-button hideable" data-current-page="true" onclick="unfollow('<?php echo $_GET['user']?>', this)">
                             <img src="imgs/icons/user-unfollow.svg" alt="Unfollow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
                     <?php else: ?>
                     <div class="col-2 p-0 mini-box d-flex justify-content-end d-none">
-                        <button id="follow-button" class="p-2 icon-button hideable" onclick="follow('<?php echo $_GET['user']?>', this)">
+                        <button id="follow-button" class="p-2 icon-button hideable" data-current-page="true" onclick="follow('<?php echo $_GET['user']?>', this)">
                             <img src="imgs/icons/user-follow.svg" alt="Follow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
                     <div class="col-2 p-0 mini-box d-flex justify-content-end">
-                        <button id="unfollow-button" class="p-2 icon-button hideable" onclick="unfollow('<?php echo $_GET['user']?>', this)">
+                        <button id="unfollow-button" class="p-2 icon-button hideable" data-current-page="true" onclick="unfollow('<?php echo $_GET['user']?>', this)">
                             <img src="imgs/icons/user-unfollow.svg" alt="Unfollow <?php echo $_GET['user'] ?>" />
                         </button>
                     </div>
@@ -68,25 +68,33 @@
                 </div>
                 <div class="row">
                     <div class="col-6 col-md-4 mini-box">
-                        <button type="button" class="follow-container justify-content-center hideable" data-bs-toggle="modal" data-bs-target="#followModal" onclick="loadFollowModal('<?= $_SESSION['username'] ?>', InteractionType.FOLLOWING)">
+                        <button type="button"
+                            class="follow-container justify-content-center hideable"
+                            data-bs-toggle="modal" data-bs-target="#followModal"
+                            onclick="loadFollowModal(
+                                '<?= isset($_GET['user']) ? $_GET['user'] : $_SESSION['username'] ?>',
+                                '<?= $_SESSION['username'] ?>',
+                                InteractionType.FOLLOWING)
+                            ">
+
                             <p class="m-0">Following</p>
                             <p class="m-0" id="num-following"><?php echo $profile["numFollowing"] ?></p>
                         </button>
-                        <!-- <div class="follow-container justify-content-center hideable">                    
-                            <p class="m-0">Following</p>
-                            <p class="m-0"><?php echo $profile["numFollowing"] ?></p>
-                        </div> -->
                     </div>
                     <div class="col-md-2 d-none d-md-block"></div>
                     <div class="col-6 col-md-4 mini-box">
-                        <button type="button" class="follow-container justify-content-center hideable" data-bs-toggle="modal" data-bs-target="#followModal" onclick="loadFollowModal('<?= $_SESSION['username'] ?>', InteractionType.FOLLOWER)">
+                        <button type="button"
+                            class="follow-container justify-content-center hideable"
+                            data-bs-toggle="modal" data-bs-target="#followModal"
+                            onclick="loadFollowModal(
+                                '<?= isset($_GET['user']) ? $_GET['user'] : $_SESSION['username'] ?>',
+                                '<?= $_SESSION['username'] ?>',
+                                InteractionType.FOLLOWER)
+                            ">
+
                             <p class="m-0">Followers</p>
                             <p class="m-0" id="num-follower"><?php echo $profile["numFollower"] ?></p>
                         </button>
-                        <!-- <div class="follow-container justify-content-center hideable">                    
-                            <p class="m-0">Followers</p>
-                            <p id="num-follower" class="m-0"><?php echo $profile["numFollower"] ?></p>
-                        </div> -->
                     </div>
                     <div class="col-md-2"></div>
                 </div>
