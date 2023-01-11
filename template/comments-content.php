@@ -39,7 +39,9 @@
             </label>
         </div>
         <div class="col-1 p-0 d-flex align-items-center">
-            <input id="post-comment-input" class="col-2" type="submit" value="" onclick="sendComment(<?php echo $templateParams['postId'] ?>, document.querySelector('input#comment-input').value)" />
+            <button type="submit" id="post-comment-input" onclick="sendComment(<?php echo $templateParams['postId'] ?>, document.querySelector('input#comment-input').value)">
+                <img src="imgs/icons/send.svg" alt="Publish comment">
+            </button>
         </div>
     </section>
 <?php endif; if($templateParams["postId"] == -1): ?>
