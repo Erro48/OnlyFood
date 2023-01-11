@@ -31,7 +31,7 @@
             </div>
         <?php endforeach; ?>
     </section>
-    <section id="write-comment-section" class="row">
+    <!-- <section id="write-comment-section" class="row">
         <div id="comment-input-container" class="col-11">
             <label for="comment-input">
                 <input id="comment-input" type="text" name="comment-text" placeholder="Write a comment..." />
@@ -39,8 +39,21 @@
             </label>
         </div>
         <div class="col-1 p-0 d-flex align-items-center">
-            <input id="post-comment-input" class="col-2" type="submit" value="" onclick="sendComment(<?php echo $templateParams['postId'] ?>, document.querySelector('input#comment-input').value)" />
+            <button type="submit" id="post-comment-input" class="col-2" value="" onclick="sendComment(<?php echo $templateParams['postId'] ?>, document.querySelector('input#comment-input').value)">
+                <img src="imgs/icons/send.svg" alt="Publish comment">
+            </button>
         </div>
+    </section> -->
+    <section style="background: var(--accent); padding: 1em">
+        <div class="row w-100 m-auto" style="background: var(--background); border-radius: 40px">
+            <div class="col-11">
+                <input type="text" placeholder="Type a comment..." style="height: 100%; border: none; background: inherit; outline: none">
+            </div>
+            <div class="col-1">
+                <button style="width: 100%; background: inherit; border: none;"><img src="imgs/icons/send.svg" alt="Publish comment" style="height: 3em; width: 100%; object-fit: contain"></button>
+            </div>
+        </div>
+
     </section>
 <?php endif; if($templateParams["postId"] == -1): ?>
     <p>Error</p>
