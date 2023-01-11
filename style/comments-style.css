@@ -120,8 +120,17 @@ section#write-comment-section input#post-comment-input {
 /* #endregion */
 
 /* #region Send Button */
-section.write-comment-section button {
-	outline: 1px solid red;
+section#write-comment-section button {
+	width: 100%;
+	background: white;
+	border: none;
+	border-radius: 0 40px 40px 0;
+}
+
+section#write-comment-section button > img {
+	height: 3em;
+	width: 80%;
+	object-fit: contain;
 }
 /* #endregion Send Button */
 
