@@ -25,10 +25,16 @@
                     <img class="col-12" src="<?php echo $POST_PIC_DIR.$post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
                     <div class="row info-container">
                         <div class="col-2">
-                            <img src="<?php echo $PROFILE_PIC_DIR.$post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
+                            <a href="./profile.php?user=<?= $post["username"]; ?>">
+                                <img src="<?php echo $PROFILE_PIC_DIR.$post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
+                            </a>
                         </div>
                         <div class="col-6 p-1">
-                            <p><?php echo $post["owner"]; ?></p>
+                            <p>
+                                <a href="./profile.php?user=<?= $post["username"]; ?>">    
+                                    <?php echo $post["owner"]; ?>
+                                </a>
+                            </p>
                             <p><?php echo $post["description"]; ?></p>
                         </div>
                         <div class="col-2 p-0">
