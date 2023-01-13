@@ -343,6 +343,25 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function searchPost($title){
+        $post_title = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $title);
+        $post_title = $post_title."%";
+        $stmt = $this->db->prepare("
+        SELECT postId, date, owner, description, howTo, preview, 
+                username, profilePic FROM posts p
+        JOIN recipes r on r.recipeId=p.recipe
+        JOIN users u on u.username=p.owner
+        WHERE r.description LIKE ? AND p.owner != ?
+        ORDER BY p.date DESC
+        LIMIT 50
+        ");
+
+        $stmt->bind_param('ss', $post_title, $_SESSION['username']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
     public function searchUser($name){
         $username = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $name);
@@ -583,8 +602,9 @@ class DatabaseHelper{
 
     function insertPost($recipe_id) {
         $stmt = $this->db->prepare('INSERT INTO `posts` (`date`, `owner`, `recipe`) VALUES (?, ?, ?)');
-        $stmt->bind_param('ssi', date("Y-m-d h:i:sa"), $_SESSION['username'], $recipe_id);
-        return $stmt->execute();
+        $date = date("Y-m-d h:i:sa");
+        $stmt->bind_param('ssi', $date, $_SESSION['username'], $recipe_id);
+        $stmt->execute();
     }
 
     function insertRecipeIngredients($ingredients, $recipe_id) {

@@ -7,11 +7,11 @@
                         
                         <section class="ingredients-container">
                             <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
-                                <div class="ingredient-div" style="outline: 3.5px solid #<?php echo $ingredient["color"]; ?>">
+                                <div class="ingredient-div" style="outline-color: #<?php echo $ingredient["color"]; ?>">
                                     <div class="ingredient-name-div">
                                         <?php echo $ingredient["name"]; ?>
                                     </div>
-                                    <div class="ingredient-quantity-div" style="outline: 3.5px solid #<?php echo $ingredient["color"]; ?>">
+                                    <div class="ingredient-quantity-div" style="outline-color: #<?php echo $ingredient["color"]; ?>">
                                         <?php echo $ingredient["quantity"]." ".$ingredient["acronym"]; ?>
                                     </div>
                                 </div>
