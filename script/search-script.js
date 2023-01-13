@@ -34,6 +34,7 @@ function switchSearchMode() {
         recipesButton.classList.remove("selected");
         currentMode = SearchMode.USERS;
     }
+    clearItems(document.querySelector('#output-list'));
 }
 
 /**
@@ -123,29 +124,6 @@ function createUserSearchResult(data) {
     container.classList.add('mt-2');
     return container;
 }
-
-
-/*
-<section class="ingredients-container">
-    <div class="ingredient-div" style="outline: 3.5px solid #e3e3e3">
-        <div class="ingredient-name-div">
-            salt                                    
-        </div>
-        <div class="ingredient-quantity-div" style="outline: 3.5px solid #e3e3e3">
-            4 tbsp                                    
-        </div>
-    </div>
-        <div class="ingredient-div" style="outline: 3.5px solid #d1d1d1">
-        <div class="ingredient-name-div">
-            sugar                                    
-        </div>
-        <div class="ingredient-quantity-div" style="outline: 3.5px solid #d1d1d1">
-            25 gr
-        </div>
-    </div>
-</section>
-*/
-
 
 function createIngredientResult(data) {
     const ingredientContainer = document.createElement('div');
