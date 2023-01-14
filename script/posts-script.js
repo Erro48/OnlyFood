@@ -6,7 +6,9 @@ function setPostsHeight() {
 	if(postsContainer){
 		const posts = postsContainer.children
 		for (let i = 0; i < posts.length; i++) {
-			calculateRecipeSectionHeight(posts[i].children[0])
+			if(posts[i].children.length > 0){
+				calculateRecipeSectionHeight(posts[i].children[0])
+			}
 		}
 	}
 }
