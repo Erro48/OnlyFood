@@ -102,6 +102,7 @@ main article.post-article > div.row > div:nth-child(2) > p:first-child {
 
 main article.post-article > div.row > div:nth-child(2) > p:last-child {
 	font-size: 90%;
+	word-break: break-word;
 }
 
 main article.post-article section.howto-section {

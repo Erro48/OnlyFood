@@ -7,7 +7,7 @@
 const ModalsType = {
 	INGREDIENTS: 'ingredients',
 	TAGS: 'tags',
-	SIMPLE_INGREDIENTS: 'simple-ingredients'
+	SIMPLE_INGREDIENTS: 'simple-ingredients',
 }
 
 /* CONSTANTS */
@@ -70,7 +70,6 @@ function removeElementFromResultList(element, modalType) {
 
 	list.innerHTML = list.innerHTML.replace(element.outerHTML, '')
 }
-
 
 /**
  * Checks if max height of the modal list is greater than a 62vh. If it is
@@ -159,7 +158,6 @@ function ingredientsCallback(ingredient) {
 	return { ingredient: ingredientObj, measures: options }
 }
 
-
 function simpleIngredientsCallback(ingredient) {
 	return { name: ingredient.querySelector('input').value.split(';')[0] }
 }
@@ -219,7 +217,7 @@ async function addIngredients() {
 				<label class="col-9 p-0">
 					<span class="dotted-word">${ingredient.name}</span>
 					<input type="hidden" name="ingredients[]" value="${ingredient.name};${
-			ingredient.quantity
+			ingredient.quantity > 0 ? ingredient.quantity : QUANTITY_DEFAULT
 		};${ingredient.measure.name}" />
 				</label>
 				<span class="col-3 p-0">
@@ -289,7 +287,7 @@ function createIngredientsListItem({ ingredient, measures }) {
 					<label for="quantity-${ingredientId}">
 						<input type="number" value="${
 							ingredient.quantity
-						}" min="0" id="quantity-${ingredientId}"
+						}" min="0" max="999.9" step="0.1" id="quantity-${ingredientId}"
 						onkeyup="checkQuantityValidity(this)">
 						<span class="invisible">Quantity</span>
 					</label>
@@ -325,7 +323,9 @@ function createSimpleIngredientsListItem(item) {
 }
 
 function getSimpleIngredientsOfModalList() {
-	const listContainer = document.querySelector('div#modal-simple-ingredients-list')
+	const listContainer = document.querySelector(
+		'div#modal-simple-ingredients-list'
+	)
 	return Array.from(listContainer.children).map((item) => {
 		const [name] = item.children
 		return {
@@ -338,9 +338,11 @@ function getSimpleIngredientsOfModalList() {
  * Adds the ingredients of the modal list to the ingredients list
  */
 function addSimpleIngredients() {
-	const ingredientsContainer = document.querySelector('#simple-ingredients-list')
+	const ingredientsContainer = document.querySelector(
+		'#simple-ingredients-list'
+	)
 	let ingredients = getSimpleIngredientsOfModalList()
-	
+
 	ingredients = ingredients.map((ingredient) => {
 		return `
 		<li class="col-6 col-md-4">
@@ -359,7 +361,6 @@ function addSimpleIngredients() {
 
 	ingredientsContainer.innerHTML = ingredients.join('')
 }
-
 
 /* TAGS LIST */
 /**
@@ -432,4 +433,3 @@ function addTags() {
 
 	tagsContainer.innerHTML = tags.join('')
 }
-

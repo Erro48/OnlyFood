@@ -619,8 +619,8 @@ class DatabaseHelper{
         foreach ($ingredients as $ingredient) {
             [$name, $quantity, $measure] = explode(";", $ingredient);
             $query .= "(?, ?, ?, ?),";
-            array_push($params, ...[$recipe_id, $name, $measure, intval($quantity, 10)]);
-            $params_type .= 'issi';
+            array_push($params, ...[$recipe_id, $name, $measure, floatval($quantity)]);
+            $params_type .= 'issd';
         }
         $query = rtrim($query, ',');
 

@@ -1,46 +1,48 @@
-
 .main-container {
-    height: 87vh;
+	height: 87vh;
 }
 
 .output {
-    height: 79vh;
-    margin-top: 8vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 0 1em;
+	height: 79vh;
+	margin-top: 8vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 0 1em;
 }
 
 .output .notification {
-    background-color: var(--light-color);
-    border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
+	background-color: var(--light-color);
+	border-radius: 10px;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .output .notification .profile-preview {
-    width: 100%;
-    border-radius: 50%;
-    max-width: 5rem;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+	width: 100%;
+	border-radius: 50%;
+	max-width: 5rem;
+	aspect-ratio: 1/1;
+	object-fit: cover;
 }
 
 .output .notification .notification-label {
-    width: 100%;
+	width: 100%;
 }
 
-.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
-    text-decoration: none;
-    color: inherit;
-    outline: 0;
+.reset-a,
+.reset-a:hover,
+.reset-a:visited,
+.reset-a:focus,
+.reset-a:active {
+	text-decoration: none;
+	color: inherit;
+	outline: 0;
 }
 
 .info-message {
-    text-align: center;
-    font-size: 18pt;
+	text-align: center;
+	font-size: 18pt;
 }
 
 .timestamp {
-    font-size: 6pt;
+	font-size: 75%;
 }

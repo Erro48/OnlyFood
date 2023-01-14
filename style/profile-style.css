@@ -52,7 +52,7 @@ main section .username-text {
 }
 
 main section .name-text {
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 1.6em;
 }
 
@@ -101,7 +101,6 @@ main section .icon-button > img {
 /* #endregion */
 
 /* #region Reduce action */
-
 
 .hideable.hidden {
 	display: none;
