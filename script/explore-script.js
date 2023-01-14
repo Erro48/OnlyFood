@@ -64,8 +64,11 @@ function createPost(postData){
     container.classList.add("col-12");
     container.classList.add("single-post-container");
     let containerContent = `<article id="article-${postData.postId}" class="row post-article">
+                                <h3 class="d-none">Post</h3>
                                 <section class="col-12 recipe-section">
-                                    <section class="ingredients-container">`;
+                                    <h4 class="d-none">Recipe</h4>
+                                    <section class="ingredients-container">
+                                        <h5 class="d-none">Ingredients</h5>`;
     let i = 0;
     postData.ingredients.forEach(ingredient => {
         containerContent += `<div class="ingredient-div" style="outline: 3.5px solid #${ingredient.color};">
@@ -78,8 +81,9 @@ function createPost(postData){
                             </div>`;
     });
     containerContent += `</section>
-                        <h2>How To</h2>
+                        <p class="howto-p">How To</p>
                         <section class="howto-section">
+                            <h5 class="d-none">How To</h5>
                             <p>${postData.howTo}</p>
                         </section>
                     </section>

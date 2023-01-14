@@ -156,12 +156,16 @@ function createPostSearchResult(data) {
 
     const post = document.createElement('article');
     post.innerHTML = `
+        <h3 class="d-none">Post</h3>
             <section class="col-12 recipe-section">
+                <h4 class="d-none">Recipe</h4>
                 <section class="ingredients-container">
+                    <h5 class="d-none">Ingredients</h5>
                     ${ingredientContainers}
-                </section>    
-                <h2>How To</h2>
+                </section>
+                <p class="howto-p">How To</p>
                 <section class="howto-section">
+                    <h5 class="d-none">How To</h5>
                     <p>${data.howTo}</p>
                 </section>
             </section>
