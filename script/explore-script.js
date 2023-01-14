@@ -35,7 +35,7 @@ function createTagRow(tagData){
 function handleClick() {
 let tags = "[";
 const tagListContainer = document.querySelector(".tag-list-container");
-for (let i = 0; i < tagListContainer.children.length; i++) {
+for (let i = 1; i < tagListContainer.children.length; i++) {
     const label = tagListContainer.children[i].children[0];
     if(label.children[0].checked){
         tags = tags.concat("\"", label.innerText.replace(" ", ""), "\",");
