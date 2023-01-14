@@ -3,6 +3,7 @@ require_once(__DIR__ . "/consts.php");
 
 function downloadImage($file, $dbh, $file_destination) {
     global $MAX_FILE_SIZE;
+    global $POST_PIC_DIR;
 
     $file_name = basename($file_destination);
     $destination_folder = str_replace($file_name, '', $file_destination);
@@ -18,6 +19,9 @@ function downloadImage($file, $dbh, $file_destination) {
     if(in_array($file_extension, array('jpg', 'jpeg', 'png', "gif", "jfif"))) {
         if($file_error === 0){
             if($file_size < $MAX_FILE_SIZE){
+                if (!file_exists($POST_PIC_DIR)) {
+                    mkdir($POST_PIC_DIR, 0777, true);
+                }
                 move_uploaded_file($file_tmp_name, $file_destination);                    
             }
         }
