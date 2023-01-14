@@ -31,10 +31,11 @@ main article.post-article > section.recipe-section {
 	width: 100%;
 }
 
-main article.post-article > section.recipe-section > h2 {
+main article.post-article > section.recipe-section > p.howto-p {
 	font-size: 1.3rem;
 	font-weight: bold;
 	margin-top: 1rem;
+	margin-bottom: 0;
 }
 
 main article.post-article > section.recipe-section > div.row {

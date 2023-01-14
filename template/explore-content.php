@@ -11,6 +11,7 @@
             </label>
         </div>
         <section class="row tag-list-container">
+            <h3 class="d-none">Tag list</h3>
             <?php $i= 1; foreach($templateParams["tags"] as $tag): ?>
                 <div class="col-12 col-md-6 text-truncate">
                     <label for="checkbox-<?php echo $i; ?>">
@@ -24,5 +25,6 @@
     <div class="col-1"></div>
 </section>
 <section class="row posts-section">
+    <h2 class="d-none">Posts</h2>
     <?php require('template/posts.php'); ?>
 </section>

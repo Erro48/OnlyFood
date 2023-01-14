@@ -3,9 +3,12 @@
         <?php foreach($templateParams["posts"] as $post): ?>
             <div class="col-12 single-post-container">
                 <article id="article-<?php echo $post["postId"];?>" class="row post-article">
+                    <h3 class="d-none">Post</h3>
                     <section class="col-12 recipe-section">
                         
+                        <h4 class="d-none">Recipe</h4>
                         <section class="ingredients-container">
+                            <h5 class="d-none">Ingredients</h5>
                             <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                                 <div class="ingredient-div" style="outline-color: #<?php echo $ingredient["color"]; ?>">
                                     <div class="ingredient-name-div">
@@ -17,8 +20,9 @@
                                 </div>
                             <?php $i++; endforeach; ?>
                         </section>
-                        <h2>How To</h2>
+                        <p class="howto-p">How To</p>
                         <section class="howto-section">
+                            <h5 class="d-none">How To</h5>
                             <p><?php echo $post["howTo"]; ?></p>
                         </section>
                     </section>
