@@ -1,0 +1,105 @@
+
+/* #region selector */
+ul.selector {
+    border-radius: 4px;
+    background-color: var(--light-color);
+    padding: 0;
+}
+
+ul.selector > li {
+    display: inline-block;
+    padding: 0;
+}
+
+ul.selector li > button {
+    border: none;
+    width: 100%;
+}
+
+ul.selector > li > button {
+    border-radius: 4px;
+    background-color: var(--light-color);
+}
+
+ul.selector > li > button.selected {
+    background-color: var(--accent);
+    color: var(--text-light);
+    box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+}
+
+/* #endregion */
+
+/* #region Output */
+section.hidden {
+    display: none
+}
+
+.search-sections-container {
+    height: 87vh;
+}
+
+.search {
+    height: 9vh;
+}
+
+.toggle {
+    height: 6vh;
+}
+
+.toggle > .init-row {
+    margin-top: 2vh;
+}
+
+.output {
+    height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.output .user-search {
+    background-color: var(--light-color);
+    border-radius: 3em;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    width: 100%;
+    max-width: 1000px;
+}
+
+.output .user-search .profile-preview {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.output .user-search .username-label {
+    font-size: 14pt;
+    font-weight: 600;
+    width: 100%;
+}
+
+.output .user-search .name-surname-label {
+    font-size: 12pt;
+    font-weight: 400;
+    width: 100%;
+    opacity: 80%;
+}
+
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+}
+
+/* #endregion */
+
+.main-container {
+    height: 87vh;
+}
+
+@media screen and (min-width: 768px) {
+    .output {
+        height: 76vh;
+    }
+}

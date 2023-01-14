@@ -1,0 +1,14 @@
+/* #region Post Container */
+section.posts-section {
+    height: 87vh;
+    overflow-y: auto;
+}
+/* #endregion */
+
+/* #region Media Queries */
+@media screen and (min-width: 768px){
+    section.posts-section {
+        height: 93vh;
+    }
+}
+/* #endregion */

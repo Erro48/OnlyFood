@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS onlyfood;*/
+DROP DATABASE IF EXISTS onlyfood;
 CREATE DATABASE onlyfood;
 USE onlyfood;
 
@@ -16,14 +16,15 @@ CREATE TABLE follows (
 	follower varchar(20) NOT NULL,
 	followed varchar(20) NOT NULL,
 	date datetime NOT NULL,
-	CONSTRAINT PK_follows PRIMARY KEY (follower,followed),
+	seen int NOT NULL DEFAULT 0,
+	CONSTRAINT PK_follows PRIMARY KEY (follower, followed),
 	CONSTRAINT FK_follows_follower FOREIGN KEY (follower) REFERENCES users(username),
 	CONSTRAINT FK_follows_followed FOREIGN KEY (followed) REFERENCES users(username)
 );
 CREATE TABLE recipes (
 	recipeId int NOT NULL AUTO_INCREMENT,
 	description varchar(50) NOT NULL,
-	howTo varchar(500) NOT NULL,
+	howTo varchar(5000) NOT NULL,
 	preview varchar(100) NOT NULL,
 	CONSTRAINT PK_recipes PRIMARY KEY (recipeId)
 );
@@ -42,6 +43,7 @@ CREATE TABLE comments (
 	date datetime NOT NULL,
 	user varchar(20) NOT NULL,
 	postId int NOT NULL,
+	seen int NOT NULL DEFAULT 0,
 	CONSTRAINT PK_comments PRIMARY KEY (commentId),
 	CONSTRAINT FK_comments_user FOREIGN KEY (user) REFERENCES users(username),
 	CONSTRAINT FK_comments_postId FOREIGN KEY (postId) REFERENCES posts(postId)
@@ -50,6 +52,8 @@ CREATE TABLE likes (
 	likeId int NOT NULL AUTO_INCREMENT,
 	user varchar(20) NOT NULL,
 	post int NOT NULL,
+	date datetime NOT NULL,
+	seen int NOT NULL DEFAULT 0,
 	CONSTRAINT PK_likes PRIMARY KEY (likeId),
 	CONSTRAINT FK_likes_user FOREIGN KEY (user) REFERENCES users(username),
 	CONSTRAINT FK_likes_post FOREIGN KEY (post) REFERENCES posts(postId)
@@ -73,7 +77,7 @@ CREATE TABLE compositions (
 	recipe int NOT NULL,
 	ingredient varchar(20) NOT NULL,
 	unit varchar(20) NOT NULL,
-	quantity int NOT NULL,
+	quantity FLOAT(4,1) NOT NULL,
 	CONSTRAINT PK_compositions PRIMARY KEY (recipe,ingredient),
 	CONSTRAINT FK_compositions_recipe FOREIGN KEY (recipe) REFERENCES recipes(recipeId),
 	CONSTRAINT FK_compositions_ingredient FOREIGN KEY (ingredient) REFERENCES ingredients(name),

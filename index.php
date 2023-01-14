@@ -1,13 +1,11 @@
 <?php
 require_once 'bootstrap.php';
 
-//Base Template
 $templateParams["title"] = "OnlyFood - Home";
-$templateParams["nome"] = "home.php";
-$templateParams["posts"] = $dbh->getPostsByUser("carlo61");
-
-// //Home Template
-// $templateParams["articoli"] = $dbh->getPosts(2);
+$templateParams["name"] = "home.php";
+$templateParams["style"] = array("home-style.css", "posts-style.css");
+$templateParams["script"] = array("posts-script.js");
+$templateParams["posts"] = $dbh->getPostsByUser($_SESSION["username"]);
 
 require 'template/base.php';
 ?>

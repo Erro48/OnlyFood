@@ -1,0 +1,63 @@
+/*	Table Of Contents:
+	------------------------
+    - Tags
+	- Post
+    - Media Queries
+*/
+
+
+/* #region Tags */
+main section.filter-section {
+    height: 30vh;
+    background-color: var(--primary);
+    border-radius: 0 0 0.6rem 0.6rem;
+    padding: 1rem 0;
+}
+
+main section.filter-section > div.tags-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary);
+    border-radius: 10px;
+    height: 100%;
+}
+
+main section.filter-section div.tag-h2-container {
+    margin: 0 0.5rem;
+}
+
+main section.filter-section div.tag-h2-container > h2 {
+    padding: 0;
+    border-bottom: solid 0.2rem var(--accent);
+    margin: 0.8rem 0;
+}
+
+main section.filter-section div.search-bar-container {
+    margin: 0 0.8rem 1rem;
+}
+
+main section.filter-section div.search-bar-container > input {
+    background-color: var(--light-color);
+}
+
+main section.filter-section section.tag-list-container {
+    overflow-y: auto;
+}
+/* #endregion */
+
+/* #region Post */
+section.posts-section {
+    height: 57vh;
+}
+
+/* #region Media Queries */
+@media screen and (min-width: 768px){
+    main section.filter-section {
+        margin: 0 2rem;
+    }
+
+    section.posts-section {
+        height: 63vh;
+    }
+}
+/* #endregion */
