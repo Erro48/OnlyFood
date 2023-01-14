@@ -32,7 +32,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
     }
     if (!passwordValidation($password)) {
         // check if password has a valid format
-        array_push($errors, "Password is not valid");
+        array_push($errors, "Password is not valid. Must contains an upper and a lower case letter, a number and a symbol (_!$@#^&+\? are allowed)");
     }
     
     if (count($errors) == 0) {
@@ -93,20 +93,19 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                     <div class="d-none d-md-block col-md-1"></div>
 
                     <div class="col-12 col-md-10 scrollable form-container">
-                        <?php if (count($errors) > 0): ?>
-                            <div class="row alert error-alert fade-out login-alert" role="alert">
-                                <div class="col-11">
-                                    <?php
-                                        foreach($errors as $error) {
-                                            echo $error . '<br>';
-                                        }
-                                    ?>
-                                </div>
-                                <div class="col-1">
-                                    <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
-                                </div>
+                        
+                        <div class="row alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?> login-alert" role="alert">
+                            <div class="col-11">
+                                <?php
+                                    foreach($errors as $error) {
+                                        echo $error . '<br>';
+                                    }
+                                ?>
                             </div>
-                        <?php endif ?>
+                            <div class="col-1">
+                                <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode, alertTimerHandle)"></button>
+                            </div>
+                        </div>
 
                         <form enctype="multipart/form-data" action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             

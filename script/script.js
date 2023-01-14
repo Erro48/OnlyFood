@@ -11,56 +11,56 @@
 
 /**
  * Adds a function to do in window.onload
- * @param {*} func - Function to do on windows.onload 
+ * @param {*} func - Function to do on windows.onload
  */
-function addLoadEventOnload(func) { 
-	var oldonload = window.onload; 
-	if (typeof window.onload != 'function') { 
-		window.onload = func; 
-	} else { 
-		window.onload = function() { 
-			if (oldonload) { 
-				oldonload(); 
-			} 
-			func(); 
-		} 
-	} 
+function addLoadEventOnload(func) {
+	var oldonload = window.onload
+	if (typeof window.onload != 'function') {
+		window.onload = func
+	} else {
+		window.onload = function () {
+			if (oldonload) {
+				oldonload()
+			}
+			func()
+		}
+	}
 }
 
 /**
  * Adds a function to do in window.onresize
- * @param {*} func - Function to do on windows.onresize 
+ * @param {*} func - Function to do on windows.onresize
  */
-function addLoadEventOnresize(func) { 
-	var oldonresize = window.onresize; 
-	if (typeof window.onresize != 'function') { 
-		window.onresize = func; 
-	} else { 
-		window.onresize = function() { 
-			if (oldonresize) { 
-				oldonresize(); 
-			} 
-			func(); 
-		} 
-	} 
+function addLoadEventOnresize(func) {
+	var oldonresize = window.onresize
+	if (typeof window.onresize != 'function') {
+		window.onresize = func
+	} else {
+		window.onresize = function () {
+			if (oldonresize) {
+				oldonresize()
+			}
+			func()
+		}
+	}
 }
 
 /**
  * Adds a function to do in window.onscroll
- * @param {*} func - Function to do on windows.onscroll 
+ * @param {*} func - Function to do on windows.onscroll
  */
-function addLoadEventOnscroll(func) { 
-	var oldonscroll = window.onscroll; 
-	if (typeof window.onscroll != 'function') { 
-		window.onscroll = func; 
-	} else { 
-		window.onscroll = function() { 
-			if (oldonscroll) { 
-				oldonscroll(); 
-			} 
-			func(); 
-		} 
-	} 
+function addLoadEventOnscroll(func) {
+	var oldonscroll = window.onscroll
+	if (typeof window.onscroll != 'function') {
+		window.onscroll = func
+	} else {
+		window.onscroll = function () {
+			if (oldonscroll) {
+				oldonscroll()
+			}
+			func()
+		}
+	}
 }
 
 /* ELEMENTS */
@@ -111,8 +111,11 @@ function resetErrorClass(inputErrorsId) {
  * Hides and remove from DOM the given alert
  * @param {*} alert
  */
-function forceCloseAlert(alert) {
+function forceCloseAlert(alert, handler = null) {
 	alert.classList.add('d-none')
+	if (handler != null) {
+		clearTimeout(handler)
+	}
 }
 
 /* TYPOGRAPHY */

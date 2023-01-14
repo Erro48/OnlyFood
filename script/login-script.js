@@ -1,5 +1,7 @@
 'use strict'
 
+let alertTimerHandle = 0
+
 window.onload = () => {
 	const inputSearchField = document.querySelector('input#search-ingredient')
 	if (inputSearchField != null) {
@@ -119,7 +121,6 @@ async function changeFieldset(event, fieldset) {
 		setErrorClass(errors.map((error) => error.id))
 		if (errors.length > 0) {
 			setErrorMessage(errors.map((error) => error.msg))
-			// document.querySelector('.alert').classList.add('fade-out')
 		}
 	}
 }
@@ -162,7 +163,7 @@ function resetErrors() {
 	const errorLog = document.querySelector('.alert')
 
 	elements.forEach((element) => element.classList.remove('input-error'))
-	errorLog.innerText = ''
+	errorLog.children[0].innerText = ''
 	errorLog.classList.add('d-none')
 	errorLog.classList.remove('fade-out')
 }
@@ -174,12 +175,14 @@ function resetErrors() {
 function setErrorMessage(messages) {
 	const errorLog = document.querySelector('.alert')
 	if (messages !== undefined) {
-		errorLog.innerText = messages.map((message) => message).join('\n')
+		errorLog.children[0].innerText = messages
+			.map((message) => message)
+			.join('\n')
 		errorLog.classList.remove('d-none')
 		errorLog.classList.add('fade-out')
-		setTimeout(() => {
+		alertTimerHandle = setTimeout(() => {
 			errorLog.classList.add('d-none')
-		}, 6000)
+		}, 5100)
 	}
 }
 
