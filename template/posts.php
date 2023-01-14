@@ -88,6 +88,6 @@
         <?php endforeach; ?>
     <?php endif; ?>
     <?php if(count($templateParams["posts"]) == 0): ?>
-        <p class="ps-1">There is no post to see.</p>
+        <p class="w-100 text-center p-3">Nothing to see here...</p>
     <?php endif; ?>
 </div>
