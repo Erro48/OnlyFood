@@ -38,18 +38,20 @@ if (isset($_POST['publish'])) {
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-        <div class="row alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
-            <div class="col-11">
-                <?php
-                    foreach($errors as $error) {
-                        echo $error . '<br>';
-                    }
-                ?>
+        <?php if (count($errors) > 0): ?>
+            <div class="row alert error-alert fade-out">
+                <div class="col-11">
+                    <?php
+                        foreach($errors as $error) {
+                            echo $error . '<br>';
+                        }
+                    ?>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
+                </div>
             </div>
-            <div class="col-1">
-                <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
-            </div>
-        </div>
+        <?php endif ?>
 
         <?php if (isset($confirm_msg)): ?>
             <div class="row alert success-alert fade-out">
@@ -209,7 +211,7 @@ if (isset($_POST['publish'])) {
                                 <span class="col-3 col-lg-2 p-0">
                                     <img class="add-icon" src="./imgs/icons/plus.svg" alt="Add image" />
                                 </span>
-                                <span class="col-9 col-lg-10 image-name">No preview image</span>
+                                <span class="col-9 col-lg-10 image-name text-truncate">No preview image</span>
                             </span>
                         </span>
                     </label>

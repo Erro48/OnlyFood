@@ -85,6 +85,12 @@ fieldset#image-fieldset label span.row span {
 	height: inherit;
 }
 
+fieldset#image-fieldset label span.row span:has(> img) {
+	display: flex;
+	justify-content: start;
+	cursor: pointer;
+}
+
 fieldset#image-fieldset label span.row span.image-name {
 	border: 0.15em solid var(--primary);
 	border-radius: 10px;
@@ -107,6 +113,12 @@ fieldset#image-fieldset div#preview-container {
 
 fieldset#image-fieldset div img {
 	width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	fieldset#image-fieldset label span.row span:has(> img) {
+		justify-content: center;
+	}
 }
 
 /* #endregion Image Fieldset */
