@@ -155,7 +155,6 @@ function setPostsContainerHeight() {
 }
 
 async function loadFollowModal(user, loggedUser, type) {
-	console.log(user, loggedUser)
 	const data = await (type == InteractionType.FOLLOWER
 		? getFollowers(user)
 		: getFollowings(user))
@@ -167,13 +166,13 @@ async function loadFollowModal(user, loggedUser, type) {
 		.querySelector('.modal-list')
 
 	modalListContainer.innerHTML = data
-		.map((user) =>
+		.map((modalUser) =>
 			createFollowModalListItem(
 				{
-					username: user.username,
+					username: modalUser.username,
 					isCurrentPage: loggedUser == user,
-					followsBack: user.follows_back,
-					...user,
+					followsBack: modalUser.follows_back,
+					...modalUser,
 				},
 				type
 			)
