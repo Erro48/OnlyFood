@@ -24,7 +24,7 @@ CREATE TABLE follows (
 CREATE TABLE recipes (
 	recipeId int NOT NULL AUTO_INCREMENT,
 	description varchar(50) NOT NULL,
-	howTo varchar(500) NOT NULL,
+	howTo varchar(5000) NOT NULL,
 	preview varchar(100) NOT NULL,
 	CONSTRAINT PK_recipes PRIMARY KEY (recipeId)
 );
