@@ -91,9 +91,10 @@ function createPost(postData){
                             </a>
                         </div>
                         <div class="col-6 p-1">
-                            <a href="./profile.php?user=${postData.owner}">
-                                <p>${postData.owner}</p>
-                            </a>
+                            <p>
+                                <a href="./profile.php?user=${postData.owner}">${postData.owner}
+                                </a>
+                            </p>
                             <p>${postData.description}</p>
                         </div>
                         <div class="col-2 p-0">
