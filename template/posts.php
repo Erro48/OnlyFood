@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-2 p-0">
                             <div class="row w-100 justify-content-center m-0">
-                                <button class="action-button comments-button" onclick="window.location.href='comments.php?post=<?php echo $post["postId"]; ?>'">
+                                <button class="action-button comments-button" onclick="window.open('comments.php?post=<?php echo $post["postId"]; ?>', '_blank')">
                                     <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
                                 </button>
                             </div>
