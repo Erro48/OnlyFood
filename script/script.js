@@ -150,5 +150,5 @@ setInterval(() => {
 				NOTIFICATION_COUNTER.classList.add('invisible')
 			}
 		})
-		.catch((err) => console.error(err))
+		.catch((err) => err)
 }, NOTIFICATION_POLLING_RATE)

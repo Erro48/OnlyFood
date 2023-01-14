@@ -1,55 +1,12 @@
-const SCROLL_OFFSET_TRIGGER = 200
-
-/**
- * @enum Status
- */
-const Status = {
-	REDUCED: 1,
-	NOT_REDUCED: 0,
-}
-
-let currentStatus = Status.NOT_REDUCED
 
 const InteractionType = {
 	FOLLOWER: 'follower',
 	FOLLOWING: 'following',
 }
 
-function onScroll(event) {
-	let scrollDelta = event.srcElement.scrollTop
-	let element = document.getElementsByClassName('profile-section')[0]
 
-	if (
-		scrollDelta >= SCROLL_OFFSET_TRIGGER &&
-		currentStatus == Status.NOT_REDUCED
-	) {
-		element.classList.add('reduced')
-		currentStatus = Status.REDUCED
-		Array.from(document.getElementsByClassName('hideable')).forEach((elem) => {
-			elem.classList.add('hidden')
-		})
-		setPostsContainerHeight()
-	}
-
-	if (scrollDelta < SCROLL_OFFSET_TRIGGER && currentStatus == Status.REDUCED) {
-		element.classList.remove('reduced')
-		currentStatus = Status.NOT_REDUCED
-		Array.from(document.getElementsByClassName('hideable')).forEach((elem) => {
-			elem.classList.remove('hidden')
-		})
-		setPostsContainerHeight()
-	}
-}
-
-addLoadEventOnload(setScrollBehaviour)
 addLoadEventOnload(setPostsContainerHeight)
 addLoadEventOnresize(setPostsContainerHeight)
-
-function setScrollBehaviour() {
-	document
-		.querySelector('#posts-container-div')
-		.children[0].addEventListener('scroll', onScroll)
-}
 
 /**
  * Logout from the current session
