@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12 search-sections-container">
+    <div class="col-12 p-0 search-sections-container">
         
         <!-- Toggle mode -->
         <section class="toggle">
@@ -47,11 +47,9 @@
 
         <!-- Search output -->
         <section class="output">
-            <div class="row">
-                <div class="col-1 col-md-3"></div>
-                <div id="output-list" class="col col-md-6">
+            <div class="row mx-0 w-100">
+                <div id="output-list" class="col px-4 d-flex justify-content-center flex-wrap">
                 </div>
-                <div class="col-1"></div>
             </div>
         </section>
     </div>

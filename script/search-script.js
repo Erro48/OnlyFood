@@ -19,8 +19,11 @@ function switchSearchMode() {
     const usersButton = document.querySelector("#users-button");
     const recipesButton = document.querySelector("#recipes-button");
 
+    const output = document.querySelector('#output-list');
+
     if (recipe.classList.contains("hidden")) {
         /* Show recipe */
+        output.classList.add("posts-container");
         recipe.classList.remove("hidden");
         users.classList.add("hidden");
         recipesButton.classList.add("selected");
@@ -28,6 +31,7 @@ function switchSearchMode() {
         currentMode = SearchMode.POSTS;
     } else {
         /* Show users */
+        output.classList.remove("posts-container");
         users.classList.remove("hidden");
         recipe.classList.add("hidden");
         usersButton.classList.add("selected");
@@ -58,7 +62,6 @@ function searchData(elem) {
             .get(`./request/searchPost.php?title=${searchValue}`)
             .then((data) => {
                 clearItems(output);
-                console.log(data)
                 for (post of data.data) {
                     output.append(createPostSearchResult(post))
                 }
@@ -121,7 +124,7 @@ function createUserSearchResult(data) {
     container.classList.add('row');
     container.classList.add('p-1');
     container.classList.add('user-search');
-    container.classList.add('mt-2');
+    container.classList.add('my-2');
     return container;
 }
 
