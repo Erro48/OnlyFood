@@ -71,7 +71,7 @@ if (isset($_POST['publish'])) {
                     <legend class="d-none"><h2>General Info</h2></legend>
 
                     <label for="recipe-name">
-                        <input type="text" name="recipe-name" id="recipe-name" required>
+                        <input type="text" maxlength="50" name="recipe-name" id="recipe-name" required>
                         <span>Recipe Name</span>
                     </label>
 

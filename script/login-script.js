@@ -27,8 +27,6 @@ function profilePicPreview(
 	preview = input.parentNode.querySelector(`#${input.id} ~ span`)
 ) {
 	const fReader = new FileReader()
-	// const file = input.files
-	// const formData = new FormData()
 
 	fReader.readAsDataURL(input.files[0])
 	fReader.onloadend = function (event) {
@@ -37,7 +35,6 @@ function profilePicPreview(
 }
 
 function addItemToList(event, modalType) {
-	console.log('dio bubu')
 	addIngredientToList(event)
 }
 
@@ -51,8 +48,6 @@ function addIngredientToList(event) {
 	const listContainer = document.querySelector('div.ingredients-list')
 	const inputSearchField = document.querySelector('input#search-ingredient')
 	let ingredientName
-
-	console.log(event.target)
 
 	// get element's value
 	if (event.target.type == 'submit') {
@@ -170,7 +165,6 @@ function resetErrors() {
 	errorLog.innerText = ''
 	errorLog.classList.add('d-none')
 	errorLog.classList.remove('fade-out')
-	console.log('reset errors')
 }
 
 /**
@@ -186,7 +180,6 @@ function setErrorMessage(messages) {
 		setTimeout(() => {
 			errorLog.classList.add('d-none')
 		}, 6000)
-		console.log('add errors')
 	}
 }
 

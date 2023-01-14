@@ -111,7 +111,6 @@ function follow(user, button, type = InteractionType.FOLLOWER) {
 	axios
 		.get(`./request/request.php?follow=` + user)
 		.then((result) => {
-			console.log(result)
 			if (result.data == 1) {
 				if (button.dataset.currentPage == 'true') {
 					let currentCount = document.querySelector(`#num-${type}`).innerHTML
