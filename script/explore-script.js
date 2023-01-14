@@ -35,7 +35,7 @@ function createTagRow(tagData){
 function handleClick() {
 let tags = "[";
 const tagListContainer = document.querySelector(".tag-list-container");
-for (let i = 0; i < tagListContainer.children.length; i++) {
+for (let i = 1; i < tagListContainer.children.length; i++) {
     const label = tagListContainer.children[i].children[0];
     if(label.children[0].checked){
         tags = tags.concat("\"", label.innerText.replace(" ", ""), "\",");
@@ -64,8 +64,11 @@ function createPost(postData){
     container.classList.add("col-12");
     container.classList.add("single-post-container");
     let containerContent = `<article id="article-${postData.postId}" class="row post-article">
+                                <h3 class="d-none">Post</h3>
                                 <section class="col-12 recipe-section">
-                                    <section class="ingredients-container">`;
+                                    <h4 class="d-none">Recipe</h4>
+                                    <section class="ingredients-container">
+                                        <h5 class="d-none">Ingredients</h5>`;
     let i = 0;
     postData.ingredients.forEach(ingredient => {
         containerContent += `<div class="ingredient-div" style="outline: 3.5px solid #${ingredient.color};">
@@ -78,18 +81,24 @@ function createPost(postData){
                             </div>`;
     });
     containerContent += `</section>
-                        <h2>How To</h2>
+                        <p class="howto-p">How To</p>
                         <section class="howto-section">
+                            <h5 class="d-none">How To</h5>
                             <p>${postData.howTo}</p>
                         </section>
                     </section>
                     <img src="imgs/posts/${postData.preview}" alt="${postData.description}" />
                     <div class="row info-container">
                         <div class="col-2">
-                            <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            <a href="./profile.php?user=${postData.owner}">
+                                <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            </a>
                         </div>
                         <div class="col-6 p-1">
-                            <p>${postData.owner}</p>
+                            <p>
+                                <a href="./profile.php?user=${postData.owner}">${postData.owner}
+                                </a>
+                            </p>
                             <p>${postData.description}</p>
                         </div>
                         <div class="col-2 p-0">
@@ -106,7 +115,7 @@ function createPost(postData){
                         </div>
                         <div class="col-2 p-0">
                             <div class="row w-100 justify-content-center m-0">
-                                <button class="action-button comments-button" onclick="window.location.href='comments.php?post=${postData.postId}'">
+                                <button class="action-button comments-button" onclick="window.open('comments.php?post=${postData.postId}', '_blank')">
                                     <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
                                 </button>
                             </div>

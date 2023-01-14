@@ -42,7 +42,9 @@ footer (nav bar)
     <!-- Header -->
     <header class="page-header row align-content-center">
         <div class="col-6">
-            <h1>OnlyFood</h1>
+            <h1>
+                <a href="./index.php">OnlyFood</a>
+            </h1>
         </div>
         <div class="col-6">
             <div class="row align-content-center buttons-container">

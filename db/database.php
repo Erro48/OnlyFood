@@ -345,7 +345,7 @@ class DatabaseHelper{
 
     public function searchPost($title){
         $post_title = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $title);
-        $post_title = $post_title."%";
+        $post_title = "%".$post_title."%";
         $stmt = $this->db->prepare("
         SELECT postId, date, owner, description, howTo, preview, 
                 username, profilePic FROM posts p
@@ -365,7 +365,7 @@ class DatabaseHelper{
 
     public function searchUser($name){
         $username = preg_replace('/(?<!\\\)([%_])/', '\\\$1', $name);
-        $name = $name."%";
+        $username = $username."%";
         $stmt = $this->db->prepare("
         SELECT username, profilePic, name, surname
         FROM users
@@ -374,9 +374,13 @@ class DatabaseHelper{
             OR surname LIKE ?
             OR CONCAT(name, ' ', surname) LIKE ?
             OR CONCAT(surname, ' ', name) LIKE ?
+        EXCEPT 
+        SELECT username, profilePic, name, surname
+        FROM users
+        WHERE username=?
        ");
 
-        $stmt->bind_param('sssss', $name, $name, $name, $name, $name);
+        $stmt->bind_param('ssssss', $username, $username, $username, $username, $username, $_SESSION["username"]);
         $stmt->execute();
         $result = $stmt->get_result();
 

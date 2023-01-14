@@ -62,6 +62,11 @@ header.page-header {
 	height: 7vh;
 }
 
+header.page-header a {
+	text-decoration: none;
+	color: var(--text-dark);
+}
+
 header.page-header > div:nth-child(1) > h1 {
 	margin-left: 1.2rem;
 	margin-bottom: 0;
@@ -94,6 +99,15 @@ header.page-header div.buttons-container button img {
 /* #region Main */
 main:not(.login-main) {
 	height: 87vh;
+}
+
+main a {
+	text-decoration: none;
+	color: var(--text-dark);
+}
+
+main a:hover {
+	color: var(--accent);
 }
 /* #endregion */
 

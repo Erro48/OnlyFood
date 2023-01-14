@@ -2,9 +2,12 @@ addLoadEventOnload(setPostsHeight)
 addLoadEventOnresize(setPostsHeight)
 
 function setPostsHeight() {
-	const posts = document.querySelector('div.posts-container').children
-	for (let i = 0; i < posts.length; i++) {
-		calculateRecipeSectionHeight(posts[i].children[0])
+	const postsContainer = document.querySelector('div.posts-container')
+	if(postsContainer){
+		const posts = postsContainer.children
+		for (let i = 0; i < posts.length; i++) {
+			calculateRecipeSectionHeight(posts[i].children[0])
+		}
 	}
 }
 

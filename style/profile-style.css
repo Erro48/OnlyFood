@@ -6,8 +6,6 @@ main section.profile-section {
 	border-top-right-radius: 0;
 	border-bottom-left-radius: 0.6em;
 	border-bottom-right-radius: 0.6em;
-	height: 45vh;
-	/* transition: height 0.3s ease-out; */
 }
 
 main section.profile-section .profile-pic {
@@ -15,7 +13,7 @@ main section.profile-section .profile-pic {
 	border-radius: 50%;
 	aspect-ratio: 1/1;
 	object-fit: cover;
-	max-width: 12vh;
+	max-width: 87px;
 }
 
 main section.favourite-ingredients-section {
@@ -104,18 +102,9 @@ main section .icon-button > img {
 
 /* #region Reduce action */
 
-main section.profile-section.reduced {
-	height: 16vh;
-}
-
-.hideable {
-	visibility: visible;
-	transition: visibility linear 1s;
-}
 
 .hideable.hidden {
-	visibility: hidden;
-	transition: visibility linear;
+	display: none;
 }
 
 /* #endregion */

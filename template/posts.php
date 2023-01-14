@@ -3,9 +3,12 @@
         <?php foreach($templateParams["posts"] as $post): ?>
             <div class="col-12 single-post-container">
                 <article id="article-<?php echo $post["postId"];?>" class="row post-article">
+                    <h3 class="d-none">Post</h3>
                     <section class="col-12 recipe-section">
                         
+                        <h4 class="d-none">Recipe</h4>
                         <section class="ingredients-container">
+                            <h5 class="d-none">Ingredients</h5>
                             <?php $i = 0; foreach($dbh->getIngredientByPost($post["postId"]) as $ingredient): ?>
                                 <div class="ingredient-div" style="outline-color: #<?php echo $ingredient["color"]; ?>">
                                     <div class="ingredient-name-div">
@@ -17,18 +20,25 @@
                                 </div>
                             <?php $i++; endforeach; ?>
                         </section>
-                        <h2>How To</h2>
+                        <p class="howto-p">How To</p>
                         <section class="howto-section">
+                            <h5 class="d-none">How To</h5>
                             <p><?php echo $post["howTo"]; ?></p>
                         </section>
                     </section>
                     <img class="col-12" src="<?php echo $POST_PIC_DIR.$post["preview"]; ?>" alt="<?php echo $post["description"]; ?>" />
                     <div class="row info-container">
                         <div class="col-2">
-                            <img src="<?php echo $PROFILE_PIC_DIR.$post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
+                            <a href="./profile.php?user=<?= $post["username"]; ?>">
+                                <img src="<?php echo $PROFILE_PIC_DIR.$post["profilePic"]; ?>" alt="Propic of <?php echo $post["username"]; ?>" />
+                            </a>
                         </div>
                         <div class="col-6 p-1">
-                            <p><?php echo $post["owner"]; ?></p>
+                            <p>
+                                <a href="./profile.php?user=<?= $post["username"]; ?>">    
+                                    <?php echo $post["owner"]; ?>
+                                </a>
+                            </p>
                             <p><?php echo $post["description"]; ?></p>
                         </div>
                         <div class="col-2 p-0">
@@ -48,7 +58,7 @@
                         </div>
                         <div class="col-2 p-0">
                             <div class="row w-100 justify-content-center m-0">
-                                <button class="action-button comments-button" onclick="window.location.href='comments.php?post=<?php echo $post["postId"]; ?>'">
+                                <button class="action-button comments-button" onclick="window.open('comments.php?post=<?php echo $post["postId"]; ?>', '_blank')">
                                     <img src="imgs/icons/comments-button.svg" alt="comments button icon" />
                                 </button>
                             </div>

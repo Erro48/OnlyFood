@@ -19,8 +19,11 @@ function switchSearchMode() {
     const usersButton = document.querySelector("#users-button");
     const recipesButton = document.querySelector("#recipes-button");
 
+    const output = document.querySelector('#output-list');
+
     if (recipe.classList.contains("hidden")) {
         /* Show recipe */
+        output.classList.add("posts-container");
         recipe.classList.remove("hidden");
         users.classList.add("hidden");
         recipesButton.classList.add("selected");
@@ -28,12 +31,14 @@ function switchSearchMode() {
         currentMode = SearchMode.POSTS;
     } else {
         /* Show users */
+        output.classList.remove("posts-container");
         users.classList.remove("hidden");
         recipe.classList.add("hidden");
         usersButton.classList.add("selected");
         recipesButton.classList.remove("selected");
         currentMode = SearchMode.USERS;
     }
+    clearItems(document.querySelector('#output-list'));
 }
 
 /**
@@ -57,7 +62,6 @@ function searchData(elem) {
             .get(`./request/searchPost.php?title=${searchValue}`)
             .then((data) => {
                 clearItems(output);
-                console.log(data)
                 for (post of data.data) {
                     output.append(createPostSearchResult(post))
                 }
@@ -120,32 +124,9 @@ function createUserSearchResult(data) {
     container.classList.add('row');
     container.classList.add('p-1');
     container.classList.add('user-search');
-    container.classList.add('mt-2');
+    container.classList.add('my-2');
     return container;
 }
-
-
-/*
-<section class="ingredients-container">
-    <div class="ingredient-div" style="outline: 3.5px solid #e3e3e3">
-        <div class="ingredient-name-div">
-            salt                                    
-        </div>
-        <div class="ingredient-quantity-div" style="outline: 3.5px solid #e3e3e3">
-            4 tbsp                                    
-        </div>
-    </div>
-        <div class="ingredient-div" style="outline: 3.5px solid #d1d1d1">
-        <div class="ingredient-name-div">
-            sugar                                    
-        </div>
-        <div class="ingredient-quantity-div" style="outline: 3.5px solid #d1d1d1">
-            25 gr
-        </div>
-    </div>
-</section>
-*/
-
 
 function createIngredientResult(data) {
     const ingredientContainer = document.createElement('div');
@@ -178,22 +159,31 @@ function createPostSearchResult(data) {
 
     const post = document.createElement('article');
     post.innerHTML = `
+        <h3 class="d-none">Post</h3>
             <section class="col-12 recipe-section">
+                <h4 class="d-none">Recipe</h4>
                 <section class="ingredients-container">
+                    <h5 class="d-none">Ingredients</h5>
                     ${ingredientContainers}
-                </section>    
-                <h2>How To</h2>
+                </section>
+                <p class="howto-p">How To</p>
                 <section class="howto-section">
+                    <h5 class="d-none">How To</h5>
                     <p>${data.howTo}</p>
                 </section>
             </section>
             <img class="col-12" src="${data.preview}" alt="${data.description}">
             <div class="row info-container">
                 <div class="col-2">
-                    <img src="${data.profilePic}" alt="Propic of ${data.username}">
+                    <a href="./profile.php?user=${data.username}">
+                        <img src="${data.profilePic}" alt="Propic of ${data.username}">
+                    </a>
                 </div>
                 <div class="col-6 p-1">
-                    <p>${data.username}</p>
+                    <p>
+                        <a href="./profile.php?user=${data.username}">${data.username}
+                        </a>
+                    </p>
                     <p>${data.description}</p>
                 </div>
                 <div class="col-2 p-0">
@@ -210,7 +200,7 @@ function createPostSearchResult(data) {
                 </div>
                 <div class="col-2 p-0">
                     <div class="row w-100 justify-content-center m-0">
-                        <button class="action-button comments-button" onclick="window.location.href='comments.php?post=${data.postId}'">
+                        <button class="action-button comments-button" onclick="window.open('comments.php?post=${data.postId}', '_blank')">
                             <img src="imgs/icons/comments-button.svg" alt="comments button icon">
                         </button>
                     </div>

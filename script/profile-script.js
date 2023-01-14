@@ -149,15 +149,8 @@ function unfollow(user, button, type = InteractionType.FOLLOWER) {
 function setPostsContainerHeight() {
 	const main = document.querySelector('main')
 	const profileSection = document.querySelector('section.profile-section')
-	const h2 = document.querySelector('section.posts-section > h2')
 	const postsContainerDiv = document.querySelector('#posts-container-div')
-	const height =
-		main.offsetHeight -
-		(profileSection.offsetHeight +
-			h2.offsetHeight +
-			parseInt(getComputedStyle(h2).marginTop) +
-			parseInt(getComputedStyle(h2).marginBottom))
-	console.log('set height ', height)
+	const height = main.offsetHeight - profileSection.offsetHeight
 	postsContainerDiv.style.height = ''.concat(height - 1, 'px')
 }
 
