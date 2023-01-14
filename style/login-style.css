@@ -62,9 +62,9 @@ section.login-section form {
 	height: 27em;
 }
 
-section.login-section form fieldset legend {
-	font-size: 1.25em;
-	/* font-weight: bold; */
+section.login-section form fieldset legend h2 {
+	font-size: 1em;
+	font-weight: normal;
 }
 
 section.login-section form div.ingredients-list {

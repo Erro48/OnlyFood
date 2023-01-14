@@ -602,9 +602,9 @@ class DatabaseHelper{
 
     function insertPost($recipe_id) {
         $stmt = $this->db->prepare('INSERT INTO `posts` (`date`, `owner`, `recipe`) VALUES (?, ?, ?)');
-        $date = date("Y-m-d h:i:sa");
+        $date = date("Y-m-d h:i:s");
         $stmt->bind_param('ssi', $date, $_SESSION['username'], $recipe_id);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     function insertRecipeIngredients($ingredients, $recipe_id) {
@@ -627,7 +627,7 @@ class DatabaseHelper{
     }
 
     function insertRecipeTags($tags, $recipe_id) {
-        $this->insertTags($tags);
+        $res = $this->insertTags($tags);
 
         $query = "INSERT INTO `belongto` (`recipe`, `tag`) VALUES ";
         $params = array();

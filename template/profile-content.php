@@ -77,8 +77,8 @@
                                 InteractionType.FOLLOWING)
                             ">
 
-                            <p class="m-0">Following</p>
-                            <p class="m-0" id="num-following"><?php echo $profile["numFollowing"] ?></p>
+                            <span class="m-0">Following</span>
+                            <span class="m-0" id="num-following"><?php echo $profile["numFollowing"] ?></span>
                         </button>
                     </div>
                     <div class="col-md-2 d-none d-md-block"></div>
@@ -92,8 +92,8 @@
                                 InteractionType.FOLLOWER)
                             ">
 
-                            <p class="m-0">Followers</p>
-                            <p class="m-0" id="num-follower"><?php echo $profile["numFollower"] ?></p>
+                            <span class="m-0">Followers</span>
+                            <span class="m-0" id="num-follower"><?php echo $profile["numFollower"] ?></span>
                         </button>
                     </div>
                     <div class="col-md-2"></div>

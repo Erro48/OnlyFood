@@ -93,24 +93,26 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                     <div class="d-none d-md-block col-md-1"></div>
 
                     <div class="col-12 col-md-10 scrollable form-container">
-                        <div class="row alert error-alert <?= count($errors) == 0 ? 'd-none' : 'fade-out' ?>">
-                            <div class="col-11">
-                                <?php
-                                    foreach($errors as $error) {
-                                        echo $error . '<br>';
-                                    }
-                                ?>
+                        <?php if (count($errors) > 0): ?>
+                            <div class="row alert error-alert fade-out login-alert" role="alert">
+                                <div class="col-11">
+                                    <?php
+                                        foreach($errors as $error) {
+                                            echo $error . '<br>';
+                                        }
+                                    ?>
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
+                                </div>
                             </div>
-                            <div class="col-1">
-                                <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
-                            </div>
-                        </div>
+                        <?php endif ?>
 
                         <form enctype="multipart/form-data" action="./registration.php" method="post" class="mt-4 d-flex flex-column justify-content-between">
                             
 <!--  FIRST PAGE  -->
                             <fieldset class="fieldset-0 p-0 m-0 col-12 row d-md-flex">
-                                <legend>Personal informations:</legend>
+                                <legend><h2>Personal informations:</h2></legend>
                                 <label for="user-pic" class="mt-2 p-0 mx-auto text-center">
                                     <input class="d-none" type="file" name="profile-pic" id="user-pic" accept="image/*" onchange="profilePicPreview(this)">
                                     <span class="profile-pic m-0">
@@ -136,7 +138,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
 <!--  SECOND PAGE  -->
                         <fieldset class="fieldset-1 p-0 m-0 mt-md-5 col-12 d-none d-md-flex row">
-                            <legend class="mb-md-0">Account Informations:</legend>
+                            <legend class="mb-md-0"><h2>Account Informations:</h2></legend>
                             <label for="user-username" class="col-12 col-md-6 ps-0">
                                 <input class="registration-input" type="text" name="username" id="user-username" required>
                                 <span class="dotted-word"><strong class="required-char">*</strong> Username</span>
@@ -166,9 +168,9 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
 
 <!--  THIRD PAGE  -->
                         <fieldset class="fieldset-2 p-0 m-0 mt-md-5 col-12 d-none d-md-inline-block">
-                            <legend class="mb-md-0">Intolerances:</legend>
+                            <legend class="mb-md-0"><h2>Intolerances:</h2></legend>
 
-                            <section class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
+                            <div class="search-section p-0 row w-100 mx-auto mt-4 mb-2">
                                 <label for="search-ingredient" class="p-0">
                                     <input type="search" name="search-ingredient" id="search-ingredient"
                                         onkeyup="search(this)"
@@ -176,17 +178,13 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) 
                                         aria-label="Search your intolerances">
                                     <span class="d-none">Search your intolerances</span>
                                 </label>
-
-                                <!-- <button class="button-secondary col-2" onclick="addIngredientToList(event)">
-                                    +
-                                </button> -->
-
+                                
                                 <div class="search-result-container p-0 col-12">
                                     <ul class="search-result p-0" id="search-ingredients-result">
                         
                                     </ul>
                                 </div>
-                            </section>
+                            </div>
                             
                             <div class="ingredients-list row w-100 m-auto mt-4 scrollable" data-server="true">
                                 <?php foreach ($dbh->getMostFrequentIntolerances(5) as $intolerance):?>

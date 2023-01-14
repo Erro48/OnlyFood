@@ -205,6 +205,10 @@ footer.page-footer > div > ul > li > button span.col-md-8 {
 	.alert {
 		left: 40%;
 	}
+
+	.alert.login-alert {
+		left: 25%;
+	}
 }
 /* #endregion Alerts */
 

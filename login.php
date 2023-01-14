@@ -47,21 +47,24 @@ function verifyUserPassword($user, $password) {
                 
                     <main class="d-flex justify-content-center align-content-center flex-column p-0 p-md-5 login-main">
                         <section class="row login-section">
+                            <h2 class="d-none">Login</h2>
                             <div class="d-none d-md-block col-md-2"></div>
                         
                             <div class="col-12 col-md-8">
-                                <div class="row alert error-alert <?= !isset($error) ? 'd-none' : 'fade-out' ?>">
-                                    <div class="col-11">
-                                        <?php
-                                            if (isset($error)) {
-                                                echo $error;
-                                            }
-                                        ?>
+                                <?php if (isset($error)): ?>
+                                    <div class="row alert error-alert fade-out login-alert" role="alert">
+                                        <div class="col-11">
+                                            <?php
+                                                if (isset($error)) {
+                                                    echo $error;
+                                                }
+                                            ?>
+                                        </div>
+                                        <div class="col-1">
+                                            <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
+                                        </div>
                                     </div>
-                                    <div class="col-1">
-                                        <button type="button" class="btn-close" aria-label="Close" onclick="forceCloseAlert(this.parentNode.parentNode)"></button>
-                                    </div>
-                                </div>
+                                <?php endif; ?>
                                 
                                 <form action="./login.php" method="post" class="m-0 mt-4 d-flex flex-column justify-content-center">
 

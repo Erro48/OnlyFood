@@ -86,7 +86,7 @@ if (isset($_POST['publish'])) {
                     <legend class="d-none"><h2>Ingredients</h2></legend>
                     
                     <div class="list-container-secondary ingredients-container col-12">
-                        <h3>Ingredients</h3>
+                        <div class="container-header">Ingredients</div>
                         <ul class="result-list p-0 row m-0" id="ingredients-list">
                             
                         </ul>
@@ -99,7 +99,7 @@ if (isset($_POST['publish'])) {
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <header class="modal-header">
-                                    <h4 class="modal-title" id="add-ingredient-modal-label">Choose the ingredients</h4>
+                                    <h3 class="modal-title" id="add-ingredient-modal-label">Choose the ingredients</h3>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </header>
 
@@ -142,7 +142,7 @@ if (isset($_POST['publish'])) {
                     <legend class="d-none"><h2>Tags</h2></legend>
                     
                     <div class="list-container-secondary tags-container col-12">
-                        <h3>Tags</h3>
+                        <div class="container-header">Tags</div>
                         <ul class="result-list p-0 row m-0" id="tags-list">
                             
                         </ul>
@@ -155,7 +155,7 @@ if (isset($_POST['publish'])) {
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <header class="modal-header">
-                                    <h4 class="modal-title" id="add-tag-modal-label">Choose the tags</h4>
+                                    <h3 class="modal-title" id="add-tag-modal-label">Choose the tags</h3>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </header>
 

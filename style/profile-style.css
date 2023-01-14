@@ -71,8 +71,8 @@ main section .follow-container:hover {
 	color: var(--text-light);
 }
 
-main section .follow-container p {
-	text-align: center;
+main section .follow-container span {
+	display: block;
 }
 
 main section .icon-button {
