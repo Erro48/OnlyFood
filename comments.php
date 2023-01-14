@@ -11,7 +11,7 @@ if(isset($_GET["post"])) {
     $templateParams["postDetails"] = $dbh->getPostsById($_GET["post"]);
 }
 if (!isset($_GET["post"]) || (isset($templateParams["postDetails"]) && count($templateParams["postDetails"]) == 0)){
-    $templateParams["postId"] = -1;     //Per segnalare l'errore
+    $templateParams["postId"] = -1;  
 }
 
 require 'template/base.php';
