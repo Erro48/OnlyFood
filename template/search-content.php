@@ -28,7 +28,8 @@
             <div class="row">
                 <div class="col-1 col-md-3"></div>
                 <div class="col">
-                    <input class="ps-3 pe-2" type="search" onkeyup="searchData(this)" placeholder="Search recipe here..." />
+                    <label class="d-none" for="recipe-search-input">Recipe search input</label>
+                    <input class="ps-3 pe-2" id="recipe-search-input" type="search" onkeyup="searchData(this)" placeholder="Search recipe here..." />
                 </div>
                 <div class="col-1 col-md-3"></div>
             </div>
@@ -39,7 +40,8 @@
             <div class="row">
                 <div class="col-1 col-md-3"></div>
                 <div class="col">
-                    <input class="ps-3 pe-2" type="search" onkeyup="searchData(this)" placeholder="Search here..." />
+                    <label class="d-none" for="user-search-input">User search input</label>
+                    <input class="ps-3 pe-2" id="user-search-input" type="search" onkeyup="searchData(this)" placeholder="Search user here..." />
                 </div>
                 <div class="col-1 col-md-3"></div>
             </div>
