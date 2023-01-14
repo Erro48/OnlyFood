@@ -77,7 +77,7 @@ CREATE TABLE compositions (
 	recipe int NOT NULL,
 	ingredient varchar(20) NOT NULL,
 	unit varchar(20) NOT NULL,
-	quantity int NOT NULL,
+	quantity FLOAT(4,1) NOT NULL,
 	CONSTRAINT PK_compositions PRIMARY KEY (recipe,ingredient),
 	CONSTRAINT FK_compositions_recipe FOREIGN KEY (recipe) REFERENCES recipes(recipeId),
 	CONSTRAINT FK_compositions_ingredient FOREIGN KEY (ingredient) REFERENCES ingredients(name),

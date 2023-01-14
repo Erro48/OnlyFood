@@ -33,7 +33,6 @@ function checkQuantityValidity(inputElement) {
 	}
 }
 
-
 /* COOKIES */
 /**
  * Saves the given ingredient in the cookies, with the relatives unit of measurements. The ingredient is parsed to a string
