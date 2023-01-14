@@ -5,7 +5,6 @@
                 <article id="article-<?php echo $post["postId"];?>" class="row post-article">
                     <h3 class="d-none">Post</h3>
                     <section class="col-12 recipe-section">
-                        
                         <h4 class="d-none">Recipe</h4>
                         <section class="ingredients-container">
                             <h5 class="d-none">Ingredients</h5>

@@ -20,7 +20,6 @@
                     <div class="col-9 row p-0 ms-2 align-items-center">
                         <div class="col-12 row pt-2 opacity-75">
                             <p class="col-6 mb-0"><?php echo $comment["user"]; ?></p>
-                            <!--div class="col-4"></div-->
                             <p class="col-6 mb-0"><?php echo datetimeToString($comment["date"]); ?></p>
                         </div>
                         <div class="col-12 row">

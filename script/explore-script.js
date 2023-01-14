@@ -1,10 +1,3 @@
-/*addLoadEventOnload(setTagListContainerHeight);
-addLoadEventOnresize(setTagListContainerHeight);
-
-function setTagListContainerHeight(){
-    const height = document.querySelector(".tags-container").offsetHeight - (document.querySelector(".tag-h2-container").offsetHeight + document.querySelector(".search-bar-container").offsetHeight + parseInt(getComputedStyle(document.querySelector(".search-bar-container")).marginBottom));
-    document.querySelector(".tag-list-container").style.maxHeight = "".concat(height, "px");
-}*/
 
 function searchTag(elem){
     const searchValue = elem.value;
@@ -53,7 +46,7 @@ axios.get(`request/postTags.php?tag=${tags}`)
             postsContainer.append(createPost(post));
         }
     } else {
-        postsContainer.innerHTML = "<p class=\"ps-1\">There is no post to see.</p>";
+        postsContainer.innerHTML = "<p class=\"p-3 w-100 text-center\">Nothing to see here...</p>";
     }
 })
 .catch((err) => console.error(err));

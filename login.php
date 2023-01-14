@@ -85,10 +85,6 @@ function verifyUserPassword($user, $password) {
 
                                     <input type="submit" value="Sign In" class="button-primary my-3 col-12">
                                 </form>
-
-                                <!-- <div class="row justify-content-end m-0 mt-3">
-                                    <a href="" class="link p-0 w-auto">Forgot Password?</a>
-                                </div> -->
                             </div>
                             <div class="d-none d-md-block col-md-2"></div>
                         </section>
