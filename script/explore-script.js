@@ -86,10 +86,14 @@ function createPost(postData){
                     <img src="imgs/posts/${postData.preview}" alt="${postData.description}" />
                     <div class="row info-container">
                         <div class="col-2">
-                            <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            <a href="./profile.php?user=${postData.owner}">
+                                <img src="imgs/propics/${postData.profilePic}" alt="Propic of ${postData.owner}" />
+                            </a>
                         </div>
                         <div class="col-6 p-1">
-                            <p>${postData.owner}</p>
+                            <a href="./profile.php?user=${postData.owner}">
+                                <p>${postData.owner}</p>
+                            </a>
                             <p>${postData.description}</p>
                         </div>
                         <div class="col-2 p-0">
