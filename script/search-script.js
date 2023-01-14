@@ -168,10 +168,15 @@ function createPostSearchResult(data) {
             <img class="col-12" src="${data.preview}" alt="${data.description}">
             <div class="row info-container">
                 <div class="col-2">
-                    <img src="${data.profilePic}" alt="Propic of ${data.username}">
+                    <a href="./profile.php?user=${data.username}">
+                        <img src="${data.profilePic}" alt="Propic of ${data.username}">
+                    </a>
                 </div>
                 <div class="col-6 p-1">
-                    <p>${data.username}</p>
+                    <p>
+                        <a href="./profile.php?user=${data.username}">${data.username}
+                        </a>
+                    </p>
                     <p>${data.description}</p>
                 </div>
                 <div class="col-2 p-0">
