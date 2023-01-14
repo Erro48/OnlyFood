@@ -52,11 +52,13 @@ function addIngredientToList(event) {
 	const inputSearchField = document.querySelector('input#search-ingredient')
 	let ingredientName
 
+	console.log(event.target)
+
 	// get element's value
 	if (event.target.type == 'submit') {
 		ingredientName = inputSearchField.value
 	} else {
-		const element = event.path[0]
+		const element = event.target
 		ingredientName = element.innerText
 	}
 

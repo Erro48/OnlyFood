@@ -1,22 +1,17 @@
 'use strict'
 
 window.onload = () => {
+	try {
+		document
+			.querySelector('input#search-ingredients')
+			.addEventListener('search', clearDropdownElements)
+	} catch (exception) {}
 
 	try {
 		document
-		.querySelector('input#search-ingredients')
-		.addEventListener('search', clearDropdownElements)
-	} catch(exception) {
-
-	}
-
-	try {
-		document
-		.querySelector('input#search-simple-ingredients')
-		.addEventListener('search', clearDropdownElements)
-	} catch(exception) {
-
-	}
+			.querySelector('input#search-simple-ingredients')
+			.addEventListener('search', clearDropdownElements)
+	} catch (exception) {}
 }
 
 /**
@@ -75,7 +70,9 @@ function displayIngredients(ingredients, container, modal) {
  */
 function displaySimpleIngredients(ingredients, container) {
 	clearElement(container)
-	ingredients.forEach((ingredient) => container.append(createSearchSimpleIngredientResultOption(ingredient)))
+	ingredients.forEach((ingredient) =>
+		container.append(createSearchSimpleIngredientResultOption(ingredient))
+	)
 }
 
 /**
@@ -117,7 +114,10 @@ function createSearchSimpleIngredientResultOption(ingredient) {
 	container.innerText = ingredient.name
 	container.classList.add('px-3')
 	container.classList.add('py-2')
-	container.setAttribute('onclick', 'addItemToList(event, ModalsType.SIMPLE_INGREDIENTS)')
+	container.setAttribute(
+		'onclick',
+		'addItemToList(event, ModalsType.SIMPLE_INGREDIENTS)'
+	)
 	return container
 }
 
@@ -129,8 +129,8 @@ async function addItemToList(event, modalType) {
 	event.preventDefault()
 
 	const item = (
-		event.path[0] instanceof HTMLLIElement
-			? event.path[0].innerText
+		event.target instanceof HTMLLIElement
+			? event.target.innerText
 			: document.querySelector('input#search-tags').value
 	).trim()
 
@@ -164,5 +164,3 @@ async function addItemToList(event, modalType) {
 	// hideLabel(inputSearchField)
 	checkModalListMaxHeight(modalType)
 }
-
-
